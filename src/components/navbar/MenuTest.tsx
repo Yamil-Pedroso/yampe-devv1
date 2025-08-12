@@ -4,7 +4,7 @@ import LocationInfo from "@/components/location-info/LocationInfo";
 const Menu = () => {
   return (
     <nav className="flex justify-between mt-30 px-10">
-      <div className="flex flex-col max-w-[1000px]">
+      <div className="flex flex-col max-w-[900px]">
         <LocationInfo
           className="mb-4 text-8xl text-white"
           highlightClass="text-color0"

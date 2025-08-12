@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Hero from "@/components/hero/Hero";
+import About from "@/components/about/About";
 import Resume from "@/components/resume/Resume";
 import Services from "@/components/services/Services";
 
@@ -9,8 +10,9 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <div>
+    <div className="">
       <Hero />
+      <About />
       <Resume />
       <Services />
     </div>

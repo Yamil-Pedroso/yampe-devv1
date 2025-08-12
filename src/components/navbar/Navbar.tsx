@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { LuAlignRight, LuBoxes, LuAlignJustify } from "react-icons/lu";
+import { LuBoxes, LuAlignJustify } from "react-icons/lu";
+import { FaLinkedinIn } from "react-icons/fa";
+import { TbBrandGithubFilled } from "react-icons/tb";
 import MenuItems from "./MenuItems";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuTest from "./MenuTest";
@@ -30,8 +32,8 @@ const Navbar = () => {
   return (
     <nav
       className="flex
-justify-between items-center w-full text-white
-    p-10"
+justify-between items-center w-full text-white mt-8
+    "
     >
       <div className="flex items-center">
         <LuBoxes size={48} className="inline text-[var(--element-bg-color)]" />
@@ -41,6 +43,26 @@ justify-between items-center w-full text-white
       {/*<div className="hidden min-[961px]:block">
         <MenuItems />
       </div> */}
+
+      <div className="flex gap-4">
+        <a
+          href="https://www.linkedin.com/in/yamil-pedroso/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className=" hover:text-color0 transition-colors "
+        >
+          <FaLinkedinIn size={36} className="inline" />
+        </a>
+
+        <a
+          href="https://github.com/Yamil-Pedroso"
+          target="_blank"
+          rel="noopener noreferrer"
+          className=" hover:text-color0 transition-colors "
+        >
+          <TbBrandGithubFilled size={36} className="inline" />
+        </a>
+      </div>
 
       <div className="block min-[961px]:hidden">
         <LuAlignJustify
@@ -69,7 +91,11 @@ justify-between items-center w-full text-white
         <LuAlignRight size={23} className="text-[#202020]" />
       </div> */}
       <div className="z-[999]">
-        <ToggleIcon isOpen={isOpenMenu} toggleMenu={toggleMenu} />
+        <ToggleIcon
+          className={`w-[3.125rem] h-[3.125rem]`}
+          isOpen={isOpenMenu}
+          toggleMenu={toggleMenu}
+        />
       </div>
       <AnimatePresence>
         {isOpenMenu && (

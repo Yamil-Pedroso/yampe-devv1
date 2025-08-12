@@ -12,12 +12,12 @@ body {
 }
 
 @theme {
-  --main-bg-color: #131313;
+  --main-bg-color: #141414;
   --color-bg1-color: #070707;
   --section-bg2-color: #1f1f1f;
 
   --element-bg-color: #c8f31d;
-  --element-bg1-color: #202020;
+  --color-bg1-color: #202020;
   --main-font-color: #ffffff;
   --color-color0: #c8f31d;
   --font-color1: #a8a8a8;
@@ -25,6 +25,7 @@ body {
   --color-color3: #656565;
 
   --font-btn-color: #070707;
+  --color-border-color: #3b3b3b;
 }
 
 .loader {

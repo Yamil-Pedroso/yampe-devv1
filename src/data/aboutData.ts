@@ -1,4 +1,6 @@
 import { AboutMeData } from "../types/Types";
+import { FaCheck } from "react-icons/fa6";
+import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
 
 export const aboutMeData: AboutMeData = {
   header: "About Me",
@@ -6,14 +8,26 @@ export const aboutMeData: AboutMeData = {
   description:
     "At vero eos et accusamus et odio dignissimos ducimus praesentium voluptatum corrupti quos dolores quas molestias excepturi sint occaecati cupiditate provident qui officia deserunt mollitia animi, id est laborum et dolorum.",
   features: [
-    { text: "Branding & Design", icon: "check-icon-path" },
-    { text: "Web Development", icon: "check-icon-path" },
-    { text: "Digital Marketing", icon: "check-icon-path" },
-    { text: "Product Design", icon: "check-icon-path" },
+    { text: "Frontend Development", icon: FaCheck },
+    { text: "Backend Development", icon: FaCheck },
+    { text: "React Native Development", icon: FaCheck },
+    { text: "UI/UX", icon: FaCheck },
+    { text: "Digital Art", icon: FaCheck },
+    { text: "Hosting", icon: FaCheck },
   ],
-  image: "/images/about-me.jpg", // ruta a la imagen del chico
-  email: "support@gmail.com",
-  phone: "+880 (123) 456 88",
+  image: "/images/about-me.jpg",
+  infoContact: [
+    {
+      text1: "Email:",
+      text2: "yamilpedroso@gmail.com",
+      icon: MdOutlineMailOutline,
+    },
+    {
+      text1: "Give me a Call:",
+      text2: " +41 79 532 65 19",
+      icon: MdOutlinePhone,
+    },
+  ],
   roleTags: [
     { text: "Experience Designer", icon: "/icons/experience.svg" },
     { text: "Mark J. Collins", icon: "/icons/user.svg" },

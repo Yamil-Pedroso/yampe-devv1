@@ -2,7 +2,7 @@ import { IconType } from "react-icons";
 
 export interface FeatureItem {
   text: string;
-  icon?: React.ReactNode | string;
+  icon?: IconType | string;
 }
 
 export interface CommonContent {
@@ -56,6 +56,7 @@ export interface HeroData {
 export interface AboutMeData extends CommonContent {
   email?: string;
   phone?: string;
+  infoContact?: { text1: string; text2: string; icon: string | IconType }[];
   roleTags?: { text: string; icon: string }[];
 }
 
