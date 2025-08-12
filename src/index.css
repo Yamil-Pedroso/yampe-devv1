@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Playball&display=swap");
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--main-bg-color);
+  color: var(--main-font-color);
+}
+
+@theme {
+  --main-bg-color: #131313;
+  --color-bg1-color: #070707;
+  --section-bg2-color: #1f1f1f;
+
+  --element-bg-color: #c8f31d;
+  --element-bg1-color: #202020;
+  --main-font-color: #ffffff;
+  --color-color0: #c8f31d;
+  --font-color1: #a8a8a8;
+  --color-color2: #adadad;
+  --color-color3: #656565;
+
+  --font-btn-color: #070707;
+}
+
+.loader {
+  position: absolute;
+  width: 64px;
+  height: 60px;
+}
+.loader::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  width: 64px;
+  height: 32px;
+  border-radius: 0 0 50px 50px;
+  animation: move 0.5s linear infinite alternate;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  background: var(--element-bg-color);
+  width: 24px;
+  height: 24px;
+  transform: translateX(-50%) rotate(0deg);
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+@keyframes move {
+  0% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
