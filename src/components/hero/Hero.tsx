@@ -42,11 +42,11 @@ const Hero = () => {
       </div>
 
       <div className="w-[30.9375rem] h-[33rem] rounded-lg border-2 border-color0 overflow-hidden">
-        {/*<img
+        <img
           src={heroData.image.src}
           alt={heroData.image.alt}
           className="w-full h-full object-cover"
-        /> */}
+        />
       </div>
 
       <div className="w-[16.5625rem] h-[24.5625rem] bg-bg1-color p-5">

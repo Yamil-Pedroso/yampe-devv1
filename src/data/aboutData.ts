@@ -1,10 +1,11 @@
 import { AboutMeData } from "../types/Types";
 import { FaCheck } from "react-icons/fa6";
 import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
+const text = "Problema Solutions";
 
 export const aboutMeData: AboutMeData = {
   header: "About Me",
-  title: "Professional Problem Solutions For Digital Products",
+  title: `Professional ${text} For Digital Products`,
   description:
     "At vero eos et accusamus et odio dignissimos ducimus praesentium voluptatum corrupti quos dolores quas molestias excepturi sint occaecati cupiditate provident qui officia deserunt mollitia animi, id est laborum et dolorum.",
   features: [
@@ -15,7 +16,7 @@ export const aboutMeData: AboutMeData = {
     { text: "Digital Art", icon: FaCheck },
     { text: "Hosting", icon: FaCheck },
   ],
-  image: "/images/about-me.jpg",
+  image: "/images/about/yami.jpg",
   infoContact: [
     {
       text1: "Email:",

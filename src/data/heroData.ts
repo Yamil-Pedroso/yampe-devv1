@@ -12,7 +12,7 @@ export const heroData: HeroData = {
     { text: "Download Resume", href: "/resume.pdf", icon: MdArrowForwardIos },
   ],
   image: {
-    src: "/images/hero/carfo.jpg",
+    src: "/images/hero/yami.jpg",
     alt: "Yamil Pedroso smiling and pointing",
   },
   stats: [
