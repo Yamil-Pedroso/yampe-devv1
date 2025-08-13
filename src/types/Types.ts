@@ -1,17 +1,16 @@
 import { IconType } from "react-icons";
 
-export interface FeatureItem {
-  text: string;
-  icon?: IconType | string;
-}
-
 export interface CommonContent {
   header: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   features?: FeatureItem[];
   icon?: IconType | string;
   image?: string;
+}
+export interface FeatureItem {
+  text: string;
+  icon?: IconType | string;
 }
 
 export interface MenuItem {
@@ -30,8 +29,8 @@ const menuItems: MenuItem[] = [
 ];
 
 export interface HeroStat {
-  value: string; // Ej: "13+", "8k+", "99%+"
-  label: string; // Ej: "Years Of Experience"
+  value: string;
+  label: string;
 }
 
 export interface HeroButton {
@@ -41,16 +40,16 @@ export interface HeroButton {
 }
 
 export interface HeroData {
-  greeting: string; // Ej: "Hello, I’m"
-  name: string; // Ej: "Roy C. Jones"
-  role: string; // Ej: "web designer"
-  description: string; // Texto descriptivo
-  buttons: HeroButton[]; // Lista de botones
+  greeting: string;
+  name: string;
+  role: string;
+  description: string;
+  buttons: HeroButton[];
   image: {
     src: string;
     alt: string;
   };
-  stats: HeroStat[]; // Lista de estadísticas
+  stats: HeroStat[];
 }
 
 export interface AboutMeData extends CommonContent {
@@ -58,6 +57,25 @@ export interface AboutMeData extends CommonContent {
   phone?: string;
   infoContact?: { text1: string; text2: string; icon: string | IconType }[];
   roleTags?: { text: string; icon: string }[];
+}
+
+export interface ResumeData extends CommonContent {
+  experience?: {
+    jobTitle: string;
+    company: string;
+    year: string;
+    icon: string | IconType;
+  }[];
+  skills?: string[];
+}
+
+export interface ServicesData extends CommonContent {
+  services?: {
+    stepNumber: string;
+    title: string;
+    description: string;
+    icon: string | IconType;
+  }[];
 }
 
 export default menuItems;

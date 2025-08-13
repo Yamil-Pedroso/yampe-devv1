@@ -45,7 +45,10 @@ const About = () => {
           <div className="flex flex-col gap-3.5">{group2}</div>
         </div>
 
-        <ElementContainer className="flex items-center justify-center w-[36.25rem] h-[5.375rem] px-[2.5rem] py-[1rem] gap-10 mt-3.5">
+        <ElementContainer
+          border
+          className="flex items-center justify-center w-[36.25rem] h-[5.375rem] px-[2.5rem] py-[1rem] gap-10 mt-3.5"
+        >
           {aboutMeData.infoContact?.map((info, index) => (
             <div key={index} className="flex items-center mb-2">
               {typeof info.icon === "string" ? (
