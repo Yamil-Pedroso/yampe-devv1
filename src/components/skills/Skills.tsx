@@ -160,7 +160,7 @@ const Skills: React.FC = () => {
   const catTitle = titleMap[catKey as string] ?? (catKey as string);
 
   return (
-    <section className="flex mt-50 bg-[#070707] p-[6rem] gap-12">
+    <section className="flex mt-50 bg-[#070707] h-auto p-[6rem] gap-12">
       {/* Izquierda: copy */}
       <div className="flex flex-col mx-auto max-w-[34rem]">
         {skillsData.header && (
@@ -203,9 +203,11 @@ const Skills: React.FC = () => {
               initial="enter"
               animate="center"
               exit="exit"
+              layout
+              className="relative w-full h-full"
             >
               {/* Grid del slide actual */}
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-auto absolute">
                 {(skills as any[]).map((skill, sidx) => {
                   const key = `${catKey}-${skill.tech ?? skill.title}-${sidx}`;
                   const pct = clamp(skill.level ?? 0);
@@ -216,7 +218,7 @@ const Skills: React.FC = () => {
                   return (
                     <ElementContainer
                       key={key}
-                      className="flex flex-col max-w-[10rem] items-center gap-4 p-5 rounded-2xl bg-[#171717] border border-border-color"
+                      className={`group flex flex-col max-w-[10rem] items-center gap-4 p-5 rounded-2xl bg-[#171717] border border-border-color hover:border-color0 transition-colors duration-300`}
                     >
                       {/* Icono */}
                       <div className="h-10 flex items-center justify-center">
@@ -226,7 +228,7 @@ const Skills: React.FC = () => {
                           <img
                             src={skill.icon}
                             alt={String(skill.tech ?? skill.title)}
-                            className="w-10 h-10 object-contain"
+                            className="w-[6.5rem] h-[3.4375rem] object-contain"
                           />
                         ) : (
                           <span className="text-xs text-color4">Icon</span>
@@ -250,8 +252,8 @@ const Skills: React.FC = () => {
                             aria-valuemax={100}
                           />
                         </div>
-                        <div className="mt-2 w-full">
-                          <span className="block w-full text-center text-xs font-semibold bg-[#232323] py-1 rounded-md">
+                        <div className="mt-4 w-full">
+                          <span className="block w-full text-center text-color3 text-[1.25rem] font-semibold bg-bg2-color transition-colors duration-300 group-hover:bg-color0 py-1 rounded-[.8rem]">
                             {pct}%
                           </span>
                         </div>
@@ -265,7 +267,7 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Controles */}
-        <div className="mt-6 flex items-center justify-center gap-4">
+        <div className="mt-22 flex items-center justify-center gap-4">
           <button
             onClick={() => {
               prev();
@@ -318,7 +320,7 @@ const Skills: React.FC = () => {
       >
         {categories.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-            {(categories[tallestIndex][1] as any[]).map(
+            {(categories[tallestIndex][1] as string[]).map(
               (skill: any, sidx: number) => {
                 const pct = clamp(skill.level ?? 0);
                 const Icon = isIconType(skill.icon)
