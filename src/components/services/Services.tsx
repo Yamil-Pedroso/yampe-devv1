@@ -8,7 +8,7 @@ const Services = () => {
       <div className="text-center mb-12">
         <h2 className="text-color4">{servicesData.header}</h2>
         <p className="text-[2.8125rem] max-w-[45rem] text-base/13 mt-3.5">
-          My <span className="text-color0 ">Special Service</span> For your
+          My <span className="text-color0 ">Special Services</span> For your
           Business Needs
         </p>
       </div>

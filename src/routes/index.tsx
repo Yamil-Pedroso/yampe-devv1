@@ -4,6 +4,7 @@ import About from "@/components/about/About";
 import Resume from "@/components/resume/Resume";
 import Services from "@/components/services/Services";
 import Skills from "@/components/skills/Skills";
+import Works from "@/components/works/Works";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -17,6 +18,7 @@ function Home() {
       <Resume />
       <Services />
       <Skills />
+      <Works />
     </div>
   );
 }

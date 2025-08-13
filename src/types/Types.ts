@@ -96,4 +96,14 @@ export interface SkillsData extends CommonContent {
   skills: Partial<Record<SkillCategory, SkillItem[]>>;
 }
 
+export interface WorksData extends CommonContent {
+  projects?: {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+    icon?: string | IconType;
+  }[];
+}
+
 export default menuItems;
