@@ -78,4 +78,22 @@ export interface ServicesData extends CommonContent {
   }[];
 }
 
+type SkillCategory =
+  | "frontend"
+  | "backend"
+  | "databases"
+  | "design"
+  | "devops"
+  | "architecture";
+
+export interface SkillItem {
+  tech: string;
+  level: number;
+  icon?: string | IconType;
+}
+
+export interface SkillsData extends CommonContent {
+  skills: Partial<Record<SkillCategory, SkillItem[]>>;
+}
+
 export default menuItems;
