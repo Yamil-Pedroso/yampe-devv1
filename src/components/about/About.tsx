@@ -4,6 +4,7 @@ import RoundedBtn from "@/components/common/rounded-btn/RoundedBtn";
 import ElementContainer from "../common/element-container/ElementContainer";
 import ElementContainer2 from "../common/element-container/ElementContainer2";
 import { MdOutlineArrowOutward } from "react-icons/md";
+import DarkContainer from "../common/containers/DarkContainer";
 
 const group1 = aboutMeData.features?.slice(0, 3).map((feature, index) => (
   <div key={index} className="flex items-center">
@@ -29,7 +30,7 @@ const group2 = aboutMeData.features?.slice(3, 6).map((feature, index) => (
 
 const About = () => {
   return (
-    <section className="flex items-center justify-center mt-50 bg-[#070707] p-[8.125rem] gap-12">
+    <DarkContainer>
       <div className="flex flex-col gap-6">
         <h2 className="text-color4">{aboutMeData.header}</h2>
         <p className="text-[2.8125rem] max-w-[45rem]">
@@ -47,7 +48,7 @@ const About = () => {
 
         <ElementContainer
           border
-          className="flex items-center justify-center w-[36.25rem] h-[5.375rem] px-[2.5rem] py-[1rem] gap-10 mt-3.5"
+          className="flex items-center justify-center w-[36.25rem] h-[5.375rem] px-[2.5rem] py-[1rem] gap-10 mt-3.5 bg-bg1-color"
         >
           {aboutMeData.infoContact?.map((info, index) => (
             <div key={index} className="flex items-center mb-2">
@@ -99,7 +100,7 @@ const About = () => {
           />
         </div>
       </div>
-    </section>
+    </DarkContainer>
   );
 };
 

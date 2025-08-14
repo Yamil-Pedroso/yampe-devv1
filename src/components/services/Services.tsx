@@ -18,7 +18,7 @@ const Services = () => {
             <ElementContainer
               border
               key={index}
-              className="flex justify-between items-center px-10  w-[39.375rem] h-[8.5rem] rounded-2xl shadow-lg"
+              className="flex justify-between items-center px-10  w-[39.375rem] h-[8.5rem] rounded-2xl shadow-lg bg-bg1-color"
             >
               <div className="flex">
                 <h3 className="text-[1.5rem] font-bold mb-2">

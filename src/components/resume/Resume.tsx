@@ -61,7 +61,7 @@ const Resume = () => {
           </p>
         </div>
 
-        <ElementContainer className="flex items-center justify-center w-[75rem] h-[32rem]">
+        <ElementContainer className="flex items-center justify-center w-[75rem] h-[32rem] bg-bg1-color">
           <div className="flex gap-16 mt-6">
             <div className="flex flex-col justify-center">
               {experienceGroup1}

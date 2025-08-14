@@ -11,6 +11,7 @@ import ElementContainer from "../common/element-container/ElementContainer";
 import type { IconType } from "react-icons";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import DarkContainer from "../common/containers/DarkContainer";
 
 const clamp = (n: number, min = 0, max = 100) =>
   Math.max(min, Math.min(max, n));
@@ -160,7 +161,7 @@ const Skills: React.FC = () => {
   const catTitle = titleMap[catKey as string] ?? (catKey as string);
 
   return (
-    <section className="flex mt-50 bg-[#070707] h-auto p-[6rem] gap-12">
+    <DarkContainer>
       {/* Izquierda: copy */}
       <div className="flex flex-col mx-auto max-w-[34rem]">
         {skillsData.header && (
@@ -367,7 +368,7 @@ const Skills: React.FC = () => {
           </div>
         )}
       </div>
-    </section>
+    </DarkContainer>
   );
 };
 

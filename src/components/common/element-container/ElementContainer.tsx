@@ -2,6 +2,7 @@ interface ElementContainerProps {
   children: React.ReactNode;
   className?: string;
   border?: boolean;
+  bgColor?: string;
 }
 
 const ElementContainer = ({
@@ -11,7 +12,7 @@ const ElementContainer = ({
 }: ElementContainerProps) => {
   return (
     <div
-      className={`bg-bg1-color
+      className={`
           ${border ? "border border-border-color" : ""}
           rounded-2xl overflow-hidden ${className}`}
     >

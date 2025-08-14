@@ -19,8 +19,8 @@ const Hero = () => {
           {heroData.description}
         </p>
         <div className="mt-6 flex gap-4">
-          <Button href={heroData.buttons[0].href}>
-            <span className="mx-1.5">{heroData.buttons[0].text}</span>
+          <Button href={heroData.buttons[0].href} className="w-[12] h-[3rem]">
+            <span className="mx-1.5 font-bold">{heroData.buttons[0].text}</span>
             {heroData.buttons[0].icon && (
               <span className="mr-2">
                 {React.createElement(heroData.buttons[0].icon)}

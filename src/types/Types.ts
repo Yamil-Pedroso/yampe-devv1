@@ -106,4 +106,14 @@ export interface WorksData extends CommonContent {
   }[];
 }
 
+export interface TestimonialsData extends CommonContent {
+  testimonials: {
+    avatar: string;
+    quote: string;
+    author: string;
+    position: string;
+    icon?: string | IconType;
+  }[];
+}
+
 export default menuItems;

@@ -36,7 +36,12 @@ justify-between items-center w-full text-white mt-8
     "
     >
       <div className="flex items-center">
-        <LuBoxes size={48} className="inline text-[var(--element-bg-color)]" />
+        {/*<LuBoxes size={48} className="inline text-[var(--element-bg-color)]" /> */}
+        <img
+          src="/images/logo/cubi_logo.png"
+          alt="Yampe.dev"
+          className="w-12 h-12"
+        />
         <h1 className="text-3xl font-bold text-white mx-2">Yampe.dev</h1>
       </div>
 

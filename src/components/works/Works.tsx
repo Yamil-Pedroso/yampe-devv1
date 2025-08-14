@@ -1,5 +1,7 @@
-import { worksData } from "@/data/worksData";
 import React from "react";
+import { worksData } from "@/data/worksData";
+import Button from "@/components/common/buttons/Button";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Works = () => {
   return (
@@ -62,6 +64,13 @@ const Works = () => {
             )}
           </div>
         ))}
+      </div>
+
+      <div className="mt-10">
+        <Button className="w-[14.625rem] h-[3.125rem]">
+          <span className="font-bold">Discover More Projects</span>
+          <IoIosArrowForward className="ml-2" />
+        </Button>
       </div>
     </section>
   );
