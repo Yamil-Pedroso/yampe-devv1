@@ -120,4 +120,15 @@ export interface GetInTouchData extends CommonContent {
   servicesTags?: { text: string; icon: string | IconType }[];
 }
 
+export interface NewsAndBlogsData extends CommonContent {
+  newsAndBlogs: {
+    image: string;
+    tags: string[];
+    excerpt: string;
+    author: string;
+    date: string;
+    icon?: string | IconType;
+  }[];
+}
+
 export default menuItems;
