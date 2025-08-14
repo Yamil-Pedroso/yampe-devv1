@@ -30,7 +30,7 @@ const group2 = aboutMeData.features?.slice(3, 6).map((feature, index) => (
 
 const About = () => {
   return (
-    <DarkContainer>
+    <DarkContainer className="max-w-[90%] mx-auto">
       <div className="flex flex-col gap-6">
         <h2 className="text-color4">{aboutMeData.header}</h2>
         <p className="text-[2.8125rem] max-w-[45rem]">

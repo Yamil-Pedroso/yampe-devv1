@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { infoFooterData } from "@/data/infoFooterData";
 
 const Footer = () => {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -12,8 +13,25 @@ const Footer = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex">
       <p>&copy; {year} Yampe.dev. All rights reserved.</p>
+
+      <div>
+        <nav aria-label="Quick links">
+          <ul className="space-y-3 flex">
+            {infoFooterData.socialLinks?.map((link) => (
+              <li key={link.platform}>
+                <a
+                  href={link.url}
+                  className="text-zinc-300 transition hover:text-white"
+                >
+                  {link.platform}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };

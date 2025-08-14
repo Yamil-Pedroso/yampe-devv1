@@ -161,7 +161,7 @@ const Skills: React.FC = () => {
   const catTitle = titleMap[catKey as string] ?? (catKey as string);
 
   return (
-    <DarkContainer>
+    <DarkContainer className="max-w-[90%] mx-auto">
       {/* Izquierda: copy */}
       <div className="flex flex-col mx-auto max-w-[34rem]">
         {skillsData.header && (

@@ -3,13 +3,16 @@ import { createContext, useContext, useState, useEffect, useRef } from "react";
 const MenuContext = createContext<{
   isOpenMenu: boolean;
   toggleMenu: () => void;
+  withMargin: boolean;
 }>({
   isOpenMenu: false,
   toggleMenu: () => {},
+  withMargin: false,
 });
 
 export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+
   const scrollYRef = useRef(0);
 
   const toggleMenu = () => setIsOpenMenu((prev) => !prev);

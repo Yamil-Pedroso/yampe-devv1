@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
+import InfoFooter from "@/components/footer/InfoFooter";
 import Lenis from "@studio-freight/lenis";
 
 interface MainLayoutProps {
@@ -31,10 +31,10 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col mx-auto min-h-screen max-w-[90%]">
+    <div className="flex flex-col mx-auto min-h-screen">
       <Navbar />
       <main className="flex-grow">{children}</main>
-      <Footer />
+      <InfoFooter />
     </div>
   );
 };

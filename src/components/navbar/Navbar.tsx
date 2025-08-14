@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LuBoxes, LuAlignJustify } from "react-icons/lu";
+import { LuAlignJustify } from "react-icons/lu";
 import { FaLinkedinIn } from "react-icons/fa";
 import { TbBrandGithubFilled } from "react-icons/tb";
 import MenuItems from "./MenuItems";
@@ -31,8 +31,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="flex
-justify-between items-center w-full text-white mt-8
+      className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[90%]
     "
     >
       <div className="flex items-center">

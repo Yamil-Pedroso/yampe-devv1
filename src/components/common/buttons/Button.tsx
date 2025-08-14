@@ -5,6 +5,7 @@ interface ButtonProps {
   href?: string;
   onClick?: () => void;
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,6 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   href,
   onClick,
   className,
+  type = "button",
 }) => {
   const buttonClassName =
     "flex items-center justify-center rounded-2xl px-4 bg-[var(--element-bg-color)] text-[var(--font-btn-color)]" +
@@ -26,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button onClick={onClick} className={buttonClassName}>
+    <button onClick={onClick} className={buttonClassName} type={type}>
       {children}
     </button>
   );

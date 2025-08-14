@@ -131,4 +131,10 @@ export interface NewsAndBlogsData extends CommonContent {
   }[];
 }
 
+export interface InfoFooterData {
+  quickLinks?: { text: string; href: string }[];
+  address?: { street: string; email: string; phone: string };
+  socialLinks?: { platform: string; url: string }[];
+}
+
 export default menuItems;

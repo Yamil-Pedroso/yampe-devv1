@@ -11,7 +11,7 @@ const Testimonials = () => {
   const { header, description, testimonials } = testimonialsData;
 
   return (
-    <DarkContainer>
+    <DarkContainer className="max-w-[90%] mx-auto">
       <div className="flex gap-10">
         <div className="flex flex-col w-[23.125rem] h-[20.5rem]">
           <div className="space-y-5">

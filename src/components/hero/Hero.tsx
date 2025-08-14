@@ -4,7 +4,7 @@ import Button from "@/components/common/buttons/Button";
 
 const Hero = () => {
   return (
-    <section className="flex items-center justify-between mt-16">
+    <section className="flex items-center justify-between mt-16 max-w-[90%] mx-auto">
       <div className="w-[30%]">
         <p className="text-[2.8125rem] text-color3">{heroData.greeting}</p>
 
