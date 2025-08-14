@@ -116,4 +116,8 @@ export interface TestimonialsData extends CommonContent {
   }[];
 }
 
+export interface GetInTouchData extends CommonContent {
+  servicesTags?: { text: string; icon: string | IconType }[];
+}
+
 export default menuItems;

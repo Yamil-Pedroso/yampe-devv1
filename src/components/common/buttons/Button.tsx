@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
 }) => {
   const buttonClassName =
-    "flex items-center justify-center px-4 rounded-[1rem] bg-[var(--element-bg-color)] text-[var(--font-btn-color)]" +
+    "flex items-center justify-center rounded-2xl px-4 bg-[var(--element-bg-color)] text-[var(--font-btn-color)]" +
     (className ? ` ${className}` : "");
 
   if (href) {

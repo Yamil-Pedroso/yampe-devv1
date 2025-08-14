@@ -6,6 +6,9 @@ import Services from "@/components/services/Services";
 import Skills from "@/components/skills/Skills";
 import Works from "@/components/works/Works";
 import Testimonials from "@/components/testimonials/Testimonials";
+import GetInTouch from "@/components/get-in-touch/GetInTouch";
+import NewsAndBlogs from "@/components/news-&-blogs/NewsAndBlogs";
+import ClientsAndFirmas from "@/components/clients-&-firmas/ClientsAndFirmas";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -21,6 +24,9 @@ function Home() {
       <Skills />
       <Works />
       <Testimonials />
+      <GetInTouch />
+      <NewsAndBlogs />
+      <ClientsAndFirmas />
     </div>
   );
 }
