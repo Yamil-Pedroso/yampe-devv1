@@ -47,8 +47,9 @@ const experienceGroup2 = resumeData.experience
 
 const Resume = () => {
   return (
-    <section className="max-w-[94%] mx-auto mt-50 flex flex-col items-center gap-8 large:flex-row large:items-start large:gap-16">
+    <section className="max-w-[94%] mt-50 flex flex-col mx-auto items-center justify-center gap-8 large:flex-row large:items-start large:gap-16">
       {/* Badge circular */}
+      <div className=" large:px-10">
       <div className="flex items-center justify-center w-40 h-40 rounded-full bg-bg1-color border border-border-color large:w-[16.875rem] large:h-[16.875rem]">
         <LuBoxes
           size={88}
@@ -56,8 +57,10 @@ const Resume = () => {
         />
       </div>
 
+      </div>
+
       {/* Texto + timeline */}
-      <div className="flex flex-col gap-8 large:gap-14 w-full">
+      <div className="flex flex-col gap-8 large:gap-14">
         {/* Header */}
         <div className="flex flex-col gap-3 text-center large:text-left">
           <p className="text-color4">{resumeData.header}</p>
@@ -68,7 +71,7 @@ const Resume = () => {
         </div>
 
         {/* Contenedor de experiencias */}
-        <ElementContainer className="w-full max-w-screen-xl bg-bg1-color p-4 mobile:p-6 large:p-8">
+        <ElementContainer className="w-full max-w-screen-xl bg-bg1-color p-6 mobile:p-6 large:p-18">
           {/* En mobile: columna; en large: fila con separador vertical */}
           <div className="flex flex-col gap-10 large:flex-row large:gap-16 mt-4">
             {/* Columna izquierda */}

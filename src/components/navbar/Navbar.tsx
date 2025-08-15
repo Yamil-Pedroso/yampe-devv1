@@ -27,14 +27,14 @@ const Navbar = () => {
       className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[94%]
     "
     >
-      <div className="flex items-center">
+      <a href="/" className="flex items-center">
         <img
           src="/images/logo/cubi_logo.png"
           alt="Yampe.dev"
           className="w-12 h-12"
         />
         <h1 className="text-3xl font-bold text-white mx-2">Yampe.dev</h1>
-      </div>
+      </a>
 
       {/*<div className="hidden min-[961px]:block">
         <MenuItems />
