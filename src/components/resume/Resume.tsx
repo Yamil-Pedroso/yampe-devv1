@@ -47,16 +47,15 @@ const experienceGroup2 = resumeData.experience
 
 const Resume = () => {
   return (
-    <section className="max-w-[94%] mt-50 flex flex-col mx-auto items-center justify-center gap-8 large:flex-row large:items-start large:gap-16">
+    <section className="max-w-[94%] mt-50 flex flex-col  items-center justify-center gap-8 mx-auto large:mx-0 large:flex-row large:items-start large:gap-16">
       {/* Badge circular */}
       <div className=" large:px-10">
-      <div className="flex items-center justify-center w-40 h-40 rounded-full bg-bg1-color border border-border-color large:w-[16.875rem] large:h-[16.875rem]">
-        <LuBoxes
-          size={88}
-          className="inline text-[var(--element-bg-color)] large:size-[135px]"
-        />
-      </div>
-
+        <div className="flex items-center justify-center w-40 h-40 rounded-full bg-bg1-color border border-border-color large:w-[16.875rem] large:h-[16.875rem]">
+          <LuBoxes
+            size={88}
+            className="inline text-[var(--element-bg-color)] large:size-[135px]"
+          />
+        </div>
       </div>
 
       {/* Texto + timeline */}
