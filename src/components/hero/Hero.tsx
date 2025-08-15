@@ -1,11 +1,36 @@
 import React from "react";
 import { heroData } from "@/data/heroData";
 import Button from "@/components/common/buttons/Button";
+import { motion, Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
+};
+
+// 2. Props reutilizables
+const fadeUpProps = {
+  variants: fadeUp,
+  initial: "initial",
+  animate: "animate",
+  exit: "exit",
+};
+
+/*.initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 50,
+          mass: 0.5,
+        }} */
 
 const Hero = () => {
   return (
-    <section className="flex items-center justify-between mt-16 max-w-[90%] mx-auto">
-      <div className="w-[30%]">
+    <section className="flex items-center justify-between mt-16 max-w-[94%] mx-auto ">
+      {/* left content */}
+      <motion.div {...fadeUpProps} className="w-[500px] border hero-left">
         <p className="text-[2.8125rem] text-color3">{heroData.greeting}</p>
 
         <div className="text-base/21">
@@ -39,17 +64,23 @@ const Hero = () => {
             )}
           </a>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="w-[30.9375rem] h-[33rem] rounded-lg border-2 border-color0 overflow-hidden">
-        <img
+      {/* middle content */}
+      <div className=" flex justify-center items-center w-[30.9375rem] h-[33rem] rounded-lg overflow-hidden border ">
+        <span>Animation</span>
+        {/*<img
           src={heroData.image.src}
           alt={heroData.image.alt}
           className="w-full h-full object-cover"
-        />
+        />*/}
       </div>
 
-      <div className="w-[16.5625rem] h-[24.5625rem] bg-bg1-color p-5">
+      {/* right content */}
+      <motion.div
+        {...fadeUpProps}
+        className="w-[16.5625rem] h-[24.5625rem] bg-bg1-color p-5 border "
+      >
         <div className="flex flex-col items-center justify-center h-full">
           {heroData.stats.map((stat, i) => (
             <div key={i} className="">
@@ -63,7 +94,7 @@ const Hero = () => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

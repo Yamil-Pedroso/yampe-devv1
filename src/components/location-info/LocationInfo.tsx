@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SocialLinks from "../navbar/SocialLinks";
 
 interface LocationInfoProps {
   classContainer?: string;
@@ -46,6 +47,8 @@ const LocationInfo: React.FC<LocationInfoProps> = ({
       <div className={` ${clockClass}`}>
         {currentTime} <span className={`${greetingClass}`}>{greeting}</span>
       </div>
+
+      <SocialLinks className=" flex mt-6 justify-end large:justify-start" />
     </div>
   );
 };

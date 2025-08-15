@@ -12,6 +12,8 @@ import type { IconType } from "react-icons";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import DarkContainer from "../common/containers/DarkContainer";
+import Button from "../common/buttons/Button";
+import { IoIosArrowForward } from "react-icons/io";
 
 const clamp = (n: number, min = 0, max = 100) =>
   Math.max(min, Math.min(max, n));
@@ -55,7 +57,6 @@ const slideVariants = {
 };
 
 const Skills: React.FC = () => {
-  // Normaliza y ordena categorías
   const categories = useMemo(() => {
     const src = skillsData.skills ?? {};
     return order
@@ -64,7 +65,7 @@ const Skills: React.FC = () => {
   }, []);
 
   const [idx, setIdx] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 next, -1 prev
+  const [direction, setDirection] = useState(1);
   const timerRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -78,7 +79,6 @@ const Skills: React.FC = () => {
     setIdx((i) => (i - 1 + categories.length) % categories.length);
   }, [categories.length]);
 
-  // Autoplay
   const resetAutoplay = useCallback(() => {
     if (timerRef.current) window.clearInterval(timerRef.current);
     timerRef.current = window.setInterval(() => {
@@ -101,25 +101,6 @@ const Skills: React.FC = () => {
     resetAutoplay();
   };
 
-  // Teclado
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (!containerRef.current) return;
-      if (!containerRef.current.matches(":focus-within,:hover")) return;
-      if (e.key === "ArrowRight") {
-        next();
-        resetAutoplay();
-      } else if (e.key === "ArrowLeft") {
-        prev();
-        resetAutoplay();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [next, prev, resetAutoplay]);
-
-  // --- ALTURA FIJA DEL SLIDE ---
-  // Calcula cuál categoría es la más alta (por cantidad de items)
   const tallestIndex = useMemo(() => {
     if (categories.length === 0) return 0;
     let maxI = 0;
@@ -134,7 +115,6 @@ const Skills: React.FC = () => {
     return maxI;
   }, [categories]);
 
-  // Medición de altura de la categoría más alta
   const measureRef = useRef<HTMLDivElement | null>(null);
   const [minH, setMinH] = useState<number>(0);
 
@@ -161,40 +141,54 @@ const Skills: React.FC = () => {
   const catTitle = titleMap[catKey as string] ?? (catKey as string);
 
   return (
-    <DarkContainer className="max-w-[90%] mx-auto">
-      {/* Izquierda: copy */}
-      <div className="flex flex-col mx-auto max-w-[34rem]">
+    <DarkContainer className="max-w-[94%] mx-auto">
+      {/* Copy (solo ajustes móviles, sin tocar escritorio) */}
+      <div className="flex flex-col max-w-[34rem] mb-30 max-[40rem]:px-4 max-[40rem]:mb-8">
         {skillsData.header && (
-          <p className="mb-2 text-color4">{skillsData.header}</p>
+          <p className="mb-2 text-color4 max-[40rem]:text-sm">
+            {skillsData.header}
+          </p>
         )}
-        <p className="text-[2.8125rem] max-w-[45rem] text-base/14">
+        <p className="text-[2.8125rem] max-w-[45rem] text-base/14 max-[40rem]:text-[2rem]">
           Let’s Explore Popular{" "}
           <span className="text-color0">Skills & Experience</span>
         </p>
         {skillsData.title && (
-          <h2 className="text-[2.25rem] leading-tight ">{skillsData.title}</h2>
+          <h2 className="text-[2.25rem] leading-tight max-[40rem]:text-[1.5rem]">
+            {skillsData.title}
+          </h2>
         )}
         {skillsData.description && (
-          <p className="text-color4/80 mt-2.5">{skillsData.description}</p>
+          <p className="text-color4/80 mt-2.5 max-[40rem]:text-sm">
+            {skillsData.description}
+          </p>
         )}
+
+        <div className="mt-8">
+          <Button className="w-[10.8rem] h-[3.1rem] max-[40rem]:h-[2.6rem] max-[40rem]:w-[9.5rem]">
+            <p className="font-bold max-[40rem]:text-sm">Explore More</p>
+            <IoIosArrowForward className="ml-2" size={20} />
+          </Button>
+        </div>
       </div>
 
-      {/* Derecha: Slider */}
+      {/* Slider (sin tocar md/xl; solo mejoras móviles) */}
       <div
         ref={containerRef}
-        className="flex-1 max-w-[56rem] outline-none"
+        className="flex-1 max-w-[56rem] outline-none max-[40rem]:w-full max-[40rem]:px-4"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Header del grupo */}
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">{catTitle}</h3>
-          <p className="text-sm text-color4/70">
+        <div className="flex items-center justify-between mb-4 max-[40rem]:mb-3">
+          <h3 className="text-lg font-semibold max-[40rem]:text-base">
+            {catTitle}
+          </h3>
+          <p className="text-sm text-color4/70 max-[40rem]:text-xs">
             {idx + 1} / {categories.length}
           </p>
         </div>
 
-        {/* Contenedor con altura mínima fija (medida) */}
+        {/* minHeight para evitar saltos; idéntico en desktop */}
         <div style={{ minHeight: minH || undefined }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -207,8 +201,8 @@ const Skills: React.FC = () => {
               layout
               className="relative w-full h-full"
             >
-              {/* Grid del slide actual */}
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-auto absolute">
+              {/* Grid: mantiene 2/3/4 en desktop; en móviles forzamos 1 col en pantallas muy estrechas */}
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-auto absolute max-[22.5rem]:grid-cols-1">
                 {(skills as any[]).map((skill, sidx) => {
                   const key = `${catKey}-${skill.tech ?? skill.title}-${sidx}`;
                   const pct = clamp(skill.level ?? 0);
@@ -219,17 +213,22 @@ const Skills: React.FC = () => {
                   return (
                     <ElementContainer
                       key={key}
-                      className={`group flex flex-col max-w-[10rem] items-center gap-4 p-5 rounded-2xl bg-[#171717] border border-border-color hover:border-color0 transition-colors duration-300`}
+                      className="
+                        group flex flex-col items-center gap-4 p-5 rounded-2xl
+                        bg-[#171717] border border-border-color hover:border-color0 transition-colors duration-300
+                        max-w-[10rem]
+                        max-[40rem]:max-w-[7.5rem] max-[40rem]:p-3 max-[40rem]:gap-3
+                      "
                     >
                       {/* Icono */}
-                      <div className="h-10 flex items-center justify-center">
+                      <div className="h-10 flex items-center justify-center max-[40rem]:h-8">
                         {Icon ? (
-                          <Icon className="w-10 h-10 text-color3" />
+                          <Icon className="w-10 h-10 text-color3 max-[40rem]:w-8 max-[40rem]:h-8" />
                         ) : skill.icon ? (
                           <img
                             src={skill.icon}
                             alt={String(skill.tech ?? skill.title)}
-                            className="w-[6.5rem] h-[3.4375rem] object-contain"
+                            className="w-[6.5rem] h-[3.4375rem] object-contain max-[40rem]:w-[4.5rem] max-[40rem]:h-[2.4rem]"
                           />
                         ) : (
                           <span className="text-xs text-color4">Icon</span>
@@ -237,13 +236,13 @@ const Skills: React.FC = () => {
                       </div>
 
                       {/* Nombre */}
-                      <p className="font-medium text-sm text-center">
+                      <p className="font-medium text-sm text-center max-[40rem]:text-xs">
                         {skill.tech ?? skill.title}
                       </p>
 
                       {/* Porcentaje */}
                       <div className="w-full">
-                        <div className="relative w-full h-2 rounded-full bg-border-color/60 overflow-hidden">
+                        <div className="relative w-full h-2 rounded-full bg-border-color/60 overflow-hidden max-[40rem]:h-1.5">
                           <div
                             className="h-full rounded-full bg-color3 transition-[width] duration-500"
                             style={{ width: `${pct}%` }}
@@ -253,8 +252,8 @@ const Skills: React.FC = () => {
                             aria-valuemax={100}
                           />
                         </div>
-                        <div className="mt-4 w-full">
-                          <span className="block w-full text-center text-color3 text-[1.25rem] font-semibold bg-bg2-color transition-colors duration-300 group-hover:bg-color0 py-1 rounded-[.8rem]">
+                        <div className="mt-4 w-full max-[40rem]:mt-2">
+                          <span className="block w-full text-center text-color3 text-[1.25rem] font-semibold bg-bg2-color transition-colors duration-300 group-hover:bg-color0 py-1 rounded-[.8rem] max-[40rem]:text-sm max-[40rem]:py-0.5">
                             {pct}%
                           </span>
                         </div>
@@ -267,21 +266,20 @@ const Skills: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Controles */}
-        <div className="mt-22 flex items-center justify-center gap-4">
+        {/* Controles: versiones compactas en móvil */}
+        <div className="mt-22 flex items-center justify-center gap-4 max-[40rem]:mt-10 max-[40rem]:gap-3">
           <button
             onClick={() => {
               prev();
               resetAutoplay();
             }}
-            className="rounded-full border border-border-color bg-[#171717] px-4 py-2 hover:bg-[#1f1f1f] transition"
+            className="rounded-full border border-border-color bg-[#171717] px-4 py-2 hover:bg-[#1f1f1f] transition max-[40rem]:px-3 max-[40rem]:py-1.5"
             aria-label="Previous category"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-5 h-5 max-[40rem]:w-4 max-[40rem]:h-4" />
           </button>
 
-          {/* Dots */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 max-[40rem]:gap-1.5">
             {categories.map(([, _], i) => (
               <button
                 key={`dot-${i}`}
@@ -292,7 +290,7 @@ const Skills: React.FC = () => {
                 }}
                 aria-label={`Go to category ${i + 1}`}
                 className={[
-                  "h-2 w-2 rounded-full transition",
+                  "h-2 w-2 rounded-full transition max-[40rem]:h-1.5 max-[40rem]:w-1.5",
                   i === idx ? "bg-color3" : "bg-border-color",
                 ].join(" ")}
               />
@@ -304,15 +302,15 @@ const Skills: React.FC = () => {
               next();
               resetAutoplay();
             }}
-            className="rounded-full border border-border-color bg-[#171717] px-4 py-2 hover:bg-[#1f1f1f] transition"
+            className="rounded-full border border-border-color bg-[#171717] px-4 py-2 hover:bg-[#1f1f1f] transition max-[40rem]:px-3 max-[40rem]:py-1.5"
             aria-label="Next category"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-5 h-5 max-[40rem]:w-4 max-[40rem]:h-4" />
           </button>
         </div>
       </div>
 
-      {/* ---- Medidor invisible para altura máxima ---- */}
+      {/* Medidor invisible: refleja la misma malla para que el minHeight sea correcto también en móvil */}
       <div
         aria-hidden
         className="absolute opacity-0 pointer-events-none -z-50"
@@ -320,8 +318,8 @@ const Skills: React.FC = () => {
         ref={measureRef}
       >
         {categories.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-            {(categories[tallestIndex][1] as string[]).map(
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 max-[22.5rem]:grid-cols-1">
+            {(categories[tallestIndex][1] as any[]).map(
               (skill: any, sidx: number) => {
                 const pct = clamp(skill.level ?? 0);
                 const Icon = isIconType(skill.icon)
@@ -330,33 +328,37 @@ const Skills: React.FC = () => {
                 return (
                   <ElementContainer
                     key={`measure-${sidx}`}
-                    className="flex flex-col max-w-[10rem] items-center gap-4 p-5 rounded-2xl bg-[#171717] border border-border-color"
+                    className="
+                    flex flex-col items-center gap-4 p-5 rounded-2xl bg-[#171717] border border-border-color
+                    max-w-[10rem]
+                    max-[40rem]:max-w-[7.5rem] max-[40rem]:p-3 max-[40rem]:gap-3
+                  "
                   >
-                    <div className="h-10 flex items-center justify-center">
+                    <div className="h-10 flex items-center justify-center max-[40rem]:h-8">
                       {Icon ? (
-                        <Icon className="w-10 h-10 text-color3" />
+                        <Icon className="w-10 h-10 text-color3 max-[40rem]:w-8 max-[40rem]:h-8" />
                       ) : skill.icon ? (
                         <img
                           src={skill.icon}
                           alt=""
-                          className="w-10 h-10 object-contain"
+                          className="w-10 h-10 object-contain max-[40rem]:w-8 max-[40rem]:h-8"
                         />
                       ) : (
                         <span className="text-xs text-color4">Icon</span>
                       )}
                     </div>
-                    <p className="font-medium text-sm text-center">
+                    <p className="font-medium text-sm text-center max-[40rem]:text-xs">
                       {skill.tech ?? skill.title}
                     </p>
                     <div className="w-full">
-                      <div className="relative w-full h-2 rounded-full bg-border-color/60 overflow-hidden">
+                      <div className="relative w-full h-2 rounded-full bg-border-color/60 overflow-hidden max-[40rem]:h-1.5">
                         <div
                           className="h-full rounded-full bg-color3"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
                       <div className="mt-2 w-full">
-                        <span className="block w-full text-center text-xs font-semibold bg-[#232323] py-1 rounded-md">
+                        <span className="block w-full text-center text-xs font-semibold bg-[#232323] py-1 rounded-md max-[40rem]:py-0.5">
                           {pct}%
                         </span>
                       </div>

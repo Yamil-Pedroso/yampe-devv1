@@ -16,7 +16,7 @@ export const aboutMeData: AboutMeData = {
     { text: "Digital Art", icon: FaCheck },
     { text: "Hosting", icon: FaCheck },
   ],
-  image: "/images/about/yami.jpg",
+  image: "/images/avatar/junger_pro.png",
   infoContact: [
     {
       text1: "Email:",
