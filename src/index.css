@@ -33,6 +33,7 @@ body {
 
   --breakpoint-mobile: 40rem;
   --breakpoint-tablet-lg: 48rem;
+  --breakpoint-custom: 50rem;
   --breakpoint-large: 60rem;
   --breakpoint-laptop: 64rem;
   --breakpoint-desktop: 80rem;

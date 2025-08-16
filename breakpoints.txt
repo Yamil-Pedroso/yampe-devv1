@@ -1,0 +1,169 @@
+| Nombre (prefix) | Ancho mínimo (px) |
+| --------------- | ----------------- |
+| **sm**          | 640px             |
+| **md**          | 768px             |
+| **lg**          | 1024px            |
+| **xl**          | 1280px            |
+| **2xl**         | 1536px            |
+
+🔹 Contenedor Grid
+
+grid → activa grid display
+
+inline-grid → grid en línea
+
+🔹 Columnas
+
+grid-cols-1
+
+grid-cols-2
+
+grid-cols-3
+
+grid-cols-4
+
+grid-cols-5
+
+grid-cols-6
+
+grid-cols-7
+
+grid-cols-8
+
+grid-cols-9
+
+grid-cols-10
+
+grid-cols-11
+
+grid-cols-12
+
+grid-cols-none
+
+También se pueden usar valores arbitrarios:
+
+grid-cols-[16rem_auto]
+
+grid-cols-[200px_minmax(900px,1fr)_100px]
+
+🔹 Filas
+
+grid-rows-1 … grid-rows-6
+
+grid-rows-none
+
+Arbitrarios: grid-rows-[auto_1fr_auto]
+
+🔹 Tamaño de columnas / filas de los items
+
+col-span-1 … col-span-12
+
+col-span-full
+
+col-start-1 … col-start-13
+
+col-end-1 … col-end-13
+
+row-span-1 … row-span-6
+
+row-span-full
+
+row-start-1 … row-start-7
+
+row-end-1 … row-end-7
+
+🔹 Gap (espacios entre celdas)
+
+gap-0 … gap-96
+
+gap-x-* (solo columnas)
+
+gap-y-* (solo filas)
+
+Ejemplo: gap-4, gap-x-8, gap-y-2
+
+🔹 Alineación del contenido global (grid container)
+
+place-content-start
+
+place-content-end
+
+place-content-center
+
+place-content-between
+
+place-content-around
+
+place-content-evenly
+
+place-content-stretch
+
+🔹 Alineación de filas
+
+content-start
+
+content-center
+
+content-end
+
+content-between
+
+content-around
+
+content-evenly
+
+🔹 Alineación de columnas
+
+justify-items-start
+
+justify-items-center
+
+justify-items-end
+
+justify-items-stretch
+
+🔹 Alineación de filas (ítems)
+
+items-start
+
+items-center
+
+items-end
+
+items-stretch
+
+🔹 Alineación de ítems individuales
+
+justify-self-auto
+
+justify-self-start
+
+justify-self-center
+
+justify-self-end
+
+justify-self-stretch
+
+self-auto
+
+self-start
+
+self-center
+
+self-end
+
+self-stretch
+
+👉 Con estas utilidades tienes control total de un layout grid:
+
+Definir columnas/filas
+
+Hacer span (ocupar varias columnas/filas)
+
+Manejar gaps
+
+Centrar globalmente (place-content-center)
+
+Centrar por columna o fila (justify-items-center, items-center)
+
+Centrar un ítem puntual (justify-self-center, self-center)
