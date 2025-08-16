@@ -13,25 +13,26 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="flex">
-      <p>&copy; {year} Yampe.dev. All rights reserved.</p>
+    <div className="flex items-center justify-around p-5">
+      <p>
+        &copy; {year} <span className="text-color0">Yampe.dev</span>. All rights
+        reserved.
+      </p>
 
-      <div>
-        <nav aria-label="Quick links">
-          <ul className="space-y-3 flex">
-            {infoFooterData.socialLinks?.map((link) => (
-              <li key={link.platform}>
-                <a
-                  href={link.url}
-                  className="text-zinc-300 transition hover:text-white"
-                >
-                  {link.platform}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      <nav aria-label="Quick links">
+        <ul className=" flex gap-12">
+          {infoFooterData.socialLinks?.map((link) => (
+            <li key={link.platform}>
+              <a
+                href={link.url}
+                className="text-zinc-300 transition hover:text-white"
+              >
+                {link.platform}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 };

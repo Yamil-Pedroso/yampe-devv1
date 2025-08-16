@@ -1,21 +1,14 @@
-import { useState } from "react";
-import { LuAlignJustify } from "react-icons/lu";
-import { FaLinkedinIn } from "react-icons/fa";
-import { TbBrandGithubFilled } from "react-icons/tb";
-import MenuItems from "./MenuItems";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuTest from "./MenuTest";
 import { useMenu } from "@/components/context/MenuContext";
 import ToggleIcon from "@/components/common/toggle-icon/ToggleIcon";
+import SocialLinks from "./SocialLinks";
+import MenuItems from "./MenuItems";
 
 const Navbar = () => {
   //const [isMobile, setIsMobile] = useState(false);
-  const [click, setClick] = useState(false);
-  const { isOpenMenu, toggleMenu } = useMenu();
 
-  const handleClick = () => {
-    setClick((prev) => !prev);
-  };
+  const { isOpenMenu, toggleMenu } = useMenu();
 
   //useEffect(() => {
   //  const handleResize = () => {
@@ -31,65 +24,46 @@ const Navbar = () => {
 
   return (
     <nav
-      className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[90%]
+      className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[94%]
     "
     >
-      <div className="flex items-center">
-        {/*<LuBoxes size={48} className="inline text-[var(--element-bg-color)]" /> */}
+      <a href="/" className="flex items-center">
         <img
           src="/images/logo/cubi_logo.png"
           alt="Yampe.dev"
           className="w-12 h-12"
         />
         <h1 className="text-3xl font-bold text-white mx-2">Yampe.dev</h1>
-      </div>
+      </a>
 
       {/*<div className="hidden min-[961px]:block">
         <MenuItems />
       </div> */}
 
-      <div className="flex gap-4">
-        <a
-          href="https://www.linkedin.com/in/yamil-pedroso/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className=" hover:text-color0 transition-colors "
-        >
-          <FaLinkedinIn size={36} className="inline" />
-        </a>
+      {/*{!isOpenMenu ? (
+        <SocialLinks className="hidden min-[640px]:block" />
+      ) : null}*/}
 
-        <a
-          href="https://github.com/Yamil-Pedroso"
-          target="_blank"
-          rel="noopener noreferrer"
-          className=" hover:text-color0 transition-colors "
-        >
-          <TbBrandGithubFilled size={36} className="inline" />
-        </a>
-      </div>
-
-      <div className="block min-[961px]:hidden">
+      {/*<div className="block min-[961px]:hidden">
         <LuAlignJustify
           size={23}
           className="cursor-pointer"
           onClick={handleClick}
-        />
-
+        />*/}
+      {/*<div>
         <AnimatePresence>
-          {click && (
-            <motion.div
-              key="menu"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="flex justify-center absolute w-[12rem] p-4 bg-[var(--element-bg1-color)]"
-            >
-              <MenuItems />
-            </motion.div>
-          )}
+          <motion.div
+            key="menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="flex justify-center  w-[12rem] p-4 bg-[var(--element-bg1-color)]"
+          >
+            <MenuItems />
+          </motion.div>
         </AnimatePresence>
-      </div>
+      </div>*/}
 
       {/*<div className="flex justify-center items-center w-[3.125rem] h-[3.125rem] rounded-full bg-[var(--element-bg-color)] overflow-hidden cursor-pointer">
         <LuAlignRight size={23} className="text-[#202020]" />

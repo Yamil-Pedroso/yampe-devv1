@@ -28,6 +28,50 @@ body {
 
   --font-btn-color: #070707;
   --color-border-color: #3b3b3b;
+
+  /* Responsive */
+
+  --breakpoint-mobile: 40rem;
+  --breakpoint-tablet-lg: 48rem;
+  --breakpoint-custom: 50rem;
+  --breakpoint-large: 60rem;
+  --breakpoint-laptop: 64rem;
+  --breakpoint-desktop: 80rem;
+  --breakpoint-desktop-lg: 93rem;
+}
+
+/* About Section */
+@layer utilities {
+  .about-row {
+    @apply flex flex-col w-full px-4 py-4 gap-2 mt-3.5 bg-bg1-color;
+  }
+  @media (min-width: 40rem) {
+    .about-row {
+      @apply flex-row items-center justify-center
+             gap-10 px-[2.5rem] w-[36.25rem] h-[5.375rem];
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "left right"
+      "middle middle";
+
+    justify-items: center;
+  }
+  .hero-left {
+    grid-area: left;
+  }
+  .hero-middle {
+    grid-area: middle;
+  }
+  .hero-right {
+    grid-area: right;
+  }
 }
 
 .loader {
