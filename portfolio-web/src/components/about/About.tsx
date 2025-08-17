@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { aboutMeData } from "@/data/aboutData";
 import RoundedBtn from "@/components/common/rounded-btn/RoundedBtn";
@@ -6,6 +6,8 @@ import ElementContainer from "../common/element-container/ElementContainer";
 import ElementContainer2 from "../common/element-container/ElementContainer2";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import DarkContainer from "../common/containers/DarkContainer";
+import { getAboutMe } from "@/services/AboutService";
+import { CommonContent } from "@/types/Types";
 
 const group1 = aboutMeData.features?.slice(0, 3).map((feature, index) => (
   <motion.div
@@ -44,23 +46,26 @@ const group2 = aboutMeData.features?.slice(3, 6).map((feature, index) => (
 ));
 
 const About = () => {
-  // Refs a contenedores EXISTENTES (no cambiamos estructura)
+  const [aboutData, setAboutData] = useState<CommonContent | null>(null);
   const leftGroupRef = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLDivElement | null>(null);
 
-  // Progreso de scroll relativo al grupo izquierdo (absoluto)
+  console.log("About data:", aboutData);
+
+  useEffect(() => {
+    getAboutMe().then(setAboutData).catch(console.error);
+  }, []);
+
   const { scrollYProgress: leftProgress } = useScroll({
     target: leftGroupRef,
-    offset: ["start 90%", "end 10%"], // empieza a moverse cuando entra al viewport
+    offset: ["start 90%", "end 10%"],
   });
 
-  // Progreso de scroll relativo al contenedor de la imagen
   const { scrollYProgress: imageProgress } = useScroll({
     target: imageRef,
     offset: ["start 85%", "end 15%"],
   });
 
-  // Parallax y offsets usando LOS progress locales
   const leftFloatY1 = useTransform(leftProgress, [0, 1], [40, -40]);
   const leftFloatY2 = useTransform(leftProgress, [0, 1], [80, -20]);
   const imgY = useTransform(imageProgress, [0, 1], [0, -80]);
@@ -77,7 +82,7 @@ const About = () => {
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            {aboutMeData.header}
+            {aboutData?.header}
           </motion.h2>
 
           <motion.p
@@ -99,7 +104,7 @@ const About = () => {
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.05 }}
           >
-            {aboutMeData.description}
+            {aboutData?.description}
           </motion.p>
 
           <div className="flex gap-15 desktop-lg:gap-45">

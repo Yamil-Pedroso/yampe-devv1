@@ -2,7 +2,7 @@ import { useState } from "react";
 import DarkContainer from "../common/containers/DarkContainer";
 import { infoFooterData } from "@/data/infoFooterData";
 import { FiMapPin, FiMail, FiPhone } from "react-icons/fi";
-import Footer from "../footer/Footer";
+import Footer from "./Footer";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../common/buttons/Button";
 import { ChevronRight } from "lucide-react";
@@ -137,7 +137,7 @@ const InfoFooter = () => {
                 <p className="flex items-start gap-3">
                   <FiPhone className="mt-1 shrink-0 text-color0" />
                   <a
-                    href={`tel:${address?.phone.replace(/[\s()\-]/g, "")}`}
+                    href={`tel:${address?.phone.replace(/[\s()-]/g, "")}`}
                     className="transition hover:text-white text-[18px]"
                   >
                     {address?.phone}
