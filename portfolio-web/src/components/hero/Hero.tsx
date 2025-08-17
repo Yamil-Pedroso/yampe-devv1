@@ -2,6 +2,7 @@ import React from "react";
 import { heroData } from "@/data/heroData";
 import Button from "@/components/common/buttons/Button";
 import { motion, Variants } from "framer-motion";
+import RoadMapAni from "./RoadMapApi";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -84,14 +85,15 @@ const Hero = () => {
       <div
         className="
           order-3 lg:order-3
-          md:col-span-2 md:justify-self-center md:w-[30rem] md:max-w-full
+          md:col-span-2 md:justify-self-center  md:max- w-full
           xl:order-2 xl:col-span-1
            h-[33rem] rounded-lg overflow-hidden
            flex justify-center items-center
-           border
+            relative
+
         "
       >
-        <span>Animation</span>
+        <RoadMapAni />
       </div>
 
       {/* RIGHT content */}
