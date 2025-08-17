@@ -9,38 +9,66 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NewsBlogsRouteImport } from './routes/news-blogs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NewWorkDetailsNewsBlogsIdRouteImport } from './routes/new-work-details/$newsBlogsId'
 
+const NewsBlogsRoute = NewsBlogsRouteImport.update({
+  id: '/news-blogs',
+  path: '/news-blogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewWorkDetailsNewsBlogsIdRoute =
+  NewWorkDetailsNewsBlogsIdRouteImport.update({
+    id: '/new-work-details/$newsBlogsId',
+    path: '/new-work-details/$newsBlogsId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/news-blogs': typeof NewsBlogsRoute
+  '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/news-blogs': typeof NewsBlogsRoute
+  '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/news-blogs': typeof NewsBlogsRoute
+  '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/news-blogs' | '/new-work-details/$newsBlogsId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/news-blogs' | '/new-work-details/$newsBlogsId'
+  id: '__root__' | '/' | '/news-blogs' | '/new-work-details/$newsBlogsId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  NewsBlogsRoute: typeof NewsBlogsRoute
+  NewWorkDetailsNewsBlogsIdRoute: typeof NewWorkDetailsNewsBlogsIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/news-blogs': {
+      id: '/news-blogs'
+      path: '/news-blogs'
+      fullPath: '/news-blogs'
+      preLoaderRoute: typeof NewsBlogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +76,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/new-work-details/$newsBlogsId': {
+      id: '/new-work-details/$newsBlogsId'
+      path: '/new-work-details/$newsBlogsId'
+      fullPath: '/new-work-details/$newsBlogsId'
+      preLoaderRoute: typeof NewWorkDetailsNewsBlogsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  NewsBlogsRoute: NewsBlogsRoute,
+  NewWorkDetailsNewsBlogsIdRoute: NewWorkDetailsNewsBlogsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,6 +1,4 @@
-import { SkillsData } from "@/types/Types";
-
-export const skillsData: SkillsData = {
+export const skillsData = {
   header: "My Skills",
   description:
     "Sed ut perspiciatis unde omnis iste natus to voluptatem accusantium doloremque laudantium, totam rem aperiamc eaque ipsa quae ab illo inventore veritatis",

@@ -4,6 +4,7 @@ interface ElementContainerProps {
   border?: boolean;
   bgColor?: string;
   as?: React.ElementType;
+  onClick?: () => void;
 }
 
 const ElementContainer = ({
@@ -11,9 +12,11 @@ const ElementContainer = ({
   className,
   as: Component = "div",
   border,
+  onClick,
 }: ElementContainerProps) => {
   return (
     <Component
+      onClick={onClick}
       className={`
           ${border ? "border border-border-color" : ""}
           rounded-2xl overflow-hidden ${className}`}

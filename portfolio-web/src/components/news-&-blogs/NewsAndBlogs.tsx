@@ -1,9 +1,21 @@
+import { useNavigate } from "@tanstack/react-router";
 import DarkContainer from "../common/containers/DarkContainer";
-import { newsAndBlogsData } from "@/data/newsAndBlogs";
+import { Route as NewsBlogsRoute } from "@/routes/new-work-details/$newsBlogsId";
+import { newsAndBlogsData } from "@/data/newsAndBlogsData";
 import ElementContainer from "../common/element-container/ElementContainer";
+import Button from "../common/buttons/Button";
+import { ChevronRight } from "lucide-react";
 
 const NewsAndBlogs = () => {
+  const navigate = useNavigate();
   const { header, newsAndBlogs } = newsAndBlogsData;
+
+  const handleNewsAndBlogsClick = (newsBlogsId: number) => {
+    navigate({
+      to: NewsBlogsRoute.to,
+      params: { newsBlogsId: String(newsBlogsId) },
+    });
+  };
 
   return (
     <DarkContainer className="flex flex-col justify-center mt-30">
@@ -15,10 +27,11 @@ const NewsAndBlogs = () => {
       </div>
 
       <div className="flex gap-8">
-        {newsAndBlogs.map((item, index) => (
+        {newsAndBlogs.map((item, i) => (
           <ElementContainer
-            key={index}
-            className="flex justify-center items-center mb-4 w-[39.375rem] h-[22rem] bg-bg1-color p-4 gap-10 "
+            key={i}
+            className="flex justify-center items-center mb-4 w-[39.375rem] h-[22rem] bg-bg1-color p-4 gap-10 cursor-pointer"
+            onClick={() => handleNewsAndBlogsClick(item.id as number)}
           >
             <div className="w-[18.125rem] h-[20.625rem] rounded-2xl overflow-hidden">
               <img
@@ -54,6 +67,16 @@ const NewsAndBlogs = () => {
           </ElementContainer>
         ))}
       </div>
+
+      <Button
+        href="/news-blogs"
+        className="mt-8 w-[14.625rem] h-[3.125rem] font-bold
+
+      "
+      >
+        Explore News & Blogs
+        <ChevronRight className="ml-2" />
+      </Button>
     </DarkContainer>
   );
 };

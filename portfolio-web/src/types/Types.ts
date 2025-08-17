@@ -122,6 +122,7 @@ export interface GetInTouchData extends CommonContent {
 
 export interface NewsAndBlogsData extends CommonContent {
   newsAndBlogs: {
+    id: string | number;
     image: string;
     tags: string[];
     excerpt: string;

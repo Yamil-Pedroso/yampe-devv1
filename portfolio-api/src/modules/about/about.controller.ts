@@ -1,25 +1,25 @@
 import { Request, Response } from "express";
+import AboutModel from "./about.model";
 
-const aboutData = {
-  header: "About Me",
-  title: "Professional Problem Solver For Digital Products",
-  description: `I am a Full Stack Developer with over 4 years of experience building scalable, responsive, and user-focused applications across the web. My technical expertise spans
-frontend frameworks like React and backend technologies such as Node.js and Express,
-with a strong foundation in modern architectures, REST APIs, and clean code practices.
-In parallel, I am also a passionate digital and traditional artist. My background in
-traditional and digital art brings a unique creative edge to my development work.
-Whether I'm coding an interactive component or illustrating a concept, I strive to merge
-functionality with aesthetic value.`,
-};
-
-export const getAboutData = (req: Request, res: Response) => {
+export const getAboutData = async (_req: Request, res: Response) => {
   try {
-    res.json({
-      status: "success",
-      header: aboutData.header,
-      description: aboutData.description,
-    });
-  } catch (error) {
-    res.status(500).json({ message: "Internal Server Error" });
+    const about = await AboutModel.findOne({ status: "published" })
+      .select("header title description image features infoContact roleTags")
+      .lean();
+
+    if (!about) {
+      return res
+        .status(404)
+        .json({ status: "error", message: "About not found" });
+    }
+
+    // cache corto para la home
+    res.set("Cache-Control", "public, max-age=60, s-maxage=300");
+    return res.json({ status: "success", data: about });
+  } catch (error: any) {
+    console.error("getAboutData error:", error);
+    return res
+      .status(500)
+      .json({ status: "error", message: "Internal Server Error" });
   }
 };

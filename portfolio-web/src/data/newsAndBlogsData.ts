@@ -5,6 +5,7 @@ export const newsAndBlogsData: NewsAndBlogsData = {
   header: "News & Blogs",
   newsAndBlogs: [
     {
+      id: 1,
       image:
         "https://images.unsplash.com/photo-1726186029199-218e58c9fb41?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       tags: ["Design", "Figma"],
@@ -14,7 +15,8 @@ export const newsAndBlogsData: NewsAndBlogsData = {
       icon: FaRegCalendarAlt,
     },
     {
-      image: "./images/news-&-blogs/chatgpt1.png",
+      id: 2,
+      image: "/images/news-&-blogs/chatgpt1.png",
       tags: ["AI", "ChatGPT 5"],
       excerpt: "Exploring the capabilities of ChatGPT 5 and its impact on AI.",
       date: new Date().toISOString().split("T")[0],

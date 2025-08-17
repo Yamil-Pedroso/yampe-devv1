@@ -1,20 +1,104 @@
-// modules/home/home.routes.ts
-//import { Router } from "express";
-//import About from "../about/about.model";
-//import Skill from "../skills/skills.model";
-//import Project from "../projects/projects.model";
-//import Testimonial from "../testimonials/testimonials.model";
-//
-//const r = Router();
-//
-//r.get("/", async (_req, res) => {
-//  const [about, skills, projects, testimonials] = await Promise.all([
-//    About.findOne({ status: "published" }).select("header title description image").lean(),
-//    Skill.find({ featured: true }).select("name slug level iconKey order").sort({ order: 1 }).limit(12).lean(),
-//    Project.find({ featured: true }).select("title slug media seo").sort({ order: 1 }).limit(6).lean(),
-//    Testimonial.find({ status: "approved" }).select("authorName content order").sort({ order: 1 }).limit(4).lean(),
-//  ]);
-//  res.set("Cache-Control", "public, max-age=60, s-maxage=300").json({ about, skills, projects, testimonials });
-//});
+import { Router } from "express";
+import AboutModel from "../about/about.model";
+import { SkillModel } from "../skills/skills.model";
+import { WorkModel, WorksSettingsModel } from "../works/works.model";
+import {
+  TestimonialModel,
+  TestimonialsSettingsModel,
+} from "../testimonials/testimonials.model";
+import { ServiceModel, ServiceSettingsModel } from "../services/services.model";
+import { BlogSettingsModel } from "../news-&-blogs/news&blogs.model";
 
-//export default r;
+const r = Router();
+
+r.get("/home", async (_req, res) => {
+  try {
+    const [
+      about,
+      skills,
+      works,
+      testimonials,
+      services,
+      // settings
+      servicesSettings,
+      worksSettings,
+      testimonialsSettings,
+      blogSettings,
+    ] = await Promise.all([
+      AboutModel.findOne({ status: "published" })
+        .select("header title description image")
+        .lean(),
+
+      // Skills publicadas (top 12, orden por categoría y nivel)
+      SkillModel.find({ status: "published" })
+        .select("category tech level icon")
+        .sort({ category: 1, level: -1 })
+        .limit(12)
+        .lean(),
+
+      // Works publicados (top 6)
+      WorkModel.find({ status: "published" })
+        .select("title subtitle image iconKey order")
+        .sort({ order: 1, createdAt: -1 })
+        .limit(6)
+        .lean(),
+
+      // Testimonials aprobados (top 4)
+      TestimonialModel.find({ status: "approved" })
+        .select("author position quote avatar order")
+        .sort({ order: 1, createdAt: -1 })
+        .limit(4)
+        .lean(),
+
+      // Services publicados (todos o limita si quieres top N)
+      ServiceModel.find({ status: "published" })
+        .select("stepNumber title description iconKey order")
+        .sort({ order: 1, stepNumber: 1 })
+        .lean(),
+
+      // SETTINGS (para headers/títulos de sección)
+      ServiceSettingsModel.findOne({ status: "published" })
+        .select("header")
+        .lean(),
+      WorksSettingsModel.findOne({ status: "published" })
+        .select("header")
+        .lean(),
+      TestimonialsSettingsModel.findOne({ status: "published" })
+        .select("header description")
+        .lean(),
+      BlogSettingsModel.findOne({ status: "published" })
+        .select("header")
+        .lean(),
+    ]);
+
+    // Si quieres skills agrupadas por categoría ya desde el backend:
+    // const skillsByCategory = skills.reduce<Record<string, typeof skills>>((acc, s) => {
+    //   (acc[s.category] ||= []).push(s);
+    //   return acc;
+    // }, {});
+
+    res.set("Cache-Control", "public, max-age=60, s-maxage=300").json({
+      about, // { header, title, description, image }
+      skills, // o skillsByCategory si activas el agrupado
+      works, // [{ title, subtitle, image, iconKey, order }]
+      testimonials, // [{ author, position, quote, avatar, order }]
+      services, // [{ stepNumber, title, description, iconKey, order }]
+
+      // headers para render rápido en Home
+      sections: {
+        servicesHeader: servicesSettings?.header ?? "My Services",
+        worksHeader: worksSettings?.header ?? "My Works",
+        testimonialsHeader: testimonialsSettings?.header ?? "Testimonials",
+        testimonialsDescription: testimonialsSettings?.description ?? "",
+        blogHeader: blogSettings?.header ?? "News & Blogs",
+      },
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      message: "Error fetching home data",
+      error: err.message,
+    });
+  }
+});
+
+export default r;
