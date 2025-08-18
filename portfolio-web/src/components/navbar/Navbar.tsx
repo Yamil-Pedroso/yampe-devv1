@@ -21,7 +21,10 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[94%] relative">
+    <nav
+      id="home"
+      className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[94%] relative"
+    >
       <a href="/" className="flex items-center">
         <img
           src="/images/logo/cubi_logo.png"

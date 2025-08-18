@@ -72,7 +72,10 @@ const Reveal: React.FC<
 
 const Resume = () => {
   return (
-    <section className="max-w-[94%] mt-50 flex flex-col items-center justify-center gap-8 mx-auto large:mx-0 large:flex-row large:items-start large:gap-16">
+    <section
+      id="resume"
+      className="max-w-[94%] mt-50 flex flex-col items-center justify-center gap-8 mx-auto large:mx-0 large:flex-row large:items-start large:gap-16"
+    >
       {/* Badge circular */}
       <motion.div
         variants={containerStagger}

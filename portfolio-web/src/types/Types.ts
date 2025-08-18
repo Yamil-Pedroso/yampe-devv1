@@ -14,18 +14,20 @@ export interface FeatureItem {
 }
 
 export interface MenuItem {
+  id: string;
   title: string;
   href: string;
 }
 
-const menuItems: MenuItem[] = [
-  { title: "Home", href: "/" },
-  { title: "About", href: "/#" },
-  { title: "Resume", href: "/#" },
-  { title: "Services", href: "/#" },
-  { title: "Projects", href: "/#" },
-  { title: "Blogs", href: "/#" },
-  { title: "Contact", href: "/#" },
+export const menuItems: MenuItem[] = [
+  { id: "home", title: "Home", href: "#home" },
+  { id: "about", title: "About", href: "#about" },
+  { id: "resume", title: "Resume", href: "#resume" },
+  { id: "services", title: "Services", href: "#services" },
+  { id: "skills", title: "Skills", href: "#skills" },
+  { id: "works", title: "Works", href: "#works" },
+  { id: "blogs", title: "Blogs", href: "#blogs" },
+  { id: "contact", title: "Contact", href: "#contact" },
 ];
 
 export interface HeroStat {

@@ -207,6 +207,7 @@ const Skills: React.FC = () => {
     <DarkContainer className="max-w-[94%] mx-auto">
       {/* Copy */}
       <motion.div
+        id="skills"
         variants={headerVariant}
         initial="hidden"
         whileInView="visible"

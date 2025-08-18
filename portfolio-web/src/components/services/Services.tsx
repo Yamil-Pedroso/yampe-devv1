@@ -96,8 +96,7 @@ const Services: React.FC = () => {
   }
 
   return (
-    <section className="mt-50">
-      {/* Header animado */}
+    <section id="services" className="mt-50">
       <motion.div
         variants={headerVariant}
         initial="hidden"

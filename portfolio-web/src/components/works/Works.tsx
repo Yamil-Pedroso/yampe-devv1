@@ -44,6 +44,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
   return (
     <div
       ref={rowRef}
+      id="works"
       className="mb-12 sm:mb-16 md:mb-20 w-full px-2 sm:px-4 lg:px-0"
     >
       {isEven ? (

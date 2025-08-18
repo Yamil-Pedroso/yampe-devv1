@@ -54,7 +54,7 @@ const InfoFooter = () => {
   };
 
   return (
-    <div>
+    <div id="contact">
       <DarkContainer className="mt-16 sm:mt-20 md:mt-24 lg:mt-30 w-full min-h-[20rem] sm:min-h-[24rem] md:min-h-[26rem] lg:min-h-[28rem] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16">
         <motion.div
           className="mx-auto w-full max-w-7xl"

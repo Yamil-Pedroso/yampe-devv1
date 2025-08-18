@@ -55,6 +55,7 @@ const NewsAndBlogs = () => {
   return (
     <DarkContainer className="flex flex-col justify-center mt-30">
       <motion.div
+        id="blogs"
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}

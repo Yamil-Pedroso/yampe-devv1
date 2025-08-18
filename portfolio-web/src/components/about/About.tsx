@@ -105,7 +105,10 @@ const About = () => {
 
   return (
     <DarkContainer className="w-full desktop:max-w-[94%] laptop:h-[calc(100vh-7rem)] mx-auto mt-30">
-      <div className="w-full flex justify-center items-center large:justify-center large:items-center flex-col laptop:flex-row gap-36">
+      <div
+        id="about"
+        className="w-full flex justify-center items-center large:justify-center large:items-center flex-col laptop:flex-row gap-36"
+      >
         {/* left group*/}
         <div className="flex flex-col justify-center gap-6  ">
           <motion.h2
