@@ -1,6 +1,6 @@
 <p align="center">
   <!-- Change the path when uploading the image to your repo -->
-  <img src="./assets/hero-yampe-devv1.png" alt="Yampe.dev – Portfolio" width="980" />
+  <img src="/portfolio-web/public/images/avatar/junger_pro.png" alt="Yampe.dev – Portfolio" width="980" />
 </p>
 
 <h1 align="center">Yampe-devv1</h1>
@@ -37,14 +37,14 @@
 
 ## 🛠️ Local Development
 ```bash
-# Backend
-cd backend
+# Portfolio-api
+cd porfolio-api
 cp .env.example .env   # FRONTEND_ORIGIN=http://localhost:5173
 npm i
 npm run dev
 
-# Frontend
-cd frontend
-cp .env.example .env   # VITE_API_URL=http://localhost:4000/api
+# Portfolio-web
+cd portfolio-web
+cp .env.example .env   # VITE_API_URL=http://localhost:3010/api
 npm i
 npm run dev
