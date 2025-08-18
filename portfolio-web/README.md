@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
+<p align="center">
+  <!-- Change the path when uploading the image to your repo -->
+  <img src="./assets/hero-yampe-devv1.png" alt="Yampe.dev – Portfolio" width="980" />
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center">Yampe-devv1</h1>
 
-Currently, two official plugins are available:
+<p align="center">
+  My personal portfolio: projects, smooth animations with Framer Motion, and a Node/Express backend for dynamic data.
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+  <!-- Main stack badges -->
+  <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=0A0A0A">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white">
+  <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind-3-38B2AC?logo=tailwindcss&logoColor=white">
+  <img alt="Framer Motion" src="https://img.shields.io/badge/Framer%20Motion-🎞-000000?logo=framer&logoColor=white">
+  <img alt="TanStack Router" src="https://img.shields.io/badge/TanStack%20Router-FF4154?logo=reactrouter&logoColor=white">
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-18-339933?logo=node.js&logoColor=white">
+  <img alt="Express" src="https://img.shields.io/badge/Express-4-000000?logo=express&logoColor=white">
+</p>
 
-## Expanding the ESLint configuration
+## ✨ Featured Sections
+- **Works:** image + text entry with “image first” choreography and clipPath.
+- **Services:** cards with hover and stagger on-view.
+- **Skills:** category-based slider with responsive grid and animated progress bars.
+- **Testimonials:** carousel with `react-fast-marquee`.
+- **News & Blogs:** cards with staggered fade-up.
+- **Get In Touch:** animated and accessible form.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧰 Tech Stack
+- **Frontend:** React + TypeScript, Tailwind CSS, Framer Motion, TanStack Router, Lucide/React Icons, `react-fast-marquee`.
+- **Backend:** Node.js + Express + TypeScript (CORS, REST routes for content).
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Demo / Preview
+- *(add your deployment URL when you have it, e.g., Vercel/Netlify)*
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Local Development
+```bash
+# Backend
+cd backend
+cp .env.example .env   # FRONTEND_ORIGIN=http://localhost:5173
+npm i
+npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# Frontend
+cd frontend
+cp .env.example .env   # VITE_API_URL=http://localhost:4000/api
+npm i
+npm run dev
