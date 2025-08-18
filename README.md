@@ -1,6 +1,6 @@
 <p align="center">
   <!-- Change the path when uploading the image to your repo -->
-  <img src="/portfolio-web/public/images/avatar/junger_pro.png" alt="Yampe.dev – Portfolio" width="980" />
+  <img src="/portfolio-web/public/images/avatar/junger_pro.png" alt="Yampe.dev – Portfolio" width="500" />
 </p>
 
 <h1 align="center">Yampe-devv1</h1>
