@@ -64,7 +64,7 @@ const Reveal: React.FC<
     variants={variants}
     initial="hidden"
     whileInView="visible"
-    viewport={{ once: true, amount: 0.25 }} // 25% visible para disparar
+    viewport={{ once: true, amount: 0.25 }}
   >
     {children}
   </motion.div>
@@ -82,7 +82,7 @@ const Resume = () => {
         className="large:px-10"
       >
         <Reveal variants={popIcon}>
-          <div className="flex items-center justify-center w-40 h-40 rounded-full bg-bg1-color border border-border-color shadow-sm large:w-[16.875rem] large:h-[16.875rem]">
+          <div className="flex items-center justify-center w-[16rem] h-[16rem] rounded-full bg-bg1-color border border-border-color shadow-sm large:w-[17rem] large:h-[17rem]">
             <img
               src="/images/logo/cubi_logo.png"
               alt="Yampe.dev"

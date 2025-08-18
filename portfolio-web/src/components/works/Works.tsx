@@ -57,7 +57,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             <motion.div
               initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
               animate={imgCtrls}
-              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden rounded-lg sm:rounded-xl"
+              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
             >
               <img
                 src={project.image}
@@ -84,7 +84,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             <h3 className="text-color0 text-sm sm:text-base lg:text-lg xl:text-xl">
               {project.title}
             </h3>
-            <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] text-base/14 leading-tight">
+            <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] leading-tight">
               {project.subtitle}
             </h4>
             <p className="text-color4 text-sm sm:text-base leading-relaxed">
@@ -113,7 +113,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
               <h3 className="text-color0 text-sm sm:text-base lg:text-lg xl:text-xl">
                 {project.title}
               </h3>
-              <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] text-base/14 leading-tight">
+              <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] leading-tight">
                 {project.subtitle}
               </h4>
               <p className="text-color4 text-sm sm:text-base leading-relaxed">
@@ -136,7 +136,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             <motion.div
               initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
               animate={imgCtrls}
-              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden rounded-lg sm:rounded-xl"
+              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
             >
               <img
                 src={project.image}
@@ -174,8 +174,8 @@ const Works = () => {
       </div>
 
       <div className="mt-8 sm:mt-10">
-        <Button className="w-40 sm:w-48 lg:w-[14.625rem] h-10 sm:h-12 lg:h-[3.125rem] text-sm sm:text-base">
-          <span className="font-bold">Discover More Projects</span>
+        <Button className="w-55 sm:w-48 lg:w-[14.625rem] h-10 sm:h-12 lg:h-[3.125rem] text-sm sm:text-base">
+          <span className="font-bold ">Discover More Projects</span>
           <IoIosArrowForward className="ml-2" size={16} />
         </Button>
       </div>
