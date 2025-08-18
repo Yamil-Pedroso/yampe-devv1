@@ -17,7 +17,7 @@ functionality with aesthetic value.
     { text: "Backend Development", icon: "FaCheck" },
     { text: "React Native Development", icon: "FaCheck" },
     { text: "UI/UX", icon: "FaCheck" },
-    { text: "Digital Art", icon: "FaCheck" },
+    { text: "Graphic Design", icon: "FaCheck" },
     { text: "Hosting", icon: "FaCheck" },
   ],
 

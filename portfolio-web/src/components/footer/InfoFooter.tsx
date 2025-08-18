@@ -6,6 +6,36 @@ import Footer from "./Footer";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../common/buttons/Button";
 import { ChevronRight } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+
+const listStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } },
+};
+
+const colUp: Variants = {
+  hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.55, ease: [0.25, 0.8, 0.25, 1] },
+  },
+};
+
+const innerStagger: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.05, delayChildren: 0.05 } },
+};
+
+const innerItem: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
+};
 
 const InfoFooter = () => {
   const { quickLinks, address } = infoFooterData;
@@ -25,68 +55,80 @@ const InfoFooter = () => {
 
   return (
     <div>
-      <DarkContainer className="mt-30 w-full h-[28rem]">
-        <div className="mx-auto w-full">
-          <div className="grid grid-cols-1 gap-14 md:grid-cols-3">
+      <DarkContainer className="mt-16 sm:mt-20 md:mt-24 lg:mt-30 w-full min-h-[20rem] sm:min-h-[24rem] md:min-h-[26rem] lg:min-h-[28rem] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16">
+        <motion.div
+          className="mx-auto w-full max-w-7xl"
+          variants={listStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 lg:gap-14"
+            variants={listStagger}
+          >
             {/* Col 1: Logo + brand */}
-            <div className="flex flex-col ">
-              <div className="flex items-center gap-3">
-                <img
+            <motion.div
+              className="flex flex-col items-center sm:items-center md:items-start"
+              variants={colUp}
+            >
+              <motion.div
+                className="flex items-center gap-2 sm:gap-3"
+                variants={innerStagger}
+              >
+                <motion.img
+                  variants={innerItem}
                   src="/images/logo/cubi_logo.png"
                   alt="Yampe.dev"
-                  className="w-12 h-12"
+                  className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
-                <h1 className="text-3xl font-bold text-white mx-2">
+                <motion.h1
+                  variants={innerItem}
+                  className="text-xl sm:text-2xl md:text-3xl font-bold text-white mx-1 sm:mx-2"
+                >
                   Yampe.dev
-                </h1>
-              </div>
+                </motion.h1>
+              </motion.div>
+            </motion.div>
 
-              {/* (Opcional) enlaces sociales si quieres mostrarlos */}
-              {/*{socialLinks?.length ? (
-                <ul className="mt-6 flex flex-wrap gap-4 text-zinc-400">
-                  {socialLinks.map((s) => (
-                    <li key={s.platform}>
-                      <a
-                        href={s.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="hover:text-white underline-offset-4 hover:underline"
-                      >
-                        {s.platform}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : null} */}
-            </div>
-
-            {/* Col 2: Quick Link */}
-            <div className="">
-              <h4 className="mb-5 text-[18px] font-semibold text-white">
+            {/* Col 2: Quick Link + subscribe */}
+            <motion.div
+              variants={colUp}
+              className="md:col-span-1 lg:col-span-1"
+            >
+              <motion.h4
+                variants={innerItem}
+                className="mb-4 sm:mb-5 text-base sm:text-lg font-semibold text-white text-center md:text-left"
+              >
                 Quick Link
-              </h4>
-              <nav aria-label="Quick links">
-                <ul className="flex gap-8">
+              </motion.h4>
+
+              <motion.nav variants={innerStagger} aria-label="Quick links">
+                <ul className="flex flex-wrap justify-center md:justify-start gap-4 sm:gap-6 md:gap-8">
                   {quickLinks?.map((link) => (
-                    <li key={link.text}>
+                    <motion.li key={link.text} variants={innerItem}>
                       <a
                         href={link.href}
-                        className="text-zinc-300 transition hover:text-white"
+                        className="text-sm sm:text-base text-zinc-300 transition hover:text-white"
                       >
                         {link.text}
                       </a>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
-              </nav>
+              </motion.nav>
 
-              <form
+              <motion.form
                 onSubmit={handleOnSubmit}
-                className="flex gap-6 mt-6 items-start"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-4 sm:mt-6 items-center sm:items-start"
+                variants={innerStagger}
               >
-                <div className="relative w-full">
+                <motion.div
+                  className="relative w-full sm:flex-1"
+                  variants={innerItem}
+                >
                   <MdOutlineEmail
-                    className="pointer-events-none absolute left-3 top-[2.2rem] -translate-y-1/2 text-[1.2rem] text-color0"
+                    className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-lg sm:text-xl text-color0"
                     aria-hidden
                   />
                   <input
@@ -98,55 +140,83 @@ const InfoFooter = () => {
                     onChange={handleOnChange}
                     placeholder="Email Address"
                     className="
-        mt-4 w-full
-        bg-transparent text-zinc-300 placeholder:text-zinc-500
-        pl-10 pr-4 py-2
-        border-0 border-b border-b-zinc-600
-        focus:border-b-lime-400 focus:outline-none focus:ring-0
-      "
+                      w-full
+                      bg-transparent text-zinc-300 placeholder:text-zinc-500
+                      pl-10 pr-4 py-2 sm:py-2.5
+                      border-0 border-b border-b-zinc-600
+                      focus:border-b-lime-400 focus:outline-none focus:ring-0
+                      text-sm sm:text-base
+                    "
                   />
-                </div>
+                </motion.div>
 
-                <Button
-                  type="submit"
-                  className="mt-4 px-6 py-2.5 font-bold text-black transition-colors"
-                >
-                  <span className="text-black">Subscribe</span>
-                  <ChevronRight className="ml-2 h-4 w-4 text-black" />
-                </Button>
-              </form>
-            </div>
+                <motion.div variants={innerItem} className="w-full sm:w-auto">
+                  <Button
+                    type="submit"
+                    className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-2.5 font-bold text-black transition-colors text-sm sm:text-base"
+                  >
+                    <span className="text-black">Subscribe</span>
+                    <ChevronRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 text-black" />
+                  </Button>
+                </motion.div>
+              </motion.form>
+            </motion.div>
 
             {/* Col 3: Address */}
-            <div className="">
-              <h4 className="mb-5 text-lg font-semibold text-white">Address</h4>
-              <address className="not-italic space-y-4 text-zinc-300">
-                <p className="flex items-start gap-3">
-                  <FiMapPin className="mt-1 shrink-0 text-color0" />
-                  <span className="text-[18px]">{address?.street}</span>
-                </p>
-                <p className="flex items-start gap-3">
-                  <FiMail className="mt-1 shrink-0 text-color0" />
+            <motion.div
+              variants={colUp}
+              className="md:col-span-2 lg:col-span-1"
+            >
+              <motion.h4
+                variants={innerItem}
+                className="mb-4 sm:mb-5 text-base sm:text-lg font-semibold text-white text-center md:text-left"
+              >
+                Address
+              </motion.h4>
+
+              <motion.address
+                className="not-italic space-y-3 sm:space-y-4 text-zinc-300"
+                variants={innerStagger}
+              >
+                <motion.p
+                  className="flex items-start justify-center md:justify-start gap-3"
+                  variants={innerItem}
+                >
+                  <FiMapPin className="mt-0.5 sm:mt-1 shrink-0 text-color0 text-sm sm:text-base" />
+                  <span className="text-sm sm:text-base md:text-lg text-center md:text-left">
+                    {address?.street}
+                  </span>
+                </motion.p>
+
+                <motion.p
+                  className="flex items-start justify-center md:justify-start gap-3"
+                  variants={innerItem}
+                >
+                  <FiMail className="mt-0.5 sm:mt-1 shrink-0 text-color0 text-sm sm:text-base" />
                   <a
                     href={`mailto:${address?.email}`}
-                    className="transition hover:text-white text-[18px]"
+                    className="transition hover:text-white text-sm sm:text-base md:text-lg"
                   >
                     {address?.email}
                   </a>
-                </p>
-                <p className="flex items-start gap-3">
-                  <FiPhone className="mt-1 shrink-0 text-color0" />
+                </motion.p>
+
+                <motion.p
+                  className="flex items-start justify-center md:justify-start gap-3"
+                  variants={innerItem}
+                >
+                  <FiPhone className="mt-0.5 sm:mt-1 shrink-0 text-color0 text-sm sm:text-base" />
                   <a
                     href={`tel:${address?.phone.replace(/[\s()-]/g, "")}`}
-                    className="transition hover:text-white text-[18px]"
+                    className="transition hover:text-white text-sm sm:text-base md:text-lg"
                   >
                     {address?.phone}
                   </a>
-                </p>
-              </address>
-            </div>
-          </div>
-        </div>
+                </motion.p>
+              </motion.address>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </DarkContainer>
 
       <Footer />

@@ -1,87 +1,182 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { worksData } from "@/data/worksData";
 import Button from "@/components/common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
+import { motion, useAnimation, useInView } from "framer-motion";
+
+const IMG_DURATION = 1.1;
+const IMG_EASE: any = [0.25, 0.1, 0.25, 1];
+const TXT_DURATION = 0.85;
+const TXT_EASE: any = [0.22, 1, 0.36, 1];
+
+function ProjectRow({ project, i }: { project: any; i: number }) {
+  const rowRef = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(rowRef, { once: true, amount: 0.3 });
+
+  const imgCtrls = useAnimation();
+  const txtCtrls = useAnimation();
+
+  const isEven = i % 2 === 0;
+  const imgFromX = isEven ? 120 : -120;
+  const textFromX = isEven ? -24 : 24;
+
+  useEffect(() => {
+    if (!inView) return;
+    (async () => {
+      await imgCtrls.start({
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        transition: { duration: IMG_DURATION, ease: IMG_EASE },
+      });
+
+      await txtCtrls.start({
+        opacity: 1,
+        x: 0,
+        clipPath: "inset(0% 0% 0% 0%)",
+        filter: "blur(0px)",
+        transition: { duration: TXT_DURATION, ease: TXT_EASE },
+      });
+    })();
+  }, [inView, imgCtrls, txtCtrls]);
+
+  return (
+    <div
+      ref={rowRef}
+      className="mb-12 sm:mb-16 md:mb-20 w-full px-2 sm:px-4 lg:px-0"
+    >
+      {isEven ? (
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-center">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer w-full lg:w-1/2 xl:w-[39.375rem] flex-shrink-0"
+          >
+            <motion.div
+              initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
+              animate={imgCtrls}
+              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden rounded-lg sm:rounded-xl"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: i === 2 ? "center" : "center",
+                }}
+              />
+            </motion.div>
+          </a>
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: textFromX,
+              clipPath: "inset(0% 100% 0% 0%)",
+              filter: "blur(4px)",
+            }}
+            animate={txtCtrls}
+            className="flex flex-col justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] px-4 sm:px-6 lg:px-8 xl:px-22 py-4 sm:py-6 lg:py-0 gap-3 sm:gap-4 lg:gap-6"
+          >
+            <h3 className="text-color0 text-sm sm:text-base lg:text-lg xl:text-xl">
+              {project.title}
+            </h3>
+            <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] text-base/14 leading-tight">
+              {project.subtitle}
+            </h4>
+            <p className="text-color4 text-sm sm:text-base leading-relaxed">
+              {project.description}
+            </p>
+            {project.icon && (
+              <span className="flex items-center justify-center text-lg sm:text-xl lg:text-[1.6rem] w-10 h-10 sm:w-12 sm:h-12 lg:w-[3.5rem] lg:h-[3.5rem] rounded-full bg-bg2-color text-color4 border border-neutral-800">
+                {React.createElement(project.icon)}
+              </span>
+            )}
+          </motion.div>
+        </div>
+      ) : (
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-center">
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: textFromX,
+              clipPath: "inset(0% 0% 0% 100%)",
+              filter: "blur(4px)",
+            }}
+            animate={txtCtrls}
+            className="flex flex-col items-start lg:items-end justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] order-2 lg:order-1 px-4 sm:px-6 lg:px-8 xl:pr-22 py-4 sm:py-6 lg:py-0"
+          >
+            <div className="flex flex-col w-full lg:w-full xl:w-[30rem] gap-3 sm:gap-4 lg:gap-6">
+              <h3 className="text-color0 text-sm sm:text-base lg:text-lg xl:text-xl">
+                {project.title}
+              </h3>
+              <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] text-base/14 leading-tight">
+                {project.subtitle}
+              </h4>
+              <p className="text-color4 text-sm sm:text-base leading-relaxed">
+                {project.description}
+              </p>
+              {project.icon && (
+                <span className="flex items-center justify-center text-lg sm:text-xl lg:text-[1.6rem] w-10 h-10 sm:w-12 sm:h-12 lg:w-[3.5rem] lg:h-[3.5rem] rounded-full bg-bg2-color text-color4 border border-neutral-800">
+                  {React.createElement(project.icon)}
+                </span>
+              )}
+            </div>
+          </motion.div>
+
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer w-full lg:w-1/2 xl:w-[39.375rem] flex-shrink-0 order-1 lg:order-2"
+          >
+            <motion.div
+              initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
+              animate={imgCtrls}
+              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden rounded-lg sm:rounded-xl"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover object-center brightness-90"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: i === 3 ? "center top" : "center",
+                }}
+              />
+            </motion.div>
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
 
 const Works = () => {
   return (
-    <section className="flex flex-col justify-center items-center mt-30 max-[60rem]:px-4">
-      <div className="text-center mb-10">
-        <h2>{worksData.header}</h2>
-        <p className="text-[2.8125rem] max-w-[45rem] text-base/14 max-[40rem]:text-[2rem]">
+    <section className="flex flex-col justify-center items-center mt-16 sm:mt-20 md:mt-24 lg:mt-30 px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-8 sm:mb-10 max-w-4xl">
+        <h2 className="text-sm sm:text-base lg:text-lg mb-2 sm:mb-3">
+          {worksData.header}
+        </h2>
+        <p className=" sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] max-w-full sm:max-w-[32rem] md:max-w-[40rem] lg:max-w-[45rem] text-base/14 leading-tight mx-auto">
           Explore my <span className="text-color0">Projects</span>
         </p>
       </div>
 
-      <div className="max-w-sreen-xl flex flex-col justify-center items-center">
+      <div className="w-full max-w-7xl flex flex-col justify-center items-center">
         {worksData.projects?.map((project, i) => (
-          <div key={i} className="mb-20 max-[60rem]:mb-14">
-            {/* PAR (imagen izquierda, texto derecha) */}
-            {i % 2 === 0 ? (
-              <div className="flex max-[60rem]:flex-col max-[60rem]:gap-4 max-[60rem]:items-center">
-                {/* Imagen */}
-                <div className="w-[39.375rem] h-[31.25rem] bg-color3 overflow-hidden max-[60rem]:w-full max-[60rem]:h-[18rem] max-[40rem]:h-[14rem]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-
-                {/* Texto (título ya queda debajo de la imagen en flex-col) */}
-                <div className="flex flex-col justify-center w-[39.375rem] h-[31.25rem] px-22 gap-6
-                                max-[60rem]:w-full max-[60rem]:h-auto max-[60rem]:px-4 max-[60rem]:py-4 max-[60rem]:gap-3">
-                  <h3 className="text-color0 max-[40rem]:text-[1.125rem]">{project.title}</h3>
-                  <h4 className="text-[2.8125rem] text-base/14 max-[40rem]:text-[1.875rem]">
-                    {project.subtitle}
-                  </h4>
-                  <p className="text-color4 max-[40rem]:text-sm">{project.description}</p>
-                  {project.icon && (
-                    <span className="flex items-center justify-center mr-2 text-[1.6rem] w-[3.5rem] h-[3.5rem] rounded-full bg-bg2-color text-color4 border border-neutral-800 max-[40rem]:w-12 max-[40rem]:h-12 max-[40rem]:text-[1.25rem]">
-                      {React.createElement(project.icon)}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ) : (
-              /* IMPAR (texto izquierda, imagen derecha) -> en móvil: imagen primero */
-              <div className="flex max-[60rem]:flex-col max-[60rem]:gap-4 max-[60rem]:items-center">
-                {/* Texto (en móvil pasa debajo) */}
-                <div className="flex flex-col items-end justify-center w-[39.375rem] h-[31.25rem] pr-22
-                                max-[60rem]:order-2 max-[60rem]:items-start max-[60rem]:w-full max-[60rem]:h-auto max-[60rem]:px-4 max-[60rem]:py-4">
-                  <div className="flex flex-col w-[30rem] gap-6 max-[60rem]:w-full max-[60rem]:gap-3">
-                    <h3 className="text-color0 max-[40rem]:text-[1.125rem]">{project.title}</h3>
-                    <h4 className="text-[2.8125rem] text-base/14 max-[40rem]:text-[1.875rem]">
-                      {project.subtitle}
-                    </h4>
-                    <p className="text-color4 max-[40rem]:text-sm">{project.description}</p>
-                    {project.icon && (
-                      <span className="flex items-center justify-center mr-2 text-[1.6rem] w-[3.5rem] h-[3.5rem] rounded-full bg-bg2-color text-color4 border border-neutral-800 max-[40rem]:w-12 max-[40rem]:h-12 max-[40rem]:text-[1.25rem]">
-                        {React.createElement(project.icon)}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Imagen (en móvil primero) */}
-                <div className="w-[39.375rem] h-[31.25rem] bg-color3 overflow-hidden
-                                max-[60rem]:order-1 max-[60rem]:w-full max-[60rem]:h-[18rem] max-[40rem]:h-[14rem]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
+          <ProjectRow key={i} project={project} i={i} />
         ))}
       </div>
 
-      <div className="mt-10">
-        <Button className="w-[14.625rem] h-[3.125rem] max-[40rem]:w-[12rem] max-[40rem]:h-[2.75rem]">
-          <span className="font-bold max-[40rem]:text-sm">Discover More Projects</span>
-          <IoIosArrowForward className="ml-2" />
+      <div className="mt-8 sm:mt-10">
+        <Button className="w-40 sm:w-48 lg:w-[14.625rem] h-10 sm:h-12 lg:h-[3.125rem] text-sm sm:text-base">
+          <span className="font-bold">Discover More Projects</span>
+          <IoIosArrowForward className="ml-2" size={16} />
         </Button>
       </div>
     </section>

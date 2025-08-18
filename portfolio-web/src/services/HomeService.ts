@@ -4,7 +4,11 @@ export type AboutDTO = {
   header: string;
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  features?: { text: string; icon?: string }[];
+  infoContact?: { text1: string; text2: string; icon?: string }[];
+  roleTags?: { text: string; icon?: string }[];
+  seo?: { metaTitle?: string; metaDescription?: string; ogImage?: string };
 };
 
 export type SkillDTO = {
@@ -58,6 +62,7 @@ export type HomeResponse = {
 export async function fetchHome(): Promise<HomeResponse> {
   try {
     const { data } = await apiClient.get<HomeResponse>("/home");
+
     return {
       about: data.about ?? null,
       skills: data.skills ?? [],

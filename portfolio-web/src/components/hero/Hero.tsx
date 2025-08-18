@@ -90,7 +90,7 @@ const Hero = () => {
            h-[33rem] rounded-lg overflow-hidden
            flex justify-center items-center
             relative
-
+            border
         "
       >
         <RoadMapAni />

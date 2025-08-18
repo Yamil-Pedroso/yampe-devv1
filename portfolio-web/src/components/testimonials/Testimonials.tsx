@@ -13,7 +13,14 @@ const Testimonials = () => {
   return (
     <DarkContainer className="max-w-[90%] mx-auto">
       <div className="flex gap-10">
-        <div className="flex flex-col w-[23.125rem] h-[20.5rem]">
+        {/* Bloque de texto a la izquierda */}
+        <motion.div
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col w-[23.125rem] h-[20.5rem]"
+        >
           <div className="space-y-5">
             <p className="">{header}</p>
 
@@ -23,21 +30,16 @@ const Testimonials = () => {
               <span className="text-color0">Feedback</span>
             </h2>
 
-            {/* You can swap this for the strings coming from data if you prefer */}
             <p className="max-w-md text-zinc-400">{description}</p>
           </div>
 
-          {/* (Optional) arrows or controls space */}
           <div className="mt-8 flex items-center gap-4">
             <button
               aria-label="Previous"
               className="flex h-[70px] w-[70px] items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition hover:bg-zinc-800"
               onClick={() => {}}
             >
-              <MdOutlineArrowOutward
-                className="text-color4 rotate-[-90deg] text-[21px]
-              "
-              />
+              <MdOutlineArrowOutward className="text-color4 rotate-[-90deg] text-[21px]" />
             </button>
             <button
               aria-label="Next"
@@ -47,9 +49,16 @@ const Testimonials = () => {
               <MdOutlineArrowOutward className="text-color4 rotate-[360deg] text-[21px]" />
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="relative w-[54rem]">
+        {/* Bloque carrusel a la derecha */}
+        <motion.div
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative w-[54rem]"
+        >
           <Marquee className="h-full" speed={20} gradient={false} pauseOnHover>
             {testimonials.map((t, i) => (
               <ElementContainer
@@ -57,14 +66,13 @@ const Testimonials = () => {
                 border
                 className="group relative mx-4 flex w-[25rem] h-[27rem] flex-col items-center rounded-[28px] border border-zinc-800 bg-[#0B0B0B] p-10 shadow-[0_0_0_1px_rgba(255,255,255,0.03)_inset] group hover:bg-bg1-color duration-300"
               >
-                {/* Motion hover context for smooth in/out */}
                 <motion.div
                   initial="rest"
                   animate="rest"
                   whileHover="hover"
                   className="contents"
                 >
-                  {/* Avatar + quote icon */}
+                  {/* Avatar */}
                   <div className="relative mb-8 h-[85px] w-[85px]">
                     <div className="h-full w-full overflow-hidden rounded-full">
                       <img
@@ -82,14 +90,10 @@ const Testimonials = () => {
                     </div>
                   </div>
 
-                  {/* Quote area */}
+                  {/* Quote */}
                   <div className="relative mt-1 w-full max-w-[21rem] h-[9.5rem]">
-                    {/* Clamped preview (4 lines + …) */}
                     <p
-                      className="
-            text-center text-zinc-300 leading-8
-            overflow-hidden line-clamp-4
-          "
+                      className="text-center text-zinc-300 leading-8 overflow-hidden line-clamp-4"
                       title={t.quote}
                     >
                       {t.quote}
@@ -97,15 +101,11 @@ const Testimonials = () => {
 
                     <motion.div
                       variants={{
-                        rest: {
-                          opacity: 0,
-                          y: 8,
-                          pointerEvents: "none" as const,
-                        },
+                        rest: { opacity: 0, y: 8, pointerEvents: "none" },
                         hover: {
                           opacity: 1,
                           y: 0,
-                          pointerEvents: "auto" as const,
+                          pointerEvents: "auto",
                           scale: 1.05,
                         },
                       }}
@@ -129,12 +129,11 @@ const Testimonials = () => {
                   </div>
                 </motion.div>
 
-                {/* Subtle rounded outline */}
                 <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/5" />
               </ElementContainer>
             ))}
           </Marquee>
-        </div>
+        </motion.div>
       </div>
     </DarkContainer>
   );

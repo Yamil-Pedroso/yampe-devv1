@@ -10,7 +10,7 @@ import { skillsData } from "@/data/skillsData";
 import ElementContainer from "../common/element-container/ElementContainer";
 import type { IconType } from "react-icons";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import DarkContainer from "../common/containers/DarkContainer";
 import Button from "../common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
@@ -39,22 +39,68 @@ const order = [
 ] as const;
 const AUTOPLAY_MS = 10000;
 
-const slideVariants = {
-  enter: (direction: number) => ({
-    opacity: 0,
-    x: direction > 0 ? 40 : -40,
-  }),
-  center: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] },
+/* ===================== Animations ===================== */
+// Stagger del grid cuando entra en viewport
+const gridStagger: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.06, delayChildren: 0.08 },
   },
-  exit: (direction: number) => ({
-    opacity: 0,
-    x: direction > 0 ? -40 : 40,
-    transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
-  }),
 };
+
+// Card con efecto 3D suave + fade
+const card3D = (i: number): Variants => ({
+  hidden: {
+    opacity: 0,
+    y: 22,
+    rotateX: 8,
+    rotateY: i % 2 === 0 ? -6 : 6,
+    scale: 0.98,
+    filter: "blur(3px)",
+    transformPerspective: 800,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    rotateY: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+});
+
+// Icono con pop sutil
+const iconPop: Variants = {
+  hidden: { opacity: 0, scale: 0.7, rotate: -10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: { type: "spring", stiffness: 420, damping: 22, mass: 0.6 },
+  },
+};
+
+// Barra que se rellena al entrar
+const barVariant = (pct: number): Variants => ({
+  hidden: { width: "0%" },
+  visible: {
+    width: `${pct}%`,
+    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+  },
+});
+
+// Header con leve fade+scale
+const headerVariant: Variants = {
+  hidden: { opacity: 0, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+/* ====================================================== */
 
 const Skills: React.FC = () => {
   const categories = useMemo(() => {
@@ -137,13 +183,36 @@ const Skills: React.FC = () => {
 
   if (categories.length === 0) return null;
 
+  const slideVariants = {
+    enter: (direction: number) => ({
+      opacity: 0,
+      x: direction > 0 ? 40 : -40,
+    }),
+    center: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] },
+    },
+    exit: (direction: number) => ({
+      opacity: 0,
+      x: direction > 0 ? -40 : 40,
+      transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
+    }),
+  };
+
   const [catKey, skills] = categories[idx];
   const catTitle = titleMap[catKey as string] ?? (catKey as string);
 
   return (
     <DarkContainer className="max-w-[94%] mx-auto">
-      {/* Copy (solo ajustes móviles, sin tocar escritorio) */}
-      <div className="flex flex-col max-w-[34rem] mb-30 max-[40rem]:px-4 max-[40rem]:mb-8">
+      {/* Copy */}
+      <motion.div
+        variants={headerVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.35 }}
+        className="flex flex-col max-w-[34rem] mb-30 max-[40rem]:px-4 max-[40rem]:mb-8"
+      >
         {skillsData.header && (
           <p className="mb-2 text-color4 max-[40rem]:text-sm">
             {skillsData.header}
@@ -170,9 +239,9 @@ const Skills: React.FC = () => {
             <IoIosArrowForward className="ml-2" size={20} />
           </Button>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Slider (sin tocar md/xl; solo mejoras móviles) */}
+      {/* Slider */}
       <div
         ref={containerRef}
         className="flex-1 max-w-[56rem] outline-none max-[40rem]:w-full max-[40rem]:px-4"
@@ -188,7 +257,7 @@ const Skills: React.FC = () => {
           </p>
         </div>
 
-        {/* minHeight para evitar saltos; idéntico en desktop */}
+        {/* minHeight para evitar saltos */}
         <div style={{ minHeight: minH || undefined }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -201,8 +270,14 @@ const Skills: React.FC = () => {
               layout
               className="relative w-full h-full"
             >
-              {/* Grid: mantiene 2/3/4 en desktop; en móviles forzamos 1 col en pantallas muy estrechas */}
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-auto absolute max-[22.5rem]:grid-cols-1">
+              {/* Grid con stagger al entrar en viewport */}
+              <motion.div
+                variants={gridStagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-auto absolute max-[22.5rem]:grid-cols-1"
+              >
                 {(skills as any[]).map((skill, sidx) => {
                   const key = `${catKey}-${skill.tech ?? skill.title}-${sidx}`;
                   const pct = clamp(skill.level ?? 0);
@@ -211,62 +286,69 @@ const Skills: React.FC = () => {
                     : null;
 
                   return (
-                    <ElementContainer
-                      key={key}
-                      className="
-                        group flex flex-col items-center gap-4 p-5 rounded-2xl
-                        bg-[#171717] border border-border-color hover:border-color0 transition-colors duration-300
-                        max-w-[10rem]
-                        max-[40rem]:max-w-[7.5rem] max-[40rem]:p-3 max-[40rem]:gap-3
-                      "
-                    >
-                      {/* Icono */}
-                      <div className="h-10 flex items-center justify-center max-[40rem]:h-8">
-                        {Icon ? (
-                          <Icon className="w-10 h-10 text-color3 max-[40rem]:w-8 max-[40rem]:h-8" />
-                        ) : skill.icon ? (
-                          <img
-                            src={skill.icon}
-                            alt={String(skill.tech ?? skill.title)}
-                            className="w-[6.5rem] h-[3.4375rem] object-contain max-[40rem]:w-[4.5rem] max-[40rem]:h-[2.4rem]"
-                          />
-                        ) : (
-                          <span className="text-xs text-color4">Icon</span>
-                        )}
-                      </div>
+                    <motion.div key={key} variants={card3D(sidx)}>
+                      <ElementContainer
+                        className="
+                          group flex flex-col items-center gap-4 p-5 rounded-2xl
+                          bg-[#171717] border border-border-color hover:border-color0 transition-colors duration-300
+                          max-w-[10rem]
+                          max-[40rem]:max-w-[7.5rem] max-[40rem]:p-3 max-[40rem]:gap-3
+                        "
+                      >
+                        {/* Icono con pop */}
+                        <motion.div
+                          variants={iconPop}
+                          className="h-10 flex items-center justify-center max-[40rem]:h-8"
+                        >
+                          {Icon ? (
+                            <Icon className="w-10 h-10 text-color3 max-[40rem]:w-8 max-[40rem]:h-8" />
+                          ) : skill.icon ? (
+                            <img
+                              src={skill.icon}
+                              alt={String(skill.tech ?? skill.title)}
+                              className="w-[6.5rem] h-[3.4375rem] object-contain max-[40rem]:w-[4.5rem] max-[40rem]:h-[2.4rem]"
+                            />
+                          ) : (
+                            <span className="text-xs text-color4">Icon</span>
+                          )}
+                        </motion.div>
 
-                      {/* Nombre */}
-                      <p className="font-medium text-sm text-center max-[40rem]:text-xs">
-                        {skill.tech ?? skill.title}
-                      </p>
+                        {/* Nombre */}
+                        <p className="font-medium text-sm text-center max-[40rem]:text-xs">
+                          {skill.tech ?? skill.title}
+                        </p>
 
-                      {/* Porcentaje */}
-                      <div className="w-full">
-                        <div className="relative w-full h-2 rounded-full bg-border-color/60 overflow-hidden max-[40rem]:h-1.5">
-                          <div
-                            className="h-full rounded-full bg-color3 transition-[width] duration-500"
-                            style={{ width: `${pct}%` }}
-                            role="progressbar"
-                            aria-valuenow={pct}
-                            aria-valuemin={0}
-                            aria-valuemax={100}
-                          />
+                        {/* Barra que se rellena al aparecer */}
+                        <div className="w-full">
+                          <div className="relative w-full h-2 rounded-full bg-border-color/60 overflow-hidden max-[40rem]:h-1.5">
+                            <motion.div
+                              variants={barVariant(pct)}
+                              initial="hidden"
+                              whileInView="visible"
+                              viewport={{ once: true, amount: 0.6 }}
+                              className="h-full rounded-full bg-color3"
+                              role="progressbar"
+                              aria-valuenow={pct}
+                              aria-valuemin={0}
+                              aria-valuemax={100}
+                            />
+                          </div>
+                          <div className="mt-4 w-full max-[40rem]:mt-2">
+                            <span className="block w-full text-center text-color3 text-[1.25rem] font-semibold bg-bg2-color transition-colors duration-300 group-hover:bg-color0 py-1 rounded-[.8rem] max-[40rem]:text-sm max-[40rem]:py-0.5">
+                              {pct}%
+                            </span>
+                          </div>
                         </div>
-                        <div className="mt-4 w-full max-[40rem]:mt-2">
-                          <span className="block w-full text-center text-color3 text-[1.25rem] font-semibold bg-bg2-color transition-colors duration-300 group-hover:bg-color0 py-1 rounded-[.8rem] max-[40rem]:text-sm max-[40rem]:py-0.5">
-                            {pct}%
-                          </span>
-                        </div>
-                      </div>
-                    </ElementContainer>
+                      </ElementContainer>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Controles: versiones compactas en móvil */}
+        {/* Controles */}
         <div className="mt-22 flex items-center justify-center gap-4 max-[40rem]:mt-10 max-[40rem]:gap-3">
           <button
             onClick={() => {
@@ -310,7 +392,7 @@ const Skills: React.FC = () => {
         </div>
       </div>
 
-      {/* Medidor invisible: refleja la misma malla para que el minHeight sea correcto también en móvil */}
+      {/* Medidor invisible para minHeight */}
       <div
         aria-hidden
         className="absolute opacity-0 pointer-events-none -z-50"

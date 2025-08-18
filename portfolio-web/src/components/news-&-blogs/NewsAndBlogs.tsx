@@ -5,6 +5,7 @@ import { newsAndBlogsData } from "@/data/newsAndBlogsData";
 import ElementContainer from "../common/element-container/ElementContainer";
 import Button from "../common/buttons/Button";
 import { ChevronRight } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 
 const NewsAndBlogs = () => {
   const navigate = useNavigate();
@@ -17,66 +18,141 @@ const NewsAndBlogs = () => {
     });
   };
 
+  // Animaciones: suaves, desde abajo, con escalonado corto
+  const listStagger: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.08, delayChildren: 0.08 },
+    },
+  };
+
+  const cardUp: Variants = {
+    hidden: { opacity: 0, y: 24, filter: "blur(4px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.55, ease: [0.25, 0.8, 0.25, 1] },
+    },
+  };
+
+  const innerStagger: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.05, delayChildren: 0.05 },
+    },
+  };
+
+  const innerItem: Variants = {
+    hidden: { opacity: 0, y: 14 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: "easeOut" },
+    },
+  };
+
   return (
     <DarkContainer className="flex flex-col justify-center mt-30">
-      <div className="text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="text-center"
+      >
         <h2 className="text-color4 font-bold">{header}</h2>
         <p className="text-[2.8125rem] max-w-[45rem] text-base/14">
           Latest News <span className="text-color0">Blogs</span>
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex gap-8">
-        {newsAndBlogs.map((item, i) => (
-          <ElementContainer
-            key={i}
-            className="flex justify-center items-center mb-4 w-[39.375rem] h-[22rem] bg-bg1-color p-4 gap-10 cursor-pointer"
-            onClick={() => handleNewsAndBlogsClick(item.id as number)}
-          >
-            <div className="w-[18.125rem] h-[20.625rem] rounded-2xl overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.excerpt}
-                className="w-full h-full object-cover brightness-95"
-              />
-            </div>
-
-            <div className="flex flex-col flex-1 gap-12 p-4">
-              <div className="flex gap-2 mt-2">
-                {item.tags.map((tag, tagIndex) => (
-                  <a
-                    href="#"
-                    key={tagIndex}
-                    className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
-                  >
-                    <span className="group-hover:text-color0">{tag}</span>
-                  </a>
-                ))}
-              </div>
-              <h3 className="text-color4 text-[22px]">{item.excerpt}</h3>
-
-              <div className="flex">
-                <div className="flex items-center gap-2">
-                  {item.icon && <item.icon className="text-gray-400" />}
-                </div>
-                <p className=" text-gray-500 ml-3">
-                  {item.date} - {item.author}
-                </p>
-              </div>
-            </div>
-          </ElementContainer>
-        ))}
-      </div>
-
-      <Button
-        href="/news-blogs"
-        className="mt-8 w-[14.625rem] h-[3.125rem] font-bold
-
-      "
+      {/* Contenedor con stagger para las tarjetas */}
+      <motion.div
+        variants={listStagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="flex gap-8"
       >
-        Explore News & Blogs
-        <ChevronRight className="ml-2" />
-      </Button>
+        {newsAndBlogs.map((item, i) => (
+          <motion.div key={i} variants={cardUp}>
+            <ElementContainer
+              className="flex justify-center items-center mb-4 w-[39.375rem] h-[22rem] bg-bg1-color p-4 gap-10 cursor-pointer"
+              onClick={() => handleNewsAndBlogsClick(item.id as number)}
+            >
+              {/* Stagger interno para contenido de la card */}
+              <motion.div
+                variants={innerStagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                className="flex w-full h-full gap-10"
+              >
+                <motion.div
+                  variants={innerItem}
+                  className="w-[18.125rem] h-[20.625rem] rounded-2xl overflow-hidden"
+                >
+                  <img
+                    src={item.image}
+                    alt={item.excerpt}
+                    className="w-full h-full object-cover brightness-95"
+                  />
+                </motion.div>
+
+                <motion.div
+                  variants={innerStagger}
+                  className="flex flex-col flex-1 gap-12 p-4"
+                >
+                  <motion.div variants={innerItem} className="flex gap-2 mt-2">
+                    {item.tags.map((tag, tagIndex) => (
+                      <a
+                        href="#"
+                        key={tagIndex}
+                        className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
+                      >
+                        <span className="group-hover:text-color0">{tag}</span>
+                      </a>
+                    ))}
+                  </motion.div>
+
+                  <motion.h3
+                    variants={innerItem}
+                    className="text-color4 text-[22px]"
+                  >
+                    {item.excerpt}
+                  </motion.h3>
+
+                  <motion.div variants={innerItem} className="flex">
+                    <div className="flex items-center gap-2">
+                      {item.icon && <item.icon className="text-gray-400" />}
+                    </div>
+                    <p className=" text-gray-500 ml-3">
+                      {item.date} - {item.author}
+                    </p>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </ElementContainer>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
+        className="flex justify-center"
+      >
+        <Button
+          href="/news-blogs"
+          className="mt-8 w-[14.625rem] h-[3.125rem] font-bold"
+        >
+          Explore News & Blogs
+          <ChevronRight className="ml-2" />
+        </Button>
+      </motion.div>
     </DarkContainer>
   );
 };

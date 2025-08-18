@@ -39,7 +39,7 @@ export interface IServiceSettings extends Document {
 
 const ServiceSettingsSchema = new Schema<IServiceSettings>(
   {
-    header: { type: String, default: "Our Services" },
+    header: { type: String, default: "My Services" },
     status: {
       type: String,
       enum: ["draft", "published"],

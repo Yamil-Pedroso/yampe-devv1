@@ -102,6 +102,7 @@ export interface WorksData extends CommonContent {
     subtitle: string;
     description: string;
     image: string;
+    link: string;
     icon?: string | IconType;
   }[];
 }

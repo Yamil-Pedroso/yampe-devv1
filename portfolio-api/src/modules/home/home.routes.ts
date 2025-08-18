@@ -26,7 +26,9 @@ r.get("/home", async (_req, res) => {
       blogSettings,
     ] = await Promise.all([
       AboutModel.findOne({ status: "published" })
-        .select("header title description image")
+        .select(
+          "header title description image features infoContact roleTags seo"
+        )
         .lean(),
 
       // Skills publicadas (top 12, orden por categoría y nivel)
