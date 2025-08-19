@@ -4,8 +4,13 @@ import { Route as NewsBlogsRoute } from "@/routes/new-work-details/$newsBlogsId"
 import { newsAndBlogsData } from "@/data/newsAndBlogsData";
 import ElementContainer from "../common/element-container/ElementContainer";
 import Button from "../common/buttons/Button";
-import { ChevronRight } from "lucide-react";
+import { IoIosArrowForward } from "react-icons/io";
 import { motion, Variants } from "framer-motion";
+import {
+  ctaEnter,
+  ctaHover,
+  ctaTap,
+} from "@/components/common/animation/motionTokens";
 
 const NewsAndBlogs = () => {
   const navigate = useNavigate();
@@ -148,10 +153,21 @@ const NewsAndBlogs = () => {
       >
         <Button
           href="/news-blogs"
-          className="mt-8 w-[14.625rem] h-[3.125rem] font-bold"
+          initial="hidden"
+          animate="show"
+          variants={ctaEnter}
+          transition={{ delay: 0.35 }}
+          whileHover={ctaHover}
+          whileTap={ctaTap}
+          className="cursor-pointer group"
         >
-          Explore News & Blogs
-          <ChevronRight className="ml-2" />
+          <span className="font-bold ">Explore News & Blogs</span>
+          <span>
+            <IoIosArrowForward
+              className="group-hover:ml-2 transition-all duration-300"
+              size={20}
+            />
+          </span>
         </Button>
       </motion.div>
     </DarkContainer>

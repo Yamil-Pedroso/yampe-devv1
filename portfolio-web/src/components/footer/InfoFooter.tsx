@@ -5,8 +5,13 @@ import { FiMapPin, FiMail, FiPhone } from "react-icons/fi";
 import Footer from "./Footer";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../common/buttons/Button";
-import { ChevronRight } from "lucide-react";
+import { IoIosArrowForward } from "react-icons/io";
 import { motion, Variants } from "framer-motion";
+import {
+  ctaEnter,
+  ctaHover,
+  ctaTap,
+} from "@/components/common/animation/motionTokens";
 
 const listStagger: Variants = {
   hidden: {},
@@ -57,7 +62,7 @@ const InfoFooter = () => {
     <div id="contact">
       <DarkContainer className="mt-16 sm:mt-20 md:mt-24 lg:mt-30 w-full min-h-[20rem] sm:min-h-[24rem] md:min-h-[26rem] lg:min-h-[28rem] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16">
         <motion.div
-          className="mx-auto w-full max-w-7xl"
+          className="w-full max-w-7xl"
           variants={listStagger}
           initial="hidden"
           whileInView="visible"
@@ -78,7 +83,7 @@ const InfoFooter = () => {
               >
                 <motion.img
                   variants={innerItem}
-                  src="/images/logo/cubi_logo.png"
+                  src="/images/logo/cubi_logo_orange.png"
                   alt="Yampe.dev"
                   className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
@@ -144,7 +149,7 @@ const InfoFooter = () => {
                       bg-transparent text-zinc-300 placeholder:text-zinc-500
                       pl-10 pr-4 py-2 sm:py-2.5
                       border-0 border-b border-b-zinc-600
-                      focus:border-b-lime-400 focus:outline-none focus:ring-0
+                      focus:border-color0 focus:outline-none focus:ring-0
                       text-sm sm:text-base
                     "
                   />
@@ -153,10 +158,21 @@ const InfoFooter = () => {
                 <motion.div variants={innerItem} className="w-full sm:w-auto">
                   <Button
                     type="submit"
-                    className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-2.5 font-bold text-black transition-colors text-sm sm:text-base"
+                    initial="hidden"
+                    animate="show"
+                    variants={ctaEnter}
+                    transition={{ delay: 0.35 }}
+                    whileHover={ctaHover}
+                    whileTap={ctaTap}
+                    className="cursor-pointer group"
                   >
-                    <span className="text-black">Subscribe</span>
-                    <ChevronRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 text-black" />
+                    <span className="font-bold">Subscribe</span>
+                    <span>
+                      <IoIosArrowForward
+                        className="group-hover:ml-2 transition-all duration-300"
+                        size={20}
+                      />
+                    </span>
                   </Button>
                 </motion.div>
               </motion.form>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   useCallback,
   useEffect,
@@ -14,6 +15,11 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import DarkContainer from "../common/containers/DarkContainer";
 import Button from "../common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
+import {
+  ctaEnter,
+  ctaHover,
+  ctaTap,
+} from "@/components/common/animation/motionTokens";
 
 const clamp = (n: number, min = 0, max = 100) =>
   Math.max(min, Math.min(max, n));
@@ -39,8 +45,6 @@ const order = [
 ] as const;
 const AUTOPLAY_MS = 10000;
 
-/* ===================== Animations ===================== */
-// Stagger del grid cuando entra en viewport
 const gridStagger: Variants = {
   hidden: {},
   visible: {
@@ -48,7 +52,6 @@ const gridStagger: Variants = {
   },
 };
 
-// Card con efecto 3D suave + fade
 const card3D = (i: number): Variants => ({
   hidden: {
     opacity: 0,
@@ -70,7 +73,6 @@ const card3D = (i: number): Variants => ({
   },
 });
 
-// Icono con pop sutil
 const iconPop: Variants = {
   hidden: { opacity: 0, scale: 0.7, rotate: -10 },
   visible: {
@@ -81,7 +83,6 @@ const iconPop: Variants = {
   },
 };
 
-// Barra que se rellena al entrar
 const barVariant = (pct: number): Variants => ({
   hidden: { width: "0%" },
   visible: {
@@ -90,7 +91,6 @@ const barVariant = (pct: number): Variants => ({
   },
 });
 
-// Header con leve fade+scale
 const headerVariant: Variants = {
   hidden: { opacity: 0, scale: 0.96 },
   visible: {
@@ -99,8 +99,6 @@ const headerVariant: Variants = {
     transition: { duration: 0.5, ease: "easeOut" },
   },
 };
-
-/* ====================================================== */
 
 const Skills: React.FC = () => {
   const categories = useMemo(() => {
@@ -235,9 +233,22 @@ const Skills: React.FC = () => {
         )}
 
         <div className="mt-8">
-          <Button className="w-[10.8rem] h-[3.1rem] max-[40rem]:h-[2.6rem] max-[40rem]:w-[9.5rem]">
+          <Button
+            initial="hidden"
+            animate="show"
+            variants={ctaEnter}
+            transition={{ delay: 0.35 }}
+            whileHover={ctaHover}
+            whileTap={ctaTap}
+            className="cursor-pointer group"
+          >
             <p className="font-bold max-[40rem]:text-sm">Explore More</p>
-            <IoIosArrowForward className="ml-2" size={20} />
+            <span>
+              <IoIosArrowForward
+                className="group-hover:ml-2 transition-all duration-300"
+                size={20}
+              />
+            </span>
           </Button>
         </div>
       </motion.div>

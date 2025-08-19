@@ -135,6 +135,13 @@ export interface NewsAndBlogsData extends CommonContent {
   }[];
 }
 
+export interface ClientsAndFirmasData {
+  institutions: {
+    logo: string;
+    link: string;
+  }[];
+}
+
 export interface InfoFooterData {
   quickLinks?: { text: string; href: string }[];
   address?: { street: string; email: string; phone: string };

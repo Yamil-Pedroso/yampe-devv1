@@ -2,7 +2,11 @@ import React from "react";
 import { heroData } from "@/data/heroData";
 import Button from "@/components/common/buttons/Button";
 import { motion, Variants } from "framer-motion";
-import RoadMapAni from "./RoadMapApi";
+import {
+  ctaEnter,
+  ctaHover,
+  ctaTap,
+} from "@/components/common/animation/motionTokens";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -59,12 +63,24 @@ const Hero = () => {
         </p>
 
         <div className="mt-6 flex gap-4 custom:flex-row flex-col">
-          <Button href={heroData.buttons[0].href} className="h-[3rem]">
-            <span className="mx-1.5 font-bold">{heroData.buttons[0].text}</span>
+          <Button
+            href={heroData.buttons[0].href}
+            className="h-[3rem] group"
+            initial="hidden"
+            animate="show"
+            variants={ctaEnter}
+            transition={{ delay: 0.35 }}
+            whileHover={ctaHover}
+            whileTap={ctaTap}
+          >
+            <span className="font-bold">{heroData.buttons[0].text}</span>
+
             {heroData.buttons[0].icon && (
-              <span className="mr-2">
+              <motion.span
+                className={`inline-flex group-hover:ml-2 transition-all duration-300`}
+              >
                 {React.createElement(heroData.buttons[0].icon)}
-              </span>
+              </motion.span>
             )}
           </Button>
 
@@ -85,15 +101,16 @@ const Hero = () => {
       <div
         className="
           order-3 lg:order-3
-          md:col-span-2 md:justify-self-center  md:max- w-full
+          md:col-span-2 md:justify-self-center  w-full
           xl:order-2 xl:col-span-1
-           h-[33rem] rounded-lg overflow-hidden
+           h-[33rem] rounded-lg
            flex justify-center items-center
             relative
-            border
+
         "
       >
-        <RoadMapAni />
+        {/*<MorphingTitle />*/}
+        {/*<ShapeAnimation />*/}
       </div>
 
       {/* RIGHT content */}

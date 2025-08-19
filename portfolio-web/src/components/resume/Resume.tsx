@@ -87,7 +87,7 @@ const Resume = () => {
         <Reveal variants={popIcon}>
           <div className="flex items-center justify-center w-[16rem] h-[16rem] rounded-full bg-bg1-color border border-border-color shadow-sm large:w-[17rem] large:h-[17rem]">
             <img
-              src="/images/logo/cubi_logo.png"
+              src="/images/logo/cubi_logo_orange.png"
               alt="Yampe.dev"
               className="w-35 h-35"
             />

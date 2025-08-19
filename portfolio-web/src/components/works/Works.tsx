@@ -1,8 +1,15 @@
-import React, { useRef, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useRef, useEffect, useState } from "react";
 import { worksData } from "@/data/worksData";
 import Button from "@/components/common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion, useAnimation, useInView } from "framer-motion";
+import {
+  ctaEnter,
+  ctaHover,
+  ctaTap,
+} from "@/components/common/animation/motionTokens";
+import BlockwithhHover from "../common/hovers/BlockwithHover";
 
 const IMG_DURATION = 1.1;
 const IMG_EASE: any = [0.25, 0.1, 0.25, 1];
@@ -10,6 +17,12 @@ const TXT_DURATION = 0.85;
 const TXT_EASE: any = [0.22, 1, 0.36, 1];
 
 function ProjectRow({ project, i }: { project: any; i: number }) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredIndex(index);
+  };
+
   const rowRef = useRef<HTMLDivElement | null>(null);
   const inView = useInView(rowRef, { once: true, amount: 0.3 });
 
@@ -55,21 +68,27 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             rel="noopener noreferrer"
             className="cursor-pointer w-full lg:w-1/2 xl:w-[39.375rem] flex-shrink-0"
           >
-            <motion.div
-              initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
-              animate={imgCtrls}
-              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="absolute inset-0 w-full h-full object-cover object-center"
+            <BlockwithhHover>
+              <motion.div
+                initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
+                animate={imgCtrls}
+                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
+                onMouseEnter={() => handleMouseEnter(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 style={{
-                  objectFit: "cover",
-                  objectPosition: i === 2 ? "center" : "center",
+                  transition: "filter 0.3s ease",
+                  filter:
+                    hoveredIndex === i ? "blur(5px) brightness(80%)" : "none",
                 }}
-              />
-            </motion.div>
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="absolute inset-0 m-auto object-contain"
+                  style={{ width: "30rem", height: "30rem" }}
+                />
+              </motion.div>
+            </BlockwithhHover>
           </a>
 
           <motion.div
@@ -134,21 +153,27 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             rel="noopener noreferrer"
             className="cursor-pointer w-full lg:w-1/2 xl:w-[39.375rem] flex-shrink-0 order-1 lg:order-2"
           >
-            <motion.div
-              initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
-              animate={imgCtrls}
-              className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="absolute inset-0 w-full h-full object-cover object-center brightness-90"
+            <BlockwithhHover>
+              <motion.div
+                initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
+                animate={imgCtrls}
+                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
+                onMouseEnter={() => handleMouseEnter(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 style={{
-                  objectFit: "cover",
-                  objectPosition: i === 3 ? "center top" : "center",
+                  transition: "filter 0.3s ease",
+                  filter:
+                    hoveredIndex === i ? "blur(5px) brightness(80%)" : "none",
                 }}
-              />
-            </motion.div>
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="absolute inset-0 m-auto object-contain brightness-90"
+                  style={{ width: "30rem", height: "30rem" }}
+                />
+              </motion.div>
+            </BlockwithhHover>
           </a>
         </div>
       )}
@@ -175,9 +200,22 @@ const Works = () => {
       </div>
 
       <div className="mt-8 sm:mt-10">
-        <Button className="w-55 sm:w-48 lg:w-[14.625rem] h-10 sm:h-12 lg:h-[3.125rem] text-sm sm:text-base">
+        <Button
+          initial="hidden"
+          animate="show"
+          variants={ctaEnter}
+          transition={{ delay: 0.35 }}
+          whileHover={ctaHover}
+          whileTap={ctaTap}
+          className="cursor-pointer group"
+        >
           <span className="font-bold ">Discover More Projects</span>
-          <IoIosArrowForward className="ml-2" size={16} />
+          <span>
+            <IoIosArrowForward
+              className="group-hover:ml-2 transition-all duration-300"
+              size={20}
+            />
+          </span>
         </Button>
       </div>
     </section>

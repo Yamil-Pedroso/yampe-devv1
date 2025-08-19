@@ -4,8 +4,13 @@ import { MdOutlineEmail, MdOutlinePhoneEnabled } from "react-icons/md";
 import { RxText } from "react-icons/rx";
 import { getInTouchData } from "@/data/getInTouchData";
 import Button from "@/components/common/buttons/Button";
-import { ChevronRight } from "lucide-react";
+import { IoIosArrowForward } from "react-icons/io";
 import { motion } from "framer-motion";
+import {
+  ctaEnter,
+  ctaHover,
+  ctaTap,
+} from "@/components/common/animation/motionTokens";
 
 const GetInTouch = () => {
   const { header, description } = getInTouchData;
@@ -224,9 +229,22 @@ const GetInTouch = () => {
         </div>
 
         <div>
-          <Button className="mt-4 w-full sm:w-auto px-6 py-2.5 font-bold">
-            Send Message
-            <ChevronRight className="ml-2" />
+          <Button
+            initial="hidden"
+            animate="show"
+            variants={ctaEnter}
+            transition={{ delay: 0.35 }}
+            whileHover={ctaHover}
+            whileTap={ctaTap}
+            className="cursor-pointer group"
+          >
+            <span className="font-bold ">Send Message</span>
+            <span>
+              <IoIosArrowForward
+                className="group-hover:ml-2 transition-all duration-300"
+                size={20}
+              />
+            </span>
           </Button>
         </div>
       </motion.form>

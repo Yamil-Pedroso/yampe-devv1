@@ -10,6 +10,7 @@ import { useMenu } from "@/components/context/MenuContext";
 import ToggleIcon from "@/components/common/toggle-icon/ToggleIcon";
 import MenuItems from "./MenuItems";
 import SocialLinks from "./SocialLinks";
+import HamburgerToX from "../common/animation/morphism/HamburgerToX";
 
 const Navbar = () => {
   const { isOpenMenu, toggleMenu } = useMenu();
@@ -27,7 +28,7 @@ const Navbar = () => {
     >
       <a href="/" className="flex items-center">
         <img
-          src="/images/logo/cubi_logo.png"
+          src="/images/logo/cubi_logo_orange.png"
           alt="Yampe.dev"
           className="w-12 h-12"
         />
@@ -58,11 +59,12 @@ const Navbar = () => {
       ) : null}
 
       <div className="z-[20]">
-        <ToggleIcon
+        {/*<ToggleIcon
           className="w-[3.125rem] h-[3.125rem]"
           isOpen={isOpenMenu}
           toggleMenu={toggleMenu}
-        />
+          />*/}
+        <HamburgerToX isOpen={isOpenMenu} toggleMenu={toggleMenu} />
       </div>
 
       <AnimatePresence>

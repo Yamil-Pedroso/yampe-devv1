@@ -1,37 +1,58 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
+import { motion, MotionProps } from "framer-motion";
 
-interface ButtonProps {
+type CommonProps = {
   children?: React.ReactNode;
-  href?: string;
-  onClick?: () => void;
   className?: string;
-  type?: "button" | "submit" | "reset";
-}
+};
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  href,
-  onClick,
-  className,
-  type = "button",
-}) => {
-  const buttonClassName =
-    "flex items-center justify-center rounded-2xl px-4 bg-[var(--element-bg-color)] text-[var(--font-btn-color)]" +
-    (className ? ` ${className}` : "");
+type ButtonAsLinkProps = CommonProps &
+  MotionProps &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "className"> & {
+    href: string;
+  };
 
-  if (href) {
+type ButtonAsButtonProps = CommonProps &
+  MotionProps &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "className"> & {
+    href?: undefined;
+  };
+
+function Button(props: ButtonAsLinkProps): React.ReactElement;
+function Button(props: ButtonAsButtonProps): React.ReactElement;
+
+function Button(props: ButtonAsLinkProps | ButtonAsButtonProps) {
+  const base =
+    "group inline-flex items-center justify-center gap-2 rounded-2xl px-4 h-[3rem] " +
+    "bg-[var(--element-bg-color)] text-[var(--font-btn-color)] " +
+    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " +
+    "focus-visible:outline-[var(--font-btn-color)]";
+
+  const { className, children, ...rest } = props as any;
+  const cls = `${base} ${className ?? ""}`;
+
+  if ("href" in props && props.href) {
+    const { href, ...anchorRest } = rest as Omit<
+      ButtonAsLinkProps,
+      "children" | "className"
+    >;
     return (
-      <a href={href} className={buttonClassName}>
+      <motion.a href={href} className={cls} {...anchorRest}>
         {children}
-      </a>
+      </motion.a>
     );
   }
 
+  const buttonRest = rest as Omit<
+    ButtonAsButtonProps,
+    "children" | "className"
+  >;
   return (
-    <button onClick={onClick} className={buttonClassName} type={type}>
+    <motion.button className={cls} {...buttonRest}>
       {children}
-    </button>
+    </motion.button>
   );
-};
+}
 
 export default Button;
