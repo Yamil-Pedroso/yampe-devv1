@@ -55,7 +55,8 @@ const About = () => {
   });
 
   const leftFloatY1 = useTransform(leftProgress, [0, 1], [40, -40]);
-  const leftFloatY2 = useTransform(leftProgress, [0, 1], [80, -20]);
+  const leftFloatY2 = useTransform(leftProgress, [0, 1], [30, 20]);
+  const bg = useTransform(leftProgress, [0, 1], ["#ff4d4f", "#1677ff"]);
   const imgY = useTransform(imageProgress, [0, 1], [0, -80]);
 
   const about = items[0];
@@ -175,7 +176,6 @@ const About = () => {
 
         {/* right group */}
         <div className="w-[442px] flex flex-col items-center relative">
-          {/* Mismo contenedor; solo añadimos ref + motion + style */}
           <motion.div
             ref={leftGroupRef}
             className="flex flex-col absolute top-80 left-[-2rem] desktop:left-[-6.55rem] z-10"

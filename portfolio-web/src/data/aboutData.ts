@@ -1,6 +1,7 @@
 import { AboutMeData } from "../types/Types";
 import { FaCheck } from "react-icons/fa6";
 import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
+
 const text = "Problema Solutions";
 
 export const aboutMeData: AboutMeData = {

@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { IconType } from "react-icons";
-import { MdOutlineArrowOutward } from "react-icons/md";
+import { MdOutlineWeb } from "react-icons/md";
+import { AiOutlineCode, AiOutlineMobile, AiOutlineBuild } from "react-icons/ai";
+import { LuTabletSmartphone } from "react-icons/lu";
+import { GrDeploy } from "react-icons/gr";
 import ElementContainer from "../common/element-container/ElementContainer";
 import { fetchHome } from "@/services/HomeService";
 import type { ServiceDTO, HomeResponse } from "@/services/HomeService";
 import { motion, Variants } from "framer-motion";
 
 const iconMap: Record<string, IconType> = {
-  arrowOutward: MdOutlineArrowOutward,
+  MdOutlineWeb: MdOutlineWeb,
+  AiOutlineCode: AiOutlineCode,
+  AiOutlineMobile: AiOutlineMobile,
+  AiOutlineBuild: AiOutlineBuild,
+  LuTabletSmartphone: LuTabletSmartphone,
+  GrDeploy: GrDeploy,
 };
 
 /* ===== Variants ===== */

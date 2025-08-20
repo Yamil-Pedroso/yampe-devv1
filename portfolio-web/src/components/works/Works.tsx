@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { Route as worksRoute } from "@/routes/work-details/$worksId";
 import { worksData } from "@/data/worksData";
 import Button from "@/components/common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
@@ -9,7 +11,8 @@ import {
   ctaHover,
   ctaTap,
 } from "@/components/common/animation/motionTokens";
-import BlockwithhHover from "../common/hovers/BlockwithHover";
+import BlockwithhHover from "@/components/common/hovers/BlockwithHover";
+import MorphCTA from "@/components/common/animation/morphism/MorphCTA";
 
 const IMG_DURATION = 1.1;
 const IMG_EASE: any = [0.25, 0.1, 0.25, 1];
@@ -18,9 +21,17 @@ const TXT_EASE: any = [0.22, 1, 0.36, 1];
 
 function ProjectRow({ project, i }: { project: any; i: number }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
+  };
+
+  const handleWorksClick = (worksId: number) => {
+    navigate({
+      to: worksRoute.to,
+      params: { worksId: String(worksId) },
+    });
   };
 
   const rowRef = useRef<HTMLDivElement | null>(null);
@@ -110,11 +121,12 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             <p className="text-color4 text-sm sm:text-base leading-relaxed">
               {project.description}
             </p>
-            {project.icon && (
+            {/*{project.icon && (
               <span className="flex items-center justify-center text-lg sm:text-xl lg:text-[1.6rem] w-10 h-10 sm:w-12 sm:h-12 lg:w-[3.5rem] lg:h-[3.5rem] rounded-full bg-bg2-color text-color4 border border-neutral-800">
                 {React.createElement(project.icon)}
               </span>
-            )}
+            )}*/}
+            <MorphCTA onClick={() => handleWorksClick(project.id)} />
           </motion.div>
         </div>
       ) : (
@@ -139,11 +151,13 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
               <p className="text-color4 text-sm sm:text-base leading-relaxed">
                 {project.description}
               </p>
-              {project.icon && (
+              {/*{project.icon && (
                 <span className="flex items-center justify-center text-lg sm:text-xl lg:text-[1.6rem] w-10 h-10 sm:w-12 sm:h-12 lg:w-[3.5rem] lg:h-[3.5rem] rounded-full bg-bg2-color text-color4 border border-neutral-800">
                   {React.createElement(project.icon)}
                 </span>
-              )}
+              )}*/}
+
+              <MorphCTA onClick={() => handleWorksClick(project.id)} />
             </div>
           </motion.div>
 

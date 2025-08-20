@@ -6,6 +6,8 @@
 | **xl**          | 1280px            |
 | **2xl**         | 1536px            |
 
+macbook pro m4: 1728×1117 px
+
 🔹 Contenedor Grid
 
 grid → activa grid display

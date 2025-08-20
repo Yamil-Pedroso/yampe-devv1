@@ -1,8 +1,12 @@
 import menuItems from "../../types/Types";
 
+interface MenuItem {
+  className?: string;
+}
+
 const NAV_OFFSET = 80;
 
-const MenuItems = () => {
+const MenuItems: React.FC<MenuItem> = ({ className }) => {
   const handleScrollItems = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -12,7 +16,9 @@ const MenuItems = () => {
   };
 
   return (
-    <ul className="flex flex-col min-[961px]:flex-row space-y-2 min-[961px]:space-y-0 min-[961px]:space-x-4 text-white">
+    <ul
+      className={`${className} flex flex-col min-[961px]:flex-row space-y-2 min-[961px]:space-y-0 min-[961px]:space-x-4 text-white`}
+    >
       {menuItems.map((item, i) => (
         <li key={i} className="hover:text-color0 hover:underline duration-300">
           <a

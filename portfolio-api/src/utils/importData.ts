@@ -157,7 +157,7 @@ async function seedServices() {
       stepNumber,
       title: s.title,
       description: s.description,
-      iconKey: "arrowOutward",
+      iconKey: s.icon,
       status: "published" as const,
       order: i + 1,
     };

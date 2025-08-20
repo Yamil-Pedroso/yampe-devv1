@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NewsBlogsRouteImport } from './routes/news-blogs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkDetailsWorksIdRouteImport } from './routes/work-details/$worksId'
 import { Route as NewWorkDetailsNewsBlogsIdRouteImport } from './routes/new-work-details/$newsBlogsId'
 
 const NewsBlogsRoute = NewsBlogsRouteImport.update({
@@ -21,6 +22,11 @@ const NewsBlogsRoute = NewsBlogsRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkDetailsWorksIdRoute = WorkDetailsWorksIdRouteImport.update({
+  id: '/work-details/$worksId',
+  path: '/work-details/$worksId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewWorkDetailsNewsBlogsIdRoute =
@@ -34,30 +40,47 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/news-blogs': typeof NewsBlogsRoute
   '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
+  '/work-details/$worksId': typeof WorkDetailsWorksIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/news-blogs': typeof NewsBlogsRoute
   '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
+  '/work-details/$worksId': typeof WorkDetailsWorksIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/news-blogs': typeof NewsBlogsRoute
   '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
+  '/work-details/$worksId': typeof WorkDetailsWorksIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/news-blogs' | '/new-work-details/$newsBlogsId'
+  fullPaths:
+    | '/'
+    | '/news-blogs'
+    | '/new-work-details/$newsBlogsId'
+    | '/work-details/$worksId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/news-blogs' | '/new-work-details/$newsBlogsId'
-  id: '__root__' | '/' | '/news-blogs' | '/new-work-details/$newsBlogsId'
+  to:
+    | '/'
+    | '/news-blogs'
+    | '/new-work-details/$newsBlogsId'
+    | '/work-details/$worksId'
+  id:
+    | '__root__'
+    | '/'
+    | '/news-blogs'
+    | '/new-work-details/$newsBlogsId'
+    | '/work-details/$worksId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NewsBlogsRoute: typeof NewsBlogsRoute
   NewWorkDetailsNewsBlogsIdRoute: typeof NewWorkDetailsNewsBlogsIdRoute
+  WorkDetailsWorksIdRoute: typeof WorkDetailsWorksIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +99,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work-details/$worksId': {
+      id: '/work-details/$worksId'
+      path: '/work-details/$worksId'
+      fullPath: '/work-details/$worksId'
+      preLoaderRoute: typeof WorkDetailsWorksIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/new-work-details/$newsBlogsId': {
       id: '/new-work-details/$newsBlogsId'
       path: '/new-work-details/$newsBlogsId'
@@ -90,6 +120,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NewsBlogsRoute: NewsBlogsRoute,
   NewWorkDetailsNewsBlogsIdRoute: NewWorkDetailsNewsBlogsIdRoute,
+  WorkDetailsWorksIdRoute: WorkDetailsWorksIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

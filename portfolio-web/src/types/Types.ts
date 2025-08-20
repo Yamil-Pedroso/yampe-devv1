@@ -100,10 +100,12 @@ export interface SkillsData extends CommonContent {
 
 export interface WorksData extends CommonContent {
   projects?: {
+    id: string | number;
     title: string;
     subtitle: string;
     description: string;
     image: string;
+    imageDetails: string[];
     link: string;
     icon?: string | IconType;
   }[];
