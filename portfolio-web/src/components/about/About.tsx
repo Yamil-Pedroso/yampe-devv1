@@ -13,6 +13,7 @@ import DarkContainer from "../common/containers/DarkContainer";
 import { fetchHome } from "@/services/HomeService";
 import { AboutDTO, HomeResponse } from "@/services/HomeService";
 import { FaCheck } from "react-icons/fa6";
+import ServiceGroups from "../common/service-groups/ServiceGroups";
 
 const iconMap: Record<string, React.ElementType> = {
   FaCheck: FaCheck,
@@ -60,49 +61,6 @@ const About = () => {
   const imgY = useTransform(imageProgress, [0, 1], [0, -80]);
 
   const about = items[0];
-  const features = about?.features ?? [];
-  //const imageSrc = about?.image ?? aboutMeData.image;
-
-  const group1 = features.slice(0, 3).map((feature, index) => (
-    <motion.div
-      key={index}
-      className="flex items-center"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20% 0px -20% 0px" }}
-      transition={{ duration: 0.45, ease: "easeOut", delay: index * 0.08 }}
-    >
-      {/* si el icono es string, mapea a componente o muestra un check simple */}
-      {feature.icon && iconMap[feature.icon] ? (
-        <span className="mr-2 text-color0 text-[1.25rem]">
-          {React.createElement(iconMap[feature.icon])}
-        </span>
-      ) : (
-        <span className="mr-2 text-color0 text-[1.25rem]">✔</span>
-      )}
-      <span className="text-[1.25rem]">{feature.text}</span>
-    </motion.div>
-  ));
-
-  const group2 = features.slice(3, 6).map((feature, i) => (
-    <motion.div
-      key={i}
-      className="flex items-center"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20% 0px -20% 0px" }}
-      transition={{ duration: 0.45, ease: "easeOut", delay: i * 0.08 }}
-    >
-      {feature.icon && iconMap[feature.icon] ? (
-        <span className="mr-2 text-color0 text-[1.25rem]">
-          {React.createElement(iconMap[feature.icon])}
-        </span>
-      ) : (
-        <span className="mr-2 text-color0 text-[1.25rem]">✔</span>
-      )}
-      <span className="text-[1.25rem]">{feature.text}</span>
-    </motion.div>
-  ));
 
   return (
     <DarkContainer className="w-full desktop:max-w-[94%] laptop:h-[calc(100vh-7rem)] mx-auto mt-30">
@@ -111,7 +69,7 @@ const About = () => {
         className="w-full flex justify-center items-center large:justify-center large:items-center flex-col laptop:flex-row gap-36"
       >
         {/* left group*/}
-        <div className="flex flex-col justify-center gap-6  ">
+        <div className="flex flex-col justify-center gap-6 ">
           <motion.h2
             className="text-color4"
             initial={{ opacity: 0, y: 12 }}
@@ -144,10 +102,7 @@ const About = () => {
             {about?.description || ""}
           </motion.p>
 
-          <div className="flex gap-15 desktop-lg:gap-45">
-            <div className="flex flex-col gap-3.5">{group1}</div>
-            <div className="flex flex-col gap-3.5">{group2}</div>
-          </div>
+          <ServiceGroups />
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}

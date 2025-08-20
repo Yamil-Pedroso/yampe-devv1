@@ -101,7 +101,7 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
       ref={btnRef}
       onClick={handleClick}
       aria-label={ariaLabel}
-      className={`inline-flex items-center justify-center overflow-hidden ${className || ""}`}
+      className={`inline-flex items-center justify-center  ${className || ""}`}
       style={{
         padding: 0,
         border: "none",

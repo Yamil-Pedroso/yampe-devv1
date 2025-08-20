@@ -7,6 +7,8 @@ import {
   ctaHover,
   ctaTap,
 } from "@/components/common/animation/motionTokens";
+import AniElements from "./AniElements";
+import CodeLines from "../common/animation/morphism/CodeLines";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -104,14 +106,11 @@ const Hero = () => {
           md:col-span-2 md:justify-self-center  w-full
           xl:order-2 xl:col-span-1
            h-[33rem] rounded-lg
-           flex justify-center items-center
+           flex justify-center items-center mr-20
             relative
 
         "
-      >
-        {/*<MorphingTitle />*/}
-        {/*<ShapeAnimation />*/}
-      </div>
+      ></div>
 
       {/* RIGHT content */}
       <motion.div
