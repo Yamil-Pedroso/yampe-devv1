@@ -51,7 +51,7 @@ export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
   }, [isOpenMenu]);
 
   return (
-    <MenuContext.Provider value={{ isOpenMenu, toggleMenu }}>
+    <MenuContext.Provider value={{ isOpenMenu, toggleMenu, withMargin: false }}>
       {children}
     </MenuContext.Provider>
   );

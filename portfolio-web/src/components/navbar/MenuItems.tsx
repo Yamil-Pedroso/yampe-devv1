@@ -1,20 +1,11 @@
 import menuItems from "../../types/Types";
+import { handleScrollItems } from "../../components/common/scroll-items/scrollItems";
 
 interface MenuItem {
   className?: string;
 }
 
-const NAV_OFFSET = 80;
-
 const MenuItems: React.FC<MenuItem> = ({ className }) => {
-  const handleScrollItems = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const y = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
   return (
     <ul
       className={`${className} flex flex-col min-[961px]:flex-row space-y-2 min-[961px]:space-y-0 min-[961px]:space-x-4 text-white`}

@@ -12,6 +12,9 @@ import MenuItems from "./MenuItems";
 //import SocialLinks from "./SocialLinks";
 import HamburgerToX from "../common/animation/morphism/HamburgerToX";
 import AppointmentForm from "./AppointmentForm";
+import { handleScrollItems } from "@/components/common/scroll-items/scrollItems";
+
+const EXIT_MS = 400;
 
 const Navbar = () => {
   const { isOpenMenu, toggleMenu } = useMenu();
@@ -22,16 +25,22 @@ const Navbar = () => {
     setShowMenuItems(latest > 300);
   });
 
+  const handleNavigate = (id: string) => {
+    if (isOpenMenu) toggleMenu();
+
+    setTimeout(() => handleScrollItems(id), EXIT_MS);
+  };
+
   return (
     <>
-      <div className="fixed bottom-2 right-2 z-[9999] text-2xl px-2 py-1 rounded bg-black/60 text-green-700">
+      {/*<div className="fixed bottom-2 right-2 z-[9999] text-2xl px-2 py-1 rounded bg-black/60 text-green-700">
         <span className="block sm:hidden">base (&lt;640)</span>
         <span className="hidden sm:block md:hidden">sm (≥640)</span>
         <span className="hidden md:block lg:hidden">md (≥768)</span>
         <span className="hidden lg:block xl:hidden">lg (≥1024)</span>
         <span className="hidden xl:block 2xl:hidden">xl (≥1280)</span>
         <span className="hidden 2xl:block">2xl (≥1536)</span>
-      </div>
+      </div>*/}
       <nav
         id="home"
         className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[94%] relative"
@@ -88,7 +97,7 @@ const Navbar = () => {
               className="fixed inset-0 w-screen h-screen backdrop-blur-md bg-black/65 z-[10] overflow-hidden pointer-events-auto"
               style={{ pointerEvents: isOpenMenu ? "auto" : "none" }}
             >
-              <MenuTest />
+              <MenuTest onNavigate={handleNavigate} />
               <AppointmentForm className="block absolute top-[6rem] left-[1.7rem] w-full mt-0 ml-0 large:relative large:mt-[0rem] large:ml-[1rem] min-[1024px]:hidden " />
             </motion.div>
           )}

@@ -2,7 +2,11 @@ import menuItems from "@/types/Types";
 import LocationInfo from "@/components/location-info/LocationInfo";
 import AppointmentForm from "./AppointmentForm";
 
-const Menu = () => {
+interface MenuProps {
+  onNavigate?: (id: string) => void;
+}
+
+const Menu: React.FC<MenuProps> = ({ onNavigate }) => {
   return (
     <div className="flex justify-between">
       <div className="items-center h-full p-6 mt-2.5 block min-[960px]:hidden">
@@ -28,10 +32,14 @@ const Menu = () => {
           <AppointmentForm className="hidden min-[1024px]:block" />
         </div>
         <ul className="flex-col text-right text-base/8 block min-[1024px]:hidden">
-          {menuItems.map((item, index) => (
-            <li key={index} className="mb-4">
+          {menuItems.map((item, i) => (
+            <li key={i} className="mb-4">
               <a
                 href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate?.(item.id);
+                }}
                 className="text-white hover:text-color0 transition-[font-size] duration-500 ease-in-out text-[3rem] lg:text-8xl "
               >
                 {item.title}

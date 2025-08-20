@@ -13,6 +13,7 @@ body {
 
 @theme {
   --main-bg-color: #141414;
+  --main-bg-color-light: #f7f7f7;
   --color-bg1-color: #070707;
   --color-bg2-color: #131313;
   --color-bg3-color: #c6bfba;

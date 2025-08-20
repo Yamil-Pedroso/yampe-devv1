@@ -12,6 +12,7 @@ import {
   ctaHover,
   ctaTap,
 } from "@/components/common/animation/motionTokens";
+import ScrollToTopMorph from "../common/animation/morphism/ScrollToTopMorph";
 
 const listStagger: Variants = {
   hidden: {},
@@ -60,7 +61,7 @@ const InfoFooter = () => {
 
   return (
     <div id="contact">
-      <DarkContainer className="mt-16 sm:mt-20 md:mt-24 lg:mt-30 w-full min-h-[20rem] sm:min-h-[24rem] md:min-h-[26rem] lg:min-h-[28rem] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16">
+      <DarkContainer className="mt-16 sm:mt-20 md:mt-24 lg:mt-30 w-full min-h-[20rem] sm:min-h-[24rem] md:min-h-[26rem] lg:min-h-[28rem] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16 relative">
         <motion.div
           className="w-full max-w-7xl"
           variants={listStagger}
@@ -233,6 +234,7 @@ const InfoFooter = () => {
             </motion.div>
           </motion.div>
         </motion.div>
+        <ScrollToTopMorph className="absolute bottom-[-2rem] left-1/2 -translate-x-1/2 z-50" />
       </DarkContainer>
 
       <Footer />
