@@ -11,15 +11,15 @@ const Testimonials = () => {
   const { header, description, testimonials } = testimonialsData;
 
   return (
-    <DarkContainer className="max-w-[90%] mx-auto">
-      <div className="flex gap-10">
+    <DarkContainer className=" max-w-[94%] mx-auto overflow-hidden">
+      <div className="flex flex-col lg:flex-row gap-10">
         {/* Bloque de texto a la izquierda */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col w-[23.125rem] h-[20.5rem]"
+          className="flex flex-col justify-center w-[23.125rem] h-[20.5rem]"
         >
           <div className="space-y-5">
             <p className="">{header}</p>
@@ -57,7 +57,7 @@ const Testimonials = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="relative w-[54rem]"
+          className="relative w-[30rem] xl:w-[54rem]"
         >
           <Marquee className="h-full" speed={20} gradient={false} pauseOnHover>
             {testimonials.map((t, i) => (

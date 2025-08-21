@@ -66,10 +66,10 @@ const About = () => {
     <DarkContainer className="w-full desktop:max-w-[94%] laptop:h-[calc(100vh-7rem)] mx-auto mt-30">
       <div
         id="about"
-        className="w-full flex justify-center items-center large:justify-center large:items-center flex-col laptop:flex-row gap-36"
+        className="w-full flex flex-col justify-center items-center large:justify-center large:items-center laptop:flex-row gap-36"
       >
         {/* left group*/}
-        <div className="flex flex-col justify-center gap-6 ">
+        <div className=" flex flex-col justify-center gap-6 ">
           <motion.h2
             className="text-color4"
             initial={{ opacity: 0, y: 12 }}
@@ -81,7 +81,7 @@ const About = () => {
           </motion.h2>
 
           <motion.p
-            className="text-[2.1875rem] mobile:text-[2.8125rem] max-w-[45rem]"
+            className="text-[2.1875rem] max-w-[45rem] mobile:text-[2.8125rem] "
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
@@ -93,7 +93,7 @@ const About = () => {
           </motion.p>
 
           <motion.p
-            className="text-color2 max-w-[40rem] text-base/7"
+            className="text-color2  max-w-[40rem] text-base/7"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}

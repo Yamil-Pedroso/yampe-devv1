@@ -79,12 +79,12 @@ const NewsAndBlogs = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="flex gap-8"
+        className="flex flex-col lg:flex-row gap-8"
       >
         {newsAndBlogs.map((item, i) => (
           <motion.div key={i} variants={cardUp}>
             <ElementContainer
-              className="flex justify-center items-center mb-4 w-[39.375rem] h-[22rem] bg-bg1-color p-4 gap-10 cursor-pointer"
+              className="flex justify-center items-center mb-4 w-[453px] xl:w-[39.375rem] xl:h-[22rem] bg-bg1-color p-[.7rem] gap-10 cursor-pointer"
               onClick={() => handleNewsAndBlogsClick(item.id as number)}
             >
               {/* Stagger interno para contenido de la card */}
@@ -93,11 +93,11 @@ const NewsAndBlogs = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                className="flex w-full h-full gap-10"
+                className="flex flex-col lg:flex-col xl:flex-row w-full h-full gap-10"
               >
                 <motion.div
                   variants={innerItem}
-                  className="w-[18.125rem] h-[20.625rem] rounded-2xl overflow-hidden"
+                  className="h-[30rem] lg:h-[30.5rem] xl:w-[18.125rem] xl:h-[20.625rem] rounded-2xl overflow-hidden"
                 >
                   <img
                     src={item.image}
@@ -108,7 +108,7 @@ const NewsAndBlogs = () => {
 
                 <motion.div
                   variants={innerStagger}
-                  className="flex flex-col flex-1 gap-12 p-4"
+                  className="flex flex-col flex-1 gap-12 p-5"
                 >
                   <motion.div variants={innerItem} className="flex gap-2 mt-2">
                     {item.tags.map((tag, tagIndex) => (

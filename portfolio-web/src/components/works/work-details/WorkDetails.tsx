@@ -14,18 +14,19 @@ const WorkDetails = () => {
   const work = worksData.projects?.find((project) => project.id === id);
 
   return (
-    <section className="w-full flex flex-col items-center justify-center p-4">
+    <section className="w-full flex flex-col items-center justify-center p-4 mt-20">
       {work ? (
         <div className="w-full max-w-[80.625rem]">
           {/* Título */}
           <div className="p-4 -mt-1">
             <h1 className="text-[4.6875rem] font-semibold">{work.title}</h1>
-            <h2 className="text-[1.125rem] font-semibold">
-              Web - Mobile Application Design
+            <h2 className="text-[1.125rem] font-semibold ">
+              Web - Mobile
+              <span className="ml-3 text-color0">Application Design</span>
             </h2>
           </div>
 
-          <div className="w-full h-[36.875rem] overflow-hidden rounded-md">
+          <div className="w-full h-[36.875rem] overflow-hidden rounded-md mt-20">
             <img
               src={work.imageDetails[0]}
               alt={work.title}
@@ -33,7 +34,7 @@ const WorkDetails = () => {
             />
           </div>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] gap-8">
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] gap-8">
             {/* Left Column */}
             <div>
               <h2 className="text-[1.875rem] font-semibold">
@@ -58,7 +59,7 @@ const WorkDetails = () => {
           </div>
 
           {/** Image Gallery */}
-          <div className="mt-8 grid lg:grid-cols-3 grid-cols-2 gap-4">
+          <div className="mt-16 grid lg:grid-cols-3 grid-cols-2 gap-4">
             {work.imageDetails
               .slice(1, work.imageDetails.length)
               .map((image, index) => (

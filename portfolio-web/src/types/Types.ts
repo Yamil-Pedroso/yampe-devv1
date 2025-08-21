@@ -17,6 +17,7 @@ export interface MenuItem {
   id: string;
   title: string;
   href: string;
+  submenus?: string[]; // Optional submenus for dropdowns
 }
 
 export const menuItems: MenuItem[] = [
@@ -26,7 +27,7 @@ export const menuItems: MenuItem[] = [
   { id: "services", title: "Services", href: "#services" },
   { id: "skills", title: "Skills", href: "#skills" },
   { id: "works", title: "Works", href: "#works" },
-  { id: "blogs", title: "Blogs", href: "#blogs" },
+  { id: "blogs", title: "Blogs", href: "#blogs", submenus: ["Blogs all"] },
   { id: "contact", title: "Contact", href: "#contact" },
 ];
 

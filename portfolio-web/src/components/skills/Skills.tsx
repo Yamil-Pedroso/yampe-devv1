@@ -202,7 +202,7 @@ const Skills: React.FC = () => {
   const catTitle = titleMap[catKey as string] ?? (catKey as string);
 
   return (
-    <DarkContainer className="max-w-[94%] mx-auto">
+    <DarkContainer className="max-w-[94%] mx-auto flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-between">
       {/* Copy */}
       <motion.div
         id="skills"
@@ -288,7 +288,7 @@ const Skills: React.FC = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.25 }}
-                className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-auto absolute max-[22.5rem]:grid-cols-1"
+                className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 h-auto max-[22.5rem]:grid-cols-1"
               >
                 {(skills as any[]).map((skill, sidx) => {
                   const key = `${catKey}-${skill.tech ?? skill.title}-${sidx}`;
@@ -361,7 +361,7 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Controles */}
-        <div className="mt-22 flex items-center justify-center gap-4 max-[40rem]:mt-10 max-[40rem]:gap-3">
+        <div className="mt-22 flex items-center justify-center gap-4 max-[40rem]:mt-10 max-[40rem]:gap-3 z-50">
           <button
             onClick={() => {
               prev();
@@ -402,67 +402,6 @@ const Skills: React.FC = () => {
             <ChevronRight className="w-5 h-5 max-[40rem]:w-4 max-[40rem]:h-4" />
           </button>
         </div>
-      </div>
-
-      {/* Medidor invisible para minHeight */}
-      <div
-        aria-hidden
-        className="absolute opacity-0 pointer-events-none -z-50"
-        style={{ visibility: "hidden", position: "absolute", left: -99999 }}
-        ref={measureRef}
-      >
-        {categories.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 max-[22.5rem]:grid-cols-1">
-            {(categories[tallestIndex][1] as any[]).map(
-              (skill: any, sidx: number) => {
-                const pct = clamp(skill.level ?? 0);
-                const Icon = isIconType(skill.icon)
-                  ? (skill.icon as IconType)
-                  : null;
-                return (
-                  <ElementContainer
-                    key={`measure-${sidx}`}
-                    className="
-                    flex flex-col items-center gap-4 p-5 rounded-2xl bg-[#171717] border border-border-color
-                    max-w-[10rem]
-                    max-[40rem]:max-w-[7.5rem] max-[40rem]:p-3 max-[40rem]:gap-3
-                  "
-                  >
-                    <div className="h-10 flex items-center justify-center max-[40rem]:h-8">
-                      {Icon ? (
-                        <Icon className="w-10 h-10 text-color3 max-[40rem]:w-8 max-[40rem]:h-8" />
-                      ) : skill.icon ? (
-                        <img
-                          src={skill.icon}
-                          alt=""
-                          className="w-10 h-10 object-contain max-[40rem]:w-8 max-[40rem]:h-8"
-                        />
-                      ) : (
-                        <span className="text-xs text-color4">Icon</span>
-                      )}
-                    </div>
-                    <p className="font-medium text-sm text-center max-[40rem]:text-xs">
-                      {skill.tech ?? skill.title}
-                    </p>
-                    <div className="w-full">
-                      <div className="relative w-full h-2 rounded-full bg-border-color/60 overflow-hidden max-[40rem]:h-1.5">
-                        <div
-                          className="h-full rounded-full bg-color3"
-                          style={{ width: `${pct}%` }}
-                        />
-                      </div>
-                      <div className="mt-2 w-full">
-                        <span className="block w-full text-center text-xs font-semibold bg-[#232323] py-1 rounded-md max-[40rem]:py-0.5">
-                          {pct}%
-                        </span>
-                      </div>
-                    </div>
-                  </ElementContainer>
-                );
-              }
-            )}
-          </div>
-        )}
       </div>
     </DarkContainer>
   );
