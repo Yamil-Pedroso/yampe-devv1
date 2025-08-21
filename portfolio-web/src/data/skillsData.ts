@@ -44,7 +44,7 @@ export const skillsData: SkillsData = {
       {
         tech: "Three.js",
         level: 60,
-        icon: "./images/skills/icon-techs/frontend/threejs.svg",
+        icon: "./images/skills/icon-techs/frontend/threejs.png",
       },
     ],
     backend: [

@@ -7,8 +7,7 @@ import {
   ctaHover,
   ctaTap,
 } from "@/components/common/animation/motionTokens";
-import AniElements from "./AniElements";
-import CodeLines from "../common/animation/morphism/CodeLines";
+import AskMeBox from "@/components/common/ai/AskMeBox";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -110,7 +109,9 @@ const Hero = () => {
             relative
 
         "
-      ></div>
+      >
+        <AskMeBox />
+      </div>
 
       {/* RIGHT content */}
       <motion.div

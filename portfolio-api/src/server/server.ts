@@ -1,4 +1,4 @@
-import Express, { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import path from "path";
 import dotenv from "dotenv";
@@ -6,6 +6,7 @@ import connectDB from "../config/db";
 
 import homeRoutes from "../modules/home/home.routes";
 import aboutRoutes from "../modules/about/about.routes";
+import aiDevPortfolioAssistantRoutes from "../modules/ai-devportfolio-assistant/aiDevPortfolioAssistant.routes";
 
 dotenv.config({
   path: path.resolve(__dirname, "..", "config", "config.env"),
@@ -15,24 +16,26 @@ const PORT = process.env.PORT || 3010;
 
 connectDB();
 
-const app = Express();
+const app = express();
 
+// ✅ SOLO un cors() y configurado (si usas credenciales, evita '*' como origin)
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
-// Routes
-// Centralized route management
-app.use("/api", homeRoutes);
+// ✅ Body parsers ANTES de las rutas
+app.use(express.json({ limit: "1mb" }));
+app.use(express.urlencoded({ extended: true }));
 
-// Independent route management
+// Rutas
+app.use("/api", homeRoutes);
+app.use("/api", aiDevPortfolioAssistantRoutes);
 app.use("/api", aboutRoutes);
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (_req: Request, res: Response) => {
   res.send("Hello World!");
 });
 

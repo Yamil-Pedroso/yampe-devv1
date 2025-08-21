@@ -42,6 +42,16 @@ body {
   --breakpoint-desktop-lg: 93rem;
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 /* About Section */
 @layer utilities {
   .about-row {
