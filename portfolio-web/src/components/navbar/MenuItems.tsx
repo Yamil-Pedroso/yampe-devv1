@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "@tanstack/react-router";
 
 import { menuItems } from "../../types/Types";
 import { handleScrollItems } from "../../components/common/scroll-items/scrollItems";
@@ -8,11 +9,12 @@ interface MenuItemProps {
   className?: string;
 }
 
-const CLOSE_DELAY = 150; // ms de gracia para no cerrar por micro-gaps
+const CLOSE_DELAY = 150;
 
 const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
   const [openItem, setOpenItem] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const navigate = useNavigate();
 
   const open = (key: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -22,6 +24,15 @@ const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
   const scheduleClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setOpenItem(null), CLOSE_DELAY);
+  };
+
+  const handleItemClick = (id: string) => {
+    if (location.pathname === "/") {
+      handleScrollItems(id);
+    } else {
+      navigate({ to: "/", hash: id });
+    }
+    setOpenItem(null);
   };
 
   return (
@@ -47,7 +58,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleScrollItems(item.id); // scroll al anchor del item
+                  handleItemClick(item.id);
                 }}
                 className="cursor-pointer hover:underline"
               >

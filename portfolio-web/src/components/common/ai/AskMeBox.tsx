@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { Bot, Send, Loader2 } from "lucide-react";
 import {
   useAssistantHealth,
@@ -9,6 +9,33 @@ import { getClientId } from "@/lib/clientId";
 import ElementContainer from "../element-container/ElementContainer";
 import { skillsData } from "@/data/skillsData";
 import FloatOnScroll from "./FlotOnScroll";
+
+const useTypewriter = (text: string, speed = 14) => {
+  const [out, setOut] = useState("");
+  useEffect(() => {
+    setOut("");
+    if (!text) return;
+    let i = 0;
+    let cancelled = false;
+
+    const tick = () => {
+      if (cancelled) return;
+      i += 1;
+      setOut(text.slice(0, i));
+      if (i < text.length) {
+        // ligera variación para que se sienta natural
+        const jitter = Math.random() * 6 - 3; // -3..+3ms
+        setTimeout(tick, Math.max(4, speed + jitter));
+      }
+    };
+    setTimeout(tick, speed);
+    return () => {
+      cancelled = true;
+    };
+  }, [text, speed]);
+
+  return out;
+};
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -64,6 +91,8 @@ const AskMeBox = () => {
   const { mutateAsync: ask, isPending, error } = useAskAssistant();
   const [input, setInput] = useState("");
   const [reply, setReply] = useState<string | null>(null);
+
+  const typedReply = useTypewriter(reply ?? "", 16);
 
   const keywords = useMemo(() => {
     const groups: any = skillsData?.skills ?? {};
@@ -186,11 +215,15 @@ const AskMeBox = () => {
 
                 <div className="flex-1 max-h-64 overflow-y-auto pr-1">
                   <HighlightedText
-                    text={reply}
+                    text={typedReply}
                     keywords={keywords}
                     className="text-sm leading-relaxed whitespace-pre-wrap break-words text-color4/60"
                     highlightClass="rounded-[6px] bg-color0/10 text-fuchsia-100/70 px-1 py-0.5 ring-1 ring-fuchsia-100/10"
                   />
+
+                  {typedReply.length < (reply?.length ?? 0) && (
+                    <span className="inline-block w-[7px] h-[1em] align-middle bg-color4/60 ml-0.5 animate-pulse rounded-[1px]" />
+                  )}
                 </div>
               </div>
 

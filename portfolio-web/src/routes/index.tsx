@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import Hero from "@/components/hero/Hero";
 import About from "@/components/about/About";
@@ -9,12 +10,26 @@ import Testimonials from "@/components/testimonials/Testimonials";
 import GetInTouch from "@/components/get-in-touch/GetInTouch";
 import NewsAndBlogs from "@/components/news-&-blogs/NewsAndBlogs";
 import ClientsAndFirmas from "@/components/clients-&-firmas/ClientsAndFirmas";
+import { useRouterState } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
 
 function Home() {
+  const { location } = useRouterState();
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace(/^#/, "");
+      requestAnimationFrame(() => {
+        document
+          .getElementById(targetId)
+          ?.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  }, [location.hash]);
+
   return (
     <div className="">
       <Hero />
