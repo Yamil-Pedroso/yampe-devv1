@@ -1,19 +1,15 @@
 {
   "name": "portfolio-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server/server.js",
   "scripts": {
-    "start": "nodemon --exec ts-node src/server/server.ts",
     "dev": "nodemon --exec ts-node src/server/server.ts",
+    "build": "tsc",
+    "start": "node dist/server/server.js",
     "import-data": "ts-node --transpile-only src/utils/importData.ts",
     "import-data:clean": "ts-node --transpile-only src/utils/importData.ts --clean",
-    "import-data:only": "ts-node --transpile-only src/utils/importData.ts --only=",
-    "build": "npm i"
+    "import-data:only": "ts-node --transpile-only src/utils/importData.ts --only="
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.11.0",
     "bcryptjs": "^3.0.2",
@@ -23,7 +19,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.1",
-    "openai": "^5.13.1"
+    "openai": "^5.13.1",
+    "helmet": "^8.0.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
