@@ -1,12 +1,14 @@
 import React, { useMemo, useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  type Variants,
+  cubicBezier,
+} from "framer-motion";
 import { skillsData } from "@/data/skillsData";
 import ElementContainer from "../common/element-container/ElementContainer";
 import gsap from "gsap";
-// InertiaPlugin from GSAP (asegúrate de tenerlo instalado en tu proyecto)
-// Si TypeScript se queja de tipos, puedes añadir un d.ts o usar @ts-ignore al registrar
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 
 // ---- Utils ----
@@ -14,11 +16,11 @@ const clamp = (n: number, min = 0, max = 100) =>
   Math.max(min, Math.min(max, n));
 const abbr = (name: string) => {
   const cleaned = name.replaceAll(".", " ").replaceAll("+", " ");
-  const parts = cleaned.split(" ").filter(Boolean);
-  const first = parts[0] ?? name;
+  const tokens = cleaned.split(" ").filter(Boolean) as string[];
+  const first = tokens[0] ?? name;
   const firstChar = first.charAt(0).toUpperCase();
   const secondChar = (
-    parts[1]?.charAt(0) ||
+    tokens[1]?.charAt(0) ||
     first.charAt(1) ||
     ""
   ).toLowerCase();
@@ -48,7 +50,7 @@ const order = [
 ] as const;
 
 // ---- Variants ----
-const makeTileVariants = (noMotion: boolean) => ({
+const makeTileVariants = (noMotion: boolean): Variants => ({
   hidden: { opacity: noMotion ? 1 : 0, y: noMotion ? 0 : 8, scale: 1 },
   visible: (i: number) => ({
     opacity: 1,
@@ -56,14 +58,16 @@ const makeTileVariants = (noMotion: boolean) => ({
     scale: 1,
     transition: noMotion
       ? { duration: 0 }
-      : { delay: i * 0.015, duration: 0.35, ease: [0.4, 0, 0.2, 1] },
+      : {
+          delay: i * 0.015,
+          duration: 0.35,
+          ease: cubicBezier(0.4, 0, 0.2, 1), // ← reemplaza arrays tipo [0.4,0,0.2,1]
+        },
   }),
 });
 
 /**
  * SkillsPeriodicGrid (responsive + GSAP inertia hover)
- * - Mantiene tu estilo actual (Tailwind + ElementContainer)
- * - Añade animación GSAP tipo MWG: al entrar el mouse en una "media" se hace un empujón inercial + pequeño giro
  */
 const SkillsPeriodicGrid: React.FC = () => {
   const reduceMotion = useReducedMotion();
@@ -108,11 +112,16 @@ const SkillsPeriodicGrid: React.FC = () => {
         const img =
           (el.querySelector(".js-img") as HTMLElement | null) ||
           (el.querySelector("img") as HTMLElement | null) ||
-          el; // fallback al contenedor
+          el; // fallback
 
         if (!img) return;
 
-        const tl = gsap.timeline({ onComplete: () => tl.kill() });
+        // onComplete debe devolver void para contentar TS
+        const tl = gsap.timeline({
+          onComplete: () => {
+            tl.kill();
+          },
+        });
         tl.timeScale(1.2);
 
         tl.to(img, {
@@ -184,9 +193,7 @@ const SkillsPeriodicGrid: React.FC = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={tileVariants}
             >
-              <ElementContainer
-                className={`relative  flex flex-col min-h-36 sm:min-h-40 md:min-h-44 xl:p-6 xl:min-h-36 rounded-2xl bg-[#151515] border border-border-color hover:border-color0 transition-colors duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform opacity-50 grayscale-100 hover:opacity-100 hover:grayscale-0 group`}
-              >
+              <ElementContainer className="relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36 rounded-2xl bg-[#151515] border border-border-color hover:border-color0 transition-colors duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform opacity-50 grayscale-100 hover:opacity-100 hover:grayscale-0 group">
                 <div className="absolute top-2 left-2 text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md bg-bg2-color/60 border border-border-color">
                   {titleMap[item.category]}
                 </div>

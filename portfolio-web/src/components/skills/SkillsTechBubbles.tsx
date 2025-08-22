@@ -1,15 +1,9 @@
 import React, { useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants, cubicBezier } from "framer-motion";
 import ElementContainer from "../common/element-container/ElementContainer";
 import { skillsData } from "@/data/skillsData";
 
-// If you already have this type somewhere, feel free to remove/adjust.
-type SkillItem = {
-  tech: string;
-  level: number;
-  icon?: string;
-};
-
+type SkillItem = { tech: string; level: number; icon?: string };
 type SkillsGroups = Record<string, SkillItem[]>;
 
 const titleMap: Record<string, string> = {
@@ -33,15 +27,19 @@ const order = [
 const clamp = (n: number, min = 0, max = 100) =>
   Math.max(min, Math.min(max, n));
 
-// Tiny entrance animations
+// ✅ usar cubicBezier y tipar como Variants
 const groupVariants = {
   hidden: { opacity: 0, y: 8 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.05 * i, duration: 0.35, ease: [0.4, 0, 0.2, 1] },
+    transition: {
+      delay: 0.05 * i,
+      duration: 0.35,
+      ease: cubicBezier(0.4, 0, 0.2, 1),
+    },
   }),
-};
+} as const satisfies Variants;
 
 const bubbleVariants = {
   hidden: { opacity: 0, scale: 0.85, rotate: -4 },
@@ -49,9 +47,14 @@ const bubbleVariants = {
     opacity: 1,
     scale: 1,
     rotate: 0,
-    transition: { type: "spring", stiffness: 420, damping: 22, mass: 0.6 },
+    transition: {
+      type: "spring",
+      stiffness: 420,
+      damping: 22,
+      mass: 0.6,
+    } as const,
   },
-};
+} as const satisfies Variants;
 
 const SkillsTechBubbles: React.FC = () => {
   const groups = useMemo(() => {
@@ -128,7 +131,7 @@ const SkillsTechBubbles: React.FC = () => {
                         </span>
                       </div>
 
-                      {/* Tech label (kept short; can be hidden on very small screens) */}
+                      {/* Tech label */}
                       <div className="min-w-[4rem] pr-2">
                         <p className="text-sm md:text-base leading-none font-medium">
                           {item.tech}

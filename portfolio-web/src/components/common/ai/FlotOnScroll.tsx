@@ -45,7 +45,6 @@ export default function FlotOnScroll({
     return () => ctx.current?.revert();
   }, []);
 
-  // medir altura para placeholder (evita “salto” al pasar a fixed)
   useLayoutEffect(() => {
     if (rootRef.current) {
       setHeight(rootRef.current.getBoundingClientRect().height);
@@ -166,7 +165,7 @@ export default function FlotOnScroll({
               "
               title={openLabel}
             >
-              <MessageCircle className="w-5 h-5 text-color0" />
+              <MessageCircle className="w-5 h-5 text-color0 cursor-pointer" />
             </button>
           ) : (
             <div ref={panelRef} className="relative">
@@ -183,7 +182,7 @@ export default function FlotOnScroll({
                 "
                 title={closeLabel}
               >
-                <X className="w-4 h-4 text-color4" />
+                <X className="w-4 h-4 text-color4 cursor-pointer" />
               </button>
             </div>
           )

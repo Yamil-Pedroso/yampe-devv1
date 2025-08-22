@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Navbar from "@/components/navbar/Navbar";
 import InfoFooter from "@/components/footer/InfoFooter";
 import Lenis from "@studio-freight/lenis";
-
 interface MainLayoutProps {
   children: React.ReactNode;
 }

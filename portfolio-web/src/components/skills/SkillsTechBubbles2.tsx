@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-import { motion } from "framer-motion";
-import ElementContainer from "../common/element-container/ElementContainer";
+import { motion, type Variants, cubicBezier } from "framer-motion";
 import { skillsData } from "@/data/skillsData";
 
 type SkillItem = { tech: string; level: number; icon?: string };
@@ -32,9 +31,13 @@ const groupVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.05 * i, duration: 0.35, ease: [0.4, 0, 0.2, 1] },
+    transition: {
+      delay: 0.05 * i,
+      duration: 0.35,
+      ease: cubicBezier(0.4, 0, 0.2, 1), // ✅ reemplazo
+    },
   }),
-};
+} as const satisfies Variants;
 
 const bubbleVariants = {
   hidden: { opacity: 0, scale: 0.85, rotate: -4 },
@@ -42,9 +45,14 @@ const bubbleVariants = {
     opacity: 1,
     scale: 1,
     rotate: 0,
-    transition: { type: "spring", stiffness: 420, damping: 22, mass: 0.6 },
+    transition: {
+      type: "spring",
+      stiffness: 420,
+      damping: 22,
+      mass: 0.6,
+    } as const,
   },
-};
+} as const satisfies Variants;
 
 const SkillsTechBubbles2: React.FC = () => {
   const groups = useMemo(() => {
@@ -95,7 +103,7 @@ const SkillsTechBubbles2: React.FC = () => {
                     viewport={{ once: true, amount: 0.3 }}
                   >
                     <div className="flex flex-col items-center">
-                      {/* Contenedor circular = círculo principal */}
+                      {/* Círculo */}
                       <div
                         className="relative grid place-items-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#171717] border border-border-color hover:border-color0 transition-colors duration-300"
                         aria-label={`${item.tech} ${pct}%`}
@@ -112,17 +120,15 @@ const SkillsTechBubbles2: React.FC = () => {
                             {item.tech[0]}
                           </span>
                         )}
-
-                        {/* Badge con el level en la esquina superior derecha del círculo */}
                         <span
-                          className="absolute -top-1.5 -right-1.5 text-[10px] md:text-xs font-semibold px-1.5 py-0.5 rounded-full  text-color0 shadow-lg ring-1 ring-black/30 select-none"
+                          className="absolute -top-1.5 -right-1.5 text-[10px] md:text-xs font-semibold px-1.5 py-0.5 rounded-full text-color0 shadow-lg ring-1 ring-black/30 select-none"
                           aria-hidden="true"
                         >
                           {pct}%
                         </span>
                       </div>
 
-                      {/* Label debajo del círculo */}
+                      {/* Label */}
                       <p className="mt-2 text-[0.8rem] md:text-sm text-center leading-none">
                         {item.tech}
                       </p>

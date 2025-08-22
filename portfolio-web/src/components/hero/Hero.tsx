@@ -8,6 +8,7 @@ import {
   ctaTap,
 } from "@/components/common/animation/motionTokens";
 import AskMeBox from "@/components/common/ai/AskMeBox";
+import GeomShapes from "../common/shapes/GeomShapes";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -25,7 +26,7 @@ const fadeUpProps = {
 const Hero = () => {
   return (
     <section
-      className="
+      className="relative
     mt-16
     w-full max-w-[94%] mx-auto
     grid gap-8
@@ -105,7 +106,7 @@ const Hero = () => {
           md:col-span-2 md:justify-self-center  w-full
           xl:order-2 xl:col-span-1
            h-[33rem] rounded-lg
-           flex justify-center items-center mr-20
+           flex justify-center items-center mr-70
             relative
 
         "
@@ -114,7 +115,7 @@ const Hero = () => {
       </div>
 
       {/* RIGHT content */}
-      <motion.div
+      {/*<motion.div
         {...fadeUpProps}
         className="
           order-2 lg:order-2 xl:order-3
@@ -137,6 +138,18 @@ const Hero = () => {
             </div>
           ))}
         </div>
+      </motion.div>*/}
+      <motion.div
+        {...fadeUpProps}
+        className="
+          order-2 lg:order-2 xl:order-3
+          justify-self-end
+          w-full
+          mr-20
+
+        "
+      >
+        <GeomShapes />
       </motion.div>
     </section>
   );
