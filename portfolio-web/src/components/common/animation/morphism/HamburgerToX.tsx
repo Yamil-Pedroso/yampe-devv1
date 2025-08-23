@@ -5,11 +5,18 @@ import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 interface HamburgerToXProps {
   isOpen?: boolean;
   toggleMenu?: () => void;
+  width?: number;
+  height?: number;
 }
 
 gsap.registerPlugin(MorphSVGPlugin);
 
-const HamburgerToX: React.FC<HamburgerToXProps> = ({ isOpen, toggleMenu }) => {
+const HamburgerToX: React.FC<HamburgerToXProps> = ({
+  isOpen,
+  toggleMenu,
+  width = 44,
+  height = 44,
+}) => {
   const [open, setOpen] = useState(false);
   const topRef = useRef<SVGPathElement | null>(null);
   const bottomRef = useRef<SVGPathElement | null>(null);
@@ -63,9 +70,9 @@ const HamburgerToX: React.FC<HamburgerToXProps> = ({ isOpen, toggleMenu }) => {
     >
       <svg
         viewBox="0 0 100 100"
-        width="44"
-        height="44"
-        className="block"
+        width={width}
+        height={height}
+        className={`block w-8 h-8 sm:w-10 sm:h-10`}
         role="img"
         aria-hidden="true"
       >

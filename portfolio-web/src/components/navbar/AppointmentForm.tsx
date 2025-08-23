@@ -40,10 +40,11 @@ const AppointmentForm = ({ className }: AppointmentFormProps) => {
   return (
     <div
       className={`${className} text-white shrink-0
-      w-[15rem] min-w-[15rem] max-w-[15rem]
+      w-[]11rem min-w-[11rem] max-w-[11rem]
+      sm:w-[15rem] sm:min-w-[15rem] sm:max-w-[15rem]
       md:w-[22rem] md:min-w-[22rem] md:max-w-[22rem]`}
     >
-      <h2 className="text-[1.3rem] md:text-2xl font-bold mb-6">
+      <h2 className="sm:text-[1.3rem] md:text-2xl font-bold mb-6">
         Book an Appointment
       </h2>
 
@@ -103,7 +104,7 @@ const AppointmentForm = ({ className }: AppointmentFormProps) => {
           transition={{ delay: 0.35 }}
           whileHover={ctaHover}
           whileTap={ctaTap}
-          className="cursor-pointer group"
+          className=" cursor-pointer group"
         >
           <span className="font-bold">Submit Now</span>
           <IoIosArrowForward
