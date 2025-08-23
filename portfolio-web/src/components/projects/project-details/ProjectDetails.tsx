@@ -1,5 +1,5 @@
 import { worksData } from "@/data/worksData";
-import { Route } from "../../../routes/work-details/$worksId";
+import { Route } from "@/routes/project-details/$projectId";
 import ServiceGroups from "@/components/common/service-groups/ServiceGroups";
 import ElementContainer from "@/components/common/element-container/ElementContainer";
 
@@ -8,8 +8,8 @@ const tags = ["Web Design", "Mobile Apps", "Branding"];
 const shareOptions = ["1", "2", "3"];
 
 const WorkDetails = () => {
-  const { worksId } = Route.useParams();
-  const id = Number(worksId);
+  const { projectId } = Route.useParams();
+  const id = Number(projectId);
 
   const work = worksData.projects?.find((project) => project.id === id);
 

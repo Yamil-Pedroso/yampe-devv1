@@ -74,7 +74,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.18, ease: "easeOut" }}
                     className="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-20 w-44 rounded-md shadow-md bg-white text-black p-2"
-                    onMouseEnter={() => open(item.title)} // mantener abierto si el mouse entra al menú
+                    onMouseEnter={() => open(item.title)}
                     onMouseLeave={scheduleClose}
                     role="menu"
                     aria-label={`${item.title} submenu`}
@@ -84,7 +84,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
 
                     {item.submenus!.map((submenu, idx) => (
                       <li key={idx} role="menuitem">
-                        <a href="/news-blogs">
+                        <a href={item.href}>
                           <button className="w-full text-left px-2 py-1 rounded hover:bg-black/5">
                             {submenu}
                           </button>

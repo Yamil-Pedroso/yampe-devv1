@@ -26,8 +26,13 @@ export const menuItems: MenuItem[] = [
   { id: "resume", title: "Resume", href: "#resume" },
   { id: "services", title: "Services", href: "#services" },
   { id: "skills", title: "Skills", href: "#skills" },
-  { id: "works", title: "Works", href: "#works" },
-  { id: "blogs", title: "Blogs", href: "#blogs", submenus: ["Blogs all"] },
+  {
+    id: "projects",
+    title: "Projects",
+    href: "/projects-gallery",
+    submenus: ["Projects gallery"],
+  },
+  { id: "blogs", title: "Blogs", href: "/news-blogs", submenus: ["Blogs all"] },
   { id: "contact", title: "Contact", href: "#contact" },
 ];
 

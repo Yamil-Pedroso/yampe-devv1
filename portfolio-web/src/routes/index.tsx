@@ -5,7 +5,7 @@ import About from "@/components/about/About";
 import Resume from "@/components/resume/Resume";
 import Services from "@/components/services/Services";
 import Skills from "@/components/skills/Skills";
-import Works from "@/components/works/Works";
+import Projects from "@/components/projects/Projects";
 import Testimonials from "@/components/testimonials/Testimonials";
 import GetInTouch from "@/components/get-in-touch/GetInTouch";
 import NewsAndBlogs from "@/components/news-&-blogs/NewsAndBlogs";
@@ -37,7 +37,7 @@ function Home() {
       <Resume />
       <Services />
       <Skills />
-      <Works />
+      <Projects />
       <Testimonials />
       <GetInTouch />
       <NewsAndBlogs />

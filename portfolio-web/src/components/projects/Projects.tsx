@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { Route as worksRoute } from "@/routes/work-details/$worksId";
+import { Route as projectsRoute } from "@/routes/project-details/$projectId";
 import { worksData } from "@/data/worksData";
 import Button from "@/components/common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
@@ -27,10 +27,10 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
     setHoveredIndex(index);
   };
 
-  const handleWorksClick = (worksId: number) => {
+  const handleProjectsClick = (projectId: number) => {
     navigate({
-      to: worksRoute.to,
-      params: { worksId: String(worksId) },
+      to: projectsRoute.to,
+      params: { projectId: String(projectId) },
     });
   };
 
@@ -68,7 +68,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
   return (
     <div
       ref={rowRef}
-      id="works"
+      id="projects"
       className="mb-12 sm:mb-16 md:mb-20 w-full px-2 sm:px-4 lg:px-0"
     >
       {isEven ? (
@@ -126,7 +126,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
                 {React.createElement(project.icon)}
               </span>
             )}*/}
-            <MorphCTA onClick={() => handleWorksClick(project.id)} />
+            <MorphCTA onClick={() => handleProjectsClick(project.id)} />
           </motion.div>
         </div>
       ) : (
@@ -157,7 +157,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
                 </span>
               )}*/}
 
-              <MorphCTA onClick={() => handleWorksClick(project.id)} />
+              <MorphCTA onClick={() => handleProjectsClick(project.id)} />
             </div>
           </motion.div>
 
@@ -195,7 +195,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
   );
 }
 
-const Works = () => {
+const Projects = () => {
   return (
     <section className="flex flex-col justify-center items-center mt-16 sm:mt-20 md:mt-24 lg:mt-30 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8 sm:mb-10 max-w-4xl">
@@ -236,4 +236,4 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default Projects;
