@@ -18,7 +18,6 @@ connectDB();
 
 const app = express();
 
-// ✅ SOLO un cors() y configurado (si usas credenciales, evita '*' como origin)
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -26,7 +25,6 @@ app.use(
   })
 );
 
-// ✅ Body parsers ANTES de las rutas
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true }));
 
