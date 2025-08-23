@@ -13,7 +13,10 @@ dotenv.config({
   path: path.resolve(process.cwd(), "src", "config", "config.env"),
 });
 
-console.log("✅ OPENAI_API_KEY loaded:", process.env.OPENAI_API_KEY ? "YES" : "NO");
+console.log(
+  "✅ OPENAI_API_KEY loaded:",
+  process.env.OPENAI_API_KEY ? "YES" : "NO"
+);
 
 const PORT = process.env.PORT || 3010;
 
@@ -21,7 +24,6 @@ connectDB();
 
 const app = express();
 app.use(helmet());
-// ✅ SOLO un cors() y configurado (si usas credenciales, evita '*' como origin)
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -35,7 +37,6 @@ app.use(
     credentials: true,
   })
 );
-
 
 // ✅ Body parsers ANTES de las rutas
 app.use(express.json({ limit: "1mb" }));

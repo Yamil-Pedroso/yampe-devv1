@@ -17,10 +17,10 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.1",
-    "openai": "^5.13.1",
-    "helmet": "^8.0.0"
+    "openai": "^5.13.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
