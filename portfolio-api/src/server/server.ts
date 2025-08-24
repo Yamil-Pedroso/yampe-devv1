@@ -7,6 +7,7 @@ import helmet from "helmet";
 
 import homeRoutes from "../modules/home/home.routes";
 import aboutRoutes from "../modules/about/about.routes";
+import projectsRoutes from "../modules/projects/projects.routes";
 import aiDevPortfolioAssistantRoutes from "../modules/ai-devportfolio-assistant/aiDevPortfolioAssistant.routes";
 
 dotenv.config({
@@ -23,6 +24,9 @@ const PORT = process.env.PORT || 3010;
 connectDB();
 
 const app = express();
+
+app.use("/images", express.static(path.join(__dirname, "../../public/images")));
+
 app.use(helmet());
 app.use(
   cors({
@@ -47,6 +51,7 @@ app.set("trust proxy", 1);
 app.use("/api", homeRoutes);
 app.use("/api", aiDevPortfolioAssistantRoutes);
 app.use("/api", aboutRoutes);
+app.use("/api", projectsRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.send("Hello World!");
