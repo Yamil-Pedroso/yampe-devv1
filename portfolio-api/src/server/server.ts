@@ -25,7 +25,11 @@ connectDB();
 
 const app = express();
 
-app.use("/images", express.static(path.join(__dirname, "../../public/images")));
+
+const IMAGES_DIR = path.resolve(process.cwd(), "public/images");
+console.log("Serving images from:", IMAGES_DIR);
+
+app.use("/images", express.static(IMAGES_DIR));
 
 app.use(helmet());
 app.use(
