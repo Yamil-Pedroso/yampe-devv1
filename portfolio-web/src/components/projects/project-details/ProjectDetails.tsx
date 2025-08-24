@@ -1,4 +1,4 @@
-import { worksData } from "@/data/worksData";
+import { projectsData } from "@/data/projectsData";
 import { Route } from "@/routes/project-details/$projectId";
 import ServiceGroups from "@/components/common/service-groups/ServiceGroups";
 import ElementContainer from "@/components/common/element-container/ElementContainer";
@@ -11,7 +11,7 @@ const WorkDetails = () => {
   const { projectId } = Route.useParams();
   const id = Number(projectId);
 
-  const work = worksData.projects?.find((project) => project.id === id);
+  const work = projectsData.projects?.find((project) => project.id === id);
 
   return (
     <section className="w-full flex flex-col items-center justify-center p-4 mt-20">

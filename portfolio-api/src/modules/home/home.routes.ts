@@ -1,7 +1,10 @@
 import { Router } from "express";
 import AboutModel from "../about/about.model";
 import { SkillModel } from "../skills/skills.model";
-import { WorkModel, WorksSettingsModel } from "../works/works.model";
+import {
+  ProjectModel,
+  ProjectsSettingsModel,
+} from "../projects/projects.model";
 import {
   TestimonialModel,
   TestimonialsSettingsModel,
@@ -16,12 +19,12 @@ r.get("/home", async (_req, res) => {
     const [
       about,
       skills,
-      works,
+      projects,
       testimonials,
       services,
       // settings
       servicesSettings,
-      worksSettings,
+      projectsSettings,
       testimonialsSettings,
       blogSettings,
     ] = await Promise.all([
@@ -38,8 +41,8 @@ r.get("/home", async (_req, res) => {
         .limit(12)
         .lean(),
 
-      // Works publicados (top 6)
-      WorkModel.find({ status: "published" })
+      // Projects publicados (top 6)
+      ProjectModel.find({ status: "published" })
         .select("title subtitle image iconKey order")
         .sort({ order: 1, createdAt: -1 })
         .limit(6)
@@ -62,7 +65,7 @@ r.get("/home", async (_req, res) => {
       ServiceSettingsModel.findOne({ status: "published" })
         .select("header")
         .lean(),
-      WorksSettingsModel.findOne({ status: "published" })
+      ProjectsSettingsModel.findOne({ status: "published" })
         .select("header")
         .lean(),
       TestimonialsSettingsModel.findOne({ status: "published" })
@@ -82,14 +85,14 @@ r.get("/home", async (_req, res) => {
     res.set("Cache-Control", "public, max-age=60, s-maxage=300").json({
       about, // { header, title, description, image }
       skills, // o skillsByCategory si activas el agrupado
-      works, // [{ title, subtitle, image, iconKey, order }]
+      projects, // [{ title, subtitle, image, iconKey, order }]
       testimonials, // [{ author, position, quote, avatar, order }]
       services, // [{ stepNumber, title, description, iconKey, order }]
 
       // headers para render rápido en Home
       sections: {
         servicesHeader: servicesSettings?.header ?? "My Services",
-        worksHeader: worksSettings?.header ?? "My Works",
+        projectsHeader: projectsSettings?.header ?? "My Works",
         testimonialsHeader: testimonialsSettings?.header ?? "Testimonials",
         testimonialsDescription: testimonialsSettings?.description ?? "",
         blogHeader: blogSettings?.header ?? "News & Blogs",

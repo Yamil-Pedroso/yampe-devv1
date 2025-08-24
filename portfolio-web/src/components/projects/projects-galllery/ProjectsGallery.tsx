@@ -6,40 +6,16 @@ import {
   type Transition,
 } from "framer-motion";
 import ElementContainer from "@/components/common/element-container/ElementContainer";
+import { useProjects } from "@/lib/hooks/useProjects";
+import { toAbs } from "@/lib/url";
 
 const menuGalleryItems = [
   "Show All",
   "Web Development",
   "Mobile Apps",
   "UI/UX Design",
+  "Mini Apps",
   "Graphic Design",
-];
-
-const projectsSimulator = [
-  {
-    id: 1,
-    title: "Project One",
-    category: "Web Development",
-    description: "A web development project.",
-  },
-  {
-    id: 2,
-    title: "Project Two",
-    category: "Mobile Apps",
-    description: "A mobile app project.",
-  },
-  {
-    id: 3,
-    title: "Project Three",
-    category: "UI/UX Design",
-    description: "A UI/UX design project.",
-  },
-  {
-    id: 4,
-    title: "Project Four",
-    category: "Graphic Design",
-    description: "A graphic design project.",
-  },
 ];
 
 // Transiciones tipadas
@@ -57,7 +33,6 @@ const springLayout: Transition = {
 };
 const exitTween: Transition = { duration: 0.22, ease: [0.22, 1, 0.36, 1] };
 
-// Variants tipados (solo para stagger, sin layout en el contenedor)
 const containerVariants: Variants = {
   hidden: { opacity: 1 },
   show: {
@@ -90,22 +65,50 @@ const itemVariants: Variants = {
   },
 };
 
+type SimpleProject = {
+  id: string;
+  title: string;
+  category?: string;
+  description?: string;
+  image?: string;
+  link?: string;
+};
+
 const ProjectsGallery = () => {
   const [activeMenuItem, setActiveMenuItem] = useState("Show All");
 
+  // Trae del backend (puedes pasar filtros/paginación si quieres)
+  const { data, isLoading } = useProjects({
+    status: "published",
+    sort: "order",
+    limit: 1000,
+  });
+
+  const items: SimpleProject[] = useMemo(
+    () =>
+      (data?.projects ?? []).map((p) => ({
+        id: p._id,
+        title: p.title,
+        category: p.category,
+        description: p.description,
+        image: p.image ? toAbs(p.image) : undefined,
+        link: p.link,
+      })),
+    [data]
+  );
+
   const filtered = useMemo(
     () =>
-      projectsSimulator.filter(
+      items.filter(
         (p) => activeMenuItem === "Show All" || p.category === activeMenuItem
       ),
-    [activeMenuItem]
+    [items, activeMenuItem]
   );
 
   return (
     <section className="flex flex-col items-center mt-16 sm:mt-20 md:mt-24 lg:mt-10 px-4 sm:px-6 lg:px-8">
       <h2>Projects Gallery</h2>
 
-      {/* Menú fijo (sticky) - no participa en animaciones */}
       <div className="w-full max-w-6xl sticky top-0  bg-white/80 dark:bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur mt-3.5">
         <ul className="flex flex-wrap justify-center gap-12 py-2 min-h-[40px]">
           {menuGalleryItems.map((item) => (
@@ -122,11 +125,11 @@ const ProjectsGallery = () => {
         </ul>
       </div>
 
-      {/* Contenido */}
+      {/* Content*/}
       <motion.div
         layout
         transition={{ type: "spring", stiffness: 280, damping: 30 }}
-        className="mt-6 w-full flex justify-center h-[25rem]"
+        className="mt-6 w-full flex justify-center h-[40rem]"
       >
         <motion.div
           initial="hidden"
@@ -134,31 +137,47 @@ const ProjectsGallery = () => {
           variants={containerVariants}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl"
         >
-          <AnimatePresence mode="wait">
-            {filtered.map((project) => (
-              <motion.div
-                key={project.id}
-                // layout SOLO en los ítems
-                layout
-                variants={itemVariants}
-                initial="hidden"
-                animate="show"
-                exit="exit"
-                style={{ overflow: "hidden", willChange: "transform" }}
-                whileHover={{ y: -2 }}
-                transition={{ layout: springLayout }}
-              >
-                <ElementContainer className="border p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {project.category}
-                  </p>
-                  <p className="text-base">{project.description}</p>
-                </ElementContainer>
-              </motion.div>
-            ))}
+          <AnimatePresence initial={false}>
+            {!isLoading &&
+              filtered.map((project) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                  style={{ overflow: "hidden", willChange: "transform" }}
+                  whileHover={{ y: -2 }}
+                  transition={{ layout: springLayout }}
+                >
+                  <ElementContainer className="border p-4 rounded-lg h-[100%] ">
+                    {project.image && (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-[5rem] object-cover mb-4 rounded-md"
+                      />
+                    )}
+                    <h3 className="text-lg font-semibold mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {project.category}
+                    </p>
+                    <p className="text-base">{project.description}</p>
+
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      View Project
+                    </a>
+                  </ElementContainer>
+                </motion.div>
+              ))}
           </AnimatePresence>
         </motion.div>
       </motion.div>

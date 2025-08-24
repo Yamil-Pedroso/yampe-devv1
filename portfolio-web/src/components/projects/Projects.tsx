@@ -2,7 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Route as projectsRoute } from "@/routes/project-details/$projectId";
-import { worksData } from "@/data/worksData";
+import { projectsData } from "@/data/projectsData";
 import Button from "@/components/common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion, useAnimation, useInView } from "framer-motion";
@@ -200,7 +200,7 @@ const Projects = () => {
     <section className="flex flex-col justify-center items-center mt-16 sm:mt-20 md:mt-24 lg:mt-30 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8 sm:mb-10 max-w-4xl">
         <h2 className="text-sm sm:text-base lg:text-lg mb-2 sm:mb-3">
-          {worksData.header}
+          {projectsData.header}
         </h2>
         <p className=" sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] max-w-full sm:max-w-[32rem] md:max-w-[40rem] lg:max-w-[45rem] text-base/14 leading-tight mx-auto">
           Explore my <span className="text-color0">Projects</span>
@@ -208,7 +208,7 @@ const Projects = () => {
       </div>
 
       <div className="w-full max-w-7xl flex flex-col justify-center items-center">
-        {worksData.projects?.map((project, i) => (
+        {projectsData.projects?.map((project, i) => (
           <ProjectRow key={i} project={project} i={i} />
         ))}
       </div>
