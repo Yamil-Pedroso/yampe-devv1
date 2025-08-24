@@ -18,7 +18,7 @@ export type SkillDTO = {
   icon?: string;
 };
 
-export type WorkDTO = {
+export type ProjectDTO = {
   title: string;
   subtitle?: string;
   image: string;
@@ -44,7 +44,7 @@ export type ServiceDTO = {
 
 export type HomeSections = {
   servicesHeader: string;
-  worksHeader: string;
+  projectsHeader: string;
   testimonialsHeader: string;
   testimonialsDescription?: string;
   blogHeader: string;
@@ -53,7 +53,7 @@ export type HomeSections = {
 export type HomeResponse = {
   about: AboutDTO | null;
   skills: SkillDTO[];
-  works: WorkDTO[];
+  projects: ProjectDTO[];
   testimonials: TestimonialDTO[];
   services: ServiceDTO[];
   sections: HomeSections;
@@ -66,12 +66,12 @@ export async function fetchHome(): Promise<HomeResponse> {
     return {
       about: data.about ?? null,
       skills: data.skills ?? [],
-      works: data.works ?? [],
+      projects: data.projects ?? [],
       testimonials: data.testimonials ?? [],
       services: data.services ?? [],
       sections: data.sections ?? {
         servicesHeader: "My Services",
-        worksHeader: "My Works",
+        projectsHeader: "My Projects",
         testimonialsHeader: "Testimonials",
         blogHeader: "News & Blogs",
       },
@@ -80,12 +80,12 @@ export async function fetchHome(): Promise<HomeResponse> {
     return {
       about: null,
       skills: [],
-      works: [],
+      projects: [],
       testimonials: [],
       services: [],
       sections: {
         servicesHeader: "My Services",
-        worksHeader: "My Works",
+        projectsHeader: "My Projects",
         testimonialsHeader: "Testimonials",
         blogHeader: "News & Blogs",
       },

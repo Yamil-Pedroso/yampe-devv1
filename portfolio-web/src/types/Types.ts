@@ -104,7 +104,7 @@ export interface SkillsData extends CommonContent {
   skills: Partial<Record<SkillCategory, SkillItem[]>>;
 }
 
-export interface WorksData extends CommonContent {
+export interface ProjectsData extends CommonContent {
   projects?: {
     id: string | number;
     title: string;

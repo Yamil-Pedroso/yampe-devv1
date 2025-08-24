@@ -18,18 +18,53 @@ import {
   TestimonialModel,
   TestimonialsSettingsModel,
 } from "../modules/testimonials/testimonials.model";
-import { WorkModel, WorksSettingsModel } from "../modules/works/works.model";
+import {
+  ProjectModel,
+  ProjectsSettingsModel,
+} from "../modules/projects/projects.model";
 
 import { aboutMeData } from "../data/aboutData";
 import { servicesData } from "../data/servicesData";
 import { skillsData } from "../data/skillsData";
 import { testimonialsData } from "../data/testimonialsData";
-import { worksData } from "../data/worksData";
+import { projectsData } from "../data/projectsData";
 
 dotenv.config({ path: path.resolve(__dirname, "..", "config", "config.env") });
 
 // --- helpers ---
 colors.enable();
+
+const TAG_ALIASES: Record<string, string> = {
+  js: "javascript",
+  ts: "typescript",
+  py: "python",
+  rb: "ruby",
+  csharp: "c#",
+  dotnet: ".net",
+  html: "html5",
+  css: "css3",
+  scss: "sass",
+  tailwind: "tailwindcss",
+  nodejs: "nodejs",
+  expressjs: "express",
+  nestjs: "nestjs",
+  mongodb: "mongodb",
+  mysql: "mysql",
+  postgresql: "postgresql",
+  git: "git",
+  github: "github",
+  docker: "docker",
+  aws: "aws",
+};
+
+function normalizeTags(tags?: string[]) {
+  if (!Array.isArray(tags)) return [];
+  const norm = tags
+    .map((t) => (t ?? "").trim().toLowerCase())
+    .filter(Boolean)
+    .map((t) => TAG_ALIASES[t] ?? t);
+  return Array.from(new Set(norm));
+}
 
 // helper slug
 const slugify = (s: string) =>
@@ -68,7 +103,7 @@ async function main() {
     services: seedServices,
     skills: seedSkills,
     testimonials: seedTestimonials,
-    works: seedWorks,
+    projects: seedProjects,
   };
 
   const keys = ONLY ? ONLY.split(",") : Object.keys(REGISTRY);
@@ -249,28 +284,32 @@ async function seedTestimonials() {
   }
 }
 
-// WORKS: settings + items
-async function seedWorks() {
-  if (!worksData) return;
+// PROJECTS: settings + items
+async function seedProjects() {
+  if (!projectsData) return;
 
-  await WorksSettingsModel.findOneAndUpdate(
+  await ProjectsSettingsModel.findOneAndUpdate(
     {},
-    { header: worksData.header, status: "published" },
+    { header: projectsData.header, status: "published" },
     { upsert: true, new: true }
   );
 
-  const items = (worksData.projects ?? []).map((p: any, i: number) => ({
+  const items = (projectsData.projects ?? []).map((p: any, i: number) => ({
     title: p.title,
     subtitle: p.subtitle,
     description: p.description,
     image: p.image,
-    iconKey: "arrowOutward",
+    imageDetails: Array.isArray(p.imageDetails) ? p.imageDetails : [],
+    link: p.link,
+    category: p.category,
+    tags: Array.isArray(p.tags) ? p.tags : [],
+    iconKey: toIconKey(p.icon, "MdOutlineArrowOutward"),
     status: "published",
     order: i + 1,
   }));
 
   for (const it of items) {
-    await WorkModel.findOneAndUpdate(
+    await ProjectModel.findOneAndUpdate(
       { title: it.title, order: it.order }, // clave de upsert
       it,
       { upsert: true, new: true }
@@ -288,8 +327,8 @@ async function cleanCollections() {
     SkillModel.deleteMany({}),
     TestimonialsSettingsModel.deleteMany({}),
     TestimonialModel.deleteMany({}),
-    WorksSettingsModel.deleteMany({}),
-    WorkModel.deleteMany({}),
+    ProjectsSettingsModel.deleteMany({}),
+    ProjectModel.deleteMany({}),
   ]);
   console.log(colors.yellow("⚠ Collections cleaned"));
 }
