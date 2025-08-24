@@ -17,33 +17,66 @@ const DEV_ICONS = [
 const GeomShapes = () => {
   return (
     <div className="relative w-full h-[320px]">
-      {DEV_ICONS.map(({ Icon, base, pos }, i) => (
-        <motion.div
-          key={i}
-          className="absolute"
-          style={{
-            top: pos.top,
-            left: pos.left,
-            right: pos.right,
-            bottom: pos.bottom,
-            filter: Math.random() > 0.7 ? "blur(0.4px)" : "none",
-          }}
-          initial={{ opacity: 0, scale: 0.6, y: 30, rotate: -10 }}
-          animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
-          transition={{
-            duration: 0.8,
-            ease: "easeOut",
-            delay: i * 0.2,
-          }}
-        >
-          <Icon
-            size={base}
-            color={
-              ["#e94f37", "#0eb1d2", "#7a7adb", "#f2a541", "#7bd389"][i % 5]
-            }
-          />
-        </motion.div>
-      ))}
+      {DEV_ICONS.map(({ Icon, base, pos }, i) => {
+        // amplitud y velocidad ligeramente distintas para cada icono
+        const amp = 5 + (i % 3) * 2; // 5,7,9...
+        const period = 4.6 + (i % 4) * 0.7; // 4.6s, 5.3s, 6.0s, 6.7s...
+        const floatDelay = 0.45 + i * 0.12; // inicia flote tras la entrada
+
+        return (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              top: pos.top,
+              left: pos.left,
+              right: pos.right,
+              bottom: pos.bottom,
+              filter: Math.random() > 0.7 ? "blur(0.4px)" : "none",
+            }}
+            initial={{ opacity: 0, scale: 0.6, y: 30, rotate: -10 }}
+            animate={{
+              // quedan visibles siempre
+              opacity: 1,
+              scale: 1,
+              rotate: 0,
+              // flote infinito (solo se repite 'y')
+              y: [0, -amp, 0, amp, 0],
+            }}
+            transition={{
+              // entrada más rápida (no se repite)
+              opacity: { duration: 0.18, ease: "easeOut", delay: i * 0.06 },
+              scale: {
+                type: "spring",
+                stiffness: 520,
+                damping: 28,
+                delay: i * 0.06,
+              },
+              rotate: {
+                type: "spring",
+                stiffness: 420,
+                damping: 32,
+                delay: i * 0.06,
+              },
+              // flote asíncrono (se repite solo 'y')
+              y: {
+                duration: period,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "loop",
+                delay: floatDelay,
+              },
+            }}
+          >
+            <Icon
+              size={base}
+              color={
+                ["#e94f37", "#0eb1d2", "#7a7adb", "#f2a541", "#7bd389"][i % 5]
+              }
+            />
+          </motion.div>
+        );
+      })}
     </div>
   );
 };

@@ -13,6 +13,7 @@ body {
 
 @theme {
   --main-bg-color: #141414;
+  --main-bg-color2: #1e1e1e;
   --main-bg-color-light: #f7f7f7;
   --color-bg1-color: #070707;
   --color-bg2-color: #131313;
@@ -20,9 +21,11 @@ body {
   --section-bg2-color: #1f1f1f;
 
   --element-bg-color: #ffa41c;
+  --element-bg-color-green: #c8f31d;
   --color-bg1-color: #202020;
   --main-font-color: #ffffff;
   --color-color0: #ffa41c;
+  --color-color-green: #c8f31d;
   --font-color1: #a8a8a8;
   --color-color2: #adadad;
   --color-color3: #656565;
