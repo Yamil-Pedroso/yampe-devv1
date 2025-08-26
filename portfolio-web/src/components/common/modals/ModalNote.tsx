@@ -57,19 +57,6 @@ const ModalNote = ({ onClose }: ModalNoteProps) => (
           are coming shortly.
         </p>
 
-        {/*<button
-          onClick={onClose}
-          className="
-            mt-5 px-5 py-2.5 text-base rounded bg-color0 text-zinc-800 font-semibold
-            hover:bg-color1 transition-colors duration-300 cursor-pointer
-            md:px-4 md:py-2 md:text-[0.9375rem]
-            sm:px-3.5 sm:py-2 sm:text-sm
-            xs:px-3 xs:py-1.5 xs:text-[0.8125rem]
-          "
-        >
-          Close
-        </button>*/}
-
         <IoClose
           className="absolute top-[-1.2rem] right-[-1.2rem] cursor-pointer text-color0 rotate-90 transition-transform duration-300 hover:rotate-0"
           onClick={onClose}

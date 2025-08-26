@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Route as projectsRoute } from "@/routes/project-details/$projectId";
 import { projectsData } from "@/data/projectsData";
 import Button from "@/components/common/buttons/Button";
+import { useProjects } from "@/lib/hooks/useProjects";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion, useAnimation, useInView } from "framer-motion";
 import {
@@ -13,6 +14,7 @@ import {
 } from "@/components/common/animation/motionTokens";
 import BlockwithhHover from "@/components/common/hovers/BlockwithHover";
 import MorphCTA from "@/components/common/animation/morphism/MorphCTA";
+import { toAbs } from "@/lib/url";
 
 const IMG_DURATION = 1.1;
 const IMG_EASE: any = [0.25, 0.1, 0.25, 1];
@@ -121,11 +123,6 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             <p className="text-color4 text-sm sm:text-base leading-relaxed">
               {project.description}
             </p>
-            {/*{project.icon && (
-              <span className="flex items-center justify-center text-lg sm:text-xl lg:text-[1.6rem] w-10 h-10 sm:w-12 sm:h-12 lg:w-[3.5rem] lg:h-[3.5rem] rounded-full bg-bg2-color text-color4 border border-neutral-800">
-                {React.createElement(project.icon)}
-              </span>
-            )}*/}
             <MorphCTA onClick={() => handleProjectsClick(project.id)} />
           </motion.div>
         </div>
@@ -196,6 +193,28 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
 }
 
 const Projects = () => {
+  const { data, isLoading, error } = useProjects({
+    status: "published",
+    sort: "order",
+    limit: 4,
+  });
+
+  const projects = useMemo(
+    () =>
+      (data?.projects || []).map((p) => ({
+        id: p._id,
+        title: p.title,
+        description: p.description,
+        image: p.image ? toAbs(p.image) : undefined,
+        link: p.link,
+      })) || [],
+    [data]
+  );
+
+  if (isLoading) return <div>Loading projects...</div>;
+
+  if (error) return <div>Error loading projects</div>;
+
   return (
     <section className="flex flex-col justify-center items-center mt-16 sm:mt-20 md:mt-24 lg:mt-30 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8 sm:mb-10 max-w-4xl">
@@ -208,7 +227,7 @@ const Projects = () => {
       </div>
 
       <div className="w-full max-w-7xl flex flex-col justify-center items-center">
-        {projectsData.projects?.map((project, i) => (
+        {projects?.map((project, i) => (
           <ProjectRow key={i} project={project} i={i} />
         ))}
       </div>

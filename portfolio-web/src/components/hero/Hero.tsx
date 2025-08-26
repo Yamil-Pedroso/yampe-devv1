@@ -58,6 +58,7 @@ const Hero = () => {
           <h2 className="custom:text-[4.0625rem] text-[45px]">
             {heroData.role}
           </h2>
+          <p className="text-[3rem] text-color3">{heroData.city}</p>
         </div>
 
         <p className="text-[1rem] text-color2 w-[79%] mt-3.5">

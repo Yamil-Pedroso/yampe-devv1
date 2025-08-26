@@ -9,7 +9,7 @@ export const projectsData = {
       category: "Web Development",
       tags: ["react", "typescript", "tailwindcss"],
       link: "https://liminal-devv1.netlify.app/",
-      image: "/images/projects/liminal.png",
+      image: "/images/projects/project_1.png",
       imageDetails: [
         "https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -26,7 +26,7 @@ export const projectsData = {
       category: "Web Development",
       tags: ["react", "typescript", "supabase"],
       link: "https://www.squib.app/",
-      image: "/images/projects/squib.png",
+      image: "/images/projects/project_2.png",
       imageDetails: [
         "https://plus.unsplash.com/premium_vector-1682309080127-19d3a6214a17?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D%3D",
         "https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -43,7 +43,7 @@ export const projectsData = {
       category: "Web Development",
       tags: ["react", "typescript", "styled-components"],
       link: "https://creative-design-studio-nine.vercel.app/",
-      image: "/images/projects/product-design.png",
+      image: "/images/projects/project_3.png",
       imageDetails: [
         "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D%3D",
         "https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -60,7 +60,7 @@ export const projectsData = {
       category: "Web Development",
       tags: ["react", "typescript", "styled-components"],
       link: "https://startup-agency-chi.vercel.app/",
-      image: "/images/projects/startup-agency.png",
+      image: "/images/projects/project_4.png",
       imageDetails: [
         "https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "https://plus.unsplash.com/premium_photo-1683121710572-7723bd2e235d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
