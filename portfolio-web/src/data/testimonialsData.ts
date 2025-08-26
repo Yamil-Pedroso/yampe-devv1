@@ -4,7 +4,7 @@ import { FaQuoteLeft } from "react-icons/fa";
 export const testimonialsData: TestimonialsData = {
   header: "Testimonials",
   description:
-    "What our clients say about us reflects the strong relationships we build,the shared goals we achieve, and the value we deliver in every project.",
+    "What my clients and teammates say reflects the strong collaborations I foster, the shared goals we accomplish, and the value I strive to deliver in every project.",
   testimonials: [
     {
       avatar: "/images/testimonials/avatar_1.jpg",

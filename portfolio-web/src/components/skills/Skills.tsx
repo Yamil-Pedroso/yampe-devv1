@@ -1,5 +1,4 @@
 import { skillsData } from "@/data/skillsData";
-
 import { motion, Variants } from "framer-motion";
 import DarkContainer from "../common/containers/DarkContainer";
 import Button from "../common/buttons/Button";
@@ -38,7 +37,7 @@ const Skills: React.FC = () => {
           </p>
         )}
         <p className="text-[2.8125rem] max-w-[45rem] text-base/14 max-[40rem]:text-[2rem]">
-          Let’s Explore Popular{" "}
+          Let’s Explore my{" "}
           <span className="text-color0">Skills & Experience</span>
         </p>
         {skillsData.title && (
