@@ -242,7 +242,9 @@ const Projects = () => {
           whileTap={ctaTap}
           className="cursor-pointer group"
         >
-          <span className="font-bold ">Discover More Projects</span>
+          <a href="/projects-gallery">
+            <span className="font-bold ">Discover More Projects</span>
+          </a>
           <span>
             <IoIosArrowForward
               className="group-hover:ml-2 transition-all duration-300"

@@ -3,7 +3,7 @@ import { SkillsData } from "@/types/Types";
 export const skillsData: SkillsData = {
   header: "My Skills",
   description:
-    "Sed ut perspiciatis unde omnis iste natus to voluptatem accusantium doloremque laudantium, totam rem aperiamc eaque ipsa quae ab illo inventore veritatis",
+    "I’m a full stack developer skilled in React, TypeScript, Node.js, and databases, with a strong focus on UI/UX to create functional and intuitive digital products.",
   skills: {
     frontend: [
       {

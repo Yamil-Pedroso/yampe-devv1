@@ -25,9 +25,8 @@ const Testimonials = () => {
             <p className="">{header}</p>
 
             <h2 className="text-[2.8125rem] text-base/14">
-              Clients
               <br />
-              <span className="text-color0">Feedback</span>
+              What <span className="text-color0">People</span> Say
             </h2>
 
             <p className="max-w-md text-zinc-400">{description}</p>
