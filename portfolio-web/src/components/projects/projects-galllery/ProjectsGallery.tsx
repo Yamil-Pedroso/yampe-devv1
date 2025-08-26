@@ -181,94 +181,120 @@ const ProjectsGallery = () => {
         >
           <AnimatePresence initial={false}>
             {!isLoading &&
-              filtered.map((project, i) => (
-                <motion.div
-                  key={project.id}
-                  layout
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  style={{ overflow: "hidden", willChange: "transform" }}
-                  whileHover={{ y: -2 }}
-                  transition={{ layout: springLayout }}
-                  className="m-2 cursor-pointer"
-                >
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+              filtered.map((project, i) => {
+                const isMini =
+                  (project.category ?? "").trim().toLowerCase() === "mini apps";
+
+                return (
+                  <motion.div
+                    key={project.id}
+                    layout
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="show"
+                    exit="exit"
+                    style={{ overflow: "hidden", willChange: "transform" }}
+                    whileHover={{ y: -2 }}
+                    transition={{ layout: springLayout }}
+                    className="m-2 cursor-pointer"
+                  >
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <BlockwithhHover>
+                        <div
+                          onMouseEnter={() => handleMouseEnter(i)}
+                          onMouseLeave={() => setHoveredIndex(null)}
+                          style={{
+                            transition: "filter 0.3s ease",
+                            filter:
+                              hoveredIndex === i
+                                ? "blur(5px) brightness(80%)"
+                                : "none",
+                          }}
+                          className="flex justify-center items-center w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg3-color overflow-hidden relative"
+                        >
+                          {project.image && (
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              className={[
+                                "rounded-md",
+                                isMini
+                                  ? "object-contain mx-auto"
+                                  : "object-cover",
+
+                                isMini
+                                  ? "h-[14rem] w-auto brightness-90"
+                                  : "w-full h-full",
+
+                                i === 2
+                                  ? "w-auto h-[5rem] object-contain mx-auto"
+                                  : "",
+                              ].join(" ")}
+                            />
+                          )}
+                        </div>
+                      </BlockwithhHover>
+                    </a>
+
+                    <div className="mt-2.5 p-6 px-14">
+                      <p className="text-color0 mb-4">{project.subtitle}</p>
+                      <p className="text-[1.875rem] mb-4">
+                        {project.description?.split(" ").slice(0, 3).join(" ")}
+                        ...
+                      </p>
+
+                      <div className="mt-2">
+                        <MorphCTA
+                          onClick={() => handleProjectsClick(project.id)}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+
+            {filtered.length === 0 && !isLoading && (
+              <>
+                {upcomingApps.map((app) => (
+                  <motion.div
+                    key={app.id}
+                    layout="position"
+                    variants={upcomingVariants}
+                    initial={false}
+                    animate="show"
+                    exit="exit"
+                    style={{ overflow: "hidden", willChange: "transform" }}
+                    whileHover={{ y: -2 }}
+                    transition={{ layout: springLayout }}
+                    className="m-2"
                   >
                     <BlockwithhHover>
-                      <div
-                        onMouseEnter={() => handleMouseEnter(i)}
-                        onMouseLeave={() => setHoveredIndex(null)}
-                        style={{
-                          transition: "filter 0.3s ease",
-                          filter:
-                            hoveredIndex === i
-                              ? "blur(5px) brightness(80%)"
-                              : "none",
-                        }}
-                        className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg3-color overflow-hidden"
-                      >
-                        {project.image && (
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover rounded-md"
-                          />
-                        )}
+                      <div className="flex justify-center items-center relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg1-color overflow-hidden rounded-md">
+                        <MdSettingsApplications
+                          size={64}
+                          className="text-color3"
+                        />
                       </div>
                     </BlockwithhHover>
-                  </a>
 
-                  <div className="mt-2.5 p-6 px-14">
-                    <p className="text-color0 mb-4">{project.subtitle}</p>
-                    <p className="text-[1.875rem] mb-4">
-                      {project.description?.split(" ").slice(0, 3).join(" ")}...
-                    </p>
+                    <div className="mt-2.5 p-6 px-14">
+                      <p className="text-color0 mb-2">
+                        {app.note ?? "Coming soon"}
+                      </p>
+                      <p className="text-[1.875rem] mb-4">{app.title}</p>
 
-                    <div className="mt-2">
-                      <MorphCTA
-                        onClick={() => handleProjectsClick(project.id)}
-                      />
+                      <div className="mt-2 opacity-60 pointer-events-none">
+                        <MorphCTA onClick={() => {}} />
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-
-            {upcomingApps.map((app) => (
-              <motion.div
-                key={app.id}
-                layout="position"
-                variants={upcomingVariants}
-                initial={false}
-                animate="show"
-                exit="exit"
-                style={{ overflow: "hidden", willChange: "transform" }}
-                whileHover={{ y: -2 }}
-                transition={{ layout: springLayout }}
-                className="m-2"
-              >
-                <BlockwithhHover>
-                  <div className="flex justify-center items-center relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg1-color overflow-hidden rounded-md">
-                    <MdSettingsApplications size={64} className="text-color3" />
-                  </div>
-                </BlockwithhHover>
-
-                <div className="mt-2.5 p-6 px-14">
-                  <p className="text-color0 mb-2">
-                    {app.note ?? "Coming soon"}
-                  </p>
-                  <p className="text-[1.875rem] mb-4">{app.title}</p>
-
-                  <div className="mt-2 opacity-60 pointer-events-none">
-                    <MorphCTA onClick={() => {}} />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                  </motion.div>
+                ))}
+              </>
+            )}
           </AnimatePresence>
         </motion.div>
       </motion.div>
