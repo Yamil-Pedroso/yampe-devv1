@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import Navbar from "@/components/navbar/Navbar";
 import InfoFooter from "@/components/footer/InfoFooter";
@@ -10,8 +11,27 @@ interface MainLayoutProps {
 const MainLayout = ({ children }: MainLayoutProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const setLocalStorage = (key: string, value: any) => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    }
+  };
+
+  const getLocalStorage = (key: string) => {
+    if (typeof window !== "undefined") {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : null;
+    }
+    return null;
+  };
+
   useEffect(() => {
-    setIsModalOpen(true);
+    const modalAlreadyShown = getLocalStorage("modalShown");
+
+    if (!modalAlreadyShown) {
+      setIsModalOpen(true);
+      setLocalStorage("modalShown", true);
+    }
   }, []);
 
   const closeModal = () => setIsModalOpen(false);

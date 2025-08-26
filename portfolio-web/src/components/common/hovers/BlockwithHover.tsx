@@ -41,7 +41,7 @@ const BlockwithhHover = ({ children }: { children: React.ReactNode }) => {
       ref={containerRef}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      className="relative w-full h-full overflow-hidden"
+      className="relative w-full  overflow-hidden"
     >
       <AnimatePresence>
         {isHovering && (

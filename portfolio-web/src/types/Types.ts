@@ -51,6 +51,7 @@ export interface HeroData {
   greeting: string;
   name: string;
   role: string;
+  city: string;
   description: string;
   buttons: HeroButton[];
   image: {

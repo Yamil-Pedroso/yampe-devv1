@@ -128,7 +128,7 @@ export async function getProjectById(
 ) {
   try {
     const { data } = await apiClient.get<GetProjectByIdResponse>(
-      `/projects/${id}`,
+      `/project/${id}`,
       {
         params: options?.includeDrafts ? { includeDrafts: true } : undefined,
       }

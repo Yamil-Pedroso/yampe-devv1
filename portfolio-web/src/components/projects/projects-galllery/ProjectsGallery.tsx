@@ -5,9 +5,13 @@ import {
   type Variants,
   type Transition,
 } from "framer-motion";
-import ElementContainer from "@/components/common/element-container/ElementContainer";
+import { useNavigate } from "@tanstack/react-router";
+import { Route as projectsRoute } from "@/routes/project-details/$projectId";
 import { useProjects } from "@/lib/hooks/useProjects";
 import { toAbs } from "@/lib/url";
+import BlockwithhHover from "@/components/common/hovers/BlockwithHover";
+import MorphCTA from "@/components/common/animation/morphism/MorphCTA";
+import { MdSettingsApplications } from "react-icons/md";
 
 const menuGalleryItems = [
   "Show All",
@@ -18,7 +22,6 @@ const menuGalleryItems = [
   "Graphic Design",
 ];
 
-// Transiciones tipadas
 const springIn: Transition = {
   type: "spring",
   stiffness: 480,
@@ -49,7 +52,6 @@ const itemVariants: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: springIn,
   },
   exit: {
@@ -65,19 +67,56 @@ const itemVariants: Variants = {
   },
 };
 
+const upcomingVariants: Variants = {
+  hidden: { opacity: 0, y: 0 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: { opacity: 0, y: 0, transition: exitTween },
+};
+
 type SimpleProject = {
   id: string;
   title: string;
+  subtitle?: string;
   category?: string;
   description?: string;
   image?: string;
   link?: string;
 };
 
+type UpcomingApp = {
+  id: string;
+  title: string;
+  note?: string;
+};
+
+const upcomingApps: UpcomingApp[] = [
+  { id: "up-1", title: "Lorem Ipsum", note: "Lorem • Coming soon" },
+  { id: "up-2", title: "Lorem Ipsum", note: "Lorem • Coming soon" },
+  { id: "up-3", title: "Lorem Ipsum", note: "Lorem • Coming soon" },
+  { id: "up-4", title: "Lorem Ipsum", note: "Lorem • Coming soon" },
+];
+
 const ProjectsGallery = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [activeMenuItem, setActiveMenuItem] = useState("Show All");
 
-  // Trae del backend (puedes pasar filtros/paginación si quieres)
+  const navigate = useNavigate();
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredIndex(index);
+  };
+
+  const handleProjectsClick = (projectId: string) => {
+    navigate({
+      to: projectsRoute.to,
+      params: { projectId },
+    });
+  };
+
   const { data, isLoading } = useProjects({
     status: "published",
     sort: "order",
@@ -89,6 +128,7 @@ const ProjectsGallery = () => {
       (data?.projects ?? []).map((p) => ({
         id: p._id,
         title: p.title,
+        subtitle: p.subtitle,
         category: p.category,
         description: p.description,
         image: p.image ? toAbs(p.image) : undefined,
@@ -107,16 +147,18 @@ const ProjectsGallery = () => {
 
   return (
     <section className="flex flex-col items-center mt-16 sm:mt-20 md:mt-24 lg:mt-10 px-4 sm:px-6 lg:px-8">
-      <h2>Projects Gallery</h2>
+      <h2 className="text-[4.6875rem]">Projects Gallery</h2>
 
-      <div className="w-full max-w-6xl sticky top-0  bg-white/80 dark:bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur mt-3.5">
+      <div className="w-full max-w-6xl sticky top-0 bg-white/80 dark:bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur mt-3.5">
         <ul className="flex flex-wrap justify-center gap-12 py-2 min-h-[40px]">
           {menuGalleryItems.map((item) => (
             <li
               key={item}
               onClick={() => setActiveMenuItem(item)}
-              className={`cursor-pointer transition-colors ${
-                activeMenuItem === item ? "text-color0 underline" : ""
+              className={`cursor-pointer transition-colors text-[1.125rem]  ${
+                activeMenuItem === item
+                  ? "relative after:block after:w-[3rem] after:h-[3px] text-color0 after:bg-color0 after:mt-3"
+                  : "text-color3"
               }`}
             >
               {item}
@@ -129,17 +171,17 @@ const ProjectsGallery = () => {
       <motion.div
         layout
         transition={{ type: "spring", stiffness: 280, damping: 30 }}
-        className="mt-6 w-full flex justify-center h-[40rem]"
+        className="mt-6 w-full flex justify-center h-auto"
       >
         <motion.div
           initial="hidden"
           animate="show"
           variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-7xl"
         >
           <AnimatePresence initial={false}>
             {!isLoading &&
-              filtered.map((project) => (
+              filtered.map((project, i) => (
                 <motion.div
                   key={project.id}
                   layout
@@ -150,37 +192,88 @@ const ProjectsGallery = () => {
                   style={{ overflow: "hidden", willChange: "transform" }}
                   whileHover={{ y: -2 }}
                   transition={{ layout: springLayout }}
+                  className="m-2 cursor-pointer"
                 >
-                  <ElementContainer className="border p-4 rounded-lg h-[100%] ">
-                    {project.image && (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-[5rem] object-cover mb-4 rounded-md"
-                      />
-                    )}
-                    <h3 className="text-lg font-semibold mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-4">
-                      {project.category}
-                    </p>
-                    <p className="text-base">{project.description}</p>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <BlockwithhHover>
+                      <div
+                        onMouseEnter={() => handleMouseEnter(i)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        style={{
+                          transition: "filter 0.3s ease",
+                          filter:
+                            hoveredIndex === i
+                              ? "blur(5px) brightness(80%)"
+                              : "none",
+                        }}
+                        className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg3-color overflow-hidden"
+                      >
+                        {project.image && (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover rounded-md"
+                          />
+                        )}
+                      </div>
+                    </BlockwithhHover>
+                  </a>
 
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      View Project
-                    </a>
-                  </ElementContainer>
+                  <div className="mt-2.5 p-6 px-14">
+                    <p className="text-color0 mb-4">{project.subtitle}</p>
+                    <p className="text-[1.875rem] mb-4">
+                      {project.description?.split(" ").slice(0, 3).join(" ")}...
+                    </p>
+
+                    <div className="mt-2">
+                      <MorphCTA
+                        onClick={() => handleProjectsClick(project.id)}
+                      />
+                    </div>
+                  </div>
                 </motion.div>
               ))}
+
+            {upcomingApps.map((app) => (
+              <motion.div
+                key={app.id}
+                layout="position"
+                variants={upcomingVariants}
+                initial={false}
+                animate="show"
+                exit="exit"
+                style={{ overflow: "hidden", willChange: "transform" }}
+                whileHover={{ y: -2 }}
+                transition={{ layout: springLayout }}
+                className="m-2"
+              >
+                <BlockwithhHover>
+                  <div className="flex justify-center items-center relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg1-color overflow-hidden rounded-md">
+                    <MdSettingsApplications size={64} className="text-color3" />
+                  </div>
+                </BlockwithhHover>
+
+                <div className="mt-2.5 p-6 px-14">
+                  <p className="text-color0 mb-2">
+                    {app.note ?? "Coming soon"}
+                  </p>
+                  <p className="text-[1.875rem] mb-4">{app.title}</p>
+
+                  <div className="mt-2 opacity-60 pointer-events-none">
+                    <MorphCTA onClick={() => {}} />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </AnimatePresence>
         </motion.div>
       </motion.div>
+
+      <h3 className="sr-only">Upcoming Apps</h3>
     </section>
   );
 };

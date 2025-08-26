@@ -74,12 +74,12 @@ const ProjectSchema = new Schema<IProject>(
       validate: [
         {
           validator: (arr: string[]) => (arr ?? []).length <= 5,
-          message: "Máximo 5 tags por proyecto",
+          message: "Maximum 5 tags per project",
         },
         {
           validator: (arr: string[]) =>
             (arr ?? []).every((t) => allowedTags.includes(t as ProjectTag)),
-          message: "Uno o más tags no están permitidos",
+          message: "One or more tags are not allowed",
         },
       ],
       default: [],
@@ -91,7 +91,7 @@ const ProjectSchema = new Schema<IProject>(
         "Web Development",
         "Mobile Apps",
         "UI/UX Design",
-        "Creative Coding",
+        "Mini Apps",
         "Graphic Design",
       ],
     },

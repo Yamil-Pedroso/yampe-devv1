@@ -5,6 +5,7 @@ export const heroData: HeroData = {
   greeting: "Hello, I’m",
   name: "Yamil Pedroso",
   role: "Full Stack Dev",
+  city: "Based in Zürich",
   description:
     "Crafting high-quality, scalable, and visually engaging digital experiences through modern web technologies.",
   buttons: [
