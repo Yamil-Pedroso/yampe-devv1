@@ -238,37 +238,44 @@ const ProjectsGallery = () => {
                 </motion.div>
               ))}
 
-            {upcomingApps.map((app) => (
-              <motion.div
-                key={app.id}
-                layout="position"
-                variants={upcomingVariants}
-                initial={false}
-                animate="show"
-                exit="exit"
-                style={{ overflow: "hidden", willChange: "transform" }}
-                whileHover={{ y: -2 }}
-                transition={{ layout: springLayout }}
-                className="m-2"
-              >
-                <BlockwithhHover>
-                  <div className="flex justify-center items-center relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg1-color overflow-hidden rounded-md">
-                    <MdSettingsApplications size={64} className="text-color3" />
-                  </div>
-                </BlockwithhHover>
+            {filtered.length === 0 && !isLoading && (
+              <>
+                {upcomingApps.map((app) => (
+                  <motion.div
+                    key={app.id}
+                    layout="position"
+                    variants={upcomingVariants}
+                    initial={false}
+                    animate="show"
+                    exit="exit"
+                    style={{ overflow: "hidden", willChange: "transform" }}
+                    whileHover={{ y: -2 }}
+                    transition={{ layout: springLayout }}
+                    className="m-2"
+                  >
+                    <BlockwithhHover>
+                      <div className="flex justify-center items-center relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg1-color overflow-hidden rounded-md">
+                        <MdSettingsApplications
+                          size={64}
+                          className="text-color3"
+                        />
+                      </div>
+                    </BlockwithhHover>
 
-                <div className="mt-2.5 p-6 px-14">
-                  <p className="text-color0 mb-2">
-                    {app.note ?? "Coming soon"}
-                  </p>
-                  <p className="text-[1.875rem] mb-4">{app.title}</p>
+                    <div className="mt-2.5 p-6 px-14">
+                      <p className="text-color0 mb-2">
+                        {app.note ?? "Coming soon"}
+                      </p>
+                      <p className="text-[1.875rem] mb-4">{app.title}</p>
 
-                  <div className="mt-2 opacity-60 pointer-events-none">
-                    <MorphCTA onClick={() => {}} />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                      <div className="mt-2 opacity-60 pointer-events-none">
+                        <MorphCTA onClick={() => {}} />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </>
+            )}
           </AnimatePresence>
         </motion.div>
       </motion.div>
