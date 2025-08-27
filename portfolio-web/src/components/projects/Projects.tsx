@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useEffect, useState, useMemo } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Route as projectsRoute } from "@/routes/project-details/$projectId";
 import { projectsData } from "@/data/projectsData";
@@ -14,7 +14,6 @@ import {
 } from "@/components/common/animation/motionTokens";
 import BlockwithhHover from "@/components/common/hovers/BlockwithHover";
 import MorphCTA from "@/components/common/animation/morphism/MorphCTA";
-import { toAbs } from "@/lib/url";
 
 const IMG_DURATION = 1.1;
 const IMG_EASE: any = [0.25, 0.1, 0.25, 1];
@@ -123,7 +122,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             <p className="text-color4 text-sm sm:text-base leading-relaxed">
               {project.description}
             </p>
-            <MorphCTA onClick={() => handleProjectsClick(project.id)} />
+            <MorphCTA onClick={() => handleProjectsClick(project._id)} />
           </motion.div>
         </div>
       ) : (
@@ -154,7 +153,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
                 </span>
               )}*/}
 
-              <MorphCTA onClick={() => handleProjectsClick(project.id)} />
+              <MorphCTA onClick={() => handleProjectsClick(project._id)} />
             </div>
           </motion.div>
 
@@ -199,17 +198,8 @@ const Projects = () => {
     limit: 4,
   });
 
-  const projects = useMemo(
-    () =>
-      (data?.projects || []).map((p) => ({
-        id: p._id,
-        title: p.title,
-        description: p.description,
-        image: p.image ? toAbs(p.image) : undefined,
-        link: p.link,
-      })) || [],
-    [data]
-  );
+  const projects = data || [];
+  console.log("Projects data:", projects);
 
   if (isLoading) return <div>Loading projects...</div>;
 
