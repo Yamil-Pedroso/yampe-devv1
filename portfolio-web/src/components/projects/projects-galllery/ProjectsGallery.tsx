@@ -125,7 +125,7 @@ const ProjectsGallery = () => {
 
   const items: SimpleProject[] = useMemo(
     () =>
-      (data?.projects ?? []).map((p) => ({
+      (data ?? []).map((p) => ({
         id: p._id,
         title: p.title,
         subtitle: p.subtitle,
@@ -231,7 +231,7 @@ const ProjectsGallery = () => {
                                   : "w-full h-full",
 
                                 i === 2
-                                  ? "w-auto h-[5rem] object-contain mx-auto"
+                                  ? "w-auto h-[5rem] object-cover mx-auto"
                                   : "",
                               ].join(" ")}
                             />

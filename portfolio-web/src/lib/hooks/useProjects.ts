@@ -14,6 +14,7 @@ import {
   type ProjectDTO,
   type ProjectCard,
 } from "@/services/projectsService";
+import { toAbs } from "../url";
 
 // Cache keys
 export const projectsKeys = {
@@ -43,6 +44,12 @@ export function useProjects(params?: GetProjectsParams) {
     queryKey: projectsKeys.list(params),
     queryFn: () => getProjects(params),
     placeholderData: keepPreviousData,
+    select: (data: GetProjectsResponse): ProjectDTO[] =>
+      (data.projects ?? []).map((project) => ({
+        ...project,
+        image: toAbs(project.image),
+        imageDetails: project.imageDetails?.map(toAbs),
+      })),
     staleTime: 5 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
   });
