@@ -54,8 +54,8 @@ const BlockwithhHover = ({ children }: { children: React.ReactNode }) => {
             style={{
               left: coords.x - 64,
               top: coords.y - 64,
-              width: "9rem",
-              height: "9rem",
+              width: "10rem",
+              height: "10rem",
               borderRadius: "9999px",
               background: "rgba(255, 255, 255, 0.4)",
               backdropFilter: "blur(10px)",
@@ -65,7 +65,7 @@ const BlockwithhHover = ({ children }: { children: React.ReactNode }) => {
               fontSize: "1.25rem",
             }}
           >
-            <span className="text-2xl uppercase text-black">explore</span>
+            <span className="text-2xl uppercase text-black">View Demo</span>
           </motion.div>
         )}
       </AnimatePresence>
