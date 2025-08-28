@@ -1,0 +1,15 @@
+# Default values (override at invocation if needed)
+BRANCH ?= vps-portfolio-deploy
+REMOTE ?= origin
+SOURCE ?= main
+
+.PHONY: merge-deploy merge-deploy-auto
+
+# Interactive mode (asks before commit/push)
+merge-deploy:
+	bash ./scripts/merge-deploy.sh $(BRANCH) $(REMOTE) $(SOURCE)
+
+# Non-interactive mode (-y: commit + push without prompts)
+merge-deploy-auto:
+	bash ./scripts/merge-deploy.sh -y $(BRANCH) $(REMOTE) $(SOURCE)
+

@@ -7,7 +7,14 @@ import { useProject, useProjects } from "@/lib/hooks/useProjects";
 import { toAbs } from "@/lib/url";
 import { TbPointFilled } from "react-icons/tb";
 
-const tags = ["Web Design", "Mobile Apps", "Branding"]; // (Use this from the backend)
+const tags = [
+  "react",
+  "typescript",
+  "framer-motion",
+  "nodejs",
+  "express",
+  "mongodb",
+];
 
 const shareOptions = ["1", "2", "3"];
 
@@ -48,7 +55,24 @@ const ProjectDetails = () => {
     .filter((p) => p._id !== project._id && p.category === project.category)
     .slice(0, 3);
 
-  console.log(project.category);
+  const textsPanel = [
+    {
+      title: "Category",
+      content: project.category,
+    },
+    {
+      title: "Clients",
+      content: "Lorem Ipsum",
+    },
+    {
+      title: "Location",
+      content: "Lorem Ipsum",
+    },
+    {
+      title: "Published",
+      content: new Date().toLocaleDateString(),
+    },
+  ];
 
   return (
     <section className="w-full flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 mt-16 sm:mt-20">
@@ -86,7 +110,7 @@ const ProjectDetails = () => {
           </div>
         )}
 
-        <div className="mt-10 sm:mt-16 grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] gap-6 lg:gap-8">
+        <div className="mt-10 sm:mt-16 grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-6 lg:gap-8">
           {/* Left Column */}
           <div>
             <h2 className="font-semibold text-2xl sm:text-3xl">
@@ -100,16 +124,25 @@ const ProjectDetails = () => {
           </div>
 
           {/* Right Column */}
-          <div>
-            <ElementContainer className="bg-color0 p-6 sm:p-8 lg:p-16">
-              <h2 className="font-semibold text-black text-2xl sm:text-3xl">
-                We Create digital Product For Business
-              </h2>
-              <h3 className="text-black text-base sm:text-lg mt-3">
-                {project.description}
-              </h3>
-            </ElementContainer>
-          </div>
+
+          <ElementContainer className="bg-color0 p-6 sm:p-8 lg:p-16 relative">
+            <div className="flex flex-col gap-5 ">
+              {textsPanel.map((text, i) => (
+                <div key={i} className="flex flex-col">
+                  <span className="text-black text">{text.title}</span>
+                  <h5>
+                    <span className="text-black text-[1.375rem] font-semibold">
+                      {text.content}
+                    </span>
+                  </h5>
+                </div>
+              ))}
+
+              {/* Create 2 transparent squares, that have position absolute and different size and are insite its parent */}
+              <div className="absolute top-0 right-0 w-16 h-16 bg-black opacity-50"></div>
+              <div className="absolute bottom-0 right-0 w-24 h-24 bg-black opacity-50"></div>
+            </div>
+          </ElementContainer>
         </div>
 
         {/* Image Gallery */}
