@@ -16,7 +16,7 @@ const DEV_ICONS = [
 
 const GeomShapes = () => {
   return (
-    <div className="relative w-full h-[320px]">
+    <div className="relative w-full h-[320px]  2xl:h-[320px] ">
       {DEV_ICONS.map(({ Icon, base, pos }, i) => {
         // amplitud y velocidad ligeramente distintas para cada icono
         const amp = 5 + (i % 3) * 2; // 5,7,9...

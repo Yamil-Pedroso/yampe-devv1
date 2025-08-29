@@ -222,17 +222,11 @@ const ProjectsGallery = () => {
                               alt={project.title}
                               className={[
                                 "rounded-md",
-                                isMini
-                                  ? "object-contain mx-auto"
-                                  : "object-cover",
-
-                                isMini
-                                  ? "h-[14rem] w-auto brightness-90"
-                                  : "w-full h-full",
-
                                 i === 2
-                                  ? "w-auto h-[5rem] object-cover mx-auto"
-                                  : "",
+                                  ? "w-auto h-90 object-contain mx-auto"
+                                  : isMini
+                                    ? "h-56 w-auto object-contain mx-auto brightness-90"
+                                    : "w-full h-full object-cover",
                               ].join(" ")}
                             />
                           )}
@@ -247,11 +241,13 @@ const ProjectsGallery = () => {
                         ...
                       </p>
 
-                      <div className="mt-2">
-                        <MorphCTA
-                          onClick={() => handleProjectsClick(project.id)}
-                        />
-                      </div>
+                      {project.category !== "Mini Apps" && (
+                        <div className="mt-2">
+                          <MorphCTA
+                            onClick={() => handleProjectsClick(project.id)}
+                          />
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 );

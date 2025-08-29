@@ -23,7 +23,6 @@ const useTypewriter = (text: string, speed = 14) => {
       i += 1;
       setOut(text.slice(0, i));
       if (i < text.length) {
-        // ligera variación para que se sienta natural
         const jitter = Math.random() * 6 - 3; // -3..+3ms
         setTimeout(tick, Math.max(4, speed + jitter));
       }
@@ -141,12 +140,23 @@ const AskMeBox = () => {
   return (
     <FloatOnScroll
       threshold={400}
-      floatClass="fixed bottom-4 right-[1rem] w-[18rem] sm:w-[20rem] md:w-[22rem] z-[60]"
+      /*
+        Responsive float behavior:
+        - < md: fixed bottom centered (fácil de escribir en mobile)
+        - md: se integra al layout (no flota)
+        - lg+: flota en desktop en bottom-right con 1rem (right-4 bottom-4)
+      */
+      floatClass="
+        fixed bottom-4 left-3 right-3 z-[70]
+        md:static md:inset-auto md:z-auto md:w-auto md:mx-auto
+        lg:fixed lg:bottom-4 lg:right-4 lg:left-auto lg:w-[24rem] xl:z-[70]
+
+      "
       baseClass="relative w-full !max-w-[40rem] mx-auto"
     >
       <ElementContainer
         border
-        className="p-5 bg-bg1-color rounded-2xl shadow-2xl  max-w-[64rem]"
+        className="p-5 bg-bg1-color rounded-2xl shadow-2xl max-w-[30rem] md:mt-[-20px]  2xl:max-w-[64rem] mx-auto"
       >
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
