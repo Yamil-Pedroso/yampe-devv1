@@ -104,7 +104,7 @@ const Hero = () => {
       <div
         className="
           order-3 lg:order-3
-          md:col-span-2 md:justify-self-center  w-full
+           md:col-span-2 md:justify-self-center  w-full
           xl:order-2 xl:col-span-1
            h-[33rem] rounded-lg
            flex justify-center items-center mr-70
@@ -114,32 +114,6 @@ const Hero = () => {
       >
         <AskMeBox />
       </div>
-
-      {/* RIGHT content */}
-      {/*<motion.div
-        {...fadeUpProps}
-        className="
-          order-2 lg:order-2 xl:order-3
-          justify-self-end
-          w-full sm:w-full
-          h-[24.5625rem] bg-[#070707] p-8 custom:p-12 rounded-2xl
-          xl:max-w-[16.5625rem]
-        "
-      >
-        <div className="flex flex-col r custom:justify-center h-full">
-          {heroData.stats.map((stat, i) => (
-            <div key={i}>
-              <div className="mb-4 text-color0 text-[1rem]">
-                <span className="block text-[2.8rem]">{stat.value}</span>
-                <span className="text-color2">{stat.label}</span>
-              </div>
-              {i < heroData.stats.length - 1 && i < 2 && (
-                <div className="mx-auto border-b opacity-20 border-color2 mb-4" />
-              )}
-            </div>
-          ))}
-        </div>
-      </motion.div>*/}
       <motion.div
         {...fadeUpProps}
         className="
@@ -147,7 +121,7 @@ const Hero = () => {
           justify-self-end
           w-full
           mr-20
-
+          hidden md:inline-block
         "
       >
         <GeomShapes />
