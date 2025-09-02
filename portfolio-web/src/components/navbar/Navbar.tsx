@@ -91,11 +91,14 @@ const Navbar = () => {
           {isOpenMenu && (
             <motion.div
               initial={{ height: 0, opacity: 1, y: -10 }}
-              animate={{ height: "100vh", opacity: 1, y: 0 }}
+              animate={{ height: "100dvh", opacity: 1, y: 0 }}
               exit={{ height: 0, opacity: 1, y: -10 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="fixed inset-0 w-screen h-screen backdrop-blur-md bg-black/65 z-[10] overflow-hidden pointer-events-auto"
-              style={{ pointerEvents: isOpenMenu ? "auto" : "none" }}
+              className="fixed inset-0 w-screen h-screen backdrop-blur-md bg-black/65 z-[10] overflow-y-auto pointer-events-auto"
+              style={{
+                pointerEvents: isOpenMenu ? "auto" : "none",
+                WebkitOverflowScrolling: "touch",
+              }}
             >
               <MenuTest onNavigate={handleNavigate} />
               <AppointmentForm className="block absolute top-[6rem] left-[1.7rem] w-full mt-0 ml-0 large:relative large:mt-[0rem] large:ml-[1rem] min-[1024px]:hidden " />
