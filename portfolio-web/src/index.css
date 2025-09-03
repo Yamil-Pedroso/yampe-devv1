@@ -5,6 +5,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 
   font-family: "DM Sans", sans-serif;
   background-color: var(--main-bg-color);
@@ -90,9 +91,10 @@ body {
 }
 
 .loader {
-  position: absolute;
+  position: relative;
   width: 64px;
   height: 60px;
+  display: inline-block;
 }
 .loader::after {
   content: "";
