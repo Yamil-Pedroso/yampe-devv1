@@ -48,7 +48,7 @@ const LocationInfo: React.FC<LocationInfoProps> = ({
         {currentTime} <span className={`${greetingClass}`}>{greeting}</span>
       </div>
 
-      <SocialLinks className="flex mt-6 justify-end large:justify-start" />
+      <SocialLinks className="flex mt-6 custom-small:justify-end large:justify-start" />
     </div>
   );
 };

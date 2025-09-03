@@ -19,7 +19,7 @@ const Menu: React.FC<MenuProps> = ({ onNavigate, className }) => {
               e.preventDefault();
               onNavigate?.(item.id);
             }}
-            className="text-white hover:text-color0 transition-[font-size] duration-500 ease-in-out text-[2.4rem] custom-small:text-[3rem] lg:text-8xl "
+            className="text-white hover:text-color0 transition-[font-size] duration-500 ease-in-out text-[2rem] mr-14  custom-small:text-[3rem] custom-small:m-0  lg:text-8xl "
           >
             {item.title}
           </a>

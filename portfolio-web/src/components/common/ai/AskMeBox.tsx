@@ -147,7 +147,7 @@ const AskMeBox = () => {
         - lg+: flota en desktop en bottom-right con 1rem (right-4 bottom-4)
       */
       floatClass="
-        fixed bottom-4 left-3 right-3 z-[70]
+        fixed bottom-4 left-3 right-3 z-[999]
         md:static md:inset-auto md:z-auto md:w-auto md:mx-auto
         lg:fixed lg:bottom-4 lg:right-4 lg:left-auto lg:w-[24rem] xl:z-[70]
 
@@ -156,7 +156,7 @@ const AskMeBox = () => {
     >
       <ElementContainer
         border
-        className="p-5 bg-bg1-color rounded-2xl shadow-2xl max-w-[30rem] md:mt-[-20px]  2xl:max-w-[64rem] mx-auto"
+        className="p-5 bg-bg1-color rounded-2xl shadow-2xl max-w-[30rem] mt-[-12.5rem] md:mt-[-10rem] 2xl:max-w-[64rem] mx-auto"
       >
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
