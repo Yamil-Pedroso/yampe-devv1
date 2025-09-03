@@ -56,14 +56,14 @@ const About = () => {
   });
 
   const leftFloatY1 = useTransform(leftProgress, [0, 1], [40, -40]);
-  const leftFloatY2 = useTransform(leftProgress, [0, 1], [30, 20]);
+  const leftFloatY2 = useTransform(leftProgress, [0, 1], [30, 60]);
   const bg = useTransform(leftProgress, [0, 1], ["#ff4d4f", "#1677ff"]);
   const imgY = useTransform(imageProgress, [0, 1], [0, -80]);
 
   const about = items[0];
 
   return (
-    <DarkContainer className="w-full desktop:max-w-[94%] laptop:h-[calc(100vh-7rem)] mx-auto mt-30">
+    <DarkContainer className="w-full desktop:max-w-[94%] mt-[-10rem] mx-auto md:mt-[-8rem] laptop:h-[calc(100vh-7rem)]">
       <div
         id="about"
         className="w-full flex flex-col justify-center items-center large:justify-center large:items-center laptop:flex-row gap-36"
@@ -133,10 +133,10 @@ const About = () => {
         <div className="w-[442px] flex flex-col items-center relative">
           <motion.div
             ref={leftGroupRef}
-            className="flex flex-col absolute top-80 left-[-2rem] desktop:left-[-6.55rem] z-10"
+            className="flex flex-col absolute top-80 left-[-2rem] desktop:left-[-6.55rem] mt-10 z-10"
             style={{ y: leftFloatY1 }}
           >
-            <ElementContainer2 className="text-black p-1 mb-[-2rem] desktop:mb-0">
+            <ElementContainer2 className="text-black p-1 mb-[-2rem] mx-20 text-[.8rem] desktop:mb-0 sm:m-0 sm:text-[1rem]">
               <div className="w-[2.4rem] rounded-full">
                 <img
                   src="/images/about/icons/3d-cube.png"
@@ -148,15 +148,15 @@ const About = () => {
             </ElementContainer2>
 
             <motion.div style={{ y: leftFloatY2 }}>
-              <ElementContainer2 className="text-black p-1 mt-0 ml-0 desktop:ml-[-3rem]">
-                <div className="w-[2.4rem] bg-black rounded-full overflow-hidden ">
+              <ElementContainer2 className="text-black p-1 mt-0  text-[.8rem] mx-60 desktop:ml-[-3rem] sm:mt-[-2rem] sm:m-0 sm:text-[1rem]">
+                <div className="w-[2.4rem] bg-black  rounded-full overflow-hidden ">
                   <img
                     src="/images/avatar/yami.jpg"
                     alt="Experience Icon"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p>Yamil Pedroso</p>
+                <p className="whitespace-nowrap">Yamil Pedroso</p>
                 <MdOutlineArrowOutward className="text-black" size={21} />
               </ElementContainer2>
             </motion.div>

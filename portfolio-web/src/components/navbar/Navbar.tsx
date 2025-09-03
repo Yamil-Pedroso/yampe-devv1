@@ -94,7 +94,7 @@ const Navbar = () => {
               animate={{ height: "100dvh", opacity: 1, y: 0 }}
               exit={{ height: 0, opacity: 1, y: -10 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="fixed inset-0 w-screen h-screen backdrop-blur-md bg-black/65 z-[10] overflow-y-auto pointer-events-auto"
+              className="fixed inset-0 w-screen h-screen backdrop-blur-md bg-black/65 z-[10] overflow-y-auto overflow-hidden pointer-events-auto"
               style={{
                 pointerEvents: isOpenMenu ? "auto" : "none",
                 WebkitOverflowScrolling: "touch",
