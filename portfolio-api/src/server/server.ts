@@ -37,6 +37,11 @@ app.use("/api", aiDevPortfolioAssistantRoutes);
 app.use("/api", aboutRoutes);
 app.use("/api", projectsRoutes);
 
+// Test endpoint
+app.get("/api/test", (_req: Request, res: Response) => {
+  res.json({ message: "Test endpoint working!" });
+});
+
 app.get("/", (_req: Request, res: Response) => {
   res.send("Hello World!");
 });
