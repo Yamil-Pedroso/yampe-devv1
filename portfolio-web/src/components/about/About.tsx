@@ -63,7 +63,7 @@ const About = () => {
   const about = items[0];
 
   return (
-    <DarkContainer className="w-full desktop:max-w-[94%] mt-[-10rem] mx-auto md:mt-[-8rem] laptop:h-[calc(100vh-7rem)]">
+    <DarkContainer className="w-full desktop:max-w-[94%] mt-[-10rem] mx-auto md:mt-[-8rem] lg:mt-[13rem]  laptop:h-[calc(100vh-7rem)]">
       <div
         id="about"
         className="w-full flex flex-col justify-center items-center large:justify-center large:items-center laptop:flex-row gap-36"
