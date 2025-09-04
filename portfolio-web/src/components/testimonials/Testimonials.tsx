@@ -11,28 +11,31 @@ const Testimonials = () => {
   const { header, description, testimonials } = testimonialsData;
 
   return (
-    <DarkContainer className=" max-w-[94%] mx-auto overflow-hidden">
-      <div className="flex flex-col lg:flex-row gap-10">
+    <DarkContainer className="xl:max-w-[94%] mx-auto overflow-hidden">
+      <div className="w-full flex flex-col gap-10 xl:flex-row p-6">
         {/* Bloque de texto a la izquierda */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col justify-center w-[23.125rem] h-[20.5rem]"
+          className="flex flex-col justify-center
+               w-full max-w-[23.125rem]
+                h-auto sm:w-[23.125rem] sm:h-[22.5rem] my-[-1rem]"
         >
-          <div className="space-y-5">
+          <div className="flex flex-col gap-5">
             <p className="">{header}</p>
 
-            <h2 className="text-[2.8125rem] text-base/14">
-              <br />
+            <h2 className="text-[2rem] sm:text-[2.8125rem] text-base/14 ">
               What <span className="text-color0">People</span> Say
             </h2>
 
-            <p className="max-w-md text-zinc-400">{description}</p>
+            <p className="mt-0 text-sm sm:text-[1rem] max-w-md text-zinc-400">
+              {description}
+            </p>
           </div>
 
-          <div className="mt-8 flex items-center gap-4">
+          <div className="mt-10 flex items-center gap-4">
             <button
               aria-label="Previous"
               className="flex h-[70px] w-[70px] items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition hover:bg-zinc-800"
@@ -56,14 +59,14 @@ const Testimonials = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="relative w-[30rem] xl:w-[54rem]"
+          className="relative w-full xl:w-[45rem] 2xl:w-[57rem]"
         >
           <Marquee className="h-full" speed={20} gradient={false} pauseOnHover>
             {testimonials.map((t, i) => (
               <ElementContainer
                 key={`${t.author}-${i}`}
                 border
-                className="group relative mx-4 flex w-[25rem] h-[27rem] flex-col items-center rounded-[28px] border border-zinc-800 bg-[#0B0B0B] p-10 shadow-[0_0_0_1px_rgba(255,255,255,0.03)_inset] group hover:bg-bg1-color duration-300"
+                className="group relative mx-4 flex w-[18rem] xl:w-[25rem] xl:h-[27rem] flex-col items-center rounded-[28px] border border-zinc-800 bg-[#0B0B0B] p-10 shadow-[0_0_0_1px_rgba(255,255,255,0.03)_inset] group hover:bg-bg1-color duration-300"
               >
                 <motion.div
                   initial="rest"
@@ -118,7 +121,7 @@ const Testimonials = () => {
                   </div>
 
                   {/* Author */}
-                  <div className="mt-8 text-center">
+                  <div className="xl:mt-8 text-center">
                     <p className="text-white text-[22px] font-semibold leading-tight">
                       {t.author}
                     </p>

@@ -148,7 +148,7 @@ const AskMeBox = () => {
       */
       floatClass="
         fixed bottom-4 left-3 right-3 z-[999]
-        md:static md:inset-auto md:z-auto md:w-auto md:mx-auto
+        md:static md:inset-auto  md:w-auto md:mx-auto
         lg:fixed lg:bottom-4 lg:right-4 lg:left-auto lg:w-[24rem] xl:z-[70]
 
       "
