@@ -133,14 +133,14 @@ const Services: React.FC = () => {
               >
                 <ElementContainer
                   border
-                  className="flex justify-between flex-col w-full h-[21rem] p-12 px-10  rounded-2xl shadow-lg bg-bg1-color sm:items-center sm:px-6 sm:flex-row sm:h-[8.5rem]"
+                  className="flex justify-between flex-col w-full h-auto p-12 px-10 rounded-2xl shadow-lg bg-bg1-color sm:items-center sm:px-6 sm:flex-row  sm:h-[8.5rem]"
                 >
                   <div className="flex flex-col gap-2 sm:flex-row">
                     <h3 className="text-[1.5rem] font-bold">
                       {service.stepNumber}
                     </h3>
                     <div className="flex flex-col gap-1 sm:mx-6">
-                      <p className="text-[1.5rem] font-bold whitespace-nowrap">
+                      <p className="text-[1.5rem] font-bold ">
                         {service.title}
                       </p>
                       {service.description && (
@@ -152,9 +152,9 @@ const Services: React.FC = () => {
                   <motion.div variants={iconVariant}>
                     {Icon && (
                       <span
-                        className="flex items-center justify-center mb-[-.2rem] mr-2 text-[21px]
+                        className="flex items-center justify-center mt-6 mr-2 text-[21px]
                                    w-[4.375rem] h-[4.375rem] rounded-full
-                                   bg-bg2-color text-color4 border border-border-color"
+                                   bg-bg2-color text-color4 border border-border-color xs:mb-[-.2rem]"
                       >
                         <Icon />
                       </span>

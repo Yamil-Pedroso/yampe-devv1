@@ -79,12 +79,12 @@ const NewsAndBlogs = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="flex flex-col lg:flex-row gap-8"
+        className="flex flex-col justify-center items-center w-full lg:flex-row gap-8"
       >
         {newsAndBlogs.map((item, i) => (
           <motion.div key={i} variants={cardUp}>
             <ElementContainer
-              className="flex justify-center items-center mb-4 w-[453px] xl:w-[39.375rem] xl:h-[22rem] bg-bg1-color p-[.7rem] gap-10 cursor-pointer"
+              className="flex justify-center items-center mb-4 w-full xs:w-[28rem] xl:w-[39.375rem] xl:h-[22rem] bg-bg1-color p-[.7rem] gap-10 cursor-pointer"
               onClick={() => handleNewsAndBlogsClick(item.id as number)}
             >
               {/* Stagger interno para contenido de la card */}
