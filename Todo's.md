@@ -1,4 +1,4 @@
 ## Resposive
 [] - mt all comps
-[] - Service comp
-[] - Testimonial comp
+[X] - Service comp
+[X] - Testimonial comp
