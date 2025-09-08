@@ -9,8 +9,16 @@ export const heroData: HeroData = {
   description:
     "Crafting high-quality, scalable, and visually engaging digital experiences through modern web technologies.",
   buttons: [
-    { text: "Start the Journey", href: "/contact", icon: MdArrowForwardIos },
-    { text: "Download Resume", href: "/resume.pdf", icon: MdArrowForwardIos },
+    {
+      text: "Start the Journey",
+      href: "mailto:yamilpedroso@gmail.com",
+      icon: MdArrowForwardIos,
+    },
+    {
+      text: "Discover Resume",
+      href: "https://yampe-cv.netlify.app/",
+      icon: MdArrowForwardIos,
+    },
   ],
   image: {
     src: "#",
