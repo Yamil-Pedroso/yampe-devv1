@@ -20,18 +20,19 @@ const TemplatesGallery = () => {
         </p>
       </div>
 
-      <div className="flex *:flex-col lg:flex-row justify-center items-center gap-12 lg:gap-18 w-full">
+      <div className="flex flex-col xl:flex-row justify-center items-center gap-12 lg:gap-18 w-full">
         <a
           href="projects-gallery"
           className="cursor-pointer hover:scale-105 transition-transform"
         >
-          <div className="flex flex-col justify-center items-center w-[350px] h-[350px] rounded-full border border-color4/20 bg-color4/5 text-color4 flex-shrink-0 ">
-            <p className="text-[4.5rem]">MORE</p>{" "}
+          <div className="flex flex-col justify-center items-center w-[300px] h-[300px] md:w-[350px] md:h-[350px] rounded-full border border-color4/20 bg-color4/5 text-color4 flex-shrink-0 ">
+            <p className="text-[3.5rem] md:text-[4.5rem]">MORE</p>{" "}
             <span>
-              <MdOutlineArrowOutward className="text-[6rem] text-color0" />
+              <MdOutlineArrowOutward className="text-[4rem] md:text-[6rem] text-color0" />
             </span>
           </div>
         </a>
+
         <VideoComp
           src={assets.video1}
           className="w-full max-w-4xl h-auto rounded-lg shadow-lg"

@@ -180,10 +180,10 @@ export const projectsData = {
       icon: "",
     },
     {
-      title: "AI Landing Page",
-      subtitle: "AI Landing Page",
+      title: "IA Powered Dashboard",
+      subtitle: "AI Dashboard",
       description:
-        "A sleek and modern AI landing page template to showcase your work and skills.",
+        "An AI-powered dashboard for data visualization and insights.",
       category: "Website Templates",
       tags: ["react", "typescript", "framer-motion"],
       link: "https://authentic-table-243760.framer.app/",
