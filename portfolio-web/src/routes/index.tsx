@@ -5,6 +5,7 @@ import About from "@/components/about/About";
 import Resume from "@/components/resume/Resume";
 import Services from "@/components/services/Services";
 import Skills from "@/components/skills/Skills";
+import TemplatesGallery from "@/components/templates-gallery/TemplatesGallery";
 import Projects from "@/components/projects/Projects";
 import Testimonials from "@/components/testimonials/Testimonials";
 import GetInTouch from "@/components/get-in-touch/GetInTouch";
@@ -37,6 +38,7 @@ function Home() {
       <Resume />
       <Services />
       <Skills />
+      <TemplatesGallery />
       <Projects />
       <Testimonials />
       <GetInTouch />

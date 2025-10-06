@@ -105,6 +105,17 @@ export interface SkillsData extends CommonContent {
   skills: Partial<Record<SkillCategory, SkillItem[]>>;
 }
 
+export interface TemplatesGalleryData extends CommonContent {
+  templates?: {
+    id: string | number;
+    title: string;
+    description: string;
+    image: string;
+    link: string;
+    icon?: string | IconType;
+  }[];
+}
+
 export interface ProjectsData extends CommonContent {
   projects?: {
     id: string | number;
