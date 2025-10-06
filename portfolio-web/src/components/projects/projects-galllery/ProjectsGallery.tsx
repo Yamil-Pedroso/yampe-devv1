@@ -16,6 +16,7 @@ import { MdSettingsApplications } from "react-icons/md";
 const menuGalleryItems = [
   "Show All",
   "Web Development",
+  "Website Templates",
   "Mobile Apps",
   "UI/UX Design",
   "Mini Apps",
@@ -223,7 +224,7 @@ const ProjectsGallery = () => {
                               className={[
                                 "rounded-md",
                                 i === 2
-                                  ? "w-auto h-90 object-contain mx-auto"
+                                  ? "w-auto object-contain mx-auto"
                                   : isMini
                                     ? "h-56 w-auto object-contain mx-auto brightness-90"
                                     : "w-full h-full object-cover",

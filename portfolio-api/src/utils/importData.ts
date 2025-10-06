@@ -126,7 +126,7 @@ async function main() {
 
 // ================== SEEDERS ==================
 
-// ABOUT: un único documento, mapeando TODAS las props del modelo //
+// ABOUT: a single document, mapping ALL the properties of the model //
 // ================== SEEDERS ==================
 async function seedAbout() {
   const payload = {
@@ -135,29 +135,29 @@ async function seedAbout() {
     description: aboutMeData.description,
     status: "published",
 
-    // image es STRING en tu modelo
+    // Image is a STRING in your model
     image: typeof aboutMeData.image === "string" ? aboutMeData.image : "",
 
-    // features usa 'icon' (no iconKey) según tu schema
+    // Features use 'icon' (not iconKey) according to your schema
     features: (aboutMeData.features ?? []).map((f) => ({
       text: f.text,
       icon: typeof f.icon === "string" ? f.icon : undefined,
     })),
 
-    // infoContact usa text1/text2/icon según tu schema
+    // InfoContact use text1/text2/icon according to your schema
     infoContact: (aboutMeData.infoContact ?? []).map((c) => ({
       text1: c.text1,
       text2: (c.text2 ?? "").toString().trim(),
       icon: typeof c.icon === "string" ? c.icon : undefined,
     })),
 
-    // roleTags ya coincide (text, icon)
+    // RoleTags is already correct (text, icon)
     roleTags: (aboutMeData.roleTags ?? []).map((r) => ({
       text: r.text,
       icon: r.icon,
     })),
 
-    // opcional: tu schema permite seo (todas strings)
+    // Optional: your schema allows seo (all strings)
     seo: {
       metaTitle: aboutMeData.title,
       metaDescription: aboutMeData.description?.slice(0, 150),
@@ -181,7 +181,7 @@ async function seedServices() {
     { upsert: true, new: true }
   );
 
-  // 2) Items -> normaliza y añade slug
+  // 2) Items -> normalize and add slug
   const items = (servicesData.services ?? []).map((s: any, i: number) => {
     const stepNumber = String(
       s.stepNumber ?? `${String(i + 1).padStart(2, "0")}.`
@@ -198,7 +198,7 @@ async function seedServices() {
     };
   });
 
-  // 3) Upsert por slug (eficiente con bulkWrite)
+  // 3) Upsert by slug (efficient with bulkWrite)
   await ServiceModel.bulkWrite(
     items.map((doc) => ({
       updateOne: {
@@ -210,7 +210,7 @@ async function seedServices() {
   );
 }
 
-// SKILLS: settings + items (cada skill es un doc con category)
+// SKILLS: settings + items (each skill is a document with category)
 async function seedSkills() {
   if (!skillsData) return;
 
@@ -224,14 +224,15 @@ async function seedSkills() {
     { upsert: true, new: true }
   );
 
-  // Convierte el objeto categorizado a un array plano
+  // Convert the categorized object to a flat array
   const groups = skillsData.skills as Record<
     string,
     Array<{ tech: string; level: number; icon?: string }>
   >;
   const entries = Object.entries(groups).flatMap(([category, arr]) =>
     (arr ?? []).map((s) => ({
-      category, // debe coincidir con el enum del modelo: "frontend" | "backend" | ...
+      // must match the enum in the model: "frontend" | "backend" | ...
+      category, // include category property
       tech: s.tech,
       level: s.level,
       icon: s.icon,
