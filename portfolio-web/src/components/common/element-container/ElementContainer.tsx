@@ -18,8 +18,8 @@ const ElementContainer = ({
     <Component
       onClick={onClick}
       className={`
-          ${border ? "border border-border-color" : ""}
-          rounded-2xl overflow-hidden ${className}`}
+          ${border ? "border border-color3" : ""}
+          rounded-3xl overflow-hidden ${className}`}
     >
       {children}
     </Component>
