@@ -3,14 +3,13 @@ import ElementContainer from "@/components/common/element-container/ElementConta
 import { FaSearch, FaCalendarAlt } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import Button from "@/components/common/buttons/Button";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 import { useDevtoByTags } from "@/lib/hooks/useDevto";
 
 const placeholderImg =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='100%%' height='100%%' fill='%23f3f4f6'/><text x='50%%' y='50%%' dominant-baseline='middle' text-anchor='middle' fill='%239ca3af' font-family='system-ui' font-size='20'>Sin imagen</text></svg>";
 
-// Provisional, hasta tener categorías reales
 const provisionalCategories = [
   { id: 1, name: "Category 1" },
   { id: 2, name: "Category 2" },
@@ -22,8 +21,7 @@ const provisionalCategories = [
 
 const TAGS = ["react", "typescript", "javascript"];
 
-// Animaciones
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
@@ -31,8 +29,7 @@ const itemVariants = {
     transition: { duration: 0.45, ease: "easeInOut" },
   },
 };
-
-const rowVariants = {
+const rowVariants: Variants = {
   hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
@@ -102,10 +99,10 @@ const NewsBlogsPlace = () => {
         Stay updated with the latest news and blogs from our team.
       </p>
 
-      {/* Responsive layout: 1 col en móvil, 3 cols en lg */}
+
       <div className="grid grid-cols-1 gap-8 mt-10 sm:mt-14 lg:mt-20 lg:grid-cols-3">
-        {/* Bloque izquierdo: ocupa 2 columnas en lg; 1 col en móvil y 2 cols desde sm */}
-        <div className="grid lg:col-span-2 grid-cols-1 sm:grid-cols-2 gap-6 mx-0 lg:mx-5">
+
+        <div className="grid lg:col-span-2 grid-cols-1 sm:grid-cols-2 gap-0 mx-0 lg:mx-14">
           {/* Columna 1 */}
           <div className="grid justify-items-center">
             {col1.map((item, i) => (
@@ -118,7 +115,7 @@ const NewsBlogsPlace = () => {
                 transition={{ delay: (i % 4) * 0.06 }}
                 className="w-full flex justify-center"
               >
-                <ElementContainer className="flex flex-col  mb-7 w-full xs:w-[28rem] xl:w-[24.6875rem] xl:h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color cursor-pointer">
+                <ElementContainer className="flex flex-col w-full xs:w-[28rem] xl:w-[24.6875rem] xl:min-h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color cursor-pointer mb-8">
                   <div className="w-[23.3125rem] h-[16.5625rem] overflow-hidden rounded-3xl">
                     <img
                       src={item.img ?? placeholderImg}
@@ -128,32 +125,36 @@ const NewsBlogsPlace = () => {
                     />
                   </div>
 
-                  <div className="flex flex-wrap gap-3 mt-5">
-                    {item.tags.map((tag, tagIndex) => (
-                      <a
-                        href="#"
-                        key={tagIndex}
-                        onClick={handleClickTag(tag)}
-                        className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
-                      >
-                        <span className="group-hover:text-color0">{tag}</span>
-                      </a>
-                    ))}
-                  </div>
+                  {/* Contenido que se estira */}
+                  <div className="flex flex-col flex-1">
+                    <div className="flex flex-wrap gap-3 mt-5">
+                      {item.tags.map((tag, tagIndex) => (
+                        <a
+                          href="#"
+                          key={tagIndex}
+                          onClick={handleClickTag(tag)}
+                          className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
+                        >
+                          <span className="group-hover:text-color0">{tag}</span>
+                        </a>
+                      ))}
+                    </div>
 
-                  <h3 className="mt-5 text-color4 text-[1.25rem]">
-                    {item.title}
-                  </h3>
-                  <hr className="my-5 border-t border-border-color" />
+                    <h3 className="mt-5 text-color4 text-[1.25rem]">
+                      {item.title}
+                    </h3>
 
-                  {/* createdAt */}
-                  <div className="flex items-center text-color2 text-[1rem]">
-                    <FaCalendarAlt className="inline mr-1" />
-                    <span className="ml-2">
-                      {item.createdAt
-                        ? dt.format(new Date(item.createdAt))
-                        : "—"}
-                    </span>
+                    <hr className="my-5 border-t border-border-color" />
+
+                    {/* Fecha pegada al fondo con margen inferior consistente */}
+                    <div className="mt-auto pt-2 pb-1 flex items-center text-color2 text-[1rem]">
+                      <FaCalendarAlt className="inline mr-1" />
+                      <span className="ml-2">
+                        {item.createdAt
+                          ? dt.format(new Date(item.createdAt))
+                          : "—"}
+                      </span>
+                    </div>
                   </div>
                 </ElementContainer>
               </motion.div>
@@ -172,7 +173,7 @@ const NewsBlogsPlace = () => {
                 transition={{ delay: (i % 4) * 0.06 }}
                 className="w-full flex justify-center"
               >
-                <ElementContainer className="flex flex-col w-full xs:w-[28rem] xl:w-[24.6875rem] xl:h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color  cursor-pointer">
+                <ElementContainer className="flex flex-col w-full xs:w-[28rem] xl:w-[24.6875rem] xl:min-h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color cursor-pointer mb-8">
                   <div className="w-[23.3125rem] h-[16.5625rem] overflow-hidden rounded-3xl">
                     <img
                       src={item.img ?? placeholderImg}
@@ -181,31 +182,35 @@ const NewsBlogsPlace = () => {
                       loading="lazy"
                     />
                   </div>
-                  <div className="flex flex-wrap gap-3 mt-5">
-                    {item.tags.map((tag, tagIndex) => (
-                      <a
-                        href="#"
-                        key={tagIndex}
-                        onClick={handleClickTag(tag)}
-                        className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
-                      >
-                        <span className="group-hover:text-color0">{tag}</span>
-                      </a>
-                    ))}
-                  </div>
 
-                  <h3 className="mt-5 text-color4 text-[1.25rem]">
-                    {item.title}
-                  </h3>
-                  <hr className="my-5 border-t border-border-color" />
-                  {/* createdAt */}
-                  <div className="flex items-center text-color2 text-[1rem]">
-                    <FaCalendarAlt className="inline mr-1" />
-                    <span className="ml-2">
-                      {item.createdAt
-                        ? dt.format(new Date(item.createdAt))
-                        : "—"}
-                    </span>
+                  <div className="flex flex-col flex-1">
+                    <div className="flex flex-wrap gap-3 mt-5">
+                      {item.tags.map((tag, tagIndex) => (
+                        <a
+                          href="#"
+                          key={tagIndex}
+                          onClick={handleClickTag(tag)}
+                          className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
+                        >
+                          <span className="group-hover:text-color0">{tag}</span>
+                        </a>
+                      ))}
+                    </div>
+
+                    <h3 className="mt-5 text-color4 text-[1.25rem]">
+                      {item.title}
+                    </h3>
+
+                    <hr className="my-5 border-t border-border-color" />
+
+                    <div className="mt-auto pt-2 pb-1 flex items-center text-color2 text-[1rem]">
+                      <FaCalendarAlt className="inline mr-1" />
+                      <span className="ml-2">
+                        {item.createdAt
+                          ? dt.format(new Date(item.createdAt))
+                          : "—"}
+                      </span>
+                    </div>
                   </div>
                 </ElementContainer>
               </motion.div>
@@ -222,7 +227,7 @@ const NewsBlogsPlace = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="w-full flex justify-center"
           >
-            <ElementContainer className="flex flex-col  w-full xs:w-[28rem] xl:w-[28rem] xl:h-[106.125rem] bg-bg1-color p-[.7rem] border border-border-color  cursor-pointer">
+            <ElementContainer className="flex flex-col  w/full xs:w-[28rem] xl:w-[32rem] xl:h-[106.125rem] bg-bg1-color p-[.7rem]  border-border-color  cursor-pointer">
               <div className="relative w-full">
                 <h3 className="mt-5 text-color4 text-[1.25rem]">Search</h3>
                 <hr className="my-5 border-t border-border-color" />
