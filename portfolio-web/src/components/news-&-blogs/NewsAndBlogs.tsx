@@ -1,7 +1,8 @@
 import { useNavigate } from "@tanstack/react-router";
 import DarkContainer from "../common/containers/DarkContainer";
 import { Route as NewsBlogsRoute } from "@/routes/new-work-details/$newsBlogsId";
-import { newsAndBlogsData } from "@/data/newsAndBlogsData";
+//import { newsAndBlogsData } from "@/data/newsAndBlogsData";
+import { useDevtoByTags } from "@/lib/hooks/useDevto";
 import ElementContainer from "../common/element-container/ElementContainer";
 import Button from "../common/buttons/Button";
 import { IoIosArrowForward } from "react-icons/io";
@@ -12,9 +13,17 @@ import {
   ctaTap,
 } from "@/components/common/animation/motionTokens";
 
+const placeholderImg =
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'><rect width='100%%' height='100%%' fill='%23f3f4f6'/><text x='50%%' y='50%%' dominant-baseline='middle' text-anchor='middle' fill='%239ca3af' font-family='system-ui' font-size='20'>Sin imagen</text></svg>";
+
 const NewsAndBlogs = () => {
   const navigate = useNavigate();
-  const { header, newsAndBlogs } = newsAndBlogsData;
+  const header = "News & Blogs";
+  //const { newsAndBlogs } = newsAndBlogsData;
+  const { data: newsAndBlogs = [] } = useDevtoByTags(
+    ["react", "typescript", "javascript"],
+    6
+  );
 
   const handleNewsAndBlogsClick = (newsBlogsId: number) => {
     navigate({
@@ -57,6 +66,12 @@ const NewsAndBlogs = () => {
     },
   };
 
+  const dt = new Intl.DateTimeFormat("es-ES", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Europe/Zurich",
+  });
+
   return (
     <DarkContainer className="flex flex-col justify-center mt-30">
       <motion.div
@@ -81,13 +96,12 @@ const NewsAndBlogs = () => {
         viewport={{ once: true, amount: 0.2 }}
         className="flex flex-col justify-center items-center w-full lg:flex-row gap-8"
       >
-        {newsAndBlogs.map((item, i) => (
+        {newsAndBlogs.slice(0, 2).map((item, i) => (
           <motion.div key={i} variants={cardUp}>
             <ElementContainer
               className="flex justify-center items-center mb-4 w-full xs:w-[28rem] xl:w-[39.375rem] xl:h-[22rem] bg-bg1-color p-[.7rem] gap-10 cursor-pointer"
-              onClick={() => handleNewsAndBlogsClick(item.id as number)}
+              onClick={() => handleNewsAndBlogsClick(Number(item.id))}
             >
-              {/* Stagger interno para contenido de la card */}
               <motion.div
                 variants={innerStagger}
                 initial="hidden"
@@ -97,11 +111,11 @@ const NewsAndBlogs = () => {
               >
                 <motion.div
                   variants={innerItem}
-                  className="h-[30rem] lg:h-[30.5rem] xl:w-[18.125rem] xl:h-[20.625rem] rounded-2xl overflow-hidden"
+                  className="w-full h-[30rem] lg:h-[30.5rem] xl:w-[18.125rem] xl:h-[20.625rem] rounded-2xl overflow-hidden"
                 >
                   <img
-                    src={item.image}
-                    alt={item.excerpt}
+                    src={item.image ?? placeholderImg}
+                    alt={item.title}
                     className="w-full h-full object-cover brightness-95"
                   />
                 </motion.div>
@@ -111,7 +125,7 @@ const NewsAndBlogs = () => {
                   className="flex flex-col flex-1 gap-12 p-5"
                 >
                   <motion.div variants={innerItem} className="flex gap-2 mt-2">
-                    {item.tags.map((tag, tagIndex) => (
+                    {item.tags.slice(0, 2).map((tag, tagIndex) => (
                       <a
                         href="#"
                         key={tagIndex}
@@ -126,15 +140,18 @@ const NewsAndBlogs = () => {
                     variants={innerItem}
                     className="text-color4 text-[22px]"
                   >
-                    {item.excerpt}
+                    {item.title}
                   </motion.h3>
 
                   <motion.div variants={innerItem} className="flex">
                     <div className="flex items-center gap-2">
-                      {item.icon && <item.icon className="text-gray-400" />}
+                      {/*{item.icon && <item.icon className="text-gray-400" />}*/}
                     </div>
                     <p className=" text-gray-500 ml-3">
-                      {item.date} - {item.author}
+                      {item.publishedAt
+                        ? dt.format(new Date(item.publishedAt))
+                        : "—"}{" "}
+                      - {item.author}
                     </p>
                   </motion.div>
                 </motion.div>

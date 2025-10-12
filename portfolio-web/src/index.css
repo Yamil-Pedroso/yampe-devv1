@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Playball&display=swap");
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 html,
 body {
@@ -13,6 +14,7 @@ body {
 }
 
 @theme {
+  --prose-img-border-radius: 0.75rem;
   --main-bg-color: #141414;
   --main-bg-color2: #1e1e1e;
   --main-bg-color-light: #f7f7f7;

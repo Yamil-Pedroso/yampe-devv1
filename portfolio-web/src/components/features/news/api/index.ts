@@ -10,6 +10,7 @@ export async function fetchDevtoByTag(
   const articles = await fetchDevtoArticles({ tag, per_page: perPage, page });
   return articles.map((item) => ({
     ...item,
+    id: String(item.id),
     categories: [],
   }));
 }
@@ -26,7 +27,7 @@ export async function fetchDevtoByTags(
 
   const seen = new Set<string>();
   const dedup = merged.filter((i) =>
-    seen.has(i.id) ? false : (seen.add(i.id), true)
+    seen.has(String(i.id)) ? false : (seen.add(String(i.id)), true)
   );
 
   return dedup
@@ -37,6 +38,7 @@ export async function fetchDevtoByTags(
     })
     .map((item) => ({
       ...item,
+      id: String(item.id),
       categories: [],
     }));
 }

@@ -13,6 +13,7 @@
     "@pixi/filter-pixelate": "^5.1.1",
     "@pixi/react": "^8.0.3",
     "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/react-query": "^5.85.5",
     "@tanstack/react-router": "^1.130.12",
@@ -27,7 +28,10 @@
     "react-dom": "^19.1.1",
     "react-fast-marquee": "^1.6.5",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "react-pixelate": "^0.0.1",
+    "rehype-highlight": "^7.0.2",
+    "remark-gfm": "^4.0.1",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
