@@ -13,10 +13,12 @@ export type FeedItem = {
   url: string;
   image?: string | null;
   source: string;
+  description?: string | null;
   kind: ItemKind;
   categories: string[];
   tags: string[];
   author?: string | null;
+  authorAvatar?: string | null;
   publishedAt: Date | null;
   score?: number | null;
   fetchedAt: Date;

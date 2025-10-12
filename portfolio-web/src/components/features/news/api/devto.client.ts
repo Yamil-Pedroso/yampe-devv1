@@ -4,6 +4,7 @@ export const DevtoArticleSchema = z.object({
   id: z.number(),
   title: z.string(),
   url: z.string().url(),
+  description: z.string().nullable().optional(),
   cover_image: z.string().url().nullable().optional(),
   social_image: z.string().url().nullable().optional(),
   tag_list: z
@@ -11,14 +12,34 @@ export const DevtoArticleSchema = z.object({
     .nullable()
     .optional(),
   published_at: z.string().datetime().nullable().optional(),
+  body_markdown: z.string().nullable().optional(),
   user: z
     .object({
       name: z.string().nullable().optional(),
+      profile_image: z.string().url().nullable().optional(),
+      profile_image_90: z.string().url().nullable().optional(),
+    })
+    .nullable()
+    .optional(),
+  organization: z
+    .object({
+      name: z.string().nullable().optional(),
+      profile_image: z.string().url().nullable().optional(),
+      profile_image_90: z.string().url().nullable().optional(),
     })
     .nullable()
     .optional(),
 });
 export type DevtoArticle = z.infer<typeof DevtoArticleSchema>;
+
+// GET /api/articles/{id}
+export async function fetchDevtoArticleById(numericId: number) {
+  const url = `https://dev.to/api/articles/${numericId}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`DEV.to detail ${res.status}`);
+  const raw = await res.json();
+  return DevtoArticleSchema.parse(raw);
+}
 
 // --- Utils ---
 const toDate = (v?: string | number | Date | null) => {
@@ -89,14 +110,22 @@ export async function fetchDevtoArticles(q: DevtoQuery = {}) {
   );
 
   return parsed.data.map((a) => ({
-    id: `devto-${a.id}`,
+    id: a.id,
     title: a.title,
     url: a.url,
     image: a.cover_image ?? a.social_image ?? null,
+    description: a.description ?? null,
     source: "devto",
+    body: a.body_markdown ?? null,
     kind: "blog" as const,
     tags: toTags(a.tag_list),
     author: a.user?.name ?? null,
+    authorAvatar:
+      a.user?.profile_image_90 ??
+      a.user?.profile_image ??
+      a.organization?.profile_image_90 ??
+      a.organization?.profile_image ??
+      null,
     publishedAt: toDate(a.published_at),
     score: null,
     fetchedAt: new Date(),

@@ -87,7 +87,7 @@ const NewsBlogsAside = ({ keyword, setKeyword }: INewsBlogsAsideProps) => {
         viewport={{ once: true, amount: 0.2 }}
         className=""
       >
-        <ElementContainer className="flex flex-col xs:w-[28rem] xl:w-[32rem] xl:h-[106.125rem] bg-bg1-color p-[2rem] border border-border-color cursor-pointer">
+        <ElementContainer className="flex flex-col xs:w-[28rem] xl:w-[32rem] xl:h-auto bg-bg1-color p-[2rem] border border-border-color cursor-pointer">
           <div className="relative w-full">
             <h3 className="mt-5 text-color4 text-[1.25rem]">Search</h3>
             <hr className="my-5 border-t border-border-color" />

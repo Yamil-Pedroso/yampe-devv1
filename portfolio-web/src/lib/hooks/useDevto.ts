@@ -4,6 +4,7 @@ import {
   fetchDevtoByTags,
   fetchDevtoByTag,
 } from "@/components/features/news/api";
+import { fetchDevtoArticleById } from "@/components/features/news/api/devto.client";
 
 export function useDevtoByTag(tag: string, perPage = 12, page = 1) {
   return useQuery<FeedItem[]>({
@@ -23,5 +24,14 @@ export function useDevtoByTags(tags: string[], perPerTag = 6) {
     refetchInterval: 5 * 60_000,
     refetchOnWindowFocus: true,
     enabled: tags.length > 0,
+  });
+}
+
+export function useDevtoArticle(numericId: number) {
+  return useQuery({
+    queryKey: ["devto:article", numericId],
+    queryFn: () => fetchDevtoArticleById(numericId),
+    enabled: Number.isFinite(numericId),
+    staleTime: 5 * 60_000,
   });
 }

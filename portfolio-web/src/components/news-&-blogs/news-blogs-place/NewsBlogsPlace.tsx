@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { Route as NewsBlogsRoute } from "@/routes/new-work-details/$newsBlogsId";
 import ElementContainer from "@/components/common/element-container/ElementContainer";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
@@ -22,6 +24,7 @@ const itemVariants: Variants = {
 };
 
 const NewsBlogsPlace = () => {
+  const navigate = useNavigate();
   const { data = [] } = useDevtoByTags(TAGS, 24);
   const allItems = useMemo(
     () =>
@@ -34,6 +37,13 @@ const NewsBlogsPlace = () => {
       })),
     [data]
   );
+
+  const handleNewsAndBlogsClick = (newsBlogsId: number) => {
+    navigate({
+      to: NewsBlogsRoute.to,
+      params: { newsBlogsId: String(newsBlogsId) },
+    });
+  };
 
   const [keyword, setKeyword] = useState("");
   const filtered = useMemo(() => {
@@ -96,7 +106,11 @@ const NewsBlogsPlace = () => {
                 transition={{ delay: (i % 4) * 0.06 }}
                 className="w-full flex justify-center"
               >
-                <ElementContainer className="flex flex-col w-full xs:w-[28rem] xl:w-[24.6875rem] xl:min-h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color cursor-pointer mb-8">
+                <ElementContainer
+                  className="flex flex-col w-full xs:w-[28rem] xl:w-[24.6875rem] xl:min-h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color cursor-pointer mb-8"
+                  onClick={() => handleNewsAndBlogsClick(Number(item.id))}
+                >
+                  {/* Imagen fija */}
                   <div className="w-[23.3125rem] h-[16.5625rem] overflow-hidden rounded-3xl">
                     <img
                       src={item.img ?? placeholderImg}
@@ -154,7 +168,10 @@ const NewsBlogsPlace = () => {
                 transition={{ delay: (i % 4) * 0.06 }}
                 className="w-full flex justify-center"
               >
-                <ElementContainer className="flex flex-col w-full xs:w-[28rem] xl:w-[24.6875rem] xl:min-h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color cursor-pointer mb-8">
+                <ElementContainer
+                  className="flex flex-col w-full xs:w-[28rem] xl:w-[24.6875rem] xl:min-h-[32.9375rem] bg-bg1-color p-[.7rem] border border-border-color cursor-pointer mb-8"
+                  onClick={() => handleNewsAndBlogsClick(Number(item.id))}
+                >
                   <div className="w-[23.3125rem] h-[16.5625rem] overflow-hidden rounded-3xl">
                     <img
                       src={item.img ?? placeholderImg}

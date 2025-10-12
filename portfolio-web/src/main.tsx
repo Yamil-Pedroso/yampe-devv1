@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
+import "highlight.js/styles/github-dark.css";
 
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import "./index.css";
