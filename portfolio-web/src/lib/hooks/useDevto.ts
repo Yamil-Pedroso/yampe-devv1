@@ -20,9 +20,9 @@ export function useDevtoByTags(tags: string[], perPerTag = 6) {
   return useQuery<FeedItem[]>({
     queryKey: ["devto", { v: 2, tags: [...tags].sort(), perPerTag }],
     queryFn: () => fetchDevtoByTags(tags, perPerTag),
-    staleTime: 2 * 60_000,
-    refetchInterval: 5 * 60_000,
-    refetchOnWindowFocus: true,
+    staleTime: 30 * 60_000,
+    refetchInterval: 30 * 60_000,
+    refetchOnWindowFocus: false,
     enabled: tags.length > 0,
   });
 }

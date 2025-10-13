@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { IconType } from "react-icons";
 import { MdOutlineWeb } from "react-icons/md";
@@ -133,7 +134,7 @@ const Services: React.FC = () => {
               >
                 <ElementContainer
                   border
-                  className="flex justify-between flex-col w-full h-auto p-12 px-10 rounded-2xl shadow-lg bg-bg1-color sm:items-center sm:px-6 sm:flex-row  sm:h-[8.5rem]"
+                  className="flex justify-between flex-col w-full h-auto p-12 px-10 rounded-2xl shadow-lg bg-bg1-color sm:items-center sm:px-6 sm:flex-row  sm:h-[8.5rem] xl:h-[10.5rem]"
                 >
                   <div className="flex flex-col gap-2 sm:flex-row">
                     <h3 className="text-[1.5rem] font-bold">
