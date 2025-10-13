@@ -138,7 +138,7 @@ const NewsAndBlogs = () => {
 
                   <motion.h3
                     variants={innerItem}
-                    className="text-color4 text-[22px]"
+                    className="text-color4 text-[22px] line-clamp-2"
                   >
                     {item.title}
                   </motion.h3>
