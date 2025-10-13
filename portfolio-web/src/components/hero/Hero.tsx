@@ -9,6 +9,7 @@ import {
 } from "@/components/common/animation/motionTokens";
 import AskMeBox from "@/components/common/ai/AskMeBox";
 import GeomShapes from "../common/shapes/GeomShapes";
+//import { Icon } from "@iconify/react";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -65,9 +66,15 @@ const Hero = () => {
           {heroData.description}
         </p>
 
+        {/*<div className="flex gap-3 text-color0">
+          <Icon icon="pixelarticons:mail" className="w-6 h-6" />
+          <Icon icon="pixelarticons:github" className="w-6 h-6" />
+          <Icon icon="pixelarticons:arrow-right" className="w-6 h-6" />
+        </div>*/}
+
         <div className="mt-6 flex gap-4 custom:flex-row flex-col">
           <Button
-            href={heroData.buttons[0].href}
+            href={heroData.buttons[1].href}
             className="h-[3rem] group"
             initial="hidden"
             animate="show"
@@ -75,6 +82,8 @@ const Hero = () => {
             transition={{ delay: 0.35 }}
             whileHover={ctaHover}
             whileTap={ctaTap}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <span className="font-bold">{heroData.buttons[0].text}</span>
 
@@ -87,7 +96,7 @@ const Hero = () => {
             )}
           </Button>
 
-          <a href={heroData.buttons[1].href} className="flex items-center">
+          {/*<a href={heroData.buttons[1].href} className="flex items-center">
             <span className="mx-1.5 underline underline-offset-4">
               {heroData.buttons[1].text}
             </span>
@@ -96,7 +105,7 @@ const Hero = () => {
                 {React.createElement(heroData.buttons[1].icon)}
               </span>
             )}
-          </a>
+          </a>*/}
         </div>
       </motion.div>
 

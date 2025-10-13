@@ -1,4 +1,3 @@
-import React from "react";
 import { FaCode, FaEnvelope, FaServer, FaLaptopCode } from "react-icons/fa6";
 import { AiOutlineApi } from "react-icons/ai";
 import { BsBraces, BsBracesAsterisk } from "react-icons/bs";
