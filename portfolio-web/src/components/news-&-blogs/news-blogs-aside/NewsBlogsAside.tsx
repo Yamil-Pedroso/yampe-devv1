@@ -1,13 +1,21 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import ElementContainer from "@/components/common/element-container/ElementContainer";
+import { Route as NewsBlogsRoute } from "@/routes/new-work-details/$newsBlogsId";
 import { motion, Variants } from "framer-motion";
 import { FaCalendarAlt, FaSearch } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { useDevtoByTags } from "@/lib/hooks/useDevto";
 
+type Category = {
+  id: string | number;
+  name: string;
+  slug?: string;
+};
 interface INewsBlogsAsideProps {
   keyword: string;
   setKeyword: (keyword: string) => void;
+  categories?: Category[];
 }
 
 const placeholderImg =
@@ -31,19 +39,38 @@ const rowVariants: Variants = {
   },
 };
 
-const provisionalCategories = [
-  { id: 1, name: "Category 1" },
-  { id: 2, name: "Category 2" },
-  { id: 3, name: "Category 3" },
-  { id: 4, name: "Category 4" },
-  { id: 5, name: "Category 5" },
-  { id: 6, name: "Category 6" },
-];
-
 const TAGS = ["react", "typescript", "javascript"];
 
-const NewsBlogsAside = ({ keyword, setKeyword }: INewsBlogsAsideProps) => {
+const DEFAULT_CATEGORIES: Category[] = [
+  { id: 1, name: "Web", slug: "web" },
+  { id: 2, name: "Frontend", slug: "frontend" },
+  { id: 3, name: "Backend", slug: "backend" },
+  { id: 4, name: "UI/UX", slug: "ui-ux" },
+  { id: 5, name: "DevOps", slug: "devops" },
+  { id: 6, name: "AI", slug: "ai" },
+];
+
+const NewsBlogsAside = ({
+  keyword,
+  setKeyword,
+  categories,
+}: INewsBlogsAsideProps) => {
   const { data = [] } = useDevtoByTags(TAGS, 24);
+  const cats = categories?.length ? categories : DEFAULT_CATEGORIES;
+  const [inputTerm, setInputTerm] = useState(keyword);
+  const navigate = useNavigate();
+
+  const handleNewsAndBlogsClick = (newsBlogsId: number) => {
+    navigate({
+      to: NewsBlogsRoute.to,
+      params: { newsBlogsId: String(newsBlogsId) },
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setKeyword(inputTerm.trim());
+  };
 
   const allItems = useMemo(
     () =>
@@ -78,6 +105,12 @@ const NewsBlogsAside = ({ keyword, setKeyword }: INewsBlogsAsideProps) => {
     timeZone: "Europe/Zurich",
   });
 
+  const handleClickCategory = (cat: Category) => (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    setKeyword((cat.slug ?? cat.name).toLowerCase());
+  };
+
   return (
     <div className="">
       <motion.div
@@ -88,33 +121,40 @@ const NewsBlogsAside = ({ keyword, setKeyword }: INewsBlogsAsideProps) => {
         className=""
       >
         <ElementContainer className="flex flex-col xs:w-[28rem] xl:w-[32rem] xl:h-auto bg-bg1-color p-[2rem] border border-border-color cursor-pointer">
-          <div className="relative w-full">
+          <form onSubmit={handleSubmit} className="relative w-full">
             <h3 className="mt-5 text-color4 text-[1.25rem]">Search</h3>
             <hr className="my-5 border-t border-border-color" />
             <input
               type="text"
               placeholder="Keywords..."
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              className="w-full p-4 border border-border-color rounded-2xl bg-bg1-color text-color4 focus:outline-none relative"
+              value={inputTerm}
+              onChange={(e) => setInputTerm(e.target.value)}
+              className="w-full p-4 pr-12 border border-border-color rounded-2xl bg-bg1-color text-color4 focus:outline-none"
             />
-            <FaSearch className="absolute right-6 top-28 text-color0" />
-          </div>
+            <button
+              type="submit"
+              aria-label="Buscar"
+              className="absolute right-4 top-[80%] -translate-y-1/2 cursor-pointer"
+            >
+              <FaSearch className="text-color0" />
+            </button>
+          </form>
 
           {/* Categories */}
           <div>
             <h3 className="mt-5 text-color4 text-[1.25rem]">Categories</h3>
             <hr className="my-5 border-t border-border-color" />
             <ul className="mt-2">
-              {provisionalCategories.map((category) => (
-                <li key={category.id} className="mb-4">
-                  <a
-                    href="#"
-                    className="flex items-center text-color3 hover:text-color0"
+              {(cats ?? []).map((cat) => (
+                <li key={cat.id} className="mb-4">
+                  <button
+                    type="button"
+                    onClick={handleClickCategory(cat)}
+                    className="flex items-center text-left text-color3 hover:text-color0"
                   >
                     <IoIosArrowForward />
-                    <p className="ml-2 text-[1.125rem]">{category.name}</p>
-                  </a>
+                    <span className="ml-2 text-[1.125rem]">{cat.name}</span>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -134,6 +174,7 @@ const NewsBlogsAside = ({ keyword, setKeyword }: INewsBlogsAsideProps) => {
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ delay: (i % 5) * 0.05 }}
                   className="flex mb-4"
+                  onClick={() => handleNewsAndBlogsClick(Number(item.id))}
                 >
                   <div className="w-[4.0625rem] h-[4.0625rem] overflow-hidden rounded-full">
                     <img
@@ -176,7 +217,7 @@ const NewsBlogsAside = ({ keyword, setKeyword }: INewsBlogsAsideProps) => {
                   href="#"
                   key={`${tag}-${tagIndex}`}
                   onClick={handleClickTag(tag)}
-                  className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
+                  className="flex justify-center items-center p-2 px-4 text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
                 >
                   <span className="group-hover:text-color0">{tag}</span>
                 </a>

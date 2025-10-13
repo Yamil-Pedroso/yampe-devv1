@@ -1,3 +1,14 @@
+import { mapToPortfolioCategories } from "@/components/features/news/utils/category.map";
+
+export type PortfolioCategory =
+  | "Web Design"
+  | "Mobile Apps Design"
+  | "Brand Identity Design"
+  | "Motion Graphic Design"
+  | "Web Development"
+  | "Digital Marketing"
+  | "Artificial Intelligence";
+
 export type ItemKind =
   | "news"
   | "blog"
@@ -15,7 +26,7 @@ export type FeedItem = {
   source: string;
   description?: string | null;
   kind: ItemKind;
-  categories: string[];
+  categories: PortfolioCategory[];
   tags: string[];
   author?: string | null;
   authorAvatar?: string | null;
@@ -60,7 +71,7 @@ export function mapDevto(a: DevtoArticle): FeedItem {
     image: a.cover_image ?? a.social_image ?? null,
     source: "devto",
     kind: "blog",
-    categories: [...tags], // o mapea a tu taxonomía si tienes una lista controlada
+    categories: mapToPortfolioCategories(tags, a.title),
     tags,
     author: a.user?.name ?? null,
     publishedAt: toDate(a.published_at),
@@ -116,7 +127,7 @@ export function mapRSS(entry: RSSEntry): FeedItem {
     image: entry.mediaContent?.url ?? entry.enclosure?.url ?? null,
     source: "techcrunch", // ajusta según el feed
     kind: "news",
-    categories: [...tags],
+    categories: mapToPortfolioCategories(tags, entry.title),
     tags,
     author: entry.author ?? null,
     publishedAt: toDate(entry.isoDate),

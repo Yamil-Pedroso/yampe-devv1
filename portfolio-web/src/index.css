@@ -16,6 +16,7 @@ body {
 @theme {
   --prose-img-border-radius: 0.75rem;
   --main-bg-color: #141414;
+  --main-bg-white-color: #ffffff;
   --main-bg-color2: #1e1e1e;
   --main-bg-color-light: #f7f7f7;
   --color-bg1-color: #070707;
