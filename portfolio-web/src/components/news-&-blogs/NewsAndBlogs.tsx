@@ -129,7 +129,7 @@ const NewsAndBlogs = () => {
                       <a
                         href="#"
                         key={tagIndex}
-                        className="flex justify-center items-center w-[7rem] h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
+                        className="flex justify-center items-center p-2 px-4 text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
                       >
                         <span className="group-hover:text-color0">{tag}</span>
                       </a>

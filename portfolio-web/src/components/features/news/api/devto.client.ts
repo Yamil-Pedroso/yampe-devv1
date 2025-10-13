@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { mapToPortfolioCategories } from "@/components/features/news/utils/category.map";
 
 export const DevtoArticleSchema = z.object({
   id: z.number(),
@@ -109,25 +110,31 @@ export async function fetchDevtoArticles(q: DevtoQuery = {}) {
     parsed.data.slice(0, 8).map((a) => a.published_at)
   );
 
-  return parsed.data.map((a) => ({
-    id: a.id,
-    title: a.title,
-    url: a.url,
-    image: a.cover_image ?? a.social_image ?? null,
-    description: a.description ?? null,
-    source: "devto",
-    body: a.body_markdown ?? null,
-    kind: "blog" as const,
-    tags: toTags(a.tag_list),
-    author: a.user?.name ?? null,
-    authorAvatar:
-      a.user?.profile_image_90 ??
-      a.user?.profile_image ??
-      a.organization?.profile_image_90 ??
-      a.organization?.profile_image ??
-      null,
-    publishedAt: toDate(a.published_at),
-    score: null,
-    fetchedAt: new Date(),
-  }));
+  return parsed.data.map((a) => {
+    const tags = toTags(a.tag_list);
+    const categories = mapToPortfolioCategories(tags, a.title);
+
+    return {
+      id: a.id,
+      title: a.title,
+      url: a.url,
+      image: a.cover_image ?? a.social_image ?? null,
+      description: a.description ?? null,
+      source: "devto",
+      body: a.body_markdown ?? null,
+      kind: "blog" as const,
+      tags: toTags(a.tag_list),
+      categories,
+      author: a.user?.name ?? null,
+      authorAvatar:
+        a.user?.profile_image_90 ??
+        a.user?.profile_image ??
+        a.organization?.profile_image_90 ??
+        a.organization?.profile_image ??
+        null,
+      publishedAt: toDate(a.published_at),
+      score: null,
+      fetchedAt: new Date(),
+    };
+  });
 }
