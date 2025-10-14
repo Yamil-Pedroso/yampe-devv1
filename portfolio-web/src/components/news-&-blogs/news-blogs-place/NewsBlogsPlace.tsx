@@ -88,12 +88,23 @@ const NewsBlogsPlace = () => {
   return (
     <div className="flex flex-col items-center justify-center p-4 sm:p-8">
       <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center">
-        Latest News & Blogs
+        Latest Blog & Tutorials
       </h2>
-      <p className="text-base sm:text-lg text-color3 text-center">
-        Stay updated with the latest news and blogs from our team.
+      <p className="text-base sm:text-lg text-color3 text-center mt-3.5">
+        Stay updated with the latest trends and insights in web development
       </p>
-
+      <p className="mt-2 text-sm text-center text-color2 ">
+        Articles are fetched from{" "}
+        <a
+          href="https://dev.to"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-color0"
+        >
+          DEV Community (dev.to)
+        </a>
+        .
+      </p>
       <div className="flex flex-col justify-center lg:flex-row mt-8 sm:mt-10 lg:mt-20 gap-8 lg:gap-12 w-full">
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 w-full lg:w-auto">
           <div className="flex flex-col items-center w-full md:w-auto">

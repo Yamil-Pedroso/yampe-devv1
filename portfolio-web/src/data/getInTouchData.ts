@@ -5,7 +5,7 @@ export const getInTouchData: GetInTouchData = {
   header: "Get In Touch",
   description: "If you have any questions, feel free to reach out!",
   servicesTags: [
-    { text: "4+ Years Of Experience", icon: FaCheck },
+    { text: "5+ Years Of Experience", icon: FaCheck },
     { text: "Professional Web Developer", icon: FaCheck },
     { text: "Mobile Apps Design", icon: FaCheck },
     { text: "UI/UX Design", icon: FaCheck },

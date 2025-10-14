@@ -85,7 +85,7 @@ const Hero = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="font-bold">{heroData.buttons[0].text}</span>
+            <span className="font-bold">{heroData.buttons[1].text}</span>
 
             {heroData.buttons[0].icon && (
               <motion.span

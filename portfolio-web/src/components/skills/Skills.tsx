@@ -1,13 +1,6 @@
 import { skillsData } from "@/data/skillsData";
 import { motion, Variants } from "framer-motion";
 import DarkContainer from "../common/containers/DarkContainer";
-import Button from "../common/buttons/Button";
-import { IoIosArrowForward } from "react-icons/io";
-import {
-  ctaEnter,
-  ctaHover,
-  ctaTap,
-} from "@/components/common/animation/motionTokens";
 import SkillsPeriodicGrid from "./SkillsPeriodicGrid";
 
 const headerVariant: Variants = {
@@ -51,7 +44,7 @@ const Skills: React.FC = () => {
           </p>
         )}
 
-        <div className="mt-8">
+        {/*<div className="mt-8">
           <Button
             initial="hidden"
             animate="show"
@@ -69,7 +62,7 @@ const Skills: React.FC = () => {
               />
             </span>
           </Button>
-        </div>
+        </div> */}
       </motion.div>
 
       <SkillsPeriodicGrid />

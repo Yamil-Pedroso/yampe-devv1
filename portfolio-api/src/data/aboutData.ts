@@ -2,7 +2,7 @@ export const aboutMeData = {
   header: "About Me",
   title: "Professional Problem Solver For Digital Products",
   description: `
-I am a Full Stack Developer with over 4 years of experience building scalable,
+I am a Full Stack Developer with over 5 years of experience building scalable,
 responsive, and user-focused applications across the web. My technical expertise spans
 frontend frameworks like React and backend technologies such as Node.js and Express,
 with a strong foundation in modern architectures, REST APIs, and clean code practices.
