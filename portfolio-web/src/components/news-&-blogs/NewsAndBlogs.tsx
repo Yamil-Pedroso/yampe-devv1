@@ -18,7 +18,10 @@ const placeholderImg =
 
 const NewsAndBlogs = () => {
   const navigate = useNavigate();
-  const header = "News & Blogs";
+  const header = "Tech Articles";
+  const description =
+    "Stay updated with the latest trends and insights in web development and more...";
+
   //const { newsAndBlogs } = newsAndBlogsData;
   const { data: newsAndBlogs = [] } = useDevtoByTags(
     ["react", "typescript", "javascript"],
@@ -75,7 +78,7 @@ const NewsAndBlogs = () => {
   return (
     <DarkContainer className="flex flex-col justify-center mt-30">
       <motion.div
-        id="blogs"
+        id="articles"
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
@@ -84,8 +87,9 @@ const NewsAndBlogs = () => {
       >
         <h2 className="text-color4 font-bold">{header}</h2>
         <p className="text-[2.8125rem] max-w-[45rem] text-base/14">
-          Latest News <span className="text-color0">Blogs</span>
+          Latest Blog &<span className="text-color0"> Tutorials</span>
         </p>
+        <p className="mt-4 text-color2 max-w-[28rem] mx-auto">{description}</p>
       </motion.div>
 
       {/* Contenedor con stagger para las tarjetas */}
@@ -178,7 +182,7 @@ const NewsAndBlogs = () => {
           whileTap={ctaTap}
           className="cursor-pointer group"
         >
-          <span className="font-bold ">Explore News & Blogs</span>
+          <span className="font-bold ">Explore Blog & Tutorials</span>
           <span>
             <IoIosArrowForward
               className="group-hover:ml-2 transition-all duration-300"

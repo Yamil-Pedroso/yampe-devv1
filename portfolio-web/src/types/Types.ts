@@ -32,7 +32,12 @@ export const menuItems: MenuItem[] = [
     href: "/projects-gallery",
     submenus: ["Projects gallery"],
   },
-  { id: "blogs", title: "Blogs", href: "/news-blogs", submenus: ["Blogs all"] },
+  {
+    id: "articles",
+    title: "Articles",
+    href: "/news-blogs",
+    submenus: ["Articles all"],
+  },
   { id: "contact", title: "Contact", href: "#contact" },
 ];
 
@@ -93,7 +98,8 @@ type SkillCategory =
   | "databases"
   | "design"
   | "devops"
-  | "architecture";
+  | "architecture"
+  | "myDailyStack";
 
 export interface SkillItem {
   tech: string;

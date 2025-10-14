@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from "react";
+import React, { useMemo, useEffect, useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -38,6 +38,7 @@ const titleMap: Record<string, string> = {
   design: "Design",
   devops: "DevOps",
   architecture: "Architecture",
+  myDailyStack: "My Daily Stack",
 };
 
 const order = [
@@ -47,7 +48,29 @@ const order = [
   "design",
   "devops",
   "architecture",
+  "myDailyStack",
 ] as const;
+
+const DAILY_STACK = new Set([
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "HTML",
+  "CSS",
+  "Node.js",
+  "Tailwind CSS",
+  "Figma",
+  "Git",
+  "VS Code",
+  "TypeScript",
+  "GitHub",
+  "Rest API",
+  "SQL",
+  "NoSQL",
+  "Vercel",
+  "Netlify",
+  "Photoshop",
+]);
 
 // ---- Variants ----
 const makeTileVariants = (noMotion: boolean): Variants => ({
@@ -70,6 +93,7 @@ const makeTileVariants = (noMotion: boolean): Variants => ({
  * SkillsPeriodicGrid (responsive + GSAP inertia hover)
  */
 const SkillsPeriodicGrid: React.FC = () => {
+  const [hovered, setHovered] = useState<string | null>(null);
   const reduceMotion = useReducedMotion();
   const tileVariants = makeTileVariants(!!reduceMotion);
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -77,6 +101,14 @@ const SkillsPeriodicGrid: React.FC = () => {
   const oldY = useRef(0);
   const deltaX = useRef(0);
   const deltaY = useRef(0);
+
+  const handleMouseEnter = (tech: string) => {
+    setHovered(tech);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(null);
+  };
 
   // Aplanamos todas las skills conservando su categoría
   const flat = useMemo(() => {
@@ -165,10 +197,17 @@ const SkillsPeriodicGrid: React.FC = () => {
       className="w-full mx-auto px-3 sm:px-4 md:px-6 mwg_effect000"
     >
       <div className="mb-3 sm:mb-4 hidden sm:flex flex-wrap gap-2 text-[11px] sm:text-xs text-color4/80">
-        {order.map((k) => (
+        {order.map((k, i) => (
           <span
-            key={k}
+            key={`legend-${k}-${i}`}
             className="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-[#171717] border border-border-color"
+            onMouseEnter={() => handleMouseEnter(k)}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              opacity: !hovered || hovered === k ? 1 : 0.4,
+              transition: "opacity 0.3s ease",
+              cursor: "default",
+            }}
           >
             <span className="inline-block w-2 h-2 rounded-full bg-color3" />
             {titleMap[k]}
@@ -183,6 +222,22 @@ const SkillsPeriodicGrid: React.FC = () => {
       >
         {flat.map((item, i) => {
           const pct = clamp(item.level ?? 0);
+          const isHoveringSomething = Boolean(hovered);
+          const isDailyMode = hovered === "myDailyStack";
+          const isDailyPick = isDailyMode && DAILY_STACK.has(item.tech);
+          const isHoveredCategory =
+            hovered && hovered !== "myDailyStack" && hovered === item.category;
+
+          const visualStateClass = !isHoveringSomething
+            ? "grayscale-100 opacity-50"
+            : isDailyMode
+              ? isDailyPick
+                ? "opacity-100 grayscale-0 border-color0 scale-110 z-10 m-2 "
+                : "opacity-15 grayscale scale-95 blur-sm"
+              : isHoveredCategory
+                ? "opacity-100 grayscale-0 scale-110 z-10 m-2"
+                : "opacity-15 grayscale scale-95 blur-sm";
+
           return (
             <motion.div
               key={`${item.category}-${item.tech}-${i}`}
@@ -193,7 +248,9 @@ const SkillsPeriodicGrid: React.FC = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={tileVariants}
             >
-              <ElementContainer className="relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36 rounded-2xl bg-[#151515] border border-border-color hover:border-color0 transition-colors duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform opacity-50 grayscale-100 hover:opacity-100 hover:grayscale-0 group">
+              <ElementContainer
+                className={`relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36 rounded-2xl bg-[#151515] border border-border-color hover:border-color0  transition-all duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform   hover:opacity-100 hover:grayscale-0 group ${visualStateClass}`}
+              >
                 <div className="absolute top-2 left-2 text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md bg-bg2-color/60 border border-border-color">
                   {titleMap[item.category]}
                 </div>
