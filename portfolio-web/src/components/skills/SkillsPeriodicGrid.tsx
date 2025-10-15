@@ -120,6 +120,50 @@ const SkillsPeriodicGrid: React.FC = () => {
     return items;
   }, []);
 
+  // dame 7 colores para los border de tailwindcss
+  const borderTextSevenColors = [
+    {
+      border: "border-indigo-500",
+      text: "text-indigo-400",
+      bg: "bg-indigo-500/10",
+    },
+    {
+      border: "border-teal-500",
+      text: "text-teal-400",
+      bg: "bg-teal-500/10",
+    },
+    {
+      border: "border-emerald-500",
+      text: "text-emerald-400",
+      bg: "bg-emerald-500/10",
+    },
+    {
+      border: "border-yellow-500",
+      text: "text-yellow-400",
+      bg: "bg-yellow-500/10",
+    },
+    {
+      border: "border-rose-500",
+      text: "text-rose-400",
+      bg: "bg-rose-500/10",
+    },
+    {
+      border: "border-purple-500",
+      text: "text-purple-400",
+      bg: "bg-purple-500/10",
+    },
+    {
+      border: "border-sky-500",
+      text: "text-sky-400",
+      bg: "bg-sky-500/10",
+    },
+    {
+      border: "border-red-500",
+      text: "text-red-400",
+      bg: "bg-red-500/10",
+    },
+  ];
+
   // GSAP setup (mousemove delta + hover timelines)
   useEffect(() => {
     if (!rootRef.current) return;
@@ -196,11 +240,11 @@ const SkillsPeriodicGrid: React.FC = () => {
       ref={rootRef}
       className="w-full mx-auto px-3 sm:px-4 md:px-6 mwg_effect000"
     >
-      <div className="mb-3 sm:mb-4 hidden sm:flex flex-wrap gap-2 text-[11px] sm:text-xs text-color4/80">
+      <div className="mb-3 sm:mb-4 hidden sm:flex flex-wrap gap-2 text-[11px] sm:text-xs opacity-80">
         {order.map((k, i) => (
-          <span
+          <div
             key={`legend-${k}-${i}`}
-            className="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-[#171717] border border-border-color"
+            className={`inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-[#171717] border ${borderTextSevenColors[i].border} ${borderTextSevenColors[i].bg}`}
             onMouseEnter={() => handleMouseEnter(k)}
             onMouseLeave={handleMouseLeave}
             style={{
@@ -209,9 +253,13 @@ const SkillsPeriodicGrid: React.FC = () => {
               cursor: "default",
             }}
           >
-            <span className="inline-block w-2 h-2 rounded-full bg-color3" />
-            {titleMap[k]}
-          </span>
+            {/*<span
+              className={`inline-block w-2 h-2 rounded-full ${borderTextSevenColors[i].bg}`}
+            /> */}
+            <p className={`inline-block ${borderTextSevenColors[i].text}`}>
+              {titleMap[k]}
+            </p>
+          </div>
         ))}
       </div>
 
@@ -232,7 +280,7 @@ const SkillsPeriodicGrid: React.FC = () => {
             ? "grayscale-100 opacity-50"
             : isDailyMode
               ? isDailyPick
-                ? "opacity-100 grayscale-0 border-color0 scale-110 z-10 m-2 "
+                ? `opacity-100 grayscale-0 scale-110 z-10 m-2`
                 : "opacity-15 grayscale scale-95 blur-sm"
               : isHoveredCategory
                 ? "opacity-100 grayscale-0 scale-110 z-10 m-2"
@@ -249,7 +297,7 @@ const SkillsPeriodicGrid: React.FC = () => {
               variants={tileVariants}
             >
               <ElementContainer
-                className={`relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36 rounded-2xl bg-[#151515] border border-border-color hover:border-color0  transition-all duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform   hover:opacity-100 hover:grayscale-0 group ${visualStateClass}`}
+                className={`relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36 rounded-2xl bg-[#151515]   hover:border-color0  transition-all duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform   hover:opacity-100 hover:grayscale-0 group ${visualStateClass}`}
               >
                 <div className="absolute top-2 left-2 text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md bg-bg2-color/60 border border-border-color">
                   {titleMap[item.category]}

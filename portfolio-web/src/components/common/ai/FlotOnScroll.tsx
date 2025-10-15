@@ -300,7 +300,7 @@ export default function FlotOnScroll({
                 bg-bg1-color text-white shadow-lg border border-color3/40
                 transition will-change-transform
                 hover:opacity-100 active:opacity-90
-                outline-none
+                outline-none cursor-pointer
               "
               style={{ transformOrigin: "50% 50%" }}
               title={openLabel}
