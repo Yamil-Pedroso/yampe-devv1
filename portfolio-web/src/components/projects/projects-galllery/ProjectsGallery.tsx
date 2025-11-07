@@ -215,7 +215,7 @@ const ProjectsGallery = () => {
                                 ? "blur(5px) brightness(80%)"
                                 : "none",
                           }}
-                          className="flex justify-center items-center w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg3-color overflow-hidden relative"
+                          className="flex justify-center items-center w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg3-color rounded-2xl overflow-hidden relative"
                         >
                           {project.image && (
                             <img
@@ -270,7 +270,7 @@ const ProjectsGallery = () => {
                     className="m-2"
                   >
                     <BlockwithhHover>
-                      <div className="flex justify-center items-center relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg1-color overflow-hidden rounded-md">
+                      <div className="flex justify-center items-center relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/25] bg-bg1-color overflow-hidden rounded-2xl">
                         <MdSettingsApplications
                           size={64}
                           className="text-color3"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 interface VideoCompProps {
   src: string;
@@ -19,10 +19,39 @@ const VideoComp: React.FC<VideoCompProps> = ({
   preload = "metadata",
   onError,
 }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Intentar reproducir automáticamente
+    video.play().catch(() => {
+      console.warn("Autoplay blocked by browser");
+    });
+
+    // Cuando termina, rebobinar y esperar antes de reiniciar
+    const handleEnded = () => {
+      video.currentTime = 0; // rebobina inmediatamente
+      video.pause(); // pausa para evitar el último frame congelado
+
+      const delay = 10000; // 10 segundos
+      setTimeout(() => {
+        if (video) video.play();
+      }, delay);
+    };
+
+    video.addEventListener("ended", handleEnded);
+
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+    };
+  }, []);
+
   return (
     <video
+      ref={videoRef}
       autoPlay
-      loop
       muted
       playsInline
       controls={controls}
@@ -32,7 +61,6 @@ const VideoComp: React.FC<VideoCompProps> = ({
       onError={onError}
     >
       <source src={src} type={type} />
-      {/* Fallback-Text */}
       Your browser does not support the video tag.
     </video>
   );
