@@ -84,7 +84,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
               <motion.div
                 initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
                 animate={imgCtrls}
-                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
+                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color rounded-2xl overflow-hidden"
                 onMouseEnter={() => handleMouseEnter(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 style={{
@@ -167,7 +167,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
               <motion.div
                 initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
                 animate={imgCtrls}
-                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden"
+                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color rounded-2xl overflow-hidden"
                 onMouseEnter={() => handleMouseEnter(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 style={{

@@ -14,6 +14,7 @@ import { fetchHome } from "@/services/HomeService";
 import { AboutDTO, HomeResponse } from "@/services/HomeService";
 import { FaCheck } from "react-icons/fa6";
 import ServiceGroups from "../common/service-groups/ServiceGroups";
+import VideoComp from "../common/video/VideoComp";
 
 const iconMap: Record<string, React.ElementType> = {
   FaCheck: FaCheck,
@@ -164,14 +165,21 @@ const About = () => {
 
           <motion.div
             ref={imageRef}
-            className="w-[22rem] h-[27rem] desktop:w-[27.5rem] desktop:h-[33.125rem] mt-[0rem] desktop:mt-[5rem] overflow-hidden"
+            className="w-[22rem] h-[27rem] desktop:w-[27.5rem] desktop:h-[33.125rem] mt-[0rem] desktop:mt-[5rem] rounded-2xl overflow-hidden"
             style={{ y: imgY }}
           >
-            <img
+            {/* video */}
+            <VideoComp
+              src="/videos/about/va_1.mp4"
+              type="video/mp4"
+              className="w-full h-full object-cover"
+              poster="/images/about/about-me-poster.jpg"
+            />
+            {/*<img
               src={aboutMeData.image}
               alt="About Me"
               className="w-full h-full object-cover"
-            />
+            />*/}
           </motion.div>
         </div>
       </div>

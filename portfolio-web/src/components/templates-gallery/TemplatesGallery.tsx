@@ -35,7 +35,7 @@ const TemplatesGallery = () => {
 
         <VideoComp
           src={assets.video1}
-          className="w-full max-w-4xl h-auto rounded-lg shadow-lg"
+          className="w-full max-w-4xl h-auto rounded-2xl shadow-lg"
           poster="/images/templates/restaurant-website.jpg"
           preload="auto"
         />
