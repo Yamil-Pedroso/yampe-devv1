@@ -44,6 +44,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
           const isOpen = openItem === item.title;
           const hasSubmenus =
             Array.isArray(item.submenus) && item.submenus.length > 0;
+          console.log(hasSubmenus);
 
           return (
             <li
