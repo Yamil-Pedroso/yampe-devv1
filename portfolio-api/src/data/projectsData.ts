@@ -2,6 +2,22 @@ export const projectsData = {
   header: "My Works",
   projects: [
     {
+      title: "Fitness & Nutrition",
+      subtitle: "Consistency, nourishment, and growth",
+      description:
+        "A performance lab at the intersection of fitness and nourishment, shaping immersive, data-driven, and body-positive experiences for modern living",
+      category: "Web Development",
+      tags: ["react", "typescript", "tailwindcss", "Node.js", "MongoDB"],
+      link: "https://fitness-nutrition-v1.netlify.app/",
+      image: "/images/projects/fit_nut.png",
+      imageDetails: [
+        "/images/projects/project-details/fit_nut_1.png",
+        "/images/projects/project-details/fit_nut_2.png",
+        "/images/projects/project-details/fit_nut_3.png",
+      ],
+      icon: "MdOutlineArrowOutward",
+    },
+    {
       title: "Liminal",
       subtitle: "Creative Studio",
       description:
