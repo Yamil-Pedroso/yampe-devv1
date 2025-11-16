@@ -25,13 +25,13 @@ connectDB();
 
 const app = express();
 
-
 const IMAGES_DIR = path.resolve(process.cwd(), "public/images");
 console.log("Serving images from:", IMAGES_DIR);
 
 app.use("/images", express.static(IMAGES_DIR));
 
 app.use(helmet());
+
 app.use(
   cors({
     origin: (origin, callback) => {
