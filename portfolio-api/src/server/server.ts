@@ -9,6 +9,8 @@ import homeRoutes from "../modules/home/home.routes";
 import aboutRoutes from "../modules/about/about.routes";
 import projectsRoutes from "../modules/projects/projects.routes";
 import aiDevPortfolioAssistantRoutes from "../modules/ai-devportfolio-assistant/aiDevPortfolioAssistant.routes";
+import notificationRoutes from "../modules/notifications/notifications.routes";
+import notificationsAdminFormRoutes from "../routes/notificationAdminForm";
 
 dotenv.config({
   path: path.resolve(process.cwd(), "src", "config", "config.env"),
@@ -33,6 +35,7 @@ app.use("/images", express.static(IMAGES_DIR));
 app.use(helmet());
 
 app.use(
+  "/api",
   cors({
     origin: (origin, callback) => {
       const allowed = (process.env.CORS_ORIGIN ?? "").split(",");
@@ -56,6 +59,8 @@ app.use("/api", homeRoutes);
 app.use("/api", aiDevPortfolioAssistantRoutes);
 app.use("/api", aboutRoutes);
 app.use("/api", projectsRoutes);
+app.use("/api", notificationRoutes);
+app.use("/", notificationsAdminFormRoutes);
 
 app.get("/", (_req: Request, res: Response) => {
   res.send("Hello World!");
