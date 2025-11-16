@@ -8,6 +8,8 @@ import homeRoutes from "../modules/home/home.routes";
 import aboutRoutes from "../modules/about/about.routes";
 import projectsRoutes from "../modules/projects/projects.routes";
 import aiDevPortfolioAssistantRoutes from "../modules/ai-devportfolio-assistant/aiDevPortfolioAssistant.routes";
+import notificationsRoutes from "../modules/notifications/notifications.routes";
+import notificationsAdminForm from "../routes/notificationAdminForm";
 
 dotenv.config({
   path: path.resolve(__dirname, "..", "config", "config.env"),
@@ -32,18 +34,19 @@ app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 // Rutas
+app.get("/", (_req: Request, res: Response) => {
+  res.send("Hello World!");
+});
 app.use("/api", homeRoutes);
 app.use("/api", aiDevPortfolioAssistantRoutes);
 app.use("/api", aboutRoutes);
 app.use("/api", projectsRoutes);
+app.use("/api", notificationsRoutes);
+app.use("/", notificationsAdminForm);
 
 // Test endpoint
 app.get("/api/test", (_req: Request, res: Response) => {
   res.json({ message: "Test endpoint working!" });
-});
-
-app.get("/", (_req: Request, res: Response) => {
-  res.send("Hello World!");
 });
 
 app.listen(PORT, () => {

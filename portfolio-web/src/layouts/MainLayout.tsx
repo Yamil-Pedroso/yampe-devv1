@@ -4,6 +4,10 @@ import Navbar from "@/components/navbar/Navbar";
 import InfoFooter from "@/components/footer/InfoFooter";
 import Lenis from "@studio-freight/lenis";
 import ModalNote from "@/components/common/modals/ModalNote";
+
+// IMPORTA TU MODAL DE NOTIFICACIONES AUTOMÁTICAS
+import NotificationWrapper from "@/components/common/modals/NotificationWrapper";
+
 interface MainLayoutProps {
   children: React.ReactNode;
 }
@@ -25,6 +29,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     return null;
   };
 
+  // ModalNote (tu modal intro) solo una vez por primera vez
   useEffect(() => {
     const modalAlreadyShown = getLocalStorage("modalShown");
 
@@ -36,6 +41,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   const closeModal = () => setIsModalOpen(false);
 
+  // Lenis smooth scrolling
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -60,9 +66,16 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className="flex flex-col mx-auto min-h-screen">
+      {/* TU MODAL DE INTRO AL CARGAR UNA VEZ */}
       {isModalOpen && <ModalNote onClose={closeModal} />}
+
       <Navbar />
+
+      {/* 🔔 MODAL AUTOMÁTICO CUANDO HAYA UNA NUEVA NOTIFICACIÓN */}
+      <NotificationWrapper />
+
       <main className="flex-grow">{children}</main>
+
       <InfoFooter />
     </div>
   );
