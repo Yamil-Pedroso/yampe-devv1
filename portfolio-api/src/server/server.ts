@@ -60,7 +60,7 @@ app.use("/api", projectsRoutes);
 app.use("/api", notificationRoutes);
 
 // ------------------ ADMIN FORM ROUTES ------------------
-app.use("/", notificationsAdminFormRoutes);
+app.use("/admin", notificationsAdminFormRoutes);
 
 // ------------------ ROOT ROUTES ------------------
 app.get("/", (_req: Request, res: Response) => {

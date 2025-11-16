@@ -9,7 +9,7 @@ const isProd = process.env.APP_ENV === "production";
 const apiBase = isProd ? "https://yampe.dev/api" : "http://localhost:3010/api";
 
 /**
- * Render form to create notification
+ * CREATE FORM
  */
 router.get("/notifications/new", (_req, res) => {
   res.send(`
@@ -17,35 +17,21 @@ router.get("/notifications/new", (_req, res) => {
       <head>
         <title>Create Notification</title>
         <style>
-          body {
-            font-family: sans-serif;
-            margin: 40px;
-          }
-          form {
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-          }
-          input, button {
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 16px;
-          }
-          button {
-            cursor: pointer;
-          }
+          body { font-family: sans-serif; margin: 40px; }
+          form { display: flex; flex-direction: column; max-width: 400px; }
+          input, button { padding: 10px; margin-top: 10px; font-size: 16px; }
+          button { cursor: pointer; }
         </style>
       </head>
       <body>
         <h2>Create Notification</h2>
 
-        <!-- 👇 IMPORTANTE: ahora sí funciona -->
-        <form method="POST" action="/notifications/create" enctype="application/x-www-form-urlencoded">
+        <form method="POST" action="/admin/notifications/create" enctype="application/x-www-form-urlencoded">
           <input type="text" name="message" placeholder="Write your notification…" required />
           <button type="submit">Create</button>
         </form>
 
-        <a href="/notifications/list">Go to Notifications List</a>
+        <a href="/admin/notifications/list">Go to Notifications List</a>
       </body>
     </html>
   `);
@@ -64,7 +50,7 @@ router.post("/notifications/create", async (req, res) => {
       body: JSON.stringify({ message }),
     });
 
-    return res.redirect("/notifications/list");
+    return res.redirect("/admin/notifications/list");
   } catch (err) {
     console.error(err);
     return res.status(500).send("Error creating notification");
@@ -72,7 +58,7 @@ router.post("/notifications/create", async (req, res) => {
 });
 
 /**
- * List all notifications
+ * LIST
  */
 router.get("/notifications/list", async (_req, res) => {
   try {
@@ -91,11 +77,10 @@ router.get("/notifications/list", async (_req, res) => {
             th { background: #f3f3f3; }
           </style>
         </head>
-
         <body>
           <h2>Notifications</h2>
 
-          <a href="/notifications/new">← Back to create notification</a>
+          <a href="/admin/notifications/new">← Back to create notification</a>
 
           <table>
             <thead>
@@ -105,7 +90,6 @@ router.get("/notifications/list", async (_req, res) => {
                 <th>Actions</th>
               </tr>
             </thead>
-
             <tbody>
               ${notifications
                 .map(
@@ -114,10 +98,10 @@ router.get("/notifications/list", async (_req, res) => {
                   <td>${n.message}</td>
                   <td>${new Date(n.createdAt).toLocaleString()}</td>
                   <td>
-                    <a href="/notifications/edit/${n._id}">Edit</a> |
-                    <a href="/notifications/delete/${
+                    <a href="/admin/notifications/edit/${n._id}">Edit</a> |
+                    <a href="/admin/notifications/delete/${
                       n._id
-                    }" style="color: red;">Delete</a>
+                    }" style="color:red;">Delete</a>
                   </td>
                 </tr>`
                 )
@@ -135,7 +119,7 @@ router.get("/notifications/list", async (_req, res) => {
 });
 
 /**
- * Render edit form
+ * EDIT FORM
  */
 router.get("/notifications/edit/:id", async (req, res) => {
   try {
@@ -157,12 +141,12 @@ router.get("/notifications/edit/:id", async (req, res) => {
         <body>
           <h2>Edit Notification</h2>
 
-          <form method="POST" action="/notifications/update/${notification._id}" enctype="application/x-www-form-urlencoded">
+          <form method="POST" action="/admin/notifications/update/${notification._id}" enctype="application/x-www-form-urlencoded">
             <input type="text" name="message" value="${notification.message}" required />
             <button type="submit">Update</button>
           </form>
 
-          <a href="/notifications/list">Back to list</a>
+          <a href="/admin/notifications/list">Back to list</a>
         </body>
       </html>
     `);
@@ -172,7 +156,7 @@ router.get("/notifications/edit/:id", async (req, res) => {
 });
 
 /**
- * Update via API
+ * UPDATE
  */
 router.post("/notifications/update/:id", async (req, res) => {
   try {
@@ -184,14 +168,14 @@ router.post("/notifications/update/:id", async (req, res) => {
       body: JSON.stringify({ message }),
     });
 
-    return res.redirect("/notifications/list");
+    return res.redirect("/admin/notifications/list");
   } catch (err) {
     res.status(500).send("Error updating notification");
   }
 });
 
 /**
- * Delete via API
+ * DELETE
  */
 router.get("/notifications/delete/:id", async (req, res) => {
   try {
@@ -199,7 +183,7 @@ router.get("/notifications/delete/:id", async (req, res) => {
       method: "DELETE",
     });
 
-    return res.redirect("/notifications/list");
+    return res.redirect("/admin/notifications/list");
   } catch (err) {
     res.status(500).send("Error deleting notification");
   }
