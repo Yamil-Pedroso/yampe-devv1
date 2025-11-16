@@ -8,7 +8,7 @@ interface INotification {
 }
 
 export const fetchNotifications = async (): Promise<INotification[]> => {
-  const response = await apiClient.get("/");
+  const response = await apiClient.get("/notifications");
   console.log("Fetched notifications:", response.data.notifications);
   return response.data.notifications;
 };

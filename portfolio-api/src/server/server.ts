@@ -27,52 +27,57 @@ connectDB();
 
 const app = express();
 
+// ------------------ STATIC FILES ------------------
 const IMAGES_DIR = path.resolve(process.cwd(), "public/images");
 console.log("Serving images from:", IMAGES_DIR);
-
 app.use("/images", express.static(IMAGES_DIR));
 
+// ------------------ SECURITY ------------------
 app.use(helmet());
 
+// ------------------ CORS ------------------
 app.use(
-  "/api",
   cors({
-    origin: (origin, callback) => {
-      const allowed = (process.env.CORS_ORIGIN ?? "").split(",");
-      if (!origin || allowed.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:3010",
+      "https://yampe.dev",
+    ],
     credentials: true,
   })
 );
 
-// ✅ Body parsers ANTES de las rutas
+// ------------------ BODY PARSERS ------------------
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.set("trust proxy", 1);
 
-// Rutas
+// ------------------ API ROUTES ------------------
 app.use("/api", homeRoutes);
 app.use("/api", aiDevPortfolioAssistantRoutes);
 app.use("/api", aboutRoutes);
 app.use("/api", projectsRoutes);
 app.use("/api", notificationRoutes);
+
+// ------------------ ADMIN FORM ROUTES ------------------
 app.use("/", notificationsAdminFormRoutes);
 
+// ------------------ ROOT ROUTES ------------------
 app.get("/", (_req: Request, res: Response) => {
   res.send("Hello World!");
 });
+
 app.get("/api/health", (_req: Request, res: Response) => {
   res.json({ status: "ok", uptime: process.uptime() });
 });
+
+// ------------------ ERROR HANDLER ------------------
 app.use((err: any, _req: Request, res: Response, _next: any) => {
   console.error("Error:", err);
   res.status(500).json({ error: "Internal Server Error" });
 });
 
+// ------------------ START SERVER ------------------
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

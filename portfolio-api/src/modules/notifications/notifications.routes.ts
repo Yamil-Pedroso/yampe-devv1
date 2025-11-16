@@ -3,9 +3,9 @@ import * as crtl from "./notifications.controller";
 
 const router = Router();
 
-router.get("/", crtl.listNotifications);
-router.post("/", crtl.createNotification);
-router.put("/:id", crtl.updateNotification);
-router.delete("/:id", crtl.deleteNotification);
+router.get("/notifications", crtl.listNotifications);
+router.post("/notifications", crtl.createNotification);
+router.put("/notifications/:id", crtl.updateNotification);
+router.delete("/notifications/:id", crtl.deleteNotification);
 
 export default router;
