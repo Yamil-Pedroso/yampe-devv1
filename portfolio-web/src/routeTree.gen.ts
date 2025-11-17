@@ -12,8 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProjectsGalleryRouteImport } from './routes/projects-gallery'
 import { Route as NewsBlogsRouteImport } from './routes/news-blogs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as ProjectDetailsProjectIdRouteImport } from './routes/project-details/$projectId'
 import { Route as NewWorkDetailsNewsBlogsIdRouteImport } from './routes/new-work-details/$newsBlogsId'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminNotificationsIndexRouteImport } from './routes/admin/notifications.index'
+import { Route as AdminNotificationsCreateRouteImport } from './routes/admin/notifications.create'
+import { Route as AdminNotificationsIdEditRouteImport } from './routes/admin/notifications.$id.edit'
 
 const ProjectsGalleryRoute = ProjectsGalleryRouteImport.update({
   id: '/projects-gallery',
@@ -30,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectDetailsProjectIdRoute = ProjectDetailsProjectIdRouteImport.update({
   id: '/project-details/$projectId',
   path: '/project-details/$projectId',
@@ -41,28 +51,65 @@ const NewWorkDetailsNewsBlogsIdRoute =
     path: '/new-work-details/$newsBlogsId',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNotificationsIndexRoute = AdminNotificationsIndexRouteImport.update({
+  id: '/admin/notifications/',
+  path: '/admin/notifications/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminNotificationsCreateRoute =
+  AdminNotificationsCreateRouteImport.update({
+    id: '/admin/notifications/create',
+    path: '/admin/notifications/create',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AdminNotificationsIdEditRoute =
+  AdminNotificationsIdEditRouteImport.update({
+    id: '/admin/notifications/$id/edit',
+    path: '/admin/notifications/$id/edit',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/news-blogs': typeof NewsBlogsRoute
   '/projects-gallery': typeof ProjectsGalleryRoute
+  '/admin/login': typeof AdminLoginRoute
   '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
   '/project-details/$projectId': typeof ProjectDetailsProjectIdRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/notifications/create': typeof AdminNotificationsCreateRoute
+  '/admin/notifications': typeof AdminNotificationsIndexRoute
+  '/admin/notifications/$id/edit': typeof AdminNotificationsIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/news-blogs': typeof NewsBlogsRoute
   '/projects-gallery': typeof ProjectsGalleryRoute
+  '/admin/login': typeof AdminLoginRoute
   '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
   '/project-details/$projectId': typeof ProjectDetailsProjectIdRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/notifications/create': typeof AdminNotificationsCreateRoute
+  '/admin/notifications': typeof AdminNotificationsIndexRoute
+  '/admin/notifications/$id/edit': typeof AdminNotificationsIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/news-blogs': typeof NewsBlogsRoute
   '/projects-gallery': typeof ProjectsGalleryRoute
+  '/admin/login': typeof AdminLoginRoute
   '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
   '/project-details/$projectId': typeof ProjectDetailsProjectIdRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/notifications/create': typeof AdminNotificationsCreateRoute
+  '/admin/notifications/': typeof AdminNotificationsIndexRoute
+  '/admin/notifications/$id/edit': typeof AdminNotificationsIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -70,30 +117,50 @@ export interface FileRouteTypes {
     | '/'
     | '/news-blogs'
     | '/projects-gallery'
+    | '/admin/login'
     | '/new-work-details/$newsBlogsId'
     | '/project-details/$projectId'
+    | '/admin'
+    | '/admin/notifications/create'
+    | '/admin/notifications'
+    | '/admin/notifications/$id/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/news-blogs'
     | '/projects-gallery'
+    | '/admin/login'
     | '/new-work-details/$newsBlogsId'
     | '/project-details/$projectId'
+    | '/admin'
+    | '/admin/notifications/create'
+    | '/admin/notifications'
+    | '/admin/notifications/$id/edit'
   id:
     | '__root__'
     | '/'
     | '/news-blogs'
     | '/projects-gallery'
+    | '/admin/login'
     | '/new-work-details/$newsBlogsId'
     | '/project-details/$projectId'
+    | '/admin/'
+    | '/admin/notifications/create'
+    | '/admin/notifications/'
+    | '/admin/notifications/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NewsBlogsRoute: typeof NewsBlogsRoute
   ProjectsGalleryRoute: typeof ProjectsGalleryRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   NewWorkDetailsNewsBlogsIdRoute: typeof NewWorkDetailsNewsBlogsIdRoute
   ProjectDetailsProjectIdRoute: typeof ProjectDetailsProjectIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminNotificationsCreateRoute: typeof AdminNotificationsCreateRoute
+  AdminNotificationsIndexRoute: typeof AdminNotificationsIndexRoute
+  AdminNotificationsIdEditRoute: typeof AdminNotificationsIdEditRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -119,6 +186,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/project-details/$projectId': {
       id: '/project-details/$projectId'
       path: '/project-details/$projectId'
@@ -133,6 +207,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewWorkDetailsNewsBlogsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/notifications/': {
+      id: '/admin/notifications/'
+      path: '/admin/notifications'
+      fullPath: '/admin/notifications'
+      preLoaderRoute: typeof AdminNotificationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/notifications/create': {
+      id: '/admin/notifications/create'
+      path: '/admin/notifications/create'
+      fullPath: '/admin/notifications/create'
+      preLoaderRoute: typeof AdminNotificationsCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/notifications/$id/edit': {
+      id: '/admin/notifications/$id/edit'
+      path: '/admin/notifications/$id/edit'
+      fullPath: '/admin/notifications/$id/edit'
+      preLoaderRoute: typeof AdminNotificationsIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -140,8 +242,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NewsBlogsRoute: NewsBlogsRoute,
   ProjectsGalleryRoute: ProjectsGalleryRoute,
+  AdminLoginRoute: AdminLoginRoute,
   NewWorkDetailsNewsBlogsIdRoute: NewWorkDetailsNewsBlogsIdRoute,
   ProjectDetailsProjectIdRoute: ProjectDetailsProjectIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminNotificationsCreateRoute: AdminNotificationsCreateRoute,
+  AdminNotificationsIndexRoute: AdminNotificationsIndexRoute,
+  AdminNotificationsIdEditRoute: AdminNotificationsIdEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

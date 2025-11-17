@@ -16,6 +16,8 @@ import { handleScrollItems } from "@/components/common/scroll-items/scrollItems"
 
 import { IoIosNotifications, IoIosNotificationsOff } from "react-icons/io";
 import { fetchNotifications } from "../services/notificationsService";
+import { useAdminAuth } from "@/lib/hooks/useAdminAuth";
+import { Link } from "@tanstack/react-router";
 
 const EXIT_MS = 400;
 
@@ -42,6 +44,8 @@ const Navbar = () => {
 
   // Whether the green dot should show
   const [hasNewNotifications, setHasNewNotifications] = useState(false);
+
+  const { authorized } = useAdminAuth();
 
   /**
    * Toggle dropdown — when user opens it,
@@ -177,6 +181,15 @@ const Navbar = () => {
             )}
           </AnimatePresence>
         </div>
+
+        {authorized && (
+          <Link
+            to="/admin/notifications"
+            className="px-3 py-1 bg-gray-700 text-white rounded-lg text-sm transition absolute left-1/2 -translate-x-1/2 top-[3.5rem]"
+          >
+            Admin Panel
+          </Link>
+        )}
 
         {/* Notifications + Hamburger */}
         <div className="flex-1 flex justify-end items-center">
