@@ -7,7 +7,7 @@ export const testimonialsData: TestimonialsData = {
     "What my clients and teammates say reflects the strong collaborations I foster, the shared goals we accomplish, and the value I strive to deliver in every project.",
   testimonials: [
     {
-      avatar: "/images/testimonials/avatar_1.jpg",
+      avatar: "/images/testimonials/avatar_1.webp",
       quote:
         "Yamil war für meine Anliegen immer verfügbar und hat zeitnah den Kontakt gehalten um meine Anliegen zu bearbeiten, seine technische und Gestalterische Unterstützung war sehr gut. Das Endprodukt der Website, der gestalterische Auftritt gefällt mir und entspricht genau dem was ich mir vorgestellt habe. Gerne empfehle ich Yamil zum erstellen einer neuen Website weiter.",
       author: "Claudia Calderone",
@@ -15,7 +15,7 @@ export const testimonialsData: TestimonialsData = {
       icon: FaQuoteLeft,
     },
     {
-      avatar: "/images/testimonials/avatar_2.jpg",
+      avatar: "/images/testimonials/avatar_2.webp",
       quote:
         "Yamil quickly turns my designs into code and everything works as expected, he makes sure the design looks just right and functions well, we work well together, and he always understands what I want, if something doesn’t work, he finds a way to fix it without complicating things",
 
@@ -24,7 +24,7 @@ export const testimonialsData: TestimonialsData = {
       icon: FaQuoteLeft,
     },
     {
-      avatar: "/images/testimonials/avatar_3.jpg",
+      avatar: "/images/testimonials/avatar_3.webp",
       quote:
         "Yamil is able to follow coding guidelines and produces clean code. I can always count on him to deliver code on time, and it usually needs minimal adjustments.",
 
@@ -33,7 +33,7 @@ export const testimonialsData: TestimonialsData = {
       icon: FaQuoteLeft,
     },
     {
-      avatar: "/images/testimonials/avatar_4.jpg",
+      avatar: "/images/testimonials/avatar_4.webp",
       quote:
         "Yamil consistently delivers high-quality work and collaborates effectively with the entire team, always open to feedback and suggestions. His positive attitude make him a pleasure to work with. I appreciate the value and impact he brings to our project.",
 
