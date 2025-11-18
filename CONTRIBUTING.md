@@ -24,8 +24,10 @@ Thank you for your interest in contributing to this portfolio project! This docu
    
    # Frontend
    cd ../portfolio-web
-   npm install
+   npm install --legacy-peer-deps
    ```
+   
+   > **Note:** Use `--legacy-peer-deps` for the frontend due to a peer dependency conflict.
 
 3. **Set Up Environment**
    - Follow the setup instructions in [README.md](./README.md)

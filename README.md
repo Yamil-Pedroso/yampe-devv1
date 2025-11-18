@@ -99,7 +99,7 @@ yampe-devv1/
 3. **Set up the Frontend (portfolio-web)**
    ```bash
    cd portfolio-web
-   npm install
+   npm install --legacy-peer-deps
    
    # Create .env from example
    cp .env.example .env
@@ -110,6 +110,8 @@ yampe-devv1/
    # Start development server
    npm run dev
    ```
+   
+   > **Note:** Use `--legacy-peer-deps` flag due to a peer dependency conflict with react-pixelate package.
    
    The web app will be available at `http://localhost:5173`
 
@@ -129,6 +131,11 @@ yampe-devv1/
 - `npm run lint` - Run ESLint
 
 ## 🚧 Troubleshooting
+
+**Installation Issues?**
+- Use `npm install --legacy-peer-deps` for the frontend if you encounter peer dependency conflicts
+- Ensure you have Node.js 18+ installed
+- Clear npm cache if experiencing persistent issues: `npm cache clean --force`
 
 **API not connecting?**
 - Ensure MongoDB is running and the connection string in `config.env` is correct
