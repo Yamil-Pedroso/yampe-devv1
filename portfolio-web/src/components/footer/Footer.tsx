@@ -16,11 +16,13 @@ const Footer = () => {
     <div className="w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6">
       <div className="max-w-7xl mx-auto">
         {/* Mobile Layout - Stack vertical */}
-        <div className="flex flex-col sm:hidden items-center gap-4 text-center">
+        <div className="flex flex-col mt-3 sm:hidden items-center gap-4 text-center">
           <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
             &copy; {year}{" "}
-            <span className="text-color0 font-medium">Yampe.dev</span>. All
-            rights reserved.
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 font-medium">
+              Yampe.dev
+            </span>
+            . All rights reserved.
           </p>
 
           <nav aria-label="Social links" className="w-full">

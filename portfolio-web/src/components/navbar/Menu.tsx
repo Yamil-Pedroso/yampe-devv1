@@ -51,7 +51,7 @@ const Menu: React.FC<MenuProps> = ({ className }) => {
                 e.preventDefault();
                 handleItemClick(item.id);
               }}
-              className="text-white hover:text-color0 transition-[font-size] duration-500 ease-in-out text-[2rem] mr-14 custom-small:text-[3rem] custom-small:m-0 lg:text-8xl"
+              className="text-white hover:text-purple-400 transition-[font-size] duration-500 ease-in-out text-[2rem] mr-14 custom-small:text-[3rem] custom-small:m-0 lg:text-8xl"
             >
               {item.title}
             </a>
@@ -77,7 +77,7 @@ const Menu: React.FC<MenuProps> = ({ className }) => {
     overflow-hidden
   "
                 >
-                  <div className="h-[2px] bg-gradient-to-r from-transparent via-color0 to-transparent opacity-40" />
+                  <div className="h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-40" />
 
                   {item.submenus!.map((submenu, j) => (
                     <motion.li key={j}>
