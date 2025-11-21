@@ -6,7 +6,6 @@ dotenv.config({
   path: path.resolve(process.cwd(), "src", "config", "config.env"),
 });
 
-
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });

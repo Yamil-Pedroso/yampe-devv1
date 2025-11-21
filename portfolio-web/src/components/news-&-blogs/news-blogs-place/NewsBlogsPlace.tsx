@@ -99,7 +99,7 @@ const NewsBlogsPlace = () => {
           href="https://dev.to"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-color0"
+          className="underline hover:text-purple-400 transition-colors duration-300"
         >
           DEV Community (dev.to)
         </a>
@@ -140,7 +140,9 @@ const NewsBlogsPlace = () => {
                           onClick={handleClickTag(tag)}
                           className="flex justify-center items-center px-3 h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[.95rem] sm:text-[1.1rem] group"
                         >
-                          <span className="group-hover:text-color0">{tag}</span>
+                          <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-purple-400 group-hover:to-blue-400">
+                            {tag}
+                          </span>
                         </a>
                       ))}
                     </div>
@@ -199,7 +201,9 @@ const NewsBlogsPlace = () => {
                           onClick={handleClickTag(tag)}
                           className="flex justify-center items-center px-3 h-[2.25rem] text-color4 bg-neutral-700 rounded-[.8rem] text-[.95rem] sm:text-[1.1rem] group"
                         >
-                          <span className="group-hover:text-color0">{tag}</span>
+                          <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-purple-400 group-hover:to-blue-400">
+                            {tag}
+                          </span>
                         </a>
                       ))}
                     </div>

@@ -20,7 +20,7 @@ const ClientsAndFirmas = () => {
     <section className="flex flex-col items-center justify-center mt-30 px-4">
       <p className="text-[1.125rem] max-w-[52rem] text-center leading-relaxed">
         Companies, startups, and organizations{" "}
-        <span className="text-color0">
+        <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">
           where I’ve studied and offered my services.
         </span>
       </p>

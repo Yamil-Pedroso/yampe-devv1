@@ -53,7 +53,9 @@ const GetInTouch = () => {
           "
         >
           Let's Talk For your{" "}
-          <span className="text-color0 ">Next Projects</span>
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">
+            Next Projects
+          </span>
         </p>
 
         <p className="text-color4 text-sm sm:text-base">{description}</p>
@@ -62,8 +64,8 @@ const GetInTouch = () => {
           <ul className="flex flex-col gap-3 sm:gap-4 mt-4">
             {getInTouchData.servicesTags?.map((service, index) => (
               <li key={index} className="flex items-center">
-                <div className="flex justify-center items-center w-[1.875rem] h-[1.875rem] rounded-full bg-color0 overflow-hidden">
-                  <service.icon className="text-bg1-color text-[1.1rem]" />
+                <div className="flex justify-center items-center w-[1.875rem] h-[1.875rem] rounded-full  bg-[image:var(--gradient-bg)]  overflow-hidden">
+                  <service.icon className="text-bg1-color text-[1.1rem] " />
                 </div>
                 <span className="ml-4 sm:ml-6 text-color4 text-[16px] sm:text-[18px] lg:text-[20px]">
                   {service.text}

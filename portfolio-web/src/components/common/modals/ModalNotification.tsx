@@ -84,7 +84,7 @@ const ModalNotification = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={onClose}
-                className="px-8 py-3 rounded-full bg-green-500 hover:bg-green-600 transition font-semibold shadow-lg text-black"
+                className="px-8 py-3 rounded-full bg-green-500 hover:bg-green-600 transition font-semibold shadow-lg text-black cursor-pointer"
               >
                 Got it
               </motion.button>

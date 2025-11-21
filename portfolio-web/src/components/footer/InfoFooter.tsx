@@ -13,6 +13,8 @@ import {
   ctaTap,
 } from "@/components/common/animation/motionTokens";
 import ScrollToTopMorph from "../common/animation/morphism/ScrollToTopMorph";
+import { handleScrollItems } from "../common/scroll-items/scrollItems";
+import LogoComp from "../common/logo/LogoComp";
 
 const listStagger: Variants = {
   hidden: {},
@@ -59,6 +61,10 @@ const InfoFooter = () => {
     setEmail("");
   };
 
+  const handleQuickLinkClick = (href: string) => {
+    handleScrollItems(href.replace("#", ""));
+  };
+
   return (
     <div id="contact">
       <DarkContainer className="mt-16 sm:mt-20 md:mt-24 lg:mt-30 w-full min-h-[20rem] sm:min-h-[24rem] md:min-h-[26rem] lg:min-h-[28rem] px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16 relative">
@@ -79,18 +85,13 @@ const InfoFooter = () => {
               variants={colUp}
             >
               <motion.div
-                className="flex items-center gap-2 sm:gap-3"
+                className="flex items-end gap-2 sm:gap-3"
                 variants={innerStagger}
               >
-                <motion.img
-                  variants={innerItem}
-                  src="/images/logo/cubi_logo_orange.png"
-                  alt="Yampe.dev"
-                  className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
-                />
+                <LogoComp className="w-14 h-14" width={48} height={48} />
                 <motion.h1
                   variants={innerItem}
-                  className="text-xl sm:text-2xl md:text-3xl font-bold text-white mx-1 sm:mx-2"
+                  className="text-md sm:text-2xl md:text-2xl font-bold text-white mx-1"
                 >
                   Yampe.dev
                 </motion.h1>
@@ -115,7 +116,11 @@ const InfoFooter = () => {
                     <motion.li key={link.text} variants={innerItem}>
                       <a
                         href={link.href}
-                        className="text-sm sm:text-base text-zinc-300 transition hover:text-white"
+                        className="text-sm sm:text-base text-zinc-300 transition hover:text-purple-400"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleQuickLinkClick(link.href);
+                        }}
                       >
                         {link.text}
                       </a>
@@ -134,7 +139,7 @@ const InfoFooter = () => {
                   variants={innerItem}
                 >
                   <MdOutlineEmail
-                    className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-lg sm:text-xl text-color0"
+                    className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-lg sm:text-xl text-purple-400"
                     aria-hidden
                   />
                   <input
@@ -150,7 +155,7 @@ const InfoFooter = () => {
                       bg-transparent text-zinc-300 placeholder:text-zinc-500
                       pl-10 pr-4 py-2 sm:py-2.5
                       border-0 border-b border-b-zinc-600
-                      focus:border-color0 focus:outline-none focus:ring-0
+                      focus:border-purple-400 focus:outline-none focus:ring-0
                       text-sm sm:text-base
                     "
                   />
@@ -199,7 +204,7 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiMapPin className="mt-0.5 sm:mt-1 shrink-0 text-color0 text-sm sm:text-base" />
+                  <FiMapPin className="mt-0.5 sm:mt-1 shrink-0 text-purple-400 text-sm sm:text-base" />
                   <span className="text-sm sm:text-base md:text-lg text-center md:text-left">
                     {address?.street}
                   </span>
@@ -209,7 +214,7 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiMail className="mt-0.5 sm:mt-1 shrink-0 text-color0 text-sm sm:text-base" />
+                  <FiMail className="mt-0.5 sm:mt-1 shrink-0 text-purple-400 text-sm sm:text-base" />
                   <a
                     href={`mailto:${address?.email}`}
                     className="transition hover:text-white text-sm sm:text-base md:text-lg"
@@ -222,7 +227,7 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiPhone className="mt-0.5 sm:mt-1 shrink-0 text-color0 text-sm sm:text-base" />
+                  <FiPhone className="mt-0.5 sm:mt-1 shrink-0 text-purple-400 text-sm sm:text-base" />
                   <a
                     href={`tel:${address?.phone.replace(/[\s()-]/g, "")}`}
                     className="transition hover:text-white text-sm sm:text-base md:text-lg"

@@ -191,7 +191,7 @@ const AskMeBox = () => {
               "transition shadow-sm",
               disabled
                 ? "bg-[#2a2a2a] text-color4/60 cursor-not-allowed"
-                : "bg-bg1-color text-color0 hover:opacity-90 active:opacity-80  cursor-pointer",
+                : "bg-bg1-color text-purple-400 hover:opacity-90 active:opacity-80  cursor-pointer",
             ].join(" ")}
             aria-label="Send"
           >

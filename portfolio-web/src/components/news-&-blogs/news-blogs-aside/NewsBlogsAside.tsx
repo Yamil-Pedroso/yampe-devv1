@@ -136,7 +136,7 @@ const NewsBlogsAside = ({
               aria-label="Buscar"
               className="absolute right-4 top-[80%] -translate-y-1/2 cursor-pointer"
             >
-              <FaSearch className="text-color0" />
+              <FaSearch className="text-purple-400" />
             </button>
           </form>
 
@@ -150,7 +150,7 @@ const NewsBlogsAside = ({
                   <button
                     type="button"
                     onClick={handleClickCategory(cat)}
-                    className="flex items-center text-left text-color3 hover:text-color0"
+                    className="flex items-center text-left text-color3 hover:text-purple-400"
                   >
                     <IoIosArrowForward />
                     <span className="ml-2 text-[1.125rem]">{cat.name}</span>
@@ -184,7 +184,7 @@ const NewsBlogsAside = ({
                       loading="lazy"
                     />
                   </div>
-                  <div className="flex flex-col text-color2 hover:text-color0 ml-6">
+                  <div className="flex flex-col text-color2 hover:text-purple-400 ml-6">
                     <div className="flex items-center text-color2 text-[1rem]">
                       <FaCalendarAlt className="inline mr-1" />
                       <span className="ml-2">
@@ -219,7 +219,9 @@ const NewsBlogsAside = ({
                   onClick={handleClickTag(tag)}
                   className="flex justify-center items-center p-2 px-4 text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
                 >
-                  <span className="group-hover:text-color0">{tag}</span>
+                  <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-purple-400 group-hover:to-blue-400">
+                    {tag}
+                  </span>
                 </a>
               ))}
           </div>

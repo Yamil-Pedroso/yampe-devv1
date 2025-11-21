@@ -53,7 +53,7 @@ const Hero = () => {
         </p>
 
         <div className="custom:text-base/21 text-base/14">
-          <h1 className="custom:text-[4.0625rem] text-[45px] text-color0 font-semibold">
+          <h1 className="custom:text-[4.0625rem] text-[45px] text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 font-semibold">
             {heroData.name}
           </h1>
           <h2 className="custom:text-[4.0625rem] text-[45px]">

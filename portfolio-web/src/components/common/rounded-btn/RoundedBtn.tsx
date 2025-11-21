@@ -17,7 +17,15 @@ const RoundedBtn = ({
 }: RoundedBtnProps) => {
   return (
     <div
-      className={`flex justify-center items-center text-bg1-color ${width} ${height} rounded-full bg-color0 cursor-pointer ${className}`}
+      className={`
+        flex justify-center items-center
+        text-white
+        ${width} ${height}
+        rounded-full
+        bg-[image:var(--gradient-bg)]
+        cursor-pointer
+        ${className}
+      `}
       onClick={onClick}
       style={style}
     >

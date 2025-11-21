@@ -158,7 +158,7 @@ const ProjectsGallery = () => {
               onClick={() => setActiveMenuItem(item)}
               className={`cursor-pointer transition-colors text-[1.125rem]  ${
                 activeMenuItem === item
-                  ? "relative after:block after:w-[3rem] after:h-[3px] text-color0 after:bg-color0 after:mt-3"
+                  ? "relative after:block after:w-[3rem] after:h-[3px] text-purple-400 after:bg-purple-400 after:mt-3"
                   : "text-color3"
               }`}
             >
@@ -236,7 +236,9 @@ const ProjectsGallery = () => {
                     </a>
 
                     <div className="mt-2.5 p-6 px-14">
-                      <p className="text-color0 mb-4">{project.subtitle}</p>
+                      <p className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 mb-4">
+                        {project.subtitle}
+                      </p>
                       <p className="text-[1.875rem] mb-4">
                         {project.description?.split(" ").slice(0, 3).join(" ")}
                         ...

@@ -87,7 +87,11 @@ const NewsAndBlogs = () => {
       >
         <h2 className="text-color4 font-bold">{header}</h2>
         <p className="text-[2.8125rem] max-w-[45rem] text-base/14">
-          Latest Blog &<span className="text-color0"> Tutorials</span>
+          Latest Blog &
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">
+            {" "}
+            Tutorials
+          </span>
         </p>
         <p className="mt-4 text-color2 max-w-[28rem] mx-auto">{description}</p>
       </motion.div>
@@ -135,7 +139,9 @@ const NewsAndBlogs = () => {
                         key={tagIndex}
                         className="flex justify-center items-center p-2 px-4 text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
                       >
-                        <span className="group-hover:text-color0">{tag}</span>
+                        <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-purple-400 group-hover:to-blue-400">
+                          {tag}
+                        </span>
                       </a>
                     ))}
                   </motion.div>

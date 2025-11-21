@@ -45,8 +45,10 @@ const Footer = () => {
         <div className="hidden sm:flex items-center justify-between gap-6">
           <p className="text-sm md:text-base text-zinc-300 flex-shrink-0">
             &copy; {year}{" "}
-            <span className="text-color0 font-medium">Yampe.dev</span>. All
-            rights reserved.
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 font-medium">
+              Yampe.dev
+            </span>
+            . All rights reserved.
           </p>
 
           <nav aria-label="Social links" className="flex-shrink-0">

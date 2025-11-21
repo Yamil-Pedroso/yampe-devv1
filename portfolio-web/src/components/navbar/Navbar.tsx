@@ -13,6 +13,7 @@ import MenuItems from "./MenuItems";
 import HamburgerToX from "../common/animation/morphism/HamburgerToX";
 import AppointmentForm from "./AppointmentForm";
 import { handleScrollItems } from "@/components/common/scroll-items/scrollItems";
+import LogoComp from "@/components/common/logo/LogoComp";
 
 import { IoIosNotifications, IoIosNotificationsOff } from "react-icons/io";
 import { fetchNotifications } from "../services/notificationsService";
@@ -147,16 +148,13 @@ const Navbar = () => {
       >
         {/* Logo */}
         <div className="flex-1">
-          <a href="/" className="flex items-center">
-            <img
-              src="/images/logo/cubi_logo_orange.png"
-              alt="Yampe.dev"
-              className="w-12 h-12"
-            />
-            <h1 className="text-3xl font-bold text-white mx-2">Yampe.dev</h1>
+          <a href="/" className="flex items-end">
+            <LogoComp className="w-14 h-14" width={48} height={48} />
+            <h1 className="text-2xl font-bold text-white mx-3">
+              Yampe<span className="text-purple-300">.</span>dev
+            </h1>
           </a>
         </div>
-
         {/* Desktop Menu */}
         <div>
           <MenuItems className="hidden mx-auto min-[1024px]:block lg:flex" />
@@ -235,7 +233,7 @@ const Navbar = () => {
       "
                       >
                         <h3 className="text-white text-lg font-semibold mb-3 flex items-center gap-2">
-                          <IoIosNotifications className="text-green-400 text-2xl" />
+                          <IoIosNotifications className="text-gray-400 text-2xl" />
                           Notifications
                         </h3>
 

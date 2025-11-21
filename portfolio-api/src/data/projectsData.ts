@@ -266,5 +266,22 @@ export const projectsData = {
       imageDetails: ["", "", "", ""],
       icon: "",
     },
+    {
+      title: "Nexacore",
+      subtitle: "IA Agency",
+      description:
+        "A tech consulting agency template to showcase modern services, expertise, and UI design.",
+      category: "UI/UX Design",
+      tags: ["next.js", "typescript", "framer-motion"],
+      link: "https://creative-ui-qkv7dqpox-uiux-showcase.vercel.app/",
+      image: "/images/projects/ui-ux-design/uiux_01.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d_04.webp",
+      ],
+      icon: "",
+    },
   ],
 };

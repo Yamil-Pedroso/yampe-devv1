@@ -6,7 +6,6 @@ gsap.registerPlugin(MorphSVGPlugin);
 
 type ScrollToTopMorphProps = {
   sizeRem?: number;
-  color?: string;
   hoverScale?: number;
   ariaLabel?: string;
   className?: string;
@@ -14,7 +13,6 @@ type ScrollToTopMorphProps = {
 
 const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
   sizeRem = 5,
-  color = "#FFA41C",
   hoverScale = 1.02,
   ariaLabel = "Scroll to top",
   className,
@@ -22,10 +20,9 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
 
-  // Cuadrado con esquinas suaves
   const SQUARE_ROUNDED =
     "M18 22 H82 A6 6 0 0 1 88 28 V72 A6 6 0 0 1 82 78 H18 A6 6 0 0 1 12 72 V28 A6 6 0 0 1 18 22 Z";
-  // Flecha hacia arriba con puntas suavizadas
+
   const TRIANGLE_UP_ROUNDED =
     "M52 17 L88 86 A3 3 0 0 1 85 89 H15 A3 3 0 0 1 12 86 L48 17 A3 3 0 0 1 52 17 Z";
 
@@ -36,16 +33,17 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
       width: `${sizeRem}rem`,
       height: `${sizeRem}rem`,
     });
+
+    // Important: fill must reference the gradient in SVG
     gsap.set(pathRef.current, {
       attr: { d: SQUARE_ROUNDED },
-      fill: color,
+      fill: "url(#scrollGradient)",
       y: 0,
       transformOrigin: "50% 50%",
     });
 
     const tl = gsap.timeline({ paused: true });
 
-    // 1) Morph a flecha
     tl.to(
       pathRef.current,
       {
@@ -55,7 +53,6 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
       },
       0
     )
-      // 2) Ligerísimo scale del botón
       .to(
         btnRef.current,
         {
@@ -65,11 +62,10 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
         },
         0
       )
-      // 3) Empujoncito hacia arriba de la flecha
       .to(
         pathRef.current,
         {
-          y: -6, // súbelo más/menos a tu gusto
+          y: -6,
           duration: 0.25,
           ease: "power2.out",
         },
@@ -82,17 +78,13 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
     const el = btnRef.current;
     el.addEventListener("mouseenter", enter);
     el.addEventListener("mouseleave", leave);
-    el.addEventListener("focus", enter);
-    el.addEventListener("blur", leave);
 
     return () => {
       el.removeEventListener("mouseenter", enter);
       el.removeEventListener("mouseleave", leave);
-      el.removeEventListener("focus", enter);
-      el.removeEventListener("blur", leave);
       tl.kill();
     };
-  }, [sizeRem, color, hoverScale]);
+  }, [sizeRem, hoverScale]);
 
   const handleClick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -101,13 +93,12 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
       ref={btnRef}
       onClick={handleClick}
       aria-label={ariaLabel}
-      className={`inline-flex items-center justify-center  ${className || ""}`}
+      className={`inline-flex items-center justify-center ${className || ""}`}
       style={{
         padding: 0,
         border: "none",
         background: "transparent",
         cursor: "pointer",
-        WebkitTapHighlightColor: "transparent",
       }}
     >
       <svg
@@ -118,6 +109,20 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
         className="block"
         aria-hidden="true"
       >
+        <defs>
+          {/* Your purple → blue brand gradient */}
+          <linearGradient
+            id="scrollGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+            <stop offset="0%" stopColor="#a855f7" /> {/* purple-500 */}
+            <stop offset="100%" stopColor="#3b82f6" /> {/* blue-500 */}
+          </linearGradient>
+        </defs>
+
         <path ref={pathRef} d={SQUARE_ROUNDED} />
       </svg>
     </button>

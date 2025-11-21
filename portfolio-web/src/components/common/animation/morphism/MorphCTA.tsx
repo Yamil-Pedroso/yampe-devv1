@@ -7,7 +7,6 @@ gsap.registerPlugin(MorphSVGPlugin);
 
 type MorphCTAProps = {
   label?: string;
-  color?: string;
   textColor?: string;
   widthIdle?: number;
   widthHover?: number;
@@ -17,8 +16,7 @@ type MorphCTAProps = {
 
 const MorphCTA: React.FC<MorphCTAProps> = ({
   label = "View Details",
-  color = "#FFA41C",
-  textColor = "#0D1117",
+  textColor = "#fff",
   widthIdle = 56,
   widthHover = 220,
   height = 56,
@@ -47,7 +45,12 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
       height,
       borderRadius: height / 2,
     });
-    gsap.set(shapeRef.current, { attr: { d: CIRCLE }, fill: color });
+
+    gsap.set(shapeRef.current, {
+      attr: { d: CIRCLE },
+      // IMPORTANT: fill is NOT set here because SVG gradients can't be set dynamically as plain strings
+    });
+
     gsap.set(iconRef.current, { opacity: 1, x: 0, color: textColor, scale: 1 });
     gsap.set(textRef.current, { opacity: 0, x: -6 });
 
@@ -97,10 +100,10 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
       0.2
     );
 
+    const btn = wrapRef.current;
     const onEnter = () => tl.play();
     const onLeave = () => tl.reverse();
 
-    const btn = wrapRef.current;
     btn.addEventListener("mouseenter", onEnter);
     btn.addEventListener("mouseleave", onLeave);
     btn.addEventListener("focus", onEnter);
@@ -113,7 +116,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
       btn.removeEventListener("blur", onLeave);
       tl.kill();
     };
-  }, [widthIdle, widthHover, height, color, textColor]);
+  }, [widthIdle, widthHover, height, textColor]);
 
   return (
     <button
@@ -135,11 +138,20 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
         height="100%"
         preserveAspectRatio="none"
         className="absolute inset-0 block"
-        aria-hidden="true"
       >
-        <path ref={shapeRef} d={CIRCLE} fill={color} />
+        {/* 🎨 GRADIENT DEFINICIÓN */}
+        <defs>
+          <linearGradient id="cta-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#a855f7" />
+            <stop offset="100%" stopColor="#3b82f6" />
+          </linearGradient>
+        </defs>
+
+        {/* 🎨 PATH con gradient */}
+        <path ref={shapeRef} d={CIRCLE} fill="url(#cta-gradient)" />
       </svg>
 
+      {/* ICONO */}
       <span
         ref={iconRef}
         className="relative z-[1] flex items-center justify-center pointer-events-none"
@@ -148,6 +160,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
         <MdOutlineArrowOutward />
       </span>
 
+      {/* TEXTO */}
       <span
         ref={textRef}
         className="absolute inset-0 z-[1] flex items-center justify-center select-none"
@@ -157,7 +170,6 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
           color: textColor,
           lineHeight: 1,
           whiteSpace: "nowrap",
-          pointerEvents: "none",
         }}
       >
         {label}

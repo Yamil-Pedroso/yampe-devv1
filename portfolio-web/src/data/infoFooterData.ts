@@ -2,10 +2,10 @@ import { InfoFooterData } from "@/types/Types";
 
 export const infoFooterData: InfoFooterData = {
   quickLinks: [
-    { text: "Service", href: "#" },
-    { text: "Projects", href: "#" },
-    { text: "Faqs", href: "#" },
-    { text: "Contact", href: "#" },
+    { text: "About", href: "#about" },
+    { text: "Service", href: "#services" },
+    { text: "Projects", href: "#projects" },
+    { text: "Skills", href: "#skills" },
   ],
   address: {
     street: "Kreuzstraße 33, Zürich, Switzerland",

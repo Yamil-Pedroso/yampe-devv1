@@ -86,13 +86,13 @@ const ProjectDetails = () => {
             <h2 className="font-semibold text-sm sm:text-base md:text-md mt-2">
               {project.category}
               <TbPointFilled className="inline-block ml-2  text-md" />
-              <span className="ml-2 text-color0 text-[22px]">
+              <span className="ml-2 text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 text-[22px]">
                 {project.subtitle}
               </span>
             </h2>
           </div>
 
-          <div className="flex items-end hover:underline hover:text-color0 transition-all duration-300">
+          <div className="flex items-end hover:underline  hover:bg-clip-text hover:bg-linear-to-r hover:text-purple-400 transition-all duration-300">
             <a href={project.link} target="_blank" rel="noopener noreferrer">
               View Demo
             </a>
@@ -231,7 +231,7 @@ const ProjectDetails = () => {
                 </div>
 
                 <div className="flex flex-col gap-1.5 px-4 sm:px-6 py-4 sm:py-6">
-                  <p className="text-color0 text-sm sm:text-base truncate">
+                  <p className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 text-sm sm:text-base truncate">
                     {p.subtitle ?? p.title}
                   </p>
                   <p className="text-lg sm:text-xl">

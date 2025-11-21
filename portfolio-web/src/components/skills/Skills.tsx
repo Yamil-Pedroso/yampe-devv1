@@ -31,7 +31,9 @@ const Skills: React.FC = () => {
         )}
         <p className="text-[2.8125rem] max-w-[45rem] text-base/14 max-[40rem]:text-[2rem]">
           Let’s Explore my{" "}
-          <span className="text-color0">Skills & Experience</span>
+          <span className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 ">
+            Skills & Experience
+          </span>
         </p>
         {skillsData.title && (
           <h2 className="text-[2.25rem] leading-tight max-[40rem]:text-[1.5rem]">

@@ -2,6 +2,7 @@ import React from "react";
 import { resumeData } from "@/data/resumeData";
 import { motion, Variants } from "framer-motion";
 import ElementContainer from "@/components/common/element-container/ElementContainer";
+import LogoComp from "../common/logo/LogoComp";
 
 /* ===== Variants reutilizables ===== */
 const containerStagger: Variants = {
@@ -86,10 +87,10 @@ const Resume = () => {
       >
         <Reveal variants={popIcon}>
           <div className="flex items-center justify-center w-[16rem] h-[16rem] rounded-full bg-bg1-color border border-border-color shadow-sm large:w-[17rem] large:h-[17rem]">
-            <img
-              src="/images/logo/cubi_logo_orange.png"
-              alt="Yampe.dev"
-              className="w-35 h-35"
+            <LogoComp
+              className="w-40 h-40 text-[3rem] "
+              width={140}
+              height={140}
             />
           </div>
         </Reveal>
@@ -107,7 +108,10 @@ const Resume = () => {
         <Reveal className="flex flex-col gap-3 text-center large:text-left">
           <p className="text-color4">{resumeData.header}</p>
           <p className="text-[2rem] mobile:text-[2.8125rem] max-w-[40rem] text-base/14 mx-auto large:mx-0">
-            Real <span className="text-color0">Riddle Solutions</span>{" "}
+            Real{" "}
+            <span className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 ">
+              Riddle Solutions
+            </span>{" "}
             Experience
           </p>
         </Reveal>

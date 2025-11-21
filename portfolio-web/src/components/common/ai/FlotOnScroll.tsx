@@ -323,7 +323,7 @@ export default function FlotOnScroll({
 
               {/* SVG: base visible + overlay para "draw" */}
               <svg
-                className="message-icon w-9 h-9 text-color0 ml-1.5 mt-0.5 transition-all duration-300"
+                className="message-icon w-9 h-9 text-purple-400 ml-1.5 mt-0.5 transition-all duration-300"
                 viewBox="0 0 64 64"
                 fill="none"
                 strokeLinecap="round"
