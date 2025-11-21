@@ -7,7 +7,7 @@ const POLLING_INTERVAL = 12000; // 12 seconds
 
 const NotificationWrapper = () => {
   const [notifications, setNotifications] = useState<any[]>([]);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     async function load() {
