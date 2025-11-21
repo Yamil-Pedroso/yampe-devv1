@@ -20,6 +20,8 @@ import { fetchNotifications } from "../services/notificationsService";
 import { useAdminAuth } from "@/lib/hooks/useAdminAuth";
 import { Link } from "@tanstack/react-router";
 
+const letters = ["Y", "a", "m", "p", "e", ".", "d", "e", "v"];
+
 const EXIT_MS = 400;
 
 const Navbar = () => {
@@ -147,14 +149,64 @@ const Navbar = () => {
         className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[94%] relative"
       >
         {/* Logo */}
-        <div className="flex-1">
-          <a href="/" className="flex items-end">
-            <LogoComp className="w-14 h-14" width={48} height={48} />
-            <h1 className="text-2xl font-bold text-white mx-3">
-              Yampe<span className="text-purple-300">.</span>dev
-            </h1>
-          </a>
-        </div>
+        <a href="/" className="flex-1">
+          <motion.div
+            className="flex items-end cursor-pointer group"
+            whileHover="hover"
+          >
+            {/* Logo */}
+            <motion.div
+              initial={{ x: -80, scale: 1.4, opacity: 0 }}
+              animate={{
+                x: 0,
+                scale: 1,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.9,
+                ease: [0.34, 1.56, 0.64, 1], // efecto rebote tipo Disney
+              }}
+              className="flex-shrink-0"
+              variants={{
+                hover: {
+                  y: -4,
+                  rotate: -3,
+                  transition: { duration: 0.25, ease: "easeOut" },
+                },
+              }}
+            >
+              <LogoComp className="w-14 h-14" width={48} height={48} />
+            </motion.div>
+
+            {/* Animated letters */}
+            <motion.h1
+              initial={{ x: -80, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+              className="text-2xl font-bold text-white mx-3 flex"
+            >
+              {letters.map((char, i) => (
+                <motion.span
+                  key={i}
+                  className={char === "." ? "text-purple-300" : ""}
+                  variants={{
+                    hover: {
+                      y: -3,
+                      rotate: (Math.random() - 0.5) * 10, // pequeño tilt aleatorio
+                      transition: {
+                        duration: 0.25,
+                        ease: "easeOut",
+                        delay: i * 0.03, // wave effect
+                      },
+                    },
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.h1>
+          </motion.div>
+        </a>
         {/* Desktop Menu */}
         <div>
           <MenuItems className="hidden mx-auto min-[1024px]:block lg:flex" />
