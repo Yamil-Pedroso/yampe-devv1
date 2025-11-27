@@ -10,6 +10,7 @@ import {
 import AskMeBox from "@/components/common/ai/AskMeBox";
 import GeomShapes from "../common/shapes/GeomShapes";
 //import { Icon } from "@iconify/react";
+import { MdArrowOutward } from "react-icons/md";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -72,8 +73,33 @@ const Hero = () => {
           <Icon icon="pixelarticons:arrow-right" className="w-6 h-6" />
         </div>*/}
 
-        <div className="mt-6 flex gap-4 custom:flex-row flex-col">
-          <Button
+        <a
+          href={heroData.buttons[1].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 flex gap-4  flex-col relative group w-max"
+        >
+          <span
+            className="
+    absolute top-2 left-0 text-sm
+    opacity-0 translate-y-1.5
+    transition-all duration-300
+    group-hover:opacity-100 group-hover:translate-y-[-4rem] group-hover:px-3
+    p-2.5 rounded-md bg-[#090909] shadow-lg border border-white/10
+  "
+          >
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:text-[1.1rem]">
+              Resume
+            </span>
+          </span>
+          <img
+            src="/images/hero/folder_blue.png"
+            alt="Hero Image"
+            className="w-20 transition-all duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-[-5px] z-10"
+          />
+          <MdArrowOutward className="absolute top-7 left-14 text-white opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-[-5px] z-10" />
+
+          {/*<Button
             href={heroData.buttons[1].href}
             className="h-[3rem] group"
             initial="hidden"
@@ -94,7 +120,7 @@ const Hero = () => {
                 {React.createElement(heroData.buttons[0].icon)}
               </motion.span>
             )}
-          </Button>
+          </Button> */}
 
           {/*<a href={heroData.buttons[1].href} className="flex items-center">
             <span className="mx-1.5 underline underline-offset-4">
@@ -106,7 +132,7 @@ const Hero = () => {
               </span>
             )}
           </a>*/}
-        </div>
+        </a>
       </motion.div>
 
       {/* MIDDLE content (animation) */}
