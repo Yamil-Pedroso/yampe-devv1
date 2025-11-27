@@ -283,5 +283,29 @@ export const projectsData = {
       ],
       icon: "",
     },
+    {
+      title: "Zenwave",
+      subtitle: "Meditation & Wellness",
+      description:
+        "A meditation app template to promote mindfulness and wellness.",
+      category: "UI/UX Design",
+      tags: [
+        "node.js",
+        "mongodb",
+        "redis",
+        "next.js",
+        "typescript",
+        "framer-motion",
+      ],
+      link: "https://creative-ui-lab-3868.vercel.app/",
+      image: "/images/projects/ui-ux-design/uiux_02.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d2_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d2_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d2_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d2_04.webp",
+      ],
+      icon: "",
+    },
   ],
 };
