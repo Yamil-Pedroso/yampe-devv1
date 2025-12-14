@@ -307,5 +307,22 @@ export const projectsData = {
       ],
       icon: "",
     },
+    {
+      title: "MedSys",
+      subtitle: "Smart Healthcare",
+      description:
+        "A modern healthcare platform concept focused on secure, scalable digital solutions.",
+      category: "UI/UX Design",
+      tags: ["node.js", "postgresql", "Angular", "typescript", "framer-motion"],
+      link: "https://medsys-v1.netlify.app/",
+      image: "/images/projects/ui-ux-design/uiux_03.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d3_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d3_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d3_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d3_04.webp",
+      ],
+      icon: "",
+    },
   ],
 };

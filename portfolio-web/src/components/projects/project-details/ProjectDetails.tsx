@@ -105,7 +105,7 @@ const ProjectDetails = () => {
             <img
               src={hero}
               alt={project.title}
-              className={` ${project.category === "Mini Apps" ? "w-[22rem] object-contain" : "w-full h-full object-contain"}`}
+              className={` ${project.category === "Mini Apps" ? "w-[22rem] object-contain" : "w-full h-full object-cover"} `}
             />
           </div>
         )}
