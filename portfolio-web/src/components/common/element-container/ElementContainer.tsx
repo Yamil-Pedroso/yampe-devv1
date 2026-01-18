@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ElementContainerProps {
   children: React.ReactNode;
   className?: string;
@@ -10,19 +12,19 @@ interface ElementContainerProps {
 const ElementContainer = ({
   children,
   className,
-  as: Component = "div",
+
   border,
   onClick,
 }: ElementContainerProps) => {
   return (
-    <Component
+    <div
       onClick={onClick}
       className={`
           ${border ? "border border-color3" : ""}
           rounded-3xl overflow-hidden ${className}`}
     >
       {children}
-    </Component>
+    </div>
   );
 };
 
