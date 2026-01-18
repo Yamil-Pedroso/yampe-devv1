@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Playball&display=swap");
 @import "tailwindcss";
+@import "tailwind-animations";
 @plugin "@tailwindcss/typography";
 
 :root {

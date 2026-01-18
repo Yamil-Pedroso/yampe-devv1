@@ -139,30 +139,62 @@ const About = () => {
             className="flex flex-col absolute top-80 left-[-2rem] desktop:left-[-6.55rem] mt-10 z-10"
             style={{ y: leftFloatY1 }}
           >
-            <ElementContainer2 className="text-black p-1 mb-[-2rem] mx-20 text-[.8rem] desktop:mb-0 sm:m-0 sm:text-[1rem]">
-              <div className="w-[2.4rem] rounded-full">
-                <img
-                  src="/images/about/icons/3d-cube.png"
-                  alt="Experience Icon"
+            <a
+              href="https://github.com/Yamil-Pedroso"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ElementContainer2
+                className="text-black p-1 mb-[-2rem] mx-20 text-[.8rem] desktop:mb-0 sm:m-0 sm:text-[1rem] group relative cursor-pointer transition-colors duration-400 ease-out
+    hover:bg-bg1-color "
+              >
+                <div className="w-[2.4rem] rounded-full">
+                  <img
+                    src="/images/about/icons/3d-cube.png"
+                    alt="Experience Icon"
+                  />
+                </div>
+                <p className="group-hover:text-white">
+                  Experience Full Stack Developer
+                </p>
+                <MdOutlineArrowOutward
+                  className="text-black group-hover:text-white"
+                  size={21}
                 />
-              </div>
-              <p>Experience Full Stack Developer</p>
-              <MdOutlineArrowOutward className="text-black" size={21} />
-            </ElementContainer2>
+              </ElementContainer2>
+            </a>
 
-            <motion.div style={{ y: leftFloatY2 }}>
-              <ElementContainer2 className="text-black p-1 mt-0  text-[.8rem] mx-60 desktop:ml-[-3rem] sm:mt-[-2rem] sm:m-0 sm:text-[1rem]">
-                <div className="w-[2.4rem] bg-black  rounded-full overflow-hidden ">
+            <motion.a
+              href="https://www.linkedin.com/in/yamil-pedroso/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ y: leftFloatY2 }}
+            >
+              <ElementContainer2
+                className="text-black p-1 mt-0  text-[.8rem] mx-60 desktop:ml-[-3rem] sm:mt-[-2rem] sm:m-0 sm:text-[1rem] group relative cursor-pointer transition-colors duration-400 ease-out
+    hover:bg-bg1-color "
+              >
+                <div className="w-[2.4rem] rounded-full overflow-hidden mx-[-6px]">
                   <img
                     src="/images/avatar/yami.jpg"
                     alt="Experience Icon"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="whitespace-nowrap">Yamil Pedroso</p>
-                <MdOutlineArrowOutward className="text-black" size={21} />
+                <p
+                  className="whitespace-nowrap
+                  group-hover:text-white
+                "
+                >
+                  Yamil Pedroso
+                </p>
+                <MdOutlineArrowOutward
+                  className="text-black
+                group-hover:text-white"
+                  size={21}
+                />
               </ElementContainer2>
-            </motion.div>
+            </motion.a>
           </motion.div>
 
           <motion.div

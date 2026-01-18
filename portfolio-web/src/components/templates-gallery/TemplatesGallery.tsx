@@ -27,7 +27,7 @@ const TemplatesGallery = () => {
       <div className="flex flex-col xl:flex-row justify-center items-center gap-12 lg:gap-18 w-full">
         <a
           href="projects-gallery"
-          className="cursor-pointer hover:scale-105 transition-transform"
+          className="cursor-pointer hover:scale-105 transition-transform hover:animate-jelly"
         >
           <div className="flex flex-col justify-center items-center w-[300px] h-[300px] md:w-[350px] md:h-[350px] rounded-full border border-color4/20 bg-color4/5 text-color4 flex-shrink-0 ">
             <p className="text-[3.5rem] md:text-[4.5rem]">MORE</p>{" "}

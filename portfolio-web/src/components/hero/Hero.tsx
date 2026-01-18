@@ -1,20 +1,17 @@
 import React from "react";
 import { heroData } from "@/data/heroData";
-import Button from "@/components/common/buttons/Button";
 import { motion, Variants } from "framer-motion";
-import {
-  ctaEnter,
-  ctaHover,
-  ctaTap,
-} from "@/components/common/animation/motionTokens";
 import AskMeBox from "@/components/common/ai/AskMeBox";
-import GeomShapes from "../common/shapes/GeomShapes";
-//import { Icon } from "@iconify/react";
 import { MdArrowOutward } from "react-icons/md";
+import StackedCards from "../common/StackedCards";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
   exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
 };
 
@@ -28,25 +25,28 @@ const fadeUpProps = {
 const Hero = () => {
   return (
     <section
-      className="relative
+      className="
+    relative
     mt-16
     w-full max-w-[94%] mx-auto
     grid gap-8
     grid-cols-1
-     sm:grid-cols-1
-     md:grid-cols-[max-content_max-content] md:justify-center
-     xl:grid-cols-[max-content_1fr_max-content] xl:items-start
-      "
+    sm:grid-cols-1
+    md:grid-cols-[max-content_max-content]
+    md:justify-center
+    xl:grid-cols-[minmax(320px,1fr)_minmax(480px,1.2fr)_minmax(360px,1fr)]
+    xl:items-start
+  "
     >
       {/* LEFT content */}
       <motion.div
         {...fadeUpProps}
         className="
           order-1 xl:order-1
-          lg:justify-start
           custom:max-w-[500px]
           max-w-[400px]
-          xl:max-w-[30rem] xl:justify-self-start
+          xl:max-w-[30rem]
+          justify-self-center xl:justify-self-start
         "
       >
         <p className="text-[2.8125rem] text-color3 custom:text-[3.4375rem]">
@@ -67,99 +67,64 @@ const Hero = () => {
           {heroData.description}
         </p>
 
-        {/*<div className="flex gap-3 text-color0">
-          <Icon icon="pixelarticons:mail" className="w-6 h-6" />
-          <Icon icon="pixelarticons:github" className="w-6 h-6" />
-          <Icon icon="pixelarticons:arrow-right" className="w-6 h-6" />
-        </div>*/}
-
         <a
           href={heroData.buttons[1].href}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 flex gap-4  flex-col relative group w-max"
+          className="mt-6 flex gap-4 flex-col relative group w-max"
         >
           <span
             className="
-    absolute top-2 left-0 text-sm
-    opacity-0 translate-y-1.5
-    transition-all duration-300
-    group-hover:opacity-100 group-hover:translate-y-[-4rem] group-hover:px-3
-    p-2.5 rounded-md bg-[#090909] shadow-lg border border-white/10
-  "
+              absolute top-2 left-0 text-sm
+              opacity-0 translate-y-1.5
+              transition-all duration-300
+              group-hover:opacity-100 group-hover:translate-y-[-4rem] group-hover:px-3
+              p-2.5 rounded-md bg-[#090909] shadow-lg border border-white/10
+            "
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 group-hover:text-[1.1rem]">
               Resume
             </span>
           </span>
+
           <img
             src="/images/hero/folder_blue.png"
             alt="Hero Image"
-            className="w-20 transition-all duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-[-5px] z-10"
+            className="w-20 transition-all duration-300 cursor-pointer group-hover:translate-y-[-5px] z-10"
           />
+
           <MdArrowOutward className="absolute top-7 left-14 text-white opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-[-5px] z-10" />
-
-          {/*<Button
-            href={heroData.buttons[1].href}
-            className="h-[3rem] group"
-            initial="hidden"
-            animate="show"
-            variants={ctaEnter}
-            transition={{ delay: 0.35 }}
-            whileHover={ctaHover}
-            whileTap={ctaTap}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="font-bold">{heroData.buttons[1].text}</span>
-
-            {heroData.buttons[0].icon && (
-              <motion.span
-                className={`inline-flex group-hover:ml-2 transition-all duration-300`}
-              >
-                {React.createElement(heroData.buttons[0].icon)}
-              </motion.span>
-            )}
-          </Button> */}
-
-          {/*<a href={heroData.buttons[1].href} className="flex items-center">
-            <span className="mx-1.5 underline underline-offset-4">
-              {heroData.buttons[1].text}
-            </span>
-            {heroData.buttons[1].icon && (
-              <span className="mr-2">
-                {React.createElement(heroData.buttons[1].icon)}
-              </span>
-            )}
-          </a>*/}
         </a>
       </motion.div>
 
-      {/* MIDDLE content (animation) */}
+      {/* MIDDLE content (AskMeBox) */}
       <div
         className="
           order-3 lg:order-3
-           md:col-span-2 md:justify-self-center  w-full
+          md:col-span-2 md:justify-self-center
           xl:order-2 xl:col-span-1
-           h-[33rem] rounded-lg
-           flex justify-center items-center mr-70
-            relative
+          h-[33rem]
+          rounded-lg
+          flex justify-center items-center
+          relative
+          justify-self-center
 
         "
       >
         <AskMeBox />
       </div>
+
+      {/* RIGHT content (StackedCards) */}
       <motion.div
         {...fadeUpProps}
         className="
           order-2 lg:order-2 xl:order-3
-          justify-self-end
-          w-full
-          mr-20
           hidden md:inline-block
+          w-full
+          justify-self-center xl:justify-self-end
         "
       >
-        <GeomShapes />
+        <StackedCards />
       </motion.div>
     </section>
   );

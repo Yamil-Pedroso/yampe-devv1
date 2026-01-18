@@ -14,6 +14,8 @@
     "@iconify/react": "^6.0.2",
     "@pixi/filter-pixelate": "^5.1.1",
     "@pixi/react": "^8.0.3",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.11",
@@ -27,6 +29,7 @@
     "lucide-react": "^0.539.0",
     "pixi.js": "^8.12.0",
     "react": "^19.1.1",
+    "react-aria-components": "^1.14.0",
     "react-dom": "^19.1.1",
     "react-fast-marquee": "^1.6.5",
     "react-icons": "^5.5.0",
@@ -34,7 +37,9 @@
     "react-pixelate": "^0.0.1",
     "rehype-highlight": "^7.0.2",
     "remark-gfm": "^4.0.1",
-    "tailwindcss": "^4.1.11"
+    "tailwind-animations": "^1.0.1",
+    "tailwindcss": "^4.1.11",
+    "three": "^0.182.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",

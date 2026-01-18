@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar/Navbar";
 import InfoFooter from "@/components/footer/InfoFooter";
 import Lenis from "@studio-freight/lenis";
 import ModalNote from "@/components/common/modals/ModalNote";
+import WhatsAppContact from "@/components/common/whatsapp-contact/WhatsAppContact";
 
 // IMPORTA TU MODAL DE NOTIFICACIONES AUTOMÁTICAS
 import NotificationWrapper from "@/components/common/modals/NotificationWrapper";
@@ -77,6 +78,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <main className="flex-grow">{children}</main>
 
       <InfoFooter />
+
+      <WhatsAppContact />
     </div>
   );
 };

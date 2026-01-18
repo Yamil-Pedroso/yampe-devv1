@@ -73,140 +73,144 @@ const Reveal: React.FC<
 
 const Resume = () => {
   return (
-    <section
-      id="resume"
-      className="max-w-[94%] mt-50 flex flex-col items-center justify-center gap-8 mx-auto large:mx-0 large:flex-row large:items-start large:gap-16"
-    >
-      {/* Badge circular */}
-      <motion.div
-        variants={containerStagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        className="large:px-10"
+    <>
+      <section
+        id="resume"
+        className="max-w-[94%] mt-50 flex flex-col items-center justify-center gap-8 mx-auto large:mx-0 large:flex-row large:items-start large:gap-16 relative"
       >
-        <Reveal variants={popIcon}>
-          <div className="flex items-center justify-center w-[16rem] h-[16rem] rounded-full bg-bg1-color border border-border-color shadow-sm large:w-[17rem] large:h-[17rem]">
-            <LogoComp
-              className="w-40 h-40 text-[3rem] "
-              width={140}
-              height={140}
-            />
-          </div>
-        </Reveal>
-      </motion.div>
+        {/* Badge circular */}
+        <motion.div
+          variants={containerStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="large:px-10"
+        >
+          <Reveal variants={popIcon}>
+            <div className="flex items-center justify-center w-[16rem] h-[16rem] rounded-full bg-bg1-color border border-border-color shadow-sm large:w-[17rem] large:h-[17rem]">
+              <LogoComp
+                className="w-40 h-40 text-[3rem] "
+                width={140}
+                height={140}
+              />
+            </div>
+          </Reveal>
+        </motion.div>
 
-      {/* Texto + timeline */}
-      <motion.div
-        variants={containerStagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }}
-        className="flex flex-col gap-8 large:gap-14"
-      >
-        {/* Header */}
-        <Reveal className="flex flex-col gap-3 text-center large:text-left">
-          <p className="text-color4">{resumeData.header}</p>
-          <p className="text-[2rem] mobile:text-[2.8125rem] max-w-[40rem] text-base/14 mx-auto large:mx-0">
-            Real{" "}
-            <span className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 ">
-              Riddle Solutions
-            </span>{" "}
-            Experience
-          </p>
-        </Reveal>
+        {/* Texto + timeline */}
+        <motion.div
+          variants={containerStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          className="flex flex-col gap-8 large:gap-14"
+        >
+          {/* Header */}
+          <Reveal className="flex flex-col gap-3 text-center large:text-left">
+            <p className="text-color4">{resumeData.header}</p>
+            <p className="text-[2rem] mobile:text-[2.8125rem] max-w-[40rem] text-base/14 mx-auto large:mx-0">
+              Real{" "}
+              <span className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 ">
+                Riddle Solutions
+              </span>{" "}
+              Experience
+            </p>
+          </Reveal>
 
-        {/* Contenedor de experiencias */}
-        <Reveal>
-          <ElementContainer className="w-full max-w-screen-xl bg-bg1-color p-6 mobile:p-6 large:p-18">
-            <motion.div
-              variants={containerStagger}
-              className="flex flex-col gap-10 large:flex-row large:gap-16 mt-4"
-            >
-              {/* Columna izquierda */}
+          {/* Contenedor de experiencias */}
+          <Reveal>
+            <ElementContainer className="w-full max-w-screen-xl bg-bg1-color p-6 mobile:p-6 large:p-18">
               <motion.div
                 variants={containerStagger}
-                className="flex flex-col justify-center"
+                className="flex flex-col gap-10 large:flex-row large:gap-16 mt-4"
               >
-                {resumeData.experience?.slice(0, 3).map((exp, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemFadeUp}
-                    className="flex gap-3 mb-6 large:gap-4 large:mb-8"
-                  >
-                    <Reveal variants={popIcon}>
-                      {exp.icon && (
-                        <span className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-sm">
-                          {React.createElement(exp.icon)}
-                        </span>
-                      )}
-                    </Reveal>
-                    <div className="flex flex-col gap-1.5 large:gap-2">
-                      <p className="text-color4 text-sm large:text-base">
-                        {exp.year}
-                      </p>
-                      <div>
-                        <h4 className="text-[1.25rem] large:text-[1.5rem]">
-                          {exp.jobTitle}
-                        </h4>
-                        <p className="text-color3 text-sm large:text-base">
-                          {exp.company}
+                {/* Columna izquierda */}
+                <motion.div
+                  variants={containerStagger}
+                  className="flex flex-col justify-center"
+                >
+                  {resumeData.experience?.slice(0, 3).map((exp, index) => (
+                    <motion.div
+                      key={index}
+                      variants={itemFadeUp}
+                      className="flex gap-3 mb-6 large:gap-4 large:mb-8"
+                    >
+                      <Reveal variants={popIcon}>
+                        {exp.icon && (
+                          <span className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-sm">
+                            {React.createElement(exp.icon)}
+                          </span>
+                        )}
+                      </Reveal>
+                      <div className="flex flex-col gap-1.5 large:gap-2">
+                        <p className="text-color4 text-sm large:text-base">
+                          {exp.year}
                         </p>
+                        <div>
+                          <h4 className="text-[1.25rem] large:text-[1.5rem]">
+                            {exp.jobTitle}
+                          </h4>
+                          <p className="text-color3 text-sm large:text-base">
+                            {exp.company}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+                    </motion.div>
+                  ))}
+                </motion.div>
 
-              {/* Separadores */}
-              <motion.div
-                variants={dividerGrowX}
-                className="h-px bg-border-color my-2 large:hidden"
-              />
-              <motion.div
-                variants={dividerGrowY}
-                className="hidden large:block w-px bg-border-color self-stretch mx-2"
-              />
+                {/* Separadores */}
+                <motion.div
+                  variants={dividerGrowX}
+                  className="h-px bg-border-color my-2 large:hidden"
+                />
+                <motion.div
+                  variants={dividerGrowY}
+                  className="hidden large:block w-px bg-border-color self-stretch mx-2"
+                />
 
-              {/* Columna derecha */}
-              <motion.div
-                variants={containerStagger}
-                className="flex flex-col justify-center"
-              >
-                {resumeData.experience?.slice(3, 6).map((exp, index) => (
+                {/* Columna derecha */}
+                <div>
                   <motion.div
-                    key={index}
-                    variants={itemFadeUp}
-                    className="flex gap-3 mb-6 large:gap-4 large:mb-8"
+                    variants={containerStagger}
+                    className="flex flex-col justify-center"
                   >
-                    <Reveal variants={popIcon}>
-                      {exp.icon && (
-                        <span className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-sm">
-                          {React.createElement(exp.icon)}
-                        </span>
-                      )}
-                    </Reveal>
-                    <div className="flex flex-col gap-1.5 large:gap-2">
-                      <p className="text-color4 text-sm large:text-base">
-                        {exp.year}
-                      </p>
-                      <div>
-                        <h4 className="text-[1.25rem] large:text-[1.5rem]">
-                          {exp.jobTitle}
-                        </h4>
-                        <p className="text-color3 text-sm large:text-base">
-                          {exp.company}
-                        </p>
-                      </div>
-                    </div>
+                    {resumeData.experience?.slice(3, 6).map((exp, index) => (
+                      <motion.div
+                        key={index}
+                        variants={itemFadeUp}
+                        className="flex gap-3 mb-6 large:gap-4 large:mb-8"
+                      >
+                        <Reveal variants={popIcon}>
+                          {exp.icon && (
+                            <span className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-sm">
+                              {React.createElement(exp.icon)}
+                            </span>
+                          )}
+                        </Reveal>
+                        <div className="flex flex-col gap-1.5 large:gap-2">
+                          <p className="text-color4 text-sm large:text-base">
+                            {exp.year}
+                          </p>
+                          <div>
+                            <h4 className="text-[1.25rem] large:text-[1.5rem]">
+                              {exp.jobTitle}
+                            </h4>
+                            <p className="text-color3 text-sm large:text-base">
+                              {exp.company}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </motion.div>
-                ))}
+                </div>
               </motion.div>
-            </motion.div>
-          </ElementContainer>
-        </Reveal>
-      </motion.div>
-    </section>
+            </ElementContainer>
+          </Reveal>
+        </motion.div>
+      </section>
+    </>
   );
 };
 

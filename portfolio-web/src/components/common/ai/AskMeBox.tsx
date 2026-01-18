@@ -140,12 +140,6 @@ const AskMeBox = () => {
   return (
     <FloatOnScroll
       threshold={400}
-      /*
-        Responsive float behavior:
-        - < md: fixed bottom centered (fácil de escribir en mobile)
-        - md: se integra al layout (no flota)
-        - lg+: flota en desktop en bottom-right con 1rem (right-4 bottom-4)
-      */
       floatClass="
         fixed bottom-4 left-3 right-3 z-[999]
         md:static md:inset-auto  md:w-auto md:mx-auto
@@ -156,7 +150,7 @@ const AskMeBox = () => {
     >
       <ElementContainer
         border
-        className="p-5 bg-bg1-color rounded-2xl shadow-2xl max-w-[30rem] mt-[-12.5rem] md:mt-[-10rem] 2xl:max-w-[64rem] mx-auto"
+        className="p-5 bg-bg1-color rounded-2xl shadow-2xl max-w-[30rem] mt-[-12.5rem] md:mt-[-10rem] 2xl:max-w-[30rem] mx-auto"
       >
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">

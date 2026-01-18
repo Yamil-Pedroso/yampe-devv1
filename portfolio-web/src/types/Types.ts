@@ -20,6 +20,16 @@ export interface MenuItem {
   submenus?: string[]; // Optional submenus for dropdowns
 }
 
+//Stacked Cards component uses Card type defined here
+export type StackedCard = {
+  id: number;
+  type: "main" | "glass" | "dark" | "light";
+  title: string;
+  subtitle: string;
+  icon?: IconType;
+  img?: string;
+};
+
 export const menuItems: MenuItem[] = [
   { id: "home", title: "Home", href: "#home" },
   { id: "about", title: "About", href: "#about" },
