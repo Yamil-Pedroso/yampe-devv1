@@ -8,7 +8,7 @@ export const projectsData = {
         "A performance lab at the intersection of fitness and nourishment, shaping immersive, data-driven, and body-positive experiences for modern living",
       category: "Web Development",
       tags: ["react", "typescript", "tailwindcss", "Node.js", "MongoDB"],
-      link: "https://fitness-nutrition-v1.netlify.app/",
+      link: "https://fitness-nutrition-app.netlify.app/",
       image: "/images/projects/fit_nut.webp",
       imageDetails: [
         "/images/projects/project-details/fit_nut_1.webp",
