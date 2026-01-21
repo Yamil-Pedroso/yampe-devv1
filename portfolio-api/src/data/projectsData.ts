@@ -24,7 +24,7 @@ export const projectsData = {
         "A creative studio operating at the threshold of design and innovation crafting bold, immersive, and unconventional experiences.",
       category: "Web Development",
       tags: ["react", "typescript", "tailwindcss"],
-      link: "https://liminal-devv1.netlify.app/",
+      link: "https://liminal-app.netlify.app/",
       image: "/images/projects/project_1.webp",
       imageDetails: [
         "/images/projects/project-details/liminal_1.webp",
@@ -103,7 +103,7 @@ export const projectsData = {
       description: "Create, share, and organize your code snippets with ease.",
       category: "Web Development",
       tags: ["react", "typescript", "styled-components"],
-      link: "https://custom-snippets.netlify.app/",
+      link: "https://custom-snippets-app.netlify.app/",
       image: "/images/projects/snippets.webp",
       imageDetails: [
         "/images/projects/project-details/snippet_1.webp",
