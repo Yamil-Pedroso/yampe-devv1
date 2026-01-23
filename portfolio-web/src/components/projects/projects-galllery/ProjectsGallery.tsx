@@ -135,15 +135,15 @@ const ProjectsGallery = () => {
         image: p.image ? toAbs(p.image) : undefined,
         link: p.link,
       })),
-    [data]
+    [data],
   );
 
   const filtered = useMemo(
     () =>
       items.filter(
-        (p) => activeMenuItem === "Show All" || p.category === activeMenuItem
+        (p) => activeMenuItem === "Show All" || p.category === activeMenuItem,
       ),
-    [items, activeMenuItem]
+    [items, activeMenuItem],
   );
 
   return (
@@ -281,7 +281,7 @@ const ProjectsGallery = () => {
                     </BlockwithhHover>
 
                     <div className="mt-2.5 p-6 px-14">
-                      <p className="text-color0 mb-2">
+                      <p className="text-purple-400  mb-2">
                         {app.note ?? "Coming soon"}
                       </p>
                       <p className="text-[1.875rem] mb-4">{app.title}</p>

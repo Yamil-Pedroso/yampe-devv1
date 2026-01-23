@@ -1,4 +1,2 @@
-## Resposive
-[] - mt all comps
-[X] - Service comp
-[X] - Testimonial comp
+[] - Authentication Custom Snippets
+[] - Fix AI Market Agent connection
