@@ -16,7 +16,7 @@ export const heroData: HeroData = {
     },
     {
       text: "Discover Resume",
-      href: "https://yampe-cv.netlify.app/",
+      href: "https://yampe-dev-cv.netlify.app/",
       icon: MdArrowForwardIos,
     },
   ],
