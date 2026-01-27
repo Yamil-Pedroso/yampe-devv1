@@ -324,5 +324,29 @@ export const projectsData = {
       ],
       icon: "",
     },
+    {
+      title: "Vela Coffee",
+      subtitle: "Artisan Café Experience",
+      description:
+        "A refined café website concept focused on atmosphere, craftsmanship, and a warm in store experience.",
+      category: "UI/UX Design",
+      tags: [
+        "node.js",
+        "React",
+        "typescript",
+        "framer-motion",
+        "tailwindcss",
+        "openai",
+      ],
+      link: "https://vela-coffee.vercel.app/",
+      image: "/images/projects/ui-ux-design/uiux_04.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d4_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d4_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d4_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d4_04.webp",
+      ],
+      icon: "",
+    },
   ],
 };
