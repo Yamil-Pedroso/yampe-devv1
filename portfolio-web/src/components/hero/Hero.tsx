@@ -3,7 +3,7 @@ import { heroData } from "@/data/heroData";
 import { motion, Variants } from "framer-motion";
 import AskMeBox from "@/components/common/ai/AskMeBox";
 import { MdArrowOutward } from "react-icons/md";
-import StackedCards from "../common/StackedCards";
+import TerminalHero from "./ani-terminal/TerminalHero";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -38,7 +38,6 @@ const Hero = () => {
     xl:items-start
   "
     >
-      {/* LEFT content */}
       <motion.div
         {...fadeUpProps}
         className="
@@ -97,7 +96,6 @@ const Hero = () => {
         </a>
       </motion.div>
 
-      {/* MIDDLE content (AskMeBox) */}
       <div
         className="
           order-3 lg:order-3
@@ -114,17 +112,17 @@ const Hero = () => {
         <AskMeBox />
       </div>
 
-      {/* RIGHT content (StackedCards) */}
       <motion.div
         {...fadeUpProps}
         className="
           order-2 lg:order-2 xl:order-3
-          hidden md:inline-block
+           md:inline-block
           w-full
           justify-self-center xl:justify-self-end
+          mt-15
         "
       >
-        <StackedCards />
+        <TerminalHero />
       </motion.div>
     </section>
   );
