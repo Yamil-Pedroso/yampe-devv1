@@ -64,7 +64,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
         duration: 0.35,
         ease: "power2.out",
       },
-      0
+      0,
     );
 
     tl.to(
@@ -74,7 +74,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
         duration: 0.45,
         ease: "power2.inOut",
       },
-      0
+      0,
     );
 
     tl.to(
@@ -86,7 +86,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
         duration: 0.25,
         ease: "power2.out",
       },
-      0.12
+      0.12,
     );
 
     tl.to(
@@ -97,7 +97,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
         duration: 0.28,
         ease: "power2.out",
       },
-      0.2
+      0.2,
     );
 
     const btn = wrapRef.current;
@@ -148,7 +148,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
         </defs>
 
         {/* 🎨 PATH con gradient */}
-        <path ref={shapeRef} d={CIRCLE} fill="url(#cta-gradient)" />
+        <path ref={shapeRef} d={CIRCLE} fill="green" />
       </svg>
 
       {/* ICONO */}

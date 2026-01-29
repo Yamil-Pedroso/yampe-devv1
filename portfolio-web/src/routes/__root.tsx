@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import MainLayout from "@/layouts/MainLayout";
-import Loader from "@/components/common/loader/Loader";
+//import Loader from "@/components/common/loader/Loader";
+//import RetroLoader from "@/components/common/loader/RetroLoader";
+import DevMorphLoader from "@/components/common/loader/DevMorphLoader";
 import { MenuProvider } from "@/components/context/MenuContext";
 import ScrollToTopPages from "@/components/common/scroll-items/ScrollToTopPages";
 
@@ -23,7 +25,7 @@ function RootComponent() {
   if (!isLoading) {
     return (
       <div className="flex justify-center items-center h-screen overflow-hidden">
-        <Loader />
+        <DevMorphLoader />
       </div>
     );
   }

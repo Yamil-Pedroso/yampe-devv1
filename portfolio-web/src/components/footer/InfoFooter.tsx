@@ -139,7 +139,7 @@ const InfoFooter = () => {
                   variants={innerItem}
                 >
                   <MdOutlineEmail
-                    className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-lg sm:text-xl text-purple-400"
+                    className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-lg sm:text-xl text-green-500"
                     aria-hidden
                   />
                   <input
@@ -155,7 +155,7 @@ const InfoFooter = () => {
                       bg-transparent text-zinc-300 placeholder:text-zinc-500
                       pl-10 pr-4 py-2 sm:py-2.5
                       border-0 border-b border-b-zinc-600
-                      focus:border-purple-400 focus:outline-none focus:ring-0
+                      focus:border-green-500 focus:outline-none focus:ring-0
                       text-sm sm:text-base
                     "
                   />
@@ -204,7 +204,7 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiMapPin className="mt-0.5 sm:mt-1 shrink-0 text-purple-400 text-sm sm:text-base" />
+                  <FiMapPin className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base" />
                   <span className="text-sm sm:text-base md:text-lg text-center md:text-left">
                     {address?.street}
                   </span>
@@ -214,7 +214,7 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiMail className="mt-0.5 sm:mt-1 shrink-0 text-purple-400 text-sm sm:text-base" />
+                  <FiMail className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base" />
                   <a
                     href={`mailto:${address?.email}`}
                     className="transition hover:text-white text-sm sm:text-base md:text-lg"
@@ -227,7 +227,7 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiPhone className="mt-0.5 sm:mt-1 shrink-0 text-purple-400 text-sm sm:text-base" />
+                  <FiPhone className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base" />
                   <a
                     href={`tel:${address?.phone.replace(/[\s()-]/g, "")}`}
                     className="transition hover:text-white text-sm sm:text-base md:text-lg"

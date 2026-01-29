@@ -1,0 +1,64 @@
+import React from "react";
+//import { TbBrandGithubFilled } from "react-icons/tb";
+//import { BiLogoUpwork } from "react-icons/bi";
+//import { FaLinkedinIn } from "react-icons/fa";
+//import { IconType } from "react-icons";
+import { PixelIconType } from "./PixelIcon";
+import PixelIcon from "./PixelIcon";
+
+interface PlatformItemProps {
+  url: string;
+  iconType: PixelIconType;
+  containerColor: string;
+}
+
+const platformData: PlatformItemProps[] = [
+  {
+    url: "https://www.linkedin.com/in/yamil-pedroso/",
+    iconType: "linkedin",
+    containerColor: "bg-gray-800 hover:bg-blue-700",
+  },
+  {
+    url: "https://github.com/yamilpedroso",
+    iconType: "github",
+    containerColor: "bg-gray-800",
+  },
+  {
+    url: "https://www.upwork.com/nx/search/talent/?nbs=1&q=Yamil%20Pedroso",
+    iconType: "upwork",
+    containerColor: "bg-gray-800",
+  },
+];
+
+const PlatformItem: React.FC = () => {
+  return (
+    <ul className="flex justify-center items-center sm:text-4xl mr-10 ">
+      {platformData.map((platform, i) => {
+        return (
+          <li
+            key={i}
+            className={`
+              mx-3 sm:mx-4
+              ${platform.containerColor}
+              transition-colors
+              duration-300
+              opacity-50
+
+            `}
+          >
+            <a
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center"
+            >
+              <PixelIcon type={platform.iconType} size={40} />
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+export default PlatformItem;

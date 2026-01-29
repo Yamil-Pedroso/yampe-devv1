@@ -49,8 +49,8 @@ const AppointmentForm = ({ className }: AppointmentFormProps) => {
       </h2>
 
       <form className="flex flex-col space-y-6" onSubmit={handleOnSubmit}>
-        <div className="flex items-center border-b border-gray-500 pb-2 focus-within:border-purple-400 transition-colors">
-          <FaUser className="text-purple-400  mr-3" />
+        <div className="flex items-center border-b border-gray-500 pb-2 focus-within:border-green-500 transition-colors">
+          <FaUser className="text-green-500  mr-3" />
           <input
             type="text"
             id="name"
@@ -65,8 +65,8 @@ const AppointmentForm = ({ className }: AppointmentFormProps) => {
           />
         </div>
 
-        <div className="flex items-center border-b border-gray-500 pb-2 focus-within:border-purple-400 transition-colors">
-          <FaEnvelope className="text-purple-400 mr-3" />
+        <div className="flex items-center border-b border-gray-500 pb-2 focus-within:border-green-500 transition-colors">
+          <FaEnvelope className="text-green-500 mr-3" />
           <input
             type="email"
             id="email"
@@ -81,8 +81,8 @@ const AppointmentForm = ({ className }: AppointmentFormProps) => {
           />
         </div>
 
-        <div className="flex items-start border-b border-gray-500 pb-2 focus-within:border-purple-400 transition-colors">
-          <FaCommentAlt className="text-purple-400 mr-3 mt-1" />
+        <div className="flex items-start border-b border-gray-500 pb-2 focus-within:border-green-500 transition-colors">
+          <FaCommentAlt className="text-green-500 mr-3 mt-1" />
           <textarea
             id="message"
             name="message"

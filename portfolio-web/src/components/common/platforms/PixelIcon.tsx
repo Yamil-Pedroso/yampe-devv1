@@ -1,0 +1,52 @@
+export type PixelIconType = "linkedin" | "github" | "upwork";
+
+interface PixelIconProps {
+  type: PixelIconType;
+  size?: number;
+}
+
+const PixelIcon: React.FC<PixelIconProps> = ({ type, size = 24 }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      shapeRendering="crispEdges"
+    >
+      {type === "linkedin" && (
+        <>
+          <rect x="3" y="6" width="2" height="7" fill="white" />
+          <rect x="3" y="4" width="2" height="1" fill="white" />
+          <rect x="7" y="6" width="2" height="7" fill="white" />
+          <rect x="9" y="6" width="2" height="2" fill="white" />
+          <rect x="11" y="8" width="2" height="5" fill="white" />
+        </>
+      )}
+
+      {type === "github" && (
+        <>
+          <rect x="4" y="4" width="8" height="8" fill="white" />
+          <rect x="3" y="3" width="2" height="2" fill="white" />
+          <rect x="11" y="3" width="2" height="2" fill="white" />
+          <rect x="6" y="7" width="1" height="1" fill="#181717" />
+          <rect x="9" y="7" width="1" height="1" fill="#181717" />
+          <rect x="7" y="9" width="2" height="1" fill="#181717" />
+        </>
+      )}
+
+      {type === "upwork" && (
+        <>
+          <rect x="3" y="6" width="2" height="5" fill="white" />
+          <rect x="5" y="11" width="2" height="2" fill="white" />
+          <rect x="7" y="6" width="2" height="5" fill="white" />
+          <rect x="10" y="6" width="2" height="7" fill="white" />
+          <rect x="12" y="6" width="1" height="1" fill="white" />
+          <rect x="13" y="7" width="1" height="2" fill="white" />
+          <rect x="12" y="9" width="1" height="1" fill="white" />
+        </>
+      )}
+    </svg>
+  );
+};
+
+export default PixelIcon;

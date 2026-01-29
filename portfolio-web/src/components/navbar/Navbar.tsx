@@ -19,6 +19,7 @@ import { IoIosNotifications, IoIosNotificationsOff } from "react-icons/io";
 import { fetchNotifications } from "../services/notificationsService";
 import { useAdminAuth } from "@/lib/hooks/useAdminAuth";
 import { Link } from "@tanstack/react-router";
+import PlatformItem from "../common/platforms/PlatformItem";
 
 const letters = ["Y", "a", "m", "p", "e", ".", "d", "e", "v"];
 
@@ -64,7 +65,7 @@ const Navbar = () => {
 
         localStorage.setItem(
           "previousNotificationsCount",
-          backendNotifications.length.toString()
+          backendNotifications.length.toString(),
         );
 
         setPreviousNotifications(backendNotifications.length);
@@ -87,7 +88,7 @@ const Navbar = () => {
             id: n._id,
             message: n.message,
             createdAt: n.createdAt,
-          }))
+          })),
         );
       } catch (error) {
         console.error("Error fetching notifications:", error);
@@ -149,9 +150,9 @@ const Navbar = () => {
         className="flex mx-auto justify-between items-center w-full text-white mt-8 max-w-[94%] relative"
       >
         {/* Logo */}
-        <a href="/" className="flex-1">
+        <a href="/" className="rounded-[0.3rem] border w-max">
           <motion.div
-            className="flex items-end cursor-pointer group"
+            className="flex items-end cursor-pointer group "
             whileHover="hover"
           >
             {/* Logo */}
@@ -164,7 +165,7 @@ const Navbar = () => {
               }}
               transition={{
                 duration: 0.9,
-                ease: [0.34, 1.56, 0.64, 1], // efecto rebote tipo Disney
+                ease: [0.34, 1.56, 0.64, 1],
               }}
               className="flex-shrink-0"
               variants={{
@@ -208,7 +209,7 @@ const Navbar = () => {
           </motion.div>
         </a>
         {/* Desktop Menu */}
-        <div>
+        <div className="flex-1 flex justify-center items-center">
           <MenuItems className="hidden mx-auto min-[1024px]:block lg:flex" />
         </div>
 
@@ -243,6 +244,9 @@ const Navbar = () => {
 
         {/* Notifications + Hamburger */}
         <div className="flex-1 flex justify-end items-center">
+          {/* Platforms */}
+
+          <PlatformItem />
           <AnimatePresence>
             <div
               ref={bellRef}
@@ -292,7 +296,7 @@ const Navbar = () => {
                         <div className="flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-1">
                           {backendNotifications.map((n) => {
                             const formattedDate = new Date(
-                              n.createdAt
+                              n.createdAt,
                             ).toLocaleString([], {
                               hour: "2-digit",
                               minute: "2-digit",

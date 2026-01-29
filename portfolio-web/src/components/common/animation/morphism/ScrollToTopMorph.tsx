@@ -51,7 +51,7 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
         duration: 0.5,
         ease: "power2.inOut",
       },
-      0
+      0,
     )
       .to(
         btnRef.current,
@@ -60,7 +60,7 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
           duration: 0.25,
           ease: "power2.out",
         },
-        0
+        0,
       )
       .to(
         pathRef.current,
@@ -69,7 +69,7 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
           duration: 0.25,
           ease: "power2.out",
         },
-        0.15
+        0.15,
       );
 
     const enter = () => tl.play();
@@ -118,8 +118,8 @@ const ScrollToTopMorph: React.FC<ScrollToTopMorphProps> = ({
             x2="100%"
             y2="100%"
           >
-            <stop offset="0%" stopColor="#a855f7" /> {/* purple-500 */}
-            <stop offset="100%" stopColor="#3b82f6" /> {/* blue-500 */}
+            <stop offset="0%" stopColor="green" /> {/* purple-500 */}
+            <stop offset="100%" stopColor="green" /> {/* blue-500 */}
           </linearGradient>
         </defs>
 

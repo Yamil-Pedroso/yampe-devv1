@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Playball&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import "tailwindcss";
 @import "tailwind-animations";
 @plugin "@tailwindcss/typography";
@@ -13,7 +16,7 @@ body {
   padding: 0;
   overflow-x: hidden;
 
-  font-family: "DM Sans", sans-serif;
+  font-family: "VT323", monospace;
   background-color: var(--main-bg-color);
   color: var(--main-font-color);
 }
@@ -172,4 +175,24 @@ body {
   100% {
     transform: rotate(-10deg);
   }
+}
+
+@keyframes smoothZoom {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25);
+  }
+  60% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.smooth-zoom {
+  animation: smoothZoom 0.9s ease-in-out infinite;
+  transform-origin: center;
 }

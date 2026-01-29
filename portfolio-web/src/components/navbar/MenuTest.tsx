@@ -21,7 +21,7 @@ const MenuTest: React.FC<MenuProps> = ({ onNavigate }) => {
           <div className=" w-full flex flex-col max-w-[220px]  large:max-w-[900px] custom-small:text-right large:text-left  large:ml-0 mt-6 large:mt-0">
             <LocationInfo
               className="mb-4 text-white text-[1.1875rem] large:text-8xl"
-              highlightClass="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400"
+              highlightClass="text-transparent bg-clip-text bg-green-500"
               clockClass=" flex flex-col large:mt-14 text-[2.5rem] large:text-7xl text-white"
               greetingClass="font-extralight text-[1.5rem] large:text-4xl"
             />

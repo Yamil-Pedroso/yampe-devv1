@@ -113,7 +113,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             animate={txtCtrls}
             className="flex flex-col justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] px-4 sm:px-6 lg:px-8 xl:px-22 py-4 sm:py-6 lg:py-0 gap-3 sm:gap-4 lg:gap-6"
           >
-            <h3 className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 text-sm sm:text-base lg:text-lg xl:text-xl">
+            <h3 className=" text-green-500 text-sm sm:text-base lg:text-lg xl:text-xl">
               {project.title}
             </h3>
             <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] leading-tight">
@@ -138,7 +138,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             className="flex flex-col items-start lg:items-end justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] order-2 lg:order-1 px-4 sm:px-6 lg:px-8 xl:pr-22 py-4 sm:py-6 lg:py-0"
           >
             <div className="flex flex-col w-full lg:w-full xl:w-[30rem] gap-3 sm:gap-4 lg:gap-6">
-              <h3 className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400  text-sm sm:text-base lg:text-lg xl:text-xl">
+              <h3 className=" text-green-500 text-sm sm:text-base lg:text-lg xl:text-xl">
                 {project.title}
               </h3>
               <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] leading-tight">
@@ -212,10 +212,7 @@ const Projects = () => {
           {projectsData.header}
         </h2>
         <p className=" sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] max-w-full sm:max-w-[32rem] md:max-w-[40rem] lg:max-w-[45rem] text-base/14 leading-tight mx-auto">
-          Explore my{" "}
-          <span className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 ">
-            Projects
-          </span>
+          Explore my <span className=" text-green-500 font-bold">Projects</span>
         </p>
       </div>
 

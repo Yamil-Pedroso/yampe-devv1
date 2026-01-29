@@ -10,7 +10,7 @@ const LogoComp: React.FC<LogoCompProps> = ({ className, width, height }) => {
   return (
     <div className={`relative flex items-center justify-center ${className}`}>
       {/* Outer ring */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 opacity-90 " />
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-br bg-[#5f5f5f] opacity-90 " />
 
       {/* Inner square */}
       <div
@@ -22,7 +22,8 @@ const LogoComp: React.FC<LogoCompProps> = ({ className, width, height }) => {
   absolute
   font-mono font-bold
   text-transparent bg-clip-text
-  bg-gradient-to-r from-purple-500 to-blue-300
+  bg-[#747474]
+
 `}
         >
           {"</>"}

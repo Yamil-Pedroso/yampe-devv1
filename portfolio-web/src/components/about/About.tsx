@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { aboutMeData } from "@/data/aboutData";
+//import { aboutMeData } from "@/data/aboutData";
 import RoundedBtn from "@/components/common/rounded-btn/RoundedBtn";
 import ElementContainer from "../common/element-container/ElementContainer";
 import ElementContainer2 from "../common/element-container/ElementContainer2";
@@ -89,10 +89,8 @@ const About = () => {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
           >
             Professional{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">
-              Problema Solutions
-            </span>{" "}
-            For Digital Products
+            <span className=" text-green-500">Problema Solutions</span> For
+            Digital Products
           </motion.p>
 
           <motion.p

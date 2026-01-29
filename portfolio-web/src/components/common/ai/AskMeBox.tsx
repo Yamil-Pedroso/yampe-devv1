@@ -75,7 +75,7 @@ function HighlightedText({
     nodes.push(
       <mark key={`h-${start}`} className={highlightClass}>
         {text.slice(start, end)}
-      </mark>
+      </mark>,
     );
     last = end;
   }
@@ -97,7 +97,7 @@ const AskMeBox = () => {
     const groups: any = skillsData?.skills ?? {};
     const list: string[] = [];
     Object.values(groups).forEach((arr: any) =>
-      (arr ?? []).forEach((s: any) => s?.tech && list.push(String(s.tech)))
+      (arr ?? []).forEach((s: any) => s?.tech && list.push(String(s.tech))),
     );
     list.push("frontend", "backend", "full-stack", "API", "REST");
     return Array.from(new Set(list));
@@ -150,7 +150,7 @@ const AskMeBox = () => {
     >
       <ElementContainer
         border
-        className="p-5 bg-bg1-color rounded-2xl shadow-2xl max-w-[30rem] mt-[-12.5rem] md:mt-[-10rem] 2xl:max-w-[30rem] mx-auto"
+        className="p-5 bg-bg1-color rounded-[8px] shadow-2xl max-w-[30rem] mt-[-12.5rem] md:mt-[-10rem] 2xl:max-w-[30rem] mx-auto"
       >
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">

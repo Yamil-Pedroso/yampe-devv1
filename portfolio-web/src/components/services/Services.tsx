@@ -115,11 +115,8 @@ const Services: React.FC = () => {
       >
         <h2 className="text-color4">{header}</h2>
         <p className="text-[2.8125rem] max-w-[45rem] text-base/13 mt-3.5 mx-auto">
-          My{" "}
-          <span className=" text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 ">
-            Special Services
-          </span>{" "}
-          For your Business Needs
+          My <span className="text-green-500 ">Special Services</span> For your
+          Business Needs
         </p>
       </motion.div>
 

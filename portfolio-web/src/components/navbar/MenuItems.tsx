@@ -49,7 +49,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
           return (
             <li
               key={i}
-              className="relative hover:text-purple-400  duration-300"
+              className="relative hover:text-green-500  duration-300"
               onMouseEnter={() => open(item.title)}
               onMouseLeave={scheduleClose}
               onFocus={() => open(item.title)}
@@ -61,7 +61,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ className }) => {
                   e.preventDefault();
                   handleItemClick(item.id);
                 }}
-                className="cursor-pointer hover:underline"
+                className="cursor-pointer text-[1.2rem] hover:underline"
               >
                 {item.title}
               </a>

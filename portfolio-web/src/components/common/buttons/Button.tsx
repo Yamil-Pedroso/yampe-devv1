@@ -25,7 +25,7 @@ function Button(props: ButtonAsButtonProps): React.ReactElement;
 function Button(props: ButtonAsLinkProps | ButtonAsButtonProps) {
   const base =
     "group inline-flex items-center justify-center gap-2 rounded-2xl px-4 h-[3rem] " +
-    "bg-linear-to-r from-purple-500 to-blue-500 text-gray-900 " +
+    "bg-gray-800 text-white " +
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 " +
     "focus-visible:outline-[var(--font-btn-color)]";
 

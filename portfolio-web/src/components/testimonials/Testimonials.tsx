@@ -27,11 +27,7 @@ const Testimonials = () => {
             <p className="">{header}</p>
 
             <h2 className="text-[2rem] sm:text-[2.8125rem] text-base/14 ">
-              What{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400">
-                People
-              </span>{" "}
-              Say
+              What <span className="text-green-500 font-bold">People</span> Say
             </h2>
 
             <p className="mt-0 text-sm sm:text-[1rem] max-w-md text-zinc-400">
@@ -45,14 +41,14 @@ const Testimonials = () => {
               className="flex h-[70px] w-[70px] items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition hover:bg-zinc-800"
               onClick={() => {}}
             >
-              <MdOutlineArrowOutward className="text-color4 rotate-[-90deg] text-[21px]" />
+              <MdOutlineArrowOutward className="text-green-500 rotate-[-90deg] text-[21px]" />
             </button>
             <button
               aria-label="Next"
               className="flex h-[70px] w-[70px] items-center justify-center rounded-full border border-zinc-700 text-zinc-300 transition hover:bg-zinc-800"
               onClick={() => {}}
             >
-              <MdOutlineArrowOutward className="text-color4 rotate-[360deg] text-[21px]" />
+              <MdOutlineArrowOutward className="text-green-500 rotate-[360deg] text-[21px]" />
             </button>
           </div>
         </motion.div>
@@ -88,10 +84,10 @@ const Testimonials = () => {
                       />
                     </div>
 
-                    <div className="absolute -left-12 top-[2rem] flex h-[60px] w-[60px] -translate-y-1/2 items-center justify-center rounded-full bg-[#1f1f1f]  group-hover:bg-[image:linear-gradient(to_right,#a855f7,#3b82f6)] duration-300">
+                    <div className="absolute -left-12 top-[2rem] flex h-[60px] w-[60px] -translate-y-1/2 items-center justify-center rounded-full bg-[#1f1f1f]  group-hover:bg-green-500 duration-300">
                       {React.createElement(t.icon || "span", {
                         className:
-                          "text-purple-400 text-[1.1rem] group-hover:text-bg1-color duration-300",
+                          "text-green-500 text-[1.1rem] group-hover:text-bg1-color duration-300",
                       })}
                     </div>
                   </div>
@@ -129,7 +125,7 @@ const Testimonials = () => {
                     <p className="text-white text-[22px] font-semibold leading-tight">
                       {t.author}
                     </p>
-                    <p className="mt-2 text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 text-[14px] font-medium">
+                    <p className="mt-2 text-green-500 text-[14px] font-medium">
                       {t.position}
                     </p>
                   </div>

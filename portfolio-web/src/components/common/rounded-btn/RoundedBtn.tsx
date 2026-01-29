@@ -22,7 +22,7 @@ const RoundedBtn = ({
         text-white
         ${width} ${height}
         rounded-full
-        bg-[image:var(--gradient-bg)]
+        bg-[#000000]
         cursor-pointer
         ${className}
       `}

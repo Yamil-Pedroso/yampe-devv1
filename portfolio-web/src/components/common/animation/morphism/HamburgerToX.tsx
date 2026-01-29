@@ -65,7 +65,8 @@ const HamburgerToX: React.FC<HamburgerToXProps> = ({
         setOpen(!open);
         if (toggleMenu) toggleMenu();
       }}
-      className="group inline-flex items-center justify-center rounded-full p-2 bg-linear-to-r from-purple-500 to-blue-500 cursor-pointer"
+      className="group inline-flex items-center justify-center rounded-full p-2 bg-linear-to-r bg-[#656565]
+ cursor-pointer"
       style={{ WebkitTapHighlightColor: "transparent" }}
     >
       <svg

@@ -1,4 +1,5 @@
 import { IconType } from "react-icons";
+import { FaHouse } from "react-icons/fa6";
 
 export interface CommonContent {
   header: string;
@@ -17,6 +18,7 @@ export interface MenuItem {
   id: string;
   title: string;
   href: string;
+  icon?: IconType | string;
   submenus?: string[]; // Optional submenus for dropdowns
 }
 
@@ -26,12 +28,12 @@ export type StackedCard = {
   type: "main" | "glass" | "dark" | "light";
   title: string;
   subtitle: string;
-  icon?: IconType;
+  icon?: IconType | string;
   img?: string;
 };
 
 export const menuItems: MenuItem[] = [
-  { id: "home", title: "Home", href: "#home" },
+  { id: "home", title: "Home", href: "#home", icon: FaHouse },
   { id: "about", title: "About", href: "#about" },
   { id: "resume", title: "Resume", href: "#resume" },
   { id: "services", title: "Services", href: "#services" },

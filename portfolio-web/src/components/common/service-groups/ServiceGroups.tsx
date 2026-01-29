@@ -39,11 +39,11 @@ const ServiceGroups = () => {
       transition={{ duration: 0.45, ease: "easeOut", delay: index * 0.08 }}
     >
       {feature.icon && iconMap[feature.icon] ? (
-        <span className="mr-2 text-purple-400 text-[1.25rem]">
+        <span className="mr-2 text-green-500 text-[1.25rem]">
           {React.createElement(iconMap[feature.icon])}
         </span>
       ) : (
-        <span className="mr-2 text-purple-400 text-[1.25rem]">✔</span>
+        <span className="mr-2 text-green-500 text-[1.25rem]">✔</span>
       )}
       <span className="text-[1.25rem]">{feature.text}</span>
     </motion.div>
@@ -59,7 +59,7 @@ const ServiceGroups = () => {
       transition={{ duration: 0.45, ease: "easeOut", delay: i * 0.08 }}
     >
       {feature.icon && iconMap[feature.icon] ? (
-        <span className="mr-2 text-purple-400 text-[1.25rem]">
+        <span className="mr-2 text-green-500 text-[1.25rem]">
           {React.createElement(iconMap[feature.icon])}
         </span>
       ) : (
