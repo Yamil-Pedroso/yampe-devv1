@@ -15,6 +15,8 @@ import { AboutDTO, HomeResponse } from "@/services/HomeService";
 import { FaCheck } from "react-icons/fa6";
 import ServiceGroups from "../common/service-groups/ServiceGroups";
 import VideoComp from "../common/video/VideoComp";
+import RetroContainer from "../common/containers/RetroContainer";
+import RetroButton from "../common/buttons/RetroButton";
 
 const iconMap: Record<string, React.ElementType> = {
   FaCheck: FaCheck,
@@ -64,7 +66,7 @@ const About = () => {
   const about = items[0];
 
   return (
-    <DarkContainer className="w-full desktop:max-w-[94%] mt-[-10rem] mx-auto md:mt-[-8rem] lg:mt-[13rem]  laptop:h-[calc(100vh-7rem)]">
+    <RetroContainer className="w-full flex desktop:max-w-[80%] mt-[-10rem] mx-auto md:mt-[-8rem] lg:mt-[13rem]  laptop:h-[calc(100vh-7rem)] shadow-[16px_16px_0px_#000]">
       <div
         id="about"
         className="w-full flex flex-col justify-center items-center large:justify-center large:items-center laptop:flex-row gap-36"
@@ -111,22 +113,24 @@ const About = () => {
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
           >
-            <ElementContainer border className="about-row">
+            <RetroContainer className="about-row shadow-[8px_8px_0px_#000]">
               {about?.infoContact?.map((info, i) => (
                 <div key={i} className="flex items-center  ml-12 mobile:ml-0">
-                  <RoundedBtn className=" text-[1rem] mr-2 text-bg1-color w-[2.5rem] h-[2.5rem]">
-                    <span className="">
+                  <RetroButton
+                    href=""
+                    className="flex justify-center items-center text-[1rem] mr-2 text-bg1-color w-[2.5rem] h-[2.5rem] group"
+                  >
+                    <span className="text-white group-hover:mt-[-5rem] group-hover:scale-[1.8] group-hover:animate-ring transform transition-all duration-300">
                       {React.createElement(iconMap[info.icon || ""])}
                     </span>
-                  </RoundedBtn>
-
+                  </RetroButton>
                   <div className="flex flex-col mx-2.5">
                     <span>{info.text1}</span>
                     <span>{info.text2}</span>
                   </div>
                 </div>
               ))}
-            </ElementContainer>
+            </RetroContainer>
           </motion.div>
         </div>
 
@@ -137,69 +141,58 @@ const About = () => {
             className="flex flex-col absolute top-80 left-[-2rem] desktop:left-[-6.55rem] mt-10 z-10"
             style={{ y: leftFloatY1 }}
           >
-            <a
+            <RetroButton
               href="https://github.com/Yamil-Pedroso"
               target="_blank"
               rel="noopener noreferrer"
+              className="flex items-center bg-yellow-400 rounded-4xl py-1 px-4"
             >
-              <ElementContainer2
-                className="text-black p-1 mb-[-2rem] mx-20 text-[.8rem] desktop:mb-0 sm:m-0 sm:text-[1rem] group relative cursor-pointer transition-colors duration-400 ease-out
-    hover:bg-bg1-color "
-              >
-                <div className="w-[2.4rem] rounded-full">
-                  <img
-                    src="/images/about/icons/3d-cube.png"
-                    alt="Experience Icon"
-                  />
-                </div>
-                <p className="group-hover:text-white">
-                  Experience Full Stack Developer
-                </p>
-                <MdOutlineArrowOutward
-                  className="text-black group-hover:text-white"
-                  size={21}
+              <div className="w-[2.4rem] rounded-full">
+                <img
+                  src="/images/about/icons/3d-cube.png"
+                  alt="Experience Icon"
                 />
-              </ElementContainer2>
-            </a>
+              </div>
+              <p className="group-hover:text-black text-black ml-2">
+                Experience Full Stack Developer
+              </p>
+              <MdOutlineArrowOutward
+                className="text-black group-hover:text-black"
+                size={21}
+              />
+            </RetroButton>
 
-            <motion.a
+            <RetroButton
+              as="motion.a"
               href="https://www.linkedin.com/in/yamil-pedroso/"
               target="_blank"
               rel="noopener noreferrer"
               style={{ y: leftFloatY2 }}
+              className="flex items-center bg-yellow-400 rounded-4xl py-1 px-4 mt-6 w-45"
             >
-              <ElementContainer2
-                className="text-black p-1 mt-0  text-[.8rem] mx-60 desktop:ml-[-3rem] sm:mt-[-2rem] sm:m-0 sm:text-[1rem] group relative cursor-pointer transition-colors duration-400 ease-out
-    hover:bg-bg1-color "
-              >
-                <div className="w-[2.4rem] rounded-full overflow-hidden mx-[-6px]">
-                  <img
-                    src="/images/avatar/yami.jpg"
-                    alt="Experience Icon"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p
-                  className="whitespace-nowrap
-                  group-hover:text-white
-                "
-                >
-                  Yamil Pedroso
-                </p>
-                <MdOutlineArrowOutward
-                  className="text-black
-                group-hover:text-white"
-                  size={21}
+              <div className="w-[2.4rem] rounded-full overflow-hidden mx-[-6px]">
+                <img
+                  src="/images/avatar/yami.jpg"
+                  alt="Experience Icon"
+                  className="w-full h-full object-cover"
                 />
-              </ElementContainer2>
-            </motion.a>
+              </div>
+              <p
+                className="whitespace-nowrap
+                  group-hover:text-black text-black ml-4
+                "
+              >
+                Yamil Pedroso
+              </p>
+              <MdOutlineArrowOutward
+                className="text-black
+                group-hover:text-black"
+                size={21}
+              />
+            </RetroButton>
           </motion.div>
 
-          <motion.div
-            ref={imageRef}
-            className="w-[22rem] h-[27rem] desktop:w-[27.5rem] desktop:h-[33.125rem] mt-[0rem] desktop:mt-[5rem] rounded-2xl overflow-hidden"
-            style={{ y: imgY }}
-          >
+          <RetroContainer ref={imageRef} className="" style={{ y: imgY }}>
             {/* video */}
             <VideoComp
               src="/videos/about/va_1.mp4"
@@ -207,15 +200,10 @@ const About = () => {
               className="w-full h-full object-cover"
               poster="/images/about/about-me-poster.jpg"
             />
-            {/*<img
-              src={aboutMeData.image}
-              alt="About Me"
-              className="w-full h-full object-cover"
-            />*/}
-          </motion.div>
+          </RetroContainer>
         </div>
       </div>
-    </DarkContainer>
+    </RetroContainer>
   );
 };
 

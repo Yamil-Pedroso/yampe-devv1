@@ -3,6 +3,8 @@ import { resumeData } from "@/data/resumeData";
 import { motion, Variants } from "framer-motion";
 import ElementContainer from "@/components/common/element-container/ElementContainer";
 import LogoComp from "../common/logo/LogoComp";
+import RetroContainer from "../common/containers/RetroContainer";
+import RetroButton from "../common/buttons/RetroButton";
 
 /* ===== Variants reutilizables ===== */
 const containerStagger: Variants = {
@@ -116,7 +118,7 @@ const Resume = () => {
 
           {/* Contenedor de experiencias */}
           <Reveal>
-            <ElementContainer className="w-full max-w-screen-xl bg-bg1-color p-6 mobile:p-6 large:p-18">
+            <RetroContainer className="w-full max-w-screen-xl bg-bg1-color p-6 mobile:p-6 large:p-18 shadow-[8px_8px_0px_#000]">
               <motion.div
                 variants={containerStagger}
                 className="flex flex-col gap-10 large:flex-row large:gap-16 mt-4"
@@ -134,9 +136,12 @@ const Resume = () => {
                     >
                       <Reveal variants={popIcon}>
                         {exp.icon && (
-                          <span className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-sm">
+                          <RetroButton
+                            href="#"
+                            className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-[2px_2px_0px_#000]"
+                          >
                             {React.createElement(exp.icon)}
-                          </span>
+                          </RetroButton>
                         )}
                       </Reveal>
                       <div className="flex flex-col gap-1.5 large:gap-2">
@@ -180,9 +185,12 @@ const Resume = () => {
                       >
                         <Reveal variants={popIcon}>
                           {exp.icon && (
-                            <span className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-sm">
+                            <RetroButton
+                              href="#"
+                              className="flex items-center justify-center mr-2 text-[1.25rem] w-12 h-12 rounded-full bg-bg2-color text-color3 large:text-[1.6rem] large:w-[3.5rem] large:h-[3.5rem] shadow-[2px_2px_0px_#000]"
+                            >
                               {React.createElement(exp.icon)}
-                            </span>
+                            </RetroButton>
                           )}
                         </Reveal>
                         <div className="flex flex-col gap-1.5 large:gap-2">
@@ -203,7 +211,7 @@ const Resume = () => {
                   </motion.div>
                 </div>
               </motion.div>
-            </ElementContainer>
+            </RetroContainer>
           </Reveal>
         </motion.div>
       </section>

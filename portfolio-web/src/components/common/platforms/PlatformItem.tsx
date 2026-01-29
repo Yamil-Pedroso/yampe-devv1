@@ -5,6 +5,7 @@ import React from "react";
 //import { IconType } from "react-icons";
 import { PixelIconType } from "./PixelIcon";
 import PixelIcon from "./PixelIcon";
+import RetroButton from "../../common/buttons/RetroButton";
 
 interface PlatformItemProps {
   url: string;
@@ -16,7 +17,7 @@ const platformData: PlatformItemProps[] = [
   {
     url: "https://www.linkedin.com/in/yamil-pedroso/",
     iconType: "linkedin",
-    containerColor: "bg-gray-800 hover:bg-blue-700",
+    containerColor: "bg-gray-800 hover:text-white",
   },
   {
     url: "https://github.com/yamilpedroso",
@@ -35,26 +36,36 @@ const PlatformItem: React.FC = () => {
     <ul className="flex justify-center items-center sm:text-4xl mr-10 ">
       {platformData.map((platform, i) => {
         return (
-          <li
+          <RetroButton
             key={i}
-            className={`
+            className="mx-2 sm:mx-3  px-6 py-3"
+            href={platform.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <li
+              className={`
               mx-3 sm:mx-4
-              ${platform.containerColor}
               transition-colors
               duration-300
               opacity-50
 
             `}
-          >
-            <a
-              href={platform.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center"
             >
-              <PixelIcon type={platform.iconType} size={40} />
-            </a>
-          </li>
+              <a
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                <PixelIcon
+                  type={platform.iconType}
+                  size={40}
+                  className={`hover:${platform.containerColor}`}
+                />
+              </a>
+            </li>
+          </RetroButton>
         );
       })}
     </ul>

@@ -192,6 +192,31 @@ body {
   }
 }
 
+.animate-ring {
+  animation: ring 0.25s ease-in-out;
+}
+
+@keyframes ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .smooth-zoom {
   animation: smoothZoom 0.9s ease-in-out infinite;
   transform-origin: center;

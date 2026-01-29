@@ -3,15 +3,21 @@ export type PixelIconType = "linkedin" | "github" | "upwork";
 interface PixelIconProps {
   type: PixelIconType;
   size?: number;
+  className?: string;
 }
 
-const PixelIcon: React.FC<PixelIconProps> = ({ type, size = 24 }) => {
+const PixelIcon: React.FC<PixelIconProps> = ({
+  type,
+  size = 24,
+  className,
+}) => {
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 16 16"
       shapeRendering="crispEdges"
+      className={className}
     >
       {type === "linkedin" && (
         <>
