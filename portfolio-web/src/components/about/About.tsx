@@ -118,7 +118,7 @@ const About = () => {
                 <div key={i} className="flex items-center  ml-12 mobile:ml-0">
                   <RetroButton
                     href=""
-                    className="flex justify-center items-center text-[1rem] mr-2 text-bg1-color w-[2.5rem] h-[2.5rem] group"
+                    className="flex justify-center items-center text-[1rem] mr-2 text-bg1-color w-[2.5rem] h-[2.5rem] group hover:bg-green-500"
                   >
                     <span className="text-white group-hover:mt-[-5rem] group-hover:scale-[1.8] group-hover:animate-ring transform transition-all duration-300">
                       {React.createElement(iconMap[info.icon || ""])}
@@ -162,34 +162,34 @@ const About = () => {
               />
             </RetroButton>
 
-            <RetroButton
-              as="motion.a"
-              href="https://www.linkedin.com/in/yamil-pedroso/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ y: leftFloatY2 }}
-              className="flex items-center bg-yellow-400 rounded-4xl py-1 px-4 mt-6 w-45"
-            >
-              <div className="w-[2.4rem] rounded-full overflow-hidden mx-[-6px]">
-                <img
-                  src="/images/avatar/yami.jpg"
-                  alt="Experience Icon"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p
-                className="whitespace-nowrap
+            <motion.div style={{ y: leftFloatY2 }}>
+              <RetroButton
+                href="https://www.linkedin.com/in/yamil-pedroso/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center bg-yellow-400 rounded-4xl py-1 px-4 w-45"
+              >
+                <div className="w-[2.4rem] rounded-full overflow-hidden mx-[-6px]">
+                  <img
+                    src="/images/avatar/yami.jpg"
+                    alt="Experience Icon"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p
+                  className="whitespace-nowrap
                   group-hover:text-black text-black ml-4
                 "
-              >
-                Yamil Pedroso
-              </p>
-              <MdOutlineArrowOutward
-                className="text-black
+                >
+                  Yamil Pedroso
+                </p>
+                <MdOutlineArrowOutward
+                  className="text-black
                 group-hover:text-black"
-                size={21}
-              />
-            </RetroButton>
+                  size={21}
+                />
+              </RetroButton>
+            </motion.div>
           </motion.div>
 
           <RetroContainer ref={imageRef} className="" style={{ y: imgY }}>

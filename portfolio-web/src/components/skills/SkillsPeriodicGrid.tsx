@@ -217,7 +217,7 @@ const SkillsPeriodicGrid: React.FC = () => {
             repeat: 1,
             ease: "power1.inOut",
           },
-          "<"
+          "<",
         );
       };
 
@@ -228,7 +228,7 @@ const SkillsPeriodicGrid: React.FC = () => {
     return () => {
       root.removeEventListener("mousemove", onMove);
       handlers.forEach(({ el, fn }) =>
-        el.removeEventListener("mouseenter", fn)
+        el.removeEventListener("mouseenter", fn),
       );
     };
   }, []);
@@ -297,7 +297,7 @@ const SkillsPeriodicGrid: React.FC = () => {
               variants={tileVariants}
             >
               <ElementContainer
-                className={`relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36 rounded-2xl bg-[#151515]   hover:border-color0  transition-all duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform   hover:opacity-100 hover:grayscale-0 group ${visualStateClass}`}
+                className={`relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36  bg-[#151515]   hover:border-color0  transition-all duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform   hover:opacity-100 hover:grayscale-0 group ${visualStateClass}`}
               >
                 <div className="absolute top-2 left-2 text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md bg-bg2-color/60 border border-border-color">
                   {titleMap[item.category]}

@@ -5,6 +5,7 @@ import AskMeBox from "@/components/common/ai/AskMeBox";
 //import { MdArrowOutward } from "react-icons/md";
 import TerminalHero from "./ani-terminal/TerminalHero";
 import { FaFolder } from "react-icons/fa";
+import PixelTextReveal from "../common/fonts/PixelTextReveal";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -61,8 +62,8 @@ const Hero = () => {
           >
             {heroData.name}
           </h1>
-          <h2 className="custom:text-[5rem] text-[45px] text-color3">
-            {heroData.role}
+          <h2 className="custom:text-[5rem] text-[45px] text-color3 mt-3.5">
+            <PixelTextReveal text={heroData.role} />
           </h2>
           <p className="text-[3rem] text-color3">{heroData.city}</p>
         </div>

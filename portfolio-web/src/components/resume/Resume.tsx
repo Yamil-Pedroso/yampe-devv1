@@ -1,7 +1,7 @@
 import React from "react";
 import { resumeData } from "@/data/resumeData";
 import { motion, Variants } from "framer-motion";
-import ElementContainer from "@/components/common/element-container/ElementContainer";
+//import ElementContainer from "@/components/common/element-container/ElementContainer";
 import LogoComp from "../common/logo/LogoComp";
 import RetroContainer from "../common/containers/RetroContainer";
 import RetroButton from "../common/buttons/RetroButton";

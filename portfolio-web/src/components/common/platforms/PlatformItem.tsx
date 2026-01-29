@@ -17,17 +17,17 @@ const platformData: PlatformItemProps[] = [
   {
     url: "https://www.linkedin.com/in/yamil-pedroso/",
     iconType: "linkedin",
-    containerColor: "bg-gray-800 hover:text-white",
+    containerColor: "bg-green-700",
   },
   {
     url: "https://github.com/yamilpedroso",
     iconType: "github",
-    containerColor: "bg-gray-800",
+    containerColor: "bg-green-700",
   },
   {
     url: "https://www.upwork.com/nx/search/talent/?nbs=1&q=Yamil%20Pedroso",
     iconType: "upwork",
-    containerColor: "bg-gray-800",
+    containerColor: "bg-green-700",
   },
 ];
 
@@ -38,7 +38,7 @@ const PlatformItem: React.FC = () => {
         return (
           <RetroButton
             key={i}
-            className="mx-2 sm:mx-3  px-6 py-3"
+            className="mx-2 sm:mx-3 px-6 py-3 group"
             href={platform.url}
             target="_blank"
             rel="noopener noreferrer"
@@ -58,11 +58,7 @@ const PlatformItem: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center"
               >
-                <PixelIcon
-                  type={platform.iconType}
-                  size={40}
-                  className={`hover:${platform.containerColor}`}
-                />
+                <PixelIcon type={platform.iconType} size={40} />
               </a>
             </li>
           </RetroButton>

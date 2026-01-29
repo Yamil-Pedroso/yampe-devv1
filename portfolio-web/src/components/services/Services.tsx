@@ -9,6 +9,8 @@ import ElementContainer from "../common/element-container/ElementContainer";
 import { fetchHome } from "@/services/HomeService";
 import type { ServiceDTO, HomeResponse } from "@/services/HomeService";
 import { motion, Variants } from "framer-motion";
+import RetroContainer from "../common/containers/RetroContainer";
+import RetroButton from "../common/buttons/RetroButton";
 
 const iconMap: Record<string, IconType> = {
   MdOutlineWeb: MdOutlineWeb,
@@ -131,11 +133,9 @@ const Services: React.FC = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
+                className="shadow-[8px_8px_0px_#000]"
               >
-                <ElementContainer
-                  border
-                  className="flex justify-between flex-col w-full h-auto p-12 px-10 rounded-2xl shadow-lg bg-bg1-color sm:items-center sm:px-6 sm:flex-row  sm:h-[8.5rem] xl:h-[10.5rem]"
-                >
+                <RetroContainer className="flex justify-between flex-col w-full h-auto p-12 px-10  bg-bg1-color sm:items-center sm:px-6 sm:flex-row  sm:h-[8.5rem] xl:h-[10.5rem]">
                   <div className="flex flex-col gap-2 sm:flex-row">
                     <h3 className="text-[1.5rem] font-bold">
                       {service.stepNumber}
@@ -152,16 +152,17 @@ const Services: React.FC = () => {
 
                   <motion.div variants={iconVariant}>
                     {Icon && (
-                      <span
+                      <RetroButton
+                        href="#"
                         className="flex items-center justify-center mt-6 mr-2 text-[21px]
                                    w-[4.375rem] h-[4.375rem] rounded-full
-                                   bg-bg2-color text-color4 border border-border-color xs:mb-[-.2rem]"
+                                   bg-bg2-color text-color4 border border-border-color xs:mb-[-.2rem] "
                       >
                         <Icon />
-                      </span>
+                      </RetroButton>
                     )}
                   </motion.div>
-                </ElementContainer>
+                </RetroContainer>
               </motion.div>
             );
           })}

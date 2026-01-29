@@ -43,28 +43,7 @@ const Skills: React.FC = () => {
             {skillsData.description}
           </p>
         )}
-
-        {/*<div className="mt-8">
-          <Button
-            initial="hidden"
-            animate="show"
-            variants={ctaEnter}
-            transition={{ delay: 0.35 }}
-            whileHover={ctaHover}
-            whileTap={ctaTap}
-            className="cursor-pointer group"
-          >
-            <p className="font-bold max-[40rem]:text-sm">Explore More</p>
-            <span>
-              <IoIosArrowForward
-                className="group-hover:ml-2 transition-all duration-300"
-                size={20}
-              />
-            </span>
-          </Button>
-        </div> */}
       </motion.div>
-
       <SkillsPeriodicGrid />
     </DarkContainer>
   );

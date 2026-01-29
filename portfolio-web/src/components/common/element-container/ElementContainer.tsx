@@ -21,7 +21,7 @@ const ElementContainer = ({
       onClick={onClick}
       className={`
           ${border ? "border border-color3" : ""}
-          rounded-3xl overflow-hidden ${className}`}
+           overflow-hidden ${className}`}
     >
       {children}
     </div>
