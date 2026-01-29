@@ -24,7 +24,7 @@ export const projectsData = {
         "A creative studio operating at the threshold of design and innovation crafting bold, immersive, and unconventional experiences.",
       category: "Web Development",
       tags: ["react", "typescript", "tailwindcss"],
-      link: "https://liminal-app.netlify.app/",
+      link: "https://liminal-agency.vercel.app/",
       image: "/images/projects/project_1.webp",
       imageDetails: [
         "/images/projects/project-details/liminal_1.webp",
