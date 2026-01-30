@@ -66,15 +66,15 @@ const About = () => {
   const about = items[0];
 
   return (
-    <RetroContainer className="w-full flex desktop:max-w-[80%] mt-[-10rem] mx-auto md:mt-[-8rem] lg:mt-[13rem]  laptop:h-[calc(100vh-7rem)] shadow-[16px_16px_0px_#000]">
+    <RetroContainer className="w-full flex desktop:max-w-[85%] mt-[-10rem] mx-auto md:mt-[-8rem] lg:mt-[13rem]  laptop:h-[calc(100vh-7rem)] shadow-[16px_16px_0px_#000]">
       <div
         id="about"
         className="w-full flex flex-col justify-center items-center large:justify-center large:items-center laptop:flex-row gap-36"
       >
         {/* left group*/}
-        <div className=" flex flex-col justify-center gap-6 ">
+        <div className="flex flex-col justify-center gap-6 laptop:text-left">
           <motion.h2
-            className="text-color4"
+            className="text-color4 text-3xl"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
@@ -84,19 +84,19 @@ const About = () => {
           </motion.h2>
 
           <motion.p
-            className="text-[2.1875rem] max-w-[45rem] mobile:text-[2.8125rem] "
+            className="text-[2.1875rem] max-w-[45rem] mobile:text-[4rem] text-base/16 laptop:text-left"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
           >
             Professional{" "}
-            <span className=" text-green-500">Problema Solutions</span> For
+            <span className=" text-green-500">Problem Solutions</span> For
             Digital Products
           </motion.p>
 
           <motion.p
-            className="text-color2  max-w-[40rem] text-base/7"
+            className="text-color2  max-w-[40rem] text-base/7 text-[1.3rem] laptop:text-left"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}

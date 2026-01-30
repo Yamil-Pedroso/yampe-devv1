@@ -3,8 +3,12 @@ import { templatesGalleryData } from "@/data/templatesGalleryData";
 import assets from "@/assets";
 import VideoComp from "../common/video/VideoComp";
 import { MdOutlineArrowOutward } from "react-icons/md";
+import RetroButton from "../common/buttons/RetroButton";
+import { useSound } from "../common/sounds/SoundComp";
 
 const TemplatesGallery = () => {
+  const playClickSound = useSound("/sounds/modern-tech-click.wav", 0.2);
+
   return (
     <section className="flex flex-col justify-center items-center mt-16 sm:mt-20 md:mt-24 lg:mt-30 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8 sm:mb-10 max-w-4xl">
@@ -22,9 +26,16 @@ const TemplatesGallery = () => {
       </div>
 
       <div className="flex flex-col xl:flex-row justify-center items-center gap-12 lg:gap-18 w-full">
-        <a
-          href="projects-gallery"
-          className="cursor-pointer hover:scale-105 transition-transform hover:animate-jelly"
+        <RetroButton
+          className="cursor-pointer rounded-full hover:scale-105 transition-transform hover:animate-jelly"
+          onClick={(e) => {
+            e.preventDefault();
+            playClickSound();
+
+            setTimeout(() => {
+              window.location.href = "projects-gallery";
+            }, 120);
+          }}
         >
           <div className="flex flex-col justify-center items-center w-[300px] h-[300px] md:w-[350px] md:h-[350px] rounded-full border border-color4/20 bg-color4/5 text-color4 flex-shrink-0 ">
             <p className="text-[3.5rem] md:text-[4.5rem]">MORE</p>{" "}
@@ -32,7 +43,7 @@ const TemplatesGallery = () => {
               <MdOutlineArrowOutward className="text-[4rem] md:text-[6rem] text-green-500" />
             </span>
           </div>
-        </a>
+        </RetroButton>
 
         <VideoComp
           src={assets.video1}

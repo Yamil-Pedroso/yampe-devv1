@@ -256,7 +256,9 @@ const SkillsPeriodicGrid: React.FC = () => {
             {/*<span
               className={`inline-block w-2 h-2 rounded-full ${borderTextSevenColors[i].bg}`}
             /> */}
-            <p className={`inline-block ${borderTextSevenColors[i].text}`}>
+            <p
+              className={`inline-block ${borderTextSevenColors[i].text} text-3xl`}
+            >
               {titleMap[k]}
             </p>
           </div>

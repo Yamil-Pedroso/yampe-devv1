@@ -17,11 +17,8 @@ const RetroContainer: React.FC<RetroButtonProps> = ({
       className={clsx(
         `
         relative
-
         font-bold
         border-2 border-black
-
-
         `,
         className,
       )}

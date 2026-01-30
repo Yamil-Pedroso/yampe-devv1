@@ -109,8 +109,8 @@ const Resume = () => {
         >
           {/* Header */}
           <Reveal className="flex flex-col gap-3 text-center large:text-left">
-            <p className="text-color4">{resumeData.header}</p>
-            <p className="text-[2rem] mobile:text-[2.8125rem] max-w-[40rem] text-base/14 mx-auto large:mx-0">
+            <p className="text-color4 text-3xl">{resumeData.header}</p>
+            <p className="text-[2rem] mobile:text-[4rem] max-w-[40rem] text-base/14 mx-auto large:mx-0">
               Real <span className=" text-green-500 ">Riddle Solutions</span>{" "}
               Experience
             </p>
@@ -144,15 +144,15 @@ const Resume = () => {
                           </RetroButton>
                         )}
                       </Reveal>
-                      <div className="flex flex-col gap-1.5 large:gap-2">
-                        <p className="text-color4 text-sm large:text-base">
+                      <div className="flex flex-col gap-1.5 large:gap-2 text-left">
+                        <p className="text-color4 text-sm large:text-base desktop:text-[1.2rem]">
                           {exp.year}
                         </p>
                         <div>
                           <h4 className="text-[1.25rem] large:text-[1.5rem]">
                             {exp.jobTitle}
                           </h4>
-                          <p className="text-color3 text-sm large:text-base">
+                          <p className="text-color3 text-sm large:text-base desktop:text-[1.2rem]">
                             {exp.company}
                           </p>
                         </div>
@@ -193,15 +193,15 @@ const Resume = () => {
                             </RetroButton>
                           )}
                         </Reveal>
-                        <div className="flex flex-col gap-1.5 large:gap-2">
-                          <p className="text-color4 text-sm large:text-base">
+                        <div className="flex flex-col gap-1.5 large:gap-2 text-left">
+                          <p className="text-color4 text-sm large:text-base desktop:text-[1.2rem]">
                             {exp.year}
                           </p>
                           <div>
                             <h4 className="text-[1.25rem] large:text-[1.5rem]">
                               {exp.jobTitle}
                             </h4>
-                            <p className="text-color3 text-sm large:text-base">
+                            <p className="text-color3 text-sm large:text-base desktop:text-[1.2rem]">
                               {exp.company}
                             </p>
                           </div>

@@ -4,7 +4,7 @@ import clsx from "clsx";
 interface RetroButtonProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   className?: string;
-  href: string;
+  href?: string;
 }
 
 const RetroButton: React.FC<RetroButtonProps> = ({

@@ -6,6 +6,7 @@ import React from "react";
 import { PixelIconType } from "./PixelIcon";
 import PixelIcon from "./PixelIcon";
 import RetroButton from "../../common/buttons/RetroButton";
+import { useSound } from "../sounds/SoundComp";
 
 interface PlatformItemProps {
   url: string;
@@ -32,6 +33,8 @@ const platformData: PlatformItemProps[] = [
 ];
 
 const PlatformItem: React.FC = () => {
+  const playClickSound = useSound("/sounds/modern-tech-click.wav", 0.2);
+
   return (
     <ul className="flex justify-center items-center sm:text-4xl mr-10 ">
       {platformData.map((platform, i) => {
@@ -42,13 +45,14 @@ const PlatformItem: React.FC = () => {
             href={platform.url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => playClickSound()}
           >
             <li
               className={`
               mx-3 sm:mx-4
               transition-colors
               duration-300
-              opacity-50
+
 
             `}
             >

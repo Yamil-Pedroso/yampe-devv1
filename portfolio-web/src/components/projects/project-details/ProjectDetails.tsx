@@ -231,7 +231,7 @@ const ProjectDetails = () => {
                 </div>
 
                 <div className="flex flex-col gap-1.5 px-4 sm:px-6 py-4 sm:py-6">
-                  <p className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 text-sm sm:text-base truncate">
+                  <p className="text-green-500 text-sm sm:text-base truncate">
                     {p.subtitle ?? p.title}
                   </p>
                   <p className="text-lg sm:text-xl">

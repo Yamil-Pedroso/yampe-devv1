@@ -5,7 +5,7 @@ import { MdOutlineWeb } from "react-icons/md";
 import { AiOutlineCode, AiOutlineMobile, AiOutlineBuild } from "react-icons/ai";
 import { LuTabletSmartphone } from "react-icons/lu";
 import { GrDeploy } from "react-icons/gr";
-import ElementContainer from "../common/element-container/ElementContainer";
+
 import { fetchHome } from "@/services/HomeService";
 import type { ServiceDTO, HomeResponse } from "@/services/HomeService";
 import { motion, Variants } from "framer-motion";
@@ -75,10 +75,10 @@ const Services: React.FC = () => {
     return (
       <section className="mt-50">
         <div className="text-center mb-12">
-          <h2 className="text-color4">{header}</h2>
-          <p className="text-[2.8125rem] max-w-[45rem] text-base/13 mt-3.5 mx-auto">
-            My <span className="text-color0">Special Services</span> For your
-            Business Needs
+          <h2 className="text-color4 text-3xl">{header}</h2>
+          <p className="text-[2.8125rem] mobile:text-[4rem] max-w-[45rem] text-base/13 mt-3.5 mx-auto">
+            My <span className="text-green-500 ">Special Services</span> For
+            your Business Needs
           </p>
         </div>
         <div className="mx-auto px-4 max-w-[1200px]">
@@ -100,7 +100,7 @@ const Services: React.FC = () => {
       <section className="mt-50">
         <div className="text-center mb-12">
           <h2 className="text-color4">{header}</h2>
-          <p className="text-color2">Couldn’t load services. {err}</p>
+          <p className="text-color2">Couldn’t load services.{err}</p>
         </div>
       </section>
     );

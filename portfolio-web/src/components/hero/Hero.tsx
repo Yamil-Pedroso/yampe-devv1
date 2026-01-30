@@ -17,8 +17,25 @@ const fadeUp: Variants = {
   exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
 };
 
+const nameDelayFadeUp: Variants = {
+  initial: { opacity: 0, y: 30 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut", delay: 2 },
+  },
+  exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
+};
+
 const fadeUpProps = {
   variants: fadeUp,
+  initial: "initial",
+  animate: "animate",
+  exit: "exit",
+};
+
+const nameDelayFadeUpProps = {
+  variants: nameDelayFadeUp,
   initial: "initial",
   animate: "animate",
   exit: "exit",
@@ -55,13 +72,14 @@ const Hero = () => {
         </p>
 
         <div className="custom:text-base/21 text-base/14">
-          <h1
+          <motion.h1
+            {...nameDelayFadeUpProps}
             className="custom:text-[5rem] text-[45px] text-green-500
 
  font-semibold"
           >
             {heroData.name}
-          </h1>
+          </motion.h1>
           <h2 className="custom:text-[5rem] text-[45px] text-color3 mt-3.5">
             <PixelTextReveal text={heroData.role} />
           </h2>

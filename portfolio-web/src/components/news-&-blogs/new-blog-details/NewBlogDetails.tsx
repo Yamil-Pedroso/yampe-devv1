@@ -19,10 +19,10 @@ const NewBlogDetails = () => {
 
   const newsBlogsQuery = useDevtoByTags(
     ["react", "typescript", "javascript"],
-    24
+    24,
   );
   const summaryItem = newsBlogsQuery.data?.find(
-    (item) => toNumeric(item.id) === numericId
+    (item) => toNumeric(item.id) === numericId,
   );
 
   const detailQuery = useDevtoArticle(numericId);
@@ -164,7 +164,7 @@ const NewBlogDetails = () => {
                 {/* Lead-in */}
                 <div className="flex flex-col sm:flex-row">
                   <div className="mb-3 sm:mb-0">
-                    <span className="flex justify-center items-center font-bold w-[3.0194rem] h-[3.125rem] bg-linear-to-r from-purple-500 to-blue-500   text-2xl text-black rounded-[.8rem]">
+                    <span className="flex justify-center items-center font-bold w-[3.0194rem] h-[3.125rem] bg-green-500 text-2xl text-black rounded-[.8rem]">
                       {title?.[0]?.toUpperCase() ?? "B"}
                     </span>
                   </div>
