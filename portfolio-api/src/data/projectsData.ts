@@ -103,7 +103,7 @@ export const projectsData = {
       description: "Create, share, and organize your code snippets with ease.",
       category: "Web Development",
       tags: ["react", "typescript", "styled-components"],
-      link: "https://custom-snippets-app.netlify.app/",
+      link: "https://custom-snippets.vercel.app/",
       image: "/images/projects/snippets.webp",
       imageDetails: [
         "/images/projects/project-details/snippet_1.webp",

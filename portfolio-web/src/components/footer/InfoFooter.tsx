@@ -116,7 +116,7 @@ const InfoFooter = () => {
                     <motion.li key={link.text} variants={innerItem}>
                       <a
                         href={link.href}
-                        className="text-sm sm:text-base text-zinc-300 transition hover:text-purple-400"
+                        className="text-sm sm:text-base text-zinc-300 transition hover:text-green-500"
                         onClick={(e) => {
                           e.preventDefault();
                           handleQuickLinkClick(link.href);

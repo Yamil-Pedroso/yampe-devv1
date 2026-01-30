@@ -25,7 +25,7 @@ const WhatsAppContact = () => {
         "
       >
         {/* WhatsApp Icon */}
-        <FaWhatsapp className="text-2xl opacity-90 text-[#8895ff]" />
+        <FaWhatsapp className="text-2xl opacity-90 text-green-500" />
 
         {/* Speech Bubble */}
         <motion.div
