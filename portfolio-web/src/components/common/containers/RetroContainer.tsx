@@ -1,31 +1,30 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import clsx from "clsx";
 
-interface RetroButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface RetroContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-const RetroContainer: React.FC<RetroButtonProps> = ({
-  children,
-  className,
-  ...props
-}) => {
-  return (
-    <button
-      {...props}
-      className={clsx(
-        `
-        relative
-        font-bold
-        border-2 border-black
-        `,
-        className,
-      )}
-    >
-      {children}
-    </button>
-  );
-};
+const RetroContainer = forwardRef<HTMLDivElement, RetroContainerProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        {...props}
+        className={clsx(
+          `
+          relative
+          border-2 border-black
+          `,
+          className,
+        )}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+
+RetroContainer.displayName = "RetroContainer";
 
 export default RetroContainer;

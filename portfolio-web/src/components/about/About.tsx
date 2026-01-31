@@ -1,15 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 //import { aboutMeData } from "@/data/aboutData";
-import RoundedBtn from "@/components/common/rounded-btn/RoundedBtn";
-import ElementContainer from "../common/element-container/ElementContainer";
-import ElementContainer2 from "../common/element-container/ElementContainer2";
+
 import {
   MdOutlineMailOutline,
   MdOutlinePhone,
   MdOutlineArrowOutward,
 } from "react-icons/md";
-import DarkContainer from "../common/containers/DarkContainer";
 import { fetchHome } from "@/services/HomeService";
 import { AboutDTO, HomeResponse } from "@/services/HomeService";
 import { FaCheck } from "react-icons/fa6";
@@ -60,7 +58,7 @@ const About = () => {
 
   const leftFloatY1 = useTransform(leftProgress, [0, 1], [40, -40]);
   const leftFloatY2 = useTransform(leftProgress, [0, 1], [30, 60]);
-  const bg = useTransform(leftProgress, [0, 1], ["#ff4d4f", "#1677ff"]);
+  //const bg = useTransform(leftProgress, [0, 1], ["#ff4d4f", "#1677ff"]);
   const imgY = useTransform(imageProgress, [0, 1], [0, -80]);
 
   const about = items[0];
