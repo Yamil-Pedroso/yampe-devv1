@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import AskMeBox from "@/components/common/ai/AskMeBox";
 import { MdArrowOutward } from "react-icons/md";
 import TerminalHero from "./ani-terminal/TerminalHero";
+import PixelTextReveal from "../common/fonts/PixelTextReveal";
 
 const fadeUp: Variants = {
   initial: { opacity: 0, y: 30 },
@@ -17,6 +18,23 @@ const fadeUp: Variants = {
 
 const fadeUpProps = {
   variants: fadeUp,
+  initial: "initial",
+  animate: "animate",
+  exit: "exit",
+};
+
+const nameDelayFadeUp: Variants = {
+  initial: { opacity: 0, y: 30 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut", delay: 2 },
+  },
+  exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
+} as const;
+
+const nameDelayFadeUpProps = {
+  variants: nameDelayFadeUp,
   initial: "initial",
   animate: "animate",
   exit: "exit",
@@ -53,16 +71,19 @@ const Hero = () => {
         </p>
 
         <div className="custom:text-base/21 text-base/14">
-          <h1 className="custom:text-[4.0625rem] text-[45px] text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 font-semibold">
+          <motion.h1
+            {...nameDelayFadeUpProps}
+            className="custom:text-[4.0625rem] text-[45px] text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-blue-400 font-semibold"
+          >
             {heroData.name}
-          </h1>
-          <h2 className="custom:text-[4.0625rem] text-[45px]">
-            {heroData.role}
+          </motion.h1>
+          <h2 className=" text-color3 mt-3.5">
+            <PixelTextReveal text={heroData.role} />
           </h2>
-          <p className="text-[3rem] text-color3">{heroData.city}</p>
+          <p className="text-[3rem] text-color3 mt-2">{heroData.city}</p>
         </div>
 
-        <p className="text-[1rem] text-color2 w-[79%] mt-3.5">
+        <p className="text-[1rem] text-color2 w-[79%] mt-2">
           {heroData.description}
         </p>
 
