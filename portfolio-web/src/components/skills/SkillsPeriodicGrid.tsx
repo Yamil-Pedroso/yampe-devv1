@@ -299,17 +299,17 @@ const SkillsPeriodicGrid: React.FC = () => {
               variants={tileVariants}
             >
               <ElementContainer
-                className={`relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36  bg-[#151515]   hover:border-color0  transition-all duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform   hover:opacity-100 hover:grayscale-0 group ${visualStateClass}`}
+                className={`relative flex flex-col min-h-36 sm:min-h-40 md:minh-44 xl:p-6 xl:min-h-36  bg-[#151515] transition-all duration-300 overflow-hidden hover:-translate-y-0.5 will-change-transform   hover:opacity-100 hover:grayscale-0 group ${visualStateClass}`}
               >
-                <div className="absolute top-2 left-2 text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded-md bg-bg2-color/60 border border-border-color">
+                <div className="absolute top-2 left-2 text-[9px] sm:text-[14px] px-1.5 py-0.5 rounded-md bg-bg2-color/60 border border-border-color">
                   {titleMap[item.category]}
                 </div>
 
-                <div className="absolute top-2 right-2 text-[10px] sm:text-xs font-semibold px-1.5 py-0.5 rounded-full bg-color3 text-white shadow-md ring-1 ring-black/30">
+                <div className="absolute top-2 right-2 text-[10px] sm:text-[1rem] font-semibold px-1.5 py-0.5 rounded-full bg-color3 text-white shadow-md ring-1 ring-black/30">
                   {pct}%
                 </div>
 
-                <div className="flex-1 px-2 grid place-items-center media">
+                <div className="flex-1 px-2  grid place-items-center media">
                   {item.icon ? (
                     <img
                       src={item.icon}
@@ -327,7 +327,7 @@ const SkillsPeriodicGrid: React.FC = () => {
                 </div>
 
                 <div className="p-2 sm:p-2.5">
-                  <p className="truncate text-[0.78rem] sm:text-[0.82rem] md:text-sm leading-tight text-center">
+                  <p className="truncate text-[0.78rem] sm:text-[0.82rem] md:text-[1.2rem] leading-tight text-center">
                     {item.tech}
                   </p>
                   <div className="mt-1.5 sm:mt-2 h-1.5 rounded-full bg-border-color/60 overflow-hidden">
