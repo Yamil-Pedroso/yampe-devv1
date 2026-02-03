@@ -348,5 +348,29 @@ export const projectsData = {
       ],
       icon: "",
     },
+    {
+      title: "PulseDashboard",
+      subtitle: "Real-Time Analytics Dashboard",
+      description:
+        "A refined analytics dashboard concept focused on clarity, scalability, and AI-powered insights for real-time decision making.",
+      category: "UI/UX Design",
+      tags: [
+        "Node.js",
+        "Next.js",
+        "typescript",
+        "framer-motion",
+        "tailwindcss",
+        "openai",
+      ],
+      link: "https://nextjs-labs-tau.vercel.app/dashboard/overview",
+      image: "/images/projects/ui-ux-design/uiux_05.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d5_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d5_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d5_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d5_04.webp",
+      ],
+      icon: "",
+    },
   ],
 };
