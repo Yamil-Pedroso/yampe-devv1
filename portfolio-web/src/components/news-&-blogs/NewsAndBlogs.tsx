@@ -85,12 +85,16 @@ const NewsAndBlogs = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="text-center"
       >
-        <h2 className="text-color4 font-bold">{header}</h2>
-        <p className="text-[2.8125rem] max-w-[45rem] text-base/14">
+        <h2 className="text-color4 font-bold text-header">{header}</h2>
+
+        <p className="-mt-2 text-[2.8125rem] max-w-[45rem] xl:text-subheader">
           Latest Blog &
           <span className="text-green-500 font-bold"> Tutorials</span>
         </p>
-        <p className="mt-4 text-color2 max-w-[28rem] mx-auto">{description}</p>
+
+        <p className="-mt-2 text-color2 max-w-[28rem] mx-auto text-desc leading-6">
+          {description}
+        </p>
       </motion.div>
 
       {/* Contenedor con stagger para las tarjetas */}
@@ -134,7 +138,7 @@ const NewsAndBlogs = () => {
                       <a
                         href="#"
                         key={tagIndex}
-                        className="flex justify-center items-center p-2 px-4 text-color4 bg-neutral-700 rounded-[.8rem] text-[1.1rem] group"
+                        className="flex justify-center items-center p-2 px-4 text-color4 bg-neutral-700 rounded-[.8rem] text-[1.3rem] group"
                       >
                         <span className="group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:bg-green-500">
                           {tag}
@@ -145,7 +149,7 @@ const NewsAndBlogs = () => {
 
                   <motion.h3
                     variants={innerItem}
-                    className="text-color4 text-[22px] line-clamp-2"
+                    className="text-color4 text-[1.6rem] line-clamp-2 leading-7"
                   >
                     {item.title}
                   </motion.h3>
@@ -154,7 +158,7 @@ const NewsAndBlogs = () => {
                     <div className="flex items-center gap-2">
                       {/*{item.icon && <item.icon className="text-gray-400" />}*/}
                     </div>
-                    <p className=" text-gray-500 ml-3">
+                    <p className=" text-gray-500 ml-3 text-[1.1rem]">
                       {item.publishedAt
                         ? dt.format(new Date(item.publishedAt))
                         : "—"}{" "}

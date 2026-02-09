@@ -42,7 +42,7 @@ const Footer = () => {
 
         {/* Tablet & Desktop Layout - Horizontal */}
         <div className="hidden sm:flex items-center justify-between gap-6">
-          <p className="text-sm md:text-base text-zinc-300 flex-shrink-0">
+          <p className="text-sm md:text-base text-zinc-300 flex-shrink-0 xl:text-[1.3rem]">
             &copy; {year}{" "}
             <span className="text-green-500 font-bold">Yampe.dev</span>. All
             rights reserved.
@@ -54,7 +54,7 @@ const Footer = () => {
                 <li key={link.platform}>
                   <a
                     href={link.url}
-                    className="text-zinc-300 transition hover:text-white text-sm md:text-base font-medium whitespace-nowrap"
+                    className="text-zinc-300 transition hover:text-white text-sm md:text-base font-medium whitespace-nowrap xl:text-[1.3rem]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

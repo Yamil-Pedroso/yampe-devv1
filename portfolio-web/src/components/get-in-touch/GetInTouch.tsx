@@ -41,14 +41,14 @@ const GetInTouch = () => {
         viewport={{ once: true, amount: 0.35 }}
         className="
           flex flex-col gap-4 sm:gap-5
-          w-full lg:max-w-[30%]
+          w-full lg:max-w-[40%]
         "
       >
-        <h2 className="text-color4 font-bold">{header}</h2>
+        <h2 className="text-color4 font-bold text-header">{header}</h2>
 
         <p
           className="
-            text-[2rem] sm:text-[2.5rem] lg:text-[2.8125rem]
+             sm:text-[2.5rem] lg:text-[2.8125rem] text-subheader
             max-w-[45rem] text-base/13 mt-3.5
           "
         >
@@ -56,7 +56,9 @@ const GetInTouch = () => {
           <span className="text-green-500 font-bold">Next Projects</span>
         </p>
 
-        <p className="text-color4 text-sm sm:text-base">{description}</p>
+        <p className="text-color4 text-sm sm:text-base xl:text-desc leading-6 mt-2">
+          {description}
+        </p>
 
         <div>
           <ul className="flex flex-col gap-3 sm:gap-4 mt-4">
@@ -65,7 +67,7 @@ const GetInTouch = () => {
                 <div className="flex justify-center items-center w-[1.875rem] h-[1.875rem] rounded-full  bg-gray-400  overflow-hidden">
                   <service.icon className="text-bg1-color text-[1.1rem] " />
                 </div>
-                <span className="ml-4 sm:ml-6 text-color4 text-[16px] sm:text-[18px] lg:text-[20px]">
+                <span className="ml-4 sm:ml-6 text-color4 text-[16px] sm:text-[18px] lg:text-desc">
                   {service.text}
                 </span>
               </li>
@@ -92,13 +94,16 @@ const GetInTouch = () => {
         action=""
         className="
           flex flex-col gap-6 sm:gap-8
-          w-full lg:max-w-[70%]
+          w-full lg:max-w-[60%]
           mx-0 lg:mx-4
         "
       >
         <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-          <div className="flex flex-col gap-3 sm:gap-6 w-full">
-            <label htmlFor="name" className="text-sm sm:text-base">
+          <div className="flex flex-col gap-3 sm:gap-6 w-full xl:gap-1">
+            <label
+              htmlFor="name"
+              className="text-sm sm:text-base xl:text-[1.2rem]"
+            >
               Full Name:
             </label>
             <ElementContainer
@@ -123,8 +128,11 @@ const GetInTouch = () => {
             </ElementContainer>
           </div>
 
-          <div className="flex flex-col gap-3 sm:gap-6 w-full">
-            <label htmlFor="email" className="text-sm sm:text-base">
+          <div className="flex flex-col gap-3 sm:gap-6 w-full xl:gap-1">
+            <label
+              htmlFor="email"
+              className="text-sm sm:text-base xl:text-[1.2rem]"
+            >
               Email Address:
             </label>
             <ElementContainer
@@ -152,8 +160,11 @@ const GetInTouch = () => {
 
         {/* phone number and subject */}
         <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-          <div className="flex flex-col gap-3 sm:gap-6 w-full">
-            <label htmlFor="phone" className="text-sm sm:text-base">
+          <div className="flex flex-col gap-3 sm:gap-6 w-full xl:gap-1">
+            <label
+              htmlFor="phone"
+              className="text-sm sm:text-base xl:text-[1.2rem]"
+            >
               Phone Number:
             </label>
             <ElementContainer
@@ -178,8 +189,11 @@ const GetInTouch = () => {
             </ElementContainer>
           </div>
 
-          <div className="flex flex-col gap-3 sm:gap-6 w-full">
-            <label htmlFor="subject" className="text-sm sm:text-base">
+          <div className="flex flex-col gap-3 sm:gap-6 w-full xl:gap-1">
+            <label
+              htmlFor="subject"
+              className="text-sm sm:text-base xl:text-[1.2rem]"
+            >
               Subject:
             </label>
             <ElementContainer
@@ -205,8 +219,11 @@ const GetInTouch = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 sm:gap-6">
-          <label htmlFor="message" className="text-sm sm:text-base">
+        <div className="flex flex-col gap-3 sm:gap-6 w-full xl:gap-1">
+          <label
+            htmlFor="message"
+            className="text-sm sm:text-base xl:text-[1.2rem]"
+          >
             Message:
           </label>
           <ElementContainer

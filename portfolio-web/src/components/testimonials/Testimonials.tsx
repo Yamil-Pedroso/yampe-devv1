@@ -9,6 +9,7 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 
 const Testimonials = () => {
   const { header, description, testimonials } = testimonialsData;
+  const overlayRef = React.useRef<HTMLDivElement | null>(null);
 
   return (
     <DarkContainer className="xl:max-w-[94%] mx-auto overflow-hidden">
@@ -23,14 +24,14 @@ const Testimonials = () => {
                w-full max-w-[23.125rem]
                 h-auto sm:w-[23.125rem] sm:h-[22.5rem] my-[-1rem]"
         >
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 text-header">
             <p className="">{header}</p>
 
-            <h2 className="text-[2rem] sm:text-[2.8125rem] text-base/14 ">
+            <h2 className="text-[2rem] sm:text-[2.8125rem] text-base/14 desktop:text-[3rem]">
               What <span className="text-green-500 font-bold">People</span> Say
             </h2>
 
-            <p className="mt-0 text-sm sm:text-[1rem] max-w-md text-zinc-400">
+            <p className="mt-0  sm:text-[1rem] max-w-md text-zinc-400 xl:text-desc text-base/6">
               {description}
             </p>
           </div>
@@ -66,7 +67,7 @@ const Testimonials = () => {
               <ElementContainer
                 key={`${t.author}-${i}`}
                 border
-                className="group relative mx-4 flex w-[18rem] xl:w-[25rem] xl:h-[27rem] flex-col items-center rounded-[28px] border border-zinc-800 bg-[#0B0B0B] p-10 shadow-[0_0_0_1px_rgba(255,255,255,0.03)_inset] group hover:bg-bg1-color duration-300"
+                className="group relative mx-4 flex w-[18rem] xl:w-[25rem] xl:h-[27rem] flex-col items-center border border-zinc-800 bg-[#0B0B0B] p-10 group hover:bg-bg1-color duration-300 shadow-[16px_16px_0px_#000] xl:mx-6"
               >
                 <motion.div
                   initial="rest"
@@ -93,15 +94,23 @@ const Testimonials = () => {
                   </div>
 
                   {/* Quote */}
-                  <div className="relative mt-1 w-full max-w-[21rem] h-[9.5rem]">
+                  <div className="relative mt-1 w-full max-w-[21rem] h-[10rem]">
                     <p
-                      className="text-center text-zinc-300 leading-8 overflow-hidden line-clamp-4"
+                      className="text-center text-zinc-300 leading-8 overflow-hidden line-clamp-6 text-desc xl:text-base/7"
                       title={t.quote}
                     >
                       {t.quote}
                     </p>
 
                     <motion.div
+                      ref={overlayRef}
+                      onWheelCapture={(e) => {
+                        e.stopPropagation();
+
+                        if (!overlayRef.current) return;
+
+                        overlayRef.current.scrollTop += e.deltaY;
+                      }}
                       variants={{
                         rest: { opacity: 0, y: 8, pointerEvents: "none" },
                         hover: {
@@ -112,20 +121,20 @@ const Testimonials = () => {
                         },
                       }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
-                      className={`absolute inset-0 z-10 rounded-xl bg-[#0B0B0B] ring-1 ring-white/5 p-4 overflow-auto ${styles.overlayScroll}`}
+                      className={`absolute inset-0 z-10 rounded-xl bg-[#0B0B0B] ring-1 ring-white/5 p-4 overflow-y-auto overscroll-contain ${styles.overlayScroll}`}
                     >
-                      <p className="text-center text-zinc-200 leading-8">
+                      <p className="text-center text-zinc-200 leading-5">
                         {t.quote}
                       </p>
                     </motion.div>
                   </div>
 
                   {/* Author */}
-                  <div className="xl:mt-8 text-center">
-                    <p className="text-white text-[22px] font-semibold leading-tight">
+                  <div className="xl:mt-8 text-center flex flex-col items-center leading-2">
+                    <p className="text-white font-semibold leading-tight text-[1.4rem]">
                       {t.author}
                     </p>
-                    <p className="mt-2 text-green-500 text-[14px] font-medium">
+                    <p className="mt-2 text-green-500 text-[1.2rem] font-medium">
                       {t.position}
                     </p>
                   </div>

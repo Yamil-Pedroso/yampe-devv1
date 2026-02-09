@@ -14,6 +14,7 @@ import {
 } from "@/components/common/animation/motionTokens";
 import BlockwithhHover from "@/components/common/hovers/BlockwithHover";
 import MorphCTA from "@/components/common/animation/morphism/MorphCTA";
+import RetroContainer from "../common/containers/RetroContainer";
 
 const IMG_DURATION = 1.1;
 const IMG_EASE: any = [0.25, 0.1, 0.25, 1];
@@ -84,7 +85,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
               <motion.div
                 initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
                 animate={imgCtrls}
-                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color rounded-2xl overflow-hidden"
+                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color overflow-hidden shadow-[16px_16px_0px_#000]"
                 onMouseEnter={() => handleMouseEnter(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 style={{
@@ -113,7 +114,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             animate={txtCtrls}
             className="flex flex-col justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] px-4 sm:px-6 lg:px-8 xl:px-22 py-4 sm:py-6 lg:py-0 gap-3 sm:gap-4 lg:gap-2"
           >
-            <h3 className=" text-green-500 text-sm sm:text-base  xl:text-[1.8rem]">
+            <h3 className=" text-green-500 text-sm sm:text-base xl:text-[1.8rem]">
               {project.title}
             </h3>
             <h4 className="sm:text-2xl md:text-3xl lg:text-4xl xl:text-[3rem] leading-tight xl:text-base/12">
@@ -167,7 +168,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
               <motion.div
                 initial={{ opacity: 0, x: imgFromX, y: 50, scale: 0.95 }}
                 animate={imgCtrls}
-                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color rounded-2xl overflow-hidden"
+                className="relative w-full aspect-[4/3] sm:aspect-[5/4] lg:aspect-[39.375/31.25] bg-bg3-color  overflow-hidden shadow-[16px_16px_0px_#000]"
                 onMouseEnter={() => handleMouseEnter(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 style={{

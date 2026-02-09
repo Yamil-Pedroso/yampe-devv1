@@ -57,7 +57,7 @@ const About = () => {
   });
 
   const leftFloatY1 = useTransform(leftProgress, [0, 1], [40, -40]);
-  const leftFloatY2 = useTransform(leftProgress, [0, 1], [30, 60]);
+  const leftFloatY2 = useTransform(leftProgress, [0, 1], [30, 20]);
   //const bg = useTransform(leftProgress, [0, 1], ["#ff4d4f", "#1677ff"]);
   const imgY = useTransform(imageProgress, [0, 1], [0, -80]);
 

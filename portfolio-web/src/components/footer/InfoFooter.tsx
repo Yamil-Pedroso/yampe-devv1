@@ -15,6 +15,9 @@ import {
 import ScrollToTopMorph from "../common/animation/morphism/ScrollToTopMorph";
 import { handleScrollItems } from "../common/scroll-items/scrollItems";
 import LogoComp from "../common/logo/LogoComp";
+import RetroButton from "../common/buttons/RetroButton";
+
+const letters = ["Y", "a", "m", "p", "e", ".", "d", "e", "v"];
 
 const listStagger: Variants = {
   hidden: {},
@@ -80,23 +83,64 @@ const InfoFooter = () => {
             variants={listStagger}
           >
             {/* Col 1: Logo + brand */}
-            <motion.div
-              className="flex flex-col items-center sm:items-center md:items-start"
-              variants={colUp}
-            >
+            <RetroButton href="/" className="rounded-[0.3rem] border w-max p-6">
               <motion.div
-                className="flex items-end gap-2 sm:gap-3"
-                variants={innerStagger}
+                className="flex items-end cursor-pointer group "
+                whileHover="hover"
               >
-                <LogoComp className="w-14 h-14" width={48} height={48} />
-                <motion.h1
-                  variants={innerItem}
-                  className="text-md sm:text-2xl md:text-2xl font-bold text-white mx-1"
+                {/* Logo */}
+                <motion.div
+                  initial={{ x: -80, scale: 1.4, opacity: 0 }}
+                  animate={{
+                    x: 0,
+                    scale: 1,
+                    opacity: 1,
+                  }}
+                  transition={{
+                    duration: 0.9,
+                    ease: [0.34, 1.56, 0.64, 1],
+                  }}
+                  className="flex-shrink-0"
+                  variants={{
+                    hover: {
+                      y: -4,
+                      rotate: -3,
+                      transition: { duration: 0.25, ease: "easeOut" },
+                    },
+                  }}
                 >
-                  Yampe.dev
+                  <LogoComp className="w-14 h-14" width={48} height={48} />
+                </motion.div>
+
+                {/* Animated letters */}
+                <motion.h1
+                  initial={{ x: -80, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 100, delay: 0.1 }}
+                  className="text-2xl font-bold text-white mx-3 flex"
+                >
+                  {letters.map((char, i) => (
+                    <motion.span
+                      key={i}
+                      className={char === "." ? "text-purple-300" : ""}
+                      variants={{
+                        hover: {
+                          y: -3,
+                          rotate: (Math.random() - 0.5) * 10, // pequeño tilt aleatorio
+                          transition: {
+                            duration: 0.25,
+                            ease: "easeOut",
+                            delay: i * 0.03, // wave effect
+                          },
+                        },
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
                 </motion.h1>
               </motion.div>
-            </motion.div>
+            </RetroButton>
 
             {/* Col 2: Quick Link + subscribe */}
             <motion.div
@@ -105,7 +149,7 @@ const InfoFooter = () => {
             >
               <motion.h4
                 variants={innerItem}
-                className="mb-4 sm:mb-5 text-base sm:text-lg font-semibold text-white text-center md:text-left"
+                className="mb-4 sm:mb-5 text-base sm:text-lg font-semibold text-white text-center md:text-left xl:text-[1.4rem]"
               >
                 Quick Link
               </motion.h4>
@@ -116,7 +160,7 @@ const InfoFooter = () => {
                     <motion.li key={link.text} variants={innerItem}>
                       <a
                         href={link.href}
-                        className="text-sm sm:text-base text-zinc-300 transition hover:text-green-500"
+                        className="text-sm sm:text-base text-zinc-300 transition hover:text-green-500 xl:text-[1.3rem]"
                         onClick={(e) => {
                           e.preventDefault();
                           handleQuickLinkClick(link.href);
@@ -156,7 +200,7 @@ const InfoFooter = () => {
                       pl-10 pr-4 py-2 sm:py-2.5
                       border-0 border-b border-b-zinc-600
                       focus:border-green-500 focus:outline-none focus:ring-0
-                      text-sm sm:text-base
+                      text-sm sm:text-base xl:text-[1.3rem]
                     "
                   />
                 </motion.div>
@@ -191,7 +235,7 @@ const InfoFooter = () => {
             >
               <motion.h4
                 variants={innerItem}
-                className="mb-4 sm:mb-5 text-base sm:text-lg font-semibold text-white text-center md:text-left"
+                className="mb-4 sm:mb-5 text-base sm:text-lg font-semibold text-white text-center md:text-left xl:text-[1.4rem]"
               >
                 Address
               </motion.h4>
@@ -204,7 +248,7 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiMapPin className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base" />
+                  <FiMapPin className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base xl:text-[1.3rem]" />
                   <span className="text-sm sm:text-base md:text-lg text-center md:text-left">
                     {address?.street}
                   </span>
@@ -214,10 +258,10 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiMail className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base" />
+                  <FiMail className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base xl:text-[1.3rem]" />
                   <a
                     href={`mailto:${address?.email}`}
-                    className="transition hover:text-white text-sm sm:text-base md:text-lg"
+                    className="transition hover:text-white text-sm sm:text-base md:text-lg xl:text-[1.3rem]"
                   >
                     {address?.email}
                   </a>
@@ -227,10 +271,10 @@ const InfoFooter = () => {
                   className="flex items-start justify-center md:justify-start gap-3"
                   variants={innerItem}
                 >
-                  <FiPhone className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base" />
+                  <FiPhone className="mt-0.5 sm:mt-1 shrink-0 text-green-500 text-sm sm:text-base xl:text-[1.3rem]" />
                   <a
                     href={`tel:${address?.phone.replace(/[\s()-]/g, "")}`}
-                    className="transition hover:text-white text-sm sm:text-base md:text-lg"
+                    className="transition hover:text-white text-sm sm:text-base md:text-lg xl:text-[1.3rem]"
                   >
                     {address?.phone}
                   </a>

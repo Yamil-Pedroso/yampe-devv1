@@ -18,7 +18,7 @@ const colUp: Variants = {
 const ClientsAndFirmas = () => {
   return (
     <section className="flex flex-col items-center justify-center mt-30 px-4">
-      <p className="text-[1.125rem] max-w-[52rem] text-center leading-relaxed">
+      <p className="text-[1.125rem] max-w-[52rem] text-center leading-relaxed xl:text-desc">
         Companies, startups, and organizations{" "}
         <span className="text-green-500 font-semibold">
           where I’ve studied and offered my services.
