@@ -111,15 +111,15 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
               filter: "blur(4px)",
             }}
             animate={txtCtrls}
-            className="flex flex-col justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] px-4 sm:px-6 lg:px-8 xl:px-22 py-4 sm:py-6 lg:py-0 gap-3 sm:gap-4 lg:gap-6"
+            className="flex flex-col justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] px-4 sm:px-6 lg:px-8 xl:px-22 py-4 sm:py-6 lg:py-0 gap-3 sm:gap-4 lg:gap-2"
           >
-            <h3 className=" text-green-500 text-sm sm:text-base lg:text-lg xl:text-xl">
+            <h3 className=" text-green-500 text-sm sm:text-base  xl:text-[1.8rem]">
               {project.title}
             </h3>
-            <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] leading-tight">
+            <h4 className="sm:text-2xl md:text-3xl lg:text-4xl xl:text-[3rem] leading-tight xl:text-base/12">
               {project.subtitle}
             </h4>
-            <p className="text-color4 text-sm sm:text-base leading-relaxed">
+            <p className="text-color4 text-sm sm:text-[1.2rem] leading-relaxed xl:text-base/6 xl:text-[1.5rem]">
               {project.description}
             </p>
             <MorphCTA onClick={() => handleProjectsClick(project._id)} />
@@ -137,14 +137,14 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
             animate={txtCtrls}
             className="flex flex-col items-start lg:items-end justify-center w-full lg:w-1/2 xl:w-[39.375rem] lg:h-[31.25rem] order-2 lg:order-1 px-4 sm:px-6 lg:px-8 xl:pr-22 py-4 sm:py-6 lg:py-0"
           >
-            <div className="flex flex-col w-full lg:w-full xl:w-[30rem] gap-3 sm:gap-4 lg:gap-6">
-              <h3 className=" text-green-500 text-sm sm:text-base lg:text-lg xl:text-xl">
+            <div className="flex flex-col w-full lg:w-full xl:w-[30rem] gap-3 sm:gap-4 lg:gap-2">
+              <h3 className=" text-green-500 text-sm sm:text-base lg:text-lg xl:text-[1.8rem]">
                 {project.title}
               </h3>
-              <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] leading-tight">
+              <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[3rem] leading-tight xl:text-base/12">
                 {project.subtitle}
               </h4>
-              <p className="text-color4 text-sm sm:text-base leading-relaxed">
+              <p className="text-color4 text-sm sm:text-[1.2rem] leading-relaxed xl:text-base/6 xl:text-[1.5rem]">
                 {project.description}
               </p>
               {/*{project.icon && (
@@ -208,10 +208,10 @@ const Projects = () => {
   return (
     <section className="flex flex-col justify-center items-center mt-16 sm:mt-20 md:mt-24 lg:mt-30 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8 sm:mb-10 max-w-4xl">
-        <h2 className="text-sm sm:text-base lg:text-lg mb-2 sm:mb-3">
+        <h2 className="text-sm sm:text-base lg:text-header mb-2 sm:mb-3">
           {projectsData.header}
         </h2>
-        <p className=" sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.8125rem] max-w-full sm:max-w-[32rem] md:max-w-[40rem] lg:max-w-[45rem] text-base/14 leading-tight mx-auto">
+        <p className=" sm:text-2xl md:text-3xl lg:text-4xl xl:text-subheader max-w-full sm:max-w-[32rem] md:max-w-[40rem] lg:max-w-[45rem] text-base/14 leading-tight mx-auto">
           Explore my <span className=" text-green-500 font-bold">Projects</span>
         </p>
       </div>

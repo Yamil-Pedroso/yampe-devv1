@@ -72,7 +72,7 @@ const About = () => {
         {/* left group*/}
         <div className="flex flex-col justify-center gap-6 laptop:text-left">
           <motion.h2
-            className="text-color4 text-3xl"
+            className="text-color4 text-header"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
@@ -82,7 +82,7 @@ const About = () => {
           </motion.h2>
 
           <motion.p
-            className="text-[2.1875rem] max-w-[45rem] mobile:text-[4rem] text-base/16 laptop:text-left"
+            className="text-[2.1875rem] max-w-[45rem] mobile:text-subheader text-base/16 laptop:text-left"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
@@ -94,7 +94,7 @@ const About = () => {
           </motion.p>
 
           <motion.p
-            className="text-color2  max-w-[40rem] text-base/7 text-[1.3rem] laptop:text-left"
+            className="text-color2  max-w-[40rem] text-base/7 text-desc laptop:text-left"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}

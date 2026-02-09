@@ -34,6 +34,8 @@ body {
     /* purple-500 */ #3b82f6 /* blue-500 */
   );
   --prose-img-border-radius: 0.75rem;
+
+  /* Accent Colors */
   --main-bg-color: #141414;
   --main-bg-white-color: #ffffff;
   --main-bg-color2: #1e1e1e;
@@ -57,6 +59,11 @@ body {
   --font-btn-color: #070707;
   --color-border-color: #3b3b3b;
 
+  /* Font size */
+  --text-header: 1.875rem;
+  --text-subheader: 4rem;
+  --text-desc: 1.3rem;
+
   /* Responsive */
   --breakpoint-custom-small: 26.5rem;
   --breakpoint-xs: 30rem;
@@ -76,6 +83,18 @@ body {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .text-header {
+    font-size: var(--text-header);
+  }
+
+  .text-subheader {
+    font-size: var(--text-subheader);
+  }
+
+  .text-desc {
+    font-size: var(--text-desc);
   }
 }
 

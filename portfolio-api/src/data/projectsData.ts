@@ -2,13 +2,37 @@ export const projectsData = {
   header: "My Works",
   projects: [
     {
+      title: "PulseDashboard",
+      subtitle: "Real-Time Analytics Dashboard",
+      description:
+        "A refined analytics dashboard concept focused on clarity, scalability, and AI-powered insights for real-time decision making.",
+      category: "Web Development",
+      tags: [
+        "Node.js",
+        "Next.js",
+        "typescript",
+        "framer-motion",
+        "tailwindcss",
+        "openai",
+      ],
+      link: "https://nextjs-labs-tau.vercel.app/dashboard/overview",
+      image: "/images/projects/ui-ux-design/uiux_05.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d5_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d5_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d5_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d5_04.webp",
+      ],
+      icon: "",
+    },
+    {
       title: "Fitness & Nutrition",
       subtitle: "Consistency, nourishment, and growth",
       description:
         "A performance lab at the intersection of fitness and nourishment, shaping immersive, data-driven, and body-positive experiences for modern living",
       category: "Web Development",
       tags: ["react", "typescript", "tailwindcss", "Node.js", "MongoDB"],
-      link: "https://fitness-nutrition-app.netlify.app/",
+      link: "https://fitboard-six.vercel.app/",
       image: "/images/projects/fit_nut.webp",
       imageDetails: [
         "/images/projects/project-details/fit_nut_1.webp",
@@ -24,7 +48,7 @@ export const projectsData = {
         "A creative studio operating at the threshold of design and innovation crafting bold, immersive, and unconventional experiences.",
       category: "Web Development",
       tags: ["react", "typescript", "tailwindcss"],
-      link: "https://liminal-app.netlify.app/",
+      link: "https://liminal-agency.vercel.app/",
       image: "/images/projects/project_1.webp",
       imageDetails: [
         "/images/projects/project-details/liminal_1.webp",

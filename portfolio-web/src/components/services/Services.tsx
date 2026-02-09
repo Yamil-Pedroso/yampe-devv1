@@ -136,7 +136,7 @@ const Services: React.FC = () => {
     return (
       <section className="mt-50">
         <div className="text-center mb-12">
-          <h2 className="text-color4 text-3xl">{header}</h2>
+          <h2 className="text-color4 text-header">{header}</h2>
           <p className="text-[2.8125rem] mobile:text-[4rem] max-w-[45rem] text-base/13 mt-3.5 mx-auto">
             My <span className="text-green-500 ">Special Services</span> For
             your Business Needs
@@ -176,8 +176,8 @@ const Services: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
         className="text-center mb-12 relative"
       >
-        <h2 className="text-color4">{header}</h2>
-        <p className="text-[2.8125rem] max-w-[45rem] text-base/13 mt-3.5 mx-auto">
+        <h2 className="text-color4 text-header">{header}</h2>
+        <p className="text-subheader max-w-[45rem] text-base/13 mt-3.5 mx-auto">
           My <span className="text-green-500 ">Special Services</span> For your
           Business Needs
         </p>

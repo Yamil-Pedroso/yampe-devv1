@@ -21,7 +21,7 @@ const platformData: PlatformItemProps[] = [
     containerColor: "bg-green-700",
   },
   {
-    url: "https://github.com/yamilpedroso",
+    url: "https://github.com/Yamil-Pedroso",
     iconType: "github",
     containerColor: "bg-green-700",
   },

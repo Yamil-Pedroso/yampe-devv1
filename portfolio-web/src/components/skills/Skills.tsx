@@ -25,11 +25,11 @@ const Skills: React.FC = () => {
         className="flex flex-col text-center max-w-[34rem] max-[40rem]:px-4 max-[40rem]:mb-8 "
       >
         {skillsData.header && (
-          <p className="mb-2 text-color4 max-[40rem]:text-sm desktop:text-3xl">
+          <p className="mb-2 text-color4 max-[40rem]:text-sm desktop:text-header">
             {skillsData.header}
           </p>
         )}
-        <p className="text-[2.8125rem] max-w-[45rem] text-base/14 max-[40rem] mobile:text-[4rem]">
+        <p className="text-[2.8125rem] max-w-[45rem] text-base/14 max-[40rem] mobile:text-subheader">
           Let’s Explore my{" "}
           <span className="text-green-500 ">Skills & Experience</span>
         </p>
@@ -39,7 +39,7 @@ const Skills: React.FC = () => {
           </h2>
         )}
         {skillsData.description && (
-          <p className="text-color4/80 mt-2.5 max-[40rem]:text-sm desktop:text-[1.5rem] text-base/7">
+          <p className="text-color4/80 mt-2.5 max-[40rem]:text-sm desktop:text-desc text-base/7">
             {skillsData.description}
           </p>
         )}

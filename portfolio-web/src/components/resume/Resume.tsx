@@ -109,8 +109,8 @@ const Resume = () => {
         >
           {/* Header */}
           <Reveal className="flex flex-col gap-3 text-center large:text-left">
-            <p className="text-color4 text-3xl">{resumeData.header}</p>
-            <p className="text-[2rem] mobile:text-[4rem] max-w-[40rem] text-base/14 mx-auto large:mx-0">
+            <p className="text-color4 text-header">{resumeData.header}</p>
+            <p className="text-[2rem] mobile:text-subheader max-w-[40rem] text-base/14 mx-auto large:mx-0">
               Real <span className=" text-green-500 ">Riddle Solutions</span>{" "}
               Experience
             </p>

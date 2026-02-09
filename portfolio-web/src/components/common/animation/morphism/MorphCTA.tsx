@@ -124,7 +124,7 @@ const MorphCTA: React.FC<MorphCTAProps> = ({
       onClick={onClick}
       type="button"
       aria-label={label}
-      className="inline-flex items-center justify-center relative overflow-hidden cursor-pointer"
+      className="inline-flex items-center justify-center relative overflow-hidden cursor-pointer mt-2"
       style={{
         padding: 0,
         border: 0,
