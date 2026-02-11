@@ -81,9 +81,9 @@ export interface FileRoutesByFullPath {
   '/admin/login': typeof AdminLoginRoute
   '/new-work-details/$newsBlogsId': typeof NewWorkDetailsNewsBlogsIdRoute
   '/project-details/$projectId': typeof ProjectDetailsProjectIdRoute
-  '/admin': typeof AdminIndexRoute
+  '/admin/': typeof AdminIndexRoute
   '/admin/notifications/create': typeof AdminNotificationsCreateRoute
-  '/admin/notifications': typeof AdminNotificationsIndexRoute
+  '/admin/notifications/': typeof AdminNotificationsIndexRoute
   '/admin/notifications/$id/edit': typeof AdminNotificationsIdEditRoute
 }
 export interface FileRoutesByTo {
@@ -120,9 +120,9 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/new-work-details/$newsBlogsId'
     | '/project-details/$projectId'
-    | '/admin'
+    | '/admin/'
     | '/admin/notifications/create'
-    | '/admin/notifications'
+    | '/admin/notifications/'
     | '/admin/notifications/$id/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -189,7 +189,7 @@ declare module '@tanstack/react-router' {
     '/admin/': {
       id: '/admin/'
       path: '/admin'
-      fullPath: '/admin'
+      fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -217,7 +217,7 @@ declare module '@tanstack/react-router' {
     '/admin/notifications/': {
       id: '/admin/notifications/'
       path: '/admin/notifications'
-      fullPath: '/admin/notifications'
+      fullPath: '/admin/notifications/'
       preLoaderRoute: typeof AdminNotificationsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
