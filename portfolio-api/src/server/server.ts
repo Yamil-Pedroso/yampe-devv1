@@ -18,7 +18,7 @@ dotenv.config({
 
 console.log(
   "✅ OPENAI_API_KEY loaded:",
-  process.env.OPENAI_API_KEY ? "YES" : "NO"
+  process.env.OPENAI_API_KEY ? "YES" : "NO",
 );
 
 const PORT = process.env.PORT || 3010;
@@ -41,10 +41,11 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:3010",
-      "https://yampe.dev",
+      "https://www.yampe.dev",
+      "https://yampe-devv1.vercel.app/",
     ],
     credentials: true,
-  })
+  }),
 );
 
 // ------------------ BODY PARSERS ------------------
