@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-//import { aboutMeData } from "@/data/aboutData";
 
 import {
   MdOutlineMailOutline,
@@ -27,10 +26,9 @@ const About = () => {
   const [items, setItems] = useState<AboutDTO[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [err, setErr] = useState<string | null>(null);
+
   const leftGroupRef = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLDivElement | null>(null);
-
-  console.log("Hola About data:", items);
 
   useEffect(() => {
     (async () => {
@@ -58,18 +56,17 @@ const About = () => {
 
   const leftFloatY1 = useTransform(leftProgress, [0, 1], [40, -40]);
   const leftFloatY2 = useTransform(leftProgress, [0, 1], [30, 20]);
-  //const bg = useTransform(leftProgress, [0, 1], ["#ff4d4f", "#1677ff"]);
   const imgY = useTransform(imageProgress, [0, 1], [0, -80]);
 
   const about = items[0];
 
   return (
-    <RetroContainer className="w-full flex desktop:max-w-[85%] mt-[-10rem] mx-auto md:mt-[-8rem] lg:mt-[13rem]  laptop:h-[calc(100vh-7rem)] shadow-[16px_16px_0px_#000]">
+    <RetroContainer className="w-full flex desktop:max-w-[85%] mt-[-10rem] mx-auto md:mt-[-8rem] lg:mt-[13rem] laptop:h-[calc(100vh-7rem)] shadow-[16px_16px_0px_#000]">
       <div
         id="about"
         className="w-full flex flex-col justify-center items-center large:justify-center large:items-center laptop:flex-row gap-36"
       >
-        {/* left group*/}
+        {/* LEFT GROUP */}
         <div className="flex flex-col justify-center gap-6 laptop:text-left">
           <motion.h2
             className="text-color4 text-header"
@@ -86,15 +83,15 @@ const About = () => {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             Professional{" "}
-            <span className=" text-green-500">Problem Solutions</span> For
+            <span className="text-green-500">Problem Solutions</span> For
             Digital Products
           </motion.p>
 
           <motion.p
-            className="text-color2  max-w-[40rem] text-base/7 text-desc laptop:text-left"
+            className="text-color2 max-w-[40rem] text-base/7 text-desc laptop:text-left"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px -15% 0px" }}
@@ -113,7 +110,7 @@ const About = () => {
           >
             <RetroContainer className="about-row shadow-[8px_8px_0px_#000]">
               {about?.infoContact?.map((info, i) => (
-                <div key={i} className="flex items-center  ml-12 mobile:ml-0">
+                <div key={i} className="flex items-center ml-12 mobile:ml-0">
                   <RetroButton
                     href=""
                     className="flex justify-center items-center text-[1rem] mr-2 text-bg1-color w-[2.5rem] h-[2.5rem] group hover:bg-green-500"
@@ -132,7 +129,7 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* right group */}
+        {/* RIGHT GROUP */}
         <div className="w-[442px] flex flex-col items-center relative">
           <motion.div
             ref={leftGroupRef}
@@ -151,13 +148,8 @@ const About = () => {
                   alt="Experience Icon"
                 />
               </div>
-              <p className="group-hover:text-black text-black ml-2">
-                Experience Full Stack Developer
-              </p>
-              <MdOutlineArrowOutward
-                className="text-black group-hover:text-black"
-                size={21}
-              />
+              <p className="text-black ml-2">Experience Full Stack Developer</p>
+              <MdOutlineArrowOutward size={21} />
             </RetroButton>
 
             <motion.div style={{ y: leftFloatY2 }}>
@@ -170,35 +162,29 @@ const About = () => {
                 <div className="w-[2.4rem] rounded-full overflow-hidden mx-[-6px]">
                   <img
                     src="/images/avatar/yami.jpg"
-                    alt="Experience Icon"
+                    alt="Yamil Avatar"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p
-                  className="whitespace-nowrap
-                  group-hover:text-black text-black ml-4
-                "
-                >
+                <p className="whitespace-nowrap text-black ml-4">
                   Yamil Pedroso
                 </p>
-                <MdOutlineArrowOutward
-                  className="text-black
-                group-hover:text-black"
-                  size={21}
-                />
+                <MdOutlineArrowOutward size={21} />
               </RetroButton>
             </motion.div>
           </motion.div>
 
-          <RetroContainer ref={imageRef} className="" style={{ y: imgY }}>
-            {/* video */}
-            <VideoComp
-              src="/videos/about/va_1.mp4"
-              type="video/mp4"
-              className="w-full h-full object-cover"
-              poster="/images/about/about-me-poster.jpg"
-            />
-          </RetroContainer>
+          {/* FIXED SECTION */}
+          <motion.div ref={imageRef} style={{ y: imgY }}>
+            <RetroContainer>
+              <VideoComp
+                src="/videos/about/va_1.mp4"
+                type="video/mp4"
+                className="w-full h-full object-cover"
+                poster="/images/about/about-me-poster.jpg"
+              />
+            </RetroContainer>
+          </motion.div>
         </div>
       </div>
     </RetroContainer>

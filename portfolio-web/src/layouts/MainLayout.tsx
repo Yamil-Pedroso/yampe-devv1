@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/navbar/Navbar";
 import InfoFooter from "@/components/footer/InfoFooter";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import ModalNote from "@/components/common/modals/ModalNote";
 import WhatsAppContact from "@/components/common/whatsapp-contact/WhatsAppContact";
 
