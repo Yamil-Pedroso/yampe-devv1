@@ -42,7 +42,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:3010",
       "https://yampe.dev",
-      "https://yampe-devv1.vercel.app/",
+      "https://yampe-devv1.vercel.app",
     ],
     credentials: true,
   }),
