@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import MainLayout from "@/layouts/MainLayout";
 //import Loader from "@/components/common/loader/Loader";
 //import RetroLoader from "@/components/common/loader/RetroLoader";
-import DevMorphLoader from "@/components/common/loader/DevMorphLoader";
 import { MenuProvider } from "@/components/context/MenuContext";
 import ScrollToTopPages from "@/components/common/scroll-items/ScrollToTopPages";
 
@@ -12,24 +10,6 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen overflow-hidden">
-        <DevMorphLoader />
-      </div>
-    );
-  }
-
   return (
     <MenuProvider>
       <MainLayout>

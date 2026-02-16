@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react";
+import { createContext, useContext, useState, useEffect, useRef, useMemo } from "react";
 
 const MenuContext = createContext<{
   isOpenMenu: boolean;
@@ -6,7 +6,7 @@ const MenuContext = createContext<{
   withMargin: boolean;
 }>({
   isOpenMenu: false,
-  toggleMenu: () => {},
+  toggleMenu: () => { },
   withMargin: false,
 });
 
@@ -50,11 +50,17 @@ export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [isOpenMenu]);
 
+  const value = useMemo(
+    () => ({ isOpenMenu, toggleMenu, withMargin: false }),
+    [isOpenMenu]
+  );
+
   return (
-    <MenuContext.Provider value={{ isOpenMenu, toggleMenu, withMargin: false }}>
+    <MenuContext.Provider value={value}>
       {children}
     </MenuContext.Provider>
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMenu = () => useContext(MenuContext);

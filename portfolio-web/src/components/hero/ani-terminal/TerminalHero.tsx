@@ -19,9 +19,9 @@ export default function TerminalHero() {
     if (currentChar < fullText.length) {
       const timeout = setTimeout(() => {
         setDisplayedLines((prev) => {
-          const copy = [...prev];
-          copy[currentLine] = (copy[currentLine] || "") + fullText[currentChar];
-          return copy;
+          const newLines = [...prev];
+          newLines[currentLine] = (newLines[currentLine] || "") + fullText[currentChar];
+          return newLines;
         });
         setCurrentChar((c) => c + 1);
       }, 20);
