@@ -1,4 +1,3 @@
-import React from "react";
 import { heroData } from "@/data/heroData";
 import { motion, Variants } from "framer-motion";
 import AskMeBox from "@/components/common/ai/AskMeBox";
@@ -144,6 +143,17 @@ const Hero = () => {
         "
       >
         <TerminalHero />
+
+        <div className="flex flex-col items-center mt-6 cursor-pointer">
+          <a
+            href="https://blackbox-one-olive.vercel.app/"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="text-color3 opacity-60 text-[1rem] mt-4 hover:text-color2 hover:opacity-100 transition-colors duration-300"
+          >
+            [ Enter Blackbox {"-->"} ]
+          </a>
+        </div>
       </motion.div>
     </section>
   );
