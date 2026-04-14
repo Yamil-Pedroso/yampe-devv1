@@ -2,6 +2,33 @@ export const projectsData = {
   header: "My Works",
   projects: [
     {
+      title: "MPC Electrical Solutions",
+      subtitle: "Professional Electrical Services Website",
+      description:
+        "A modern and responsive website developed for an electrical services company in Toronto, featuring a dynamic contact form with real-time email delivery, optimized performance, and a clean user experience tailored to convert visitors into clients.",
+      category: "Web Development",
+      tags: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "TailwindCSS",
+        "Framer Motion",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Resend API",
+      ],
+      link: "https://mpcelectricalsolutions.com",
+      image: "/images/projects/ui-ux-design/uiux_06.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d6_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d6_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d6_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d6_04.webp",
+      ],
+      icon: "",
+    },
+    {
       title: "PulseDashboard",
       subtitle: "Real-Time Analytics Dashboard",
       description:
