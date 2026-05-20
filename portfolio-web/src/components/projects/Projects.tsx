@@ -96,8 +96,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="absolute inset-0 m-auto object-contain"
-                  style={{ width: "30rem", height: "30rem" }}
+                  className="absolute inset-0 m-auto w-full h-full object-cover brightness-90"
                 />
               </motion.div>
             </BlockwithhHover>
@@ -179,8 +178,7 @@ function ProjectRow({ project, i }: { project: any; i: number }) {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="absolute inset-0 m-auto object-contain brightness-90"
-                  style={{ width: "30rem", height: "30rem" }}
+                  className="absolute inset-0 m-auto w-full h-full object-cover brightness-90"
                 />
               </motion.div>
             </BlockwithhHover>
