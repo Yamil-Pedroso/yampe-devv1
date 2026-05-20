@@ -2,6 +2,23 @@ export const projectsData = {
   header: "My Works",
   projects: [
     {
+      title: "Webbiome",
+      subtitle: "The ecosystem for modern web development.",
+      description:
+        "A creative digital environment for building scalable, interactive, and modern web experiences with cutting-edge technologies and design principles.",
+      category: "Web Development",
+      tags: ["React", "TypeScript", "Vite", "TailwindCSS", "Framer Motion"],
+      link: "https://webbiome.vercel.app/",
+      image: "/images/projects/ui-ux-design/uiux_07.webp",
+      imageDetails: [
+        "/images/projects/ui-ux-design/details/uiux-d7_01.webp",
+        "/images/projects/ui-ux-design/details/uiux-d7_02.webp",
+        "/images/projects/ui-ux-design/details/uiux-d7_03.webp",
+        "/images/projects/ui-ux-design/details/uiux-d7_04.webp",
+      ],
+      icon: "",
+    },
+    {
       title: "MPC Electrical Solutions",
       subtitle: "Professional Electrical Services Website",
       description:
