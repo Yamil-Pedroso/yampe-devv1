@@ -146,7 +146,7 @@ const Hero = () => {
 
         <div className="flex flex-col items-center mt-6 cursor-pointer">
           <a
-            href="https://blackbox-one-olive.vercel.app/"
+            href="https://blackbox.yampe.dev/"
             rel="noopener noreferrer"
             target="_blank"
             className="text-color3 opacity-60 text-[1rem] mt-4 hover:text-color2 hover:opacity-100 transition-colors duration-300"
